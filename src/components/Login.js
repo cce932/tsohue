@@ -16,7 +16,7 @@ const required = value => {
     if(!value) {
         return (
             <div className='alert'>
-                請輸入驗證碼
+                此欄不可為空
             </div>
         )
     }
@@ -69,7 +69,7 @@ const Login = props => {
         }
 
         if (isLoggedIn) {
-            return <Redirect to='/Member' /> // Redirect跳轉頁面 來自React-router-dom 
+            return <Redirect to='/member' /> // Redirect跳轉頁面 來自React-router-dom 
         }
     }
 
