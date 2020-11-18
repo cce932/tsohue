@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
 
-import './App.css';
+import './shared/css/app.scss';
 
 import Home from './components/Home'
 import Login from './components/Login'
@@ -24,53 +24,84 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <div>
+      <header>
+        <Link to={'/'} className='logo-a'>
+          <img className='logo' src='https://i.imgur.com/NycayQI.png' alt='logo' />
+        </Link>
         <nav>
-          <Link to={'/'}>
-            Index
-          </Link>
-          <div>
+          <ul className='nav-ul'>
             <li>
-              <Link to={'/home'}>
-                主頁
-              </Link>
-            </li>
-          </div>
-
-
-          {currentUser ? (
-            // 如果currentUser存在(已登入)
-            // 就顯示member頁面
-            <div>
-              <li>
-                <Link to={'/member'}>
-                  會員({currentUser.username})
+              <Link to={'#'}>
+                本月特餐
                 </Link>
-              </li>
-            </div>
-          ) : (
-              // 沒登入 就顯示點擊「會員」就會跳到註冊
-              <div>
-                <li>
-                  <Link to={'/register'}>
-                    會員（註冊）
-                  </Link>
-                </li>
-              </div>
-            )}
-        </nav>
-      </div>
+            </li>
+            <li>
+              <Link to={'#'}>
+                特價活動
+                </Link>
+            </li>
+            <li>
+              <Link to={'#'}>
+                惜福良品
+                </Link>
+            </li>
+            <li>
+              <Link to={'#'}>
+                食譜大全
+                </Link>
+            </li>
+            <li>
+              <Link to={'#'}>
+                訂購流程
+                </Link>
+            </li>
+            <li>|</li>
+          </ul>
+        </nav >
 
-      <div>
-        {/* 每個路徑 對應到的Component */}
-        <Switch>
-          <Route exact path={['/', '/home']} component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/member' component={Member} />
-        </Switch>
-      </div>
-    </Router>
+        {currentUser ? (
+          // 如果currentUser存在(已登入)
+          // 就顯示member頁面
+          < Link to={'/member'}>
+            <button>
+              <img className='feature-img' src='https://i.imgur.com/cnYJI0Z.png' alt='member' />
+            </button>
+          </Link>
+        ) : (
+            // 沒登入 就顯示點擊「會員」就會跳到註冊
+            <Link to={'/register'}>
+              <button>
+                <img className='feature-img' src='https://i.imgur.com/cnYJI0Z.png' alt='register' />
+              </button>
+            </Link>
+          )}
+
+        {/* shopping cart */}
+        < Link to={'#'}>
+          {/* <button> */}
+          <img className='feature-img' src='https://i.imgur.com/6tcHOx0.png' alt='shopping cart' />
+          {/* </button> */}
+        </Link>
+
+        {/* like */}
+        {currentUser && (
+          < Link to={'#'}>
+            <button>
+              <img className='feature-img' src='https://i.imgur.com/S91wmvD.png' alt='like' />
+            </button>
+          </Link>
+        )}
+        <div>
+          {/* 每個路徑 對應到的Component */}
+          <Switch>
+            <Route exact path={['/', '/home']} component={Home} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/member' component={Member} />
+          </Switch>
+        </div>
+      </header>
+    </Router >
   );
 }
 

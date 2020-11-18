@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
+$prime-color: #755734;
+$secondary-color: #9E8568;
+$accent-color: #FBD779;
+$default-trans: all 0.3s ease 0s;
+
+@mixin text($weight: 700, $size: 16px, $color: $prime-color) {
+    font-family: "NoTo Sans TC", sans-serif;
+    font-weight: $weight;
+    font-size: $size;
+    color: $color;
+    text-decoration: none;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 10%;
+
+    button {
+        padding: 10px 10px;
+        border: none;
+        cursor: pointer;
+        transition: $default-trans;
+        background-color: rgba($color: #000000, $alpha: 0);
+
+        &:hover {
+            opacity: 80%;
+        }
+    }
+
+    button:first-child {
+        padding-left: 0;
+    }
+
+    .feature-img {
+        padding-top: 5px;
+        height: 25px;
+    }
+}
+
+.logo-a {
+    margin-right: auto;
+}
+
+.logo {
+    width: 70px;
+}
+
+.nav-ul {
+    li {
+        /* li原本是block的 */
+        display: inline-block;
+        padding: 0 20px;
+        @include text();
+
+        a {
+            transition: $default-trans;
+            @include text();
+
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+    }
+    // #root>header>nav>ul>li:nth-child(5)>a
+    // #root>header>nav>ul>li:nth-child(6)
+    li:nth-child(5) {
+        padding-right: 0;
+    }
+}
