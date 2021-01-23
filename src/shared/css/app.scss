@@ -22,7 +22,11 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 20px 10%;
+    padding: 10px 10%;
+    position: fixed; // 固定在上
+    top: 0; // 固定在上
+    width: 100%; // 固定在上
+    background-color: rgba($color: #ffffff, $alpha: 72%);
 
     button {
         padding: 10px 10px;
@@ -34,6 +38,10 @@ header {
         &:hover {
             opacity: 80%;
         }
+    }
+
+    button:focus {
+        outline: 0;
     }
 
     button:first-child {
@@ -51,7 +59,7 @@ header {
 }
 
 .logo {
-    width: 70px;
+    width: 120px;
 }
 
 .nav-ul {

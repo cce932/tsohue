@@ -26,7 +26,7 @@ const App = () => {
     <Router history={history}>
       <header>
         <Link to={'/'} className='logo-a'>
-          <img className='logo' src='https://i.imgur.com/NycayQI.png' alt='logo' />
+          <img className='logo' src='/nav-pic/logo.svg' alt='logo' />
         </Link>
         <nav>
           <ul className='nav-ul'>
@@ -64,44 +64,45 @@ const App = () => {
           // 就顯示member頁面
           < Link to={'/member'}>
             <button>
-              <img className='feature-img' src='https://i.imgur.com/cnYJI0Z.png' alt='member' />
+              <img className='feature-img' src='/nav-pic/member.svg' alt='member' />
             </button>
           </Link>
         ) : (
             // 沒登入 就顯示點擊「會員」就會跳到註冊
             <Link to={'/register'}>
               <button>
-                <img className='feature-img' src='https://i.imgur.com/cnYJI0Z.png' alt='register' />
+                <img className='feature-img' src='/nav-pic/member.svg' alt='register' />
               </button>
             </Link>
           )}
 
         {/* shopping cart */}
         < Link to={'#'}>
-          {/* <button> */}
-          <img className='feature-img' src='https://i.imgur.com/6tcHOx0.png' alt='shopping cart' />
-          {/* </button> */}
+          <button>
+            <img className='feature-img' src='/nav-pic/cart.svg' alt='shopping cart' />
+          </button>
         </Link>
 
         {/* like */}
         {currentUser && (
           < Link to={'#'}>
             <button>
-              <img className='feature-img' src='https://i.imgur.com/S91wmvD.png' alt='like' />
+              <img className='feature-img' src='/nav-pic/like.svg' alt='like' />
             </button>
           </Link>
         )}
-        <div>
-          {/* 每個路徑 對應到的Component */}
-          <Switch>
-            <Route exact path={['/', '/home']} component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/member' component={Member} />
-          </Switch>
-        </div>
       </header>
-    </Router >
+
+      {/* 每個路徑 對應到的Component */}
+      <div>
+        <Switch>
+          <Route exact path={['/', '/home']} component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/member' component={Member} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
