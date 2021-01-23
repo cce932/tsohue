@@ -53,44 +53,44 @@ const App = () => {
             <li>
               <Link to={'#'}>
                 訂購流程
-                </Link>
+              </Link>
             </li>
             <li>|</li>
+
+            {currentUser ? (
+              // 如果currentUser存在(已登入)
+              // 就顯示member頁面
+              <li>
+                <Link to={'/member'}>
+                  <img className='feature-img' src='/nav-pic/member.svg' alt='member' />
+                </Link>
+              </li>
+            ) : (
+                // 沒登入 就顯示點擊「會員」就會跳到註冊
+                <li>
+                  <Link to={'/register'}>
+                    <img className='feature-img' src='/nav-pic/member.svg' alt='register' />
+                  </Link>
+                </li>
+              )}
+
+            {/* shopping cart */}
+            <li>
+              < Link to={'#'}>
+                <img className='feature-img' src='/nav-pic/cart.svg' alt='shopping cart' />
+              </Link>
+            </li>
+
+            {/* like */}
+            {currentUser && (
+              <li>
+                < Link to={'#'}>
+                  <img className='feature-img' src='/nav-pic/like.svg' alt='like' />
+                </Link>
+              </li>
+            )}
           </ul>
         </nav >
-
-        {currentUser ? (
-          // 如果currentUser存在(已登入)
-          // 就顯示member頁面
-          < Link to={'/member'}>
-            <button>
-              <img className='feature-img' src='/nav-pic/member.svg' alt='member' />
-            </button>
-          </Link>
-        ) : (
-            // 沒登入 就顯示點擊「會員」就會跳到註冊
-            <Link to={'/register'}>
-              <button>
-                <img className='feature-img' src='/nav-pic/member.svg' alt='register' />
-              </button>
-            </Link>
-          )}
-
-        {/* shopping cart */}
-        < Link to={'#'}>
-          <button>
-            <img className='feature-img' src='/nav-pic/cart.svg' alt='shopping cart' />
-          </button>
-        </Link>
-
-        {/* like */}
-        {currentUser && (
-          < Link to={'#'}>
-            <button>
-              <img className='feature-img' src='/nav-pic/like.svg' alt='like' />
-            </button>
-          </Link>
-        )}
       </header>
 
       {/* 每個路徑 對應到的Component */}
