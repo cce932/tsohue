@@ -1,3 +1,89 @@
+@import 'global';
+
 .banner {
     width: 100%;
+}
+.container {
+    
+    .col {
+        height: 300px;
+
+        .sc {
+            width: 70px;
+            height: 70px;
+            background-color: $accent-color;
+            border-radius: 48%;
+            border: solid #ffffff 10px;
+            // margin: 0 auto; // 在父div內 水平置中sc
+
+            p {
+                @include text(600, 24px, $prime-color);
+                text-align: center;
+                padding: 8px 0 0; // 微調 字往下
+            }
+        }
+
+        .rotate {
+            transform: rotate(45deg);
+            p {
+                transform: rotate(-45deg); // 轉回來
+                padding-right: 4px; // 微調 字往右
+            }
+        }
+    }
+    
+    .col-8 > .row {
+        display: flex;
+        position: relative;
+        // padding: 0 70px; // 讓4個.feature更水平集中
+
+        .feature {
+            display: flex;
+            flex-direction: column; // 讓.sc和p 上下排
+            justify-content: center; // 在父層div內 垂直置中
+
+            & > p {
+                @include text(700, 16px, $prime-color);
+                margin: 5px 0 0 12px;
+            }
+        }
+
+        .arrow {
+            z-index: -2;
+            width: 100%;
+            // margin: 0 -20; // 對應到.col-9 > .row的padding左右20px 這邊為了不讓line變短
+            position: absolute; // 讓他橫跨在4個col之間
+            top: 120px; // 絕對位置
+            left: 20px; // 絕對位置
+            display: flex; // 讓.lin .point 水平置中
+            align-items: center; // 讓.lin .point 水平置中
+
+            .line {
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, $accent-color 40%, $secondary-color);
+            }
+
+            .point {
+                width: 0;
+                height: 0;
+                border-top: 5px solid transparent;
+                border-bottom: 5px solid transparent;
+                border-left: 10px solid $secondary-color;
+            }
+        }
+    }
+
+    .col-4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 50px;
+
+        a {
+            @include text(600, 36px, $prime-color);
+            border-bottom: solid 4px $accent-color;
+            line-height: 1.15;
+        }
+    }
 }
