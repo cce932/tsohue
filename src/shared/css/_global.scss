@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
+
+$prime-color: #755734;
+$secondary-color: #9E8568;
+$accent-color: #FBD779;
+$linear: linear-gradient(90deg, $prime-color 40%, $secondary-color);
+$default-trans: all 0.3s ease 0s;
+
+@mixin text($weight: 700, $size: 16px, $color: $prime-color) {
+    font-family: sans-serif;
+    font-weight: $weight;
+    font-size: $size;
+    color: $color;
+    text-decoration: none;
+}
+
+@mixin root {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}

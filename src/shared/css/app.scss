@@ -1,21 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
-$prime-color: #755734;
-$secondary-color: #9E8568;
-$accent-color: #FBD779;
-$default-trans: all 0.3s ease 0s;
-
-@mixin text($weight: 700, $size: 16px, $color: $prime-color) {
-    font-family: "NoTo Sans TC", sans-serif;
-    font-weight: $weight;
-    font-size: $size;
-    color: $color;
-    text-decoration: none;
-}
+@import 'global';
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    @include root;
 }
 
 header {
@@ -27,8 +13,6 @@ header {
     top: 0; // 固定在上
     width: 100%; // 固定在上
     background-color: rgba($color: #ffffff, $alpha: 72%);
-
-
 
     .logo-a {
         margin-right: auto;
