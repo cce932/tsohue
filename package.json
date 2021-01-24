@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "bootstrap": "^5.0.0-beta1",
     "redux-devtools-extension": "^2.13.8"
   }
 }
