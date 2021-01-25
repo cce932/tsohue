@@ -4,10 +4,10 @@
     position: relative;
 
     .slogan {
-        @include text(700, 54px, $prime-color);
+        @include text(600, 54px, $prime-color);
         position: absolute;
-        top: 350px;
-        right: 300px;
+        top: 35%;
+        left: 65%;
 
         :first-child {
             margin-left: -30px; 

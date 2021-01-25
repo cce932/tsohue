@@ -6,7 +6,7 @@
     justify-content: center; // 在父層div內 垂直置中
 
     & > p {
-        @include text(700, 16px, $prime-color);
+        @include text(500, 16px, $prime-color);
         margin: 5px 0 0 12px;
     }
 }
@@ -59,7 +59,7 @@
     background-color: $accent-color;
     
     .footer {
-        @include text(700, 14px, $prime-color);
+        @include text(500, 14px, $prime-color);
         height: 300px;
         display: flex;
         justify-content: center;
@@ -70,7 +70,7 @@
         }
 
         .left {
-            border-right: solid 2px $prime-color;
+            border-right: solid 1px $prime-color;
             
             label {
                 @include text(700, 18px, $prime-color);
