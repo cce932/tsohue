@@ -1,0 +1,12 @@
+@import 'global';
+
+.feature {
+    display: flex;
+    flex-direction: column; // 讓.sc和p 上下排
+    justify-content: center; // 在父層div內 垂直置中
+
+    & > p {
+        @include text(700, 16px, $prime-color);
+        margin: 5px 0 0 12px;
+    }
+}

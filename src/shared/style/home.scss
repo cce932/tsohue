@@ -37,17 +37,6 @@
         position: relative;
         // padding: 0 70px; // 讓4個.feature更水平集中
 
-        .feature {
-            display: flex;
-            flex-direction: column; // 讓.sc和p 上下排
-            justify-content: center; // 在父層div內 垂直置中
-
-            & > p {
-                @include text(700, 16px, $prime-color);
-                margin: 5px 0 0 12px;
-            }
-        }
-
         .arrow {
             z-index: -2;
             width: 100%;
