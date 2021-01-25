@@ -13,8 +13,13 @@ const Home = () => {
       <div>
 
         {/* 主banner */}
-        <div>
-          <img className="banner" src="/home-pic/banner1.png"></img>
+        <div className="main-banner">
+          <div className="slogan">
+            <label>作伙料理小師傅</label><br />
+            <label> 享受美食第一步</label>
+            <p>TsoHue / Right amount for you</p>
+          </div>
+          <img className="banner" src="/home-pic/banner1.jpg"></img>
         </div>
 
         {/* 特色區 */}
@@ -44,7 +49,7 @@ const Home = () => {
         {/* 本月特餐 */}
         <div className={["container", "monthly-special"].join(" ")}>
           {/* <Link to="#"> */}
-            <MonthlySpecial title="梅香東坡肉拌飯" gredients={gredients} />
+          <MonthlySpecial title="梅香東坡肉拌飯" gredients={gredients} />
           {/* </Link> */}
           <div class="how-cook">
             <Link to="#">
