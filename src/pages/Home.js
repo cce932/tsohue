@@ -2,18 +2,22 @@ import React from "react"
 import home from "../shared/style/home.scss"
 import { Router, Link } from "react-router-dom"
 import { history } from '../helpers/history'
-import FeatureSlot from "../shared/components/FeatureSlot";
+import { FeatureSlot, MonthlySpecial } from "../shared/components/common";
+
+const gredients = ["東坡肉", "梅干", "滷蛋", "青江菜", "洋蔥", "紅蔥頭", "鹽", "特調醬料"]
 
 const Home = () => {
   return (
     <Router history={history}>
       <div>
+
+        {/* 主banner */}
         <div>
           <img className="banner" src="/home-pic/banner1.png"></img>
         </div>
 
-        <div className="container">
-
+        {/* 特色區 */}
+        <div className={["container", "feature"].join(" ")}>
           <div className='row'>
             <div className="col col-8">
               <div className='row'>
@@ -31,9 +35,20 @@ const Home = () => {
             <div className="col col-4">
               <Link to="#">
                 怎麼買？
-                            </Link>
+              </Link>
             </div>
+          </div>
+        </div>
 
+        {/* 本月特餐 */}
+        <div className={["container", "monthly-special"].join(" ")}>
+          <Link to="#">
+            <MonthlySpecial title="梅香東坡肉拌飯" gredients={gredients} />
+          </Link>
+          <div class="how-cook">
+            <Link to="#">
+              怎麼煮？
+            </Link>
           </div>
         </div>
       </div>

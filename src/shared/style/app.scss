@@ -13,6 +13,7 @@ header {
     top: 0; // 固定在上
     width: 100%; // 固定在上
     background-color: rgba($color: #ffffff, $alpha: 72%);
+    z-index: 99999;
 
     .logo-a {
         margin-right: auto;

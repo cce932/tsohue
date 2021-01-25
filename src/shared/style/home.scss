@@ -3,8 +3,8 @@
 .banner {
     width: 100%;
 }
-.container {
-    
+.feature {
+
     .col {
         height: 300px;
 
@@ -70,9 +70,37 @@
         padding-bottom: 50px;
 
         a {
-            @include text(600, 36px, $prime-color);
-            border-bottom: solid 4px $accent-color;
+            @include text(600, 36px, $accent-deeper-color);
+            // border-bottom: dashed 4px $accent-color;
             line-height: 1.15;
+            transition: $default-trans;
+        
+            &:hover {
+                color: $prime-color;
+                // border-bottom: dashed 4px $secondary-color;
+            }
+        }
+    }
+}
+
+.monthly-special {
+    position: relative;
+
+    .how-cook {
+        position: absolute;
+        top: 450px;
+        right: 28px;
+        border-radius: 25px;
+        padding: 3px 8px 1px 10px;
+        background-color: $accent-deeper-color;
+        transition: $default-trans;
+        
+        &:hover {
+            background-color: $secondary-color;
+        }
+        
+        a {
+            @include text(600, 24px, #ffffff);
         }
     }
 }

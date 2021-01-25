@@ -1,0 +1,56 @@
+@import 'global';
+
+.feature-slot {
+    display: flex;
+    flex-direction: column; // 讓.sc和p 上下排
+    justify-content: center; // 在父層div內 垂直置中
+
+    & > p {
+        @include text(700, 16px, $prime-color);
+        margin: 5px 0 0 12px;
+    }
+}
+
+
+.monthly-special {
+
+    position: relative;
+    img {
+        width: 90%;
+    }
+
+    .special {
+        position: absolute;
+        top: 150px;
+        right: 28px;
+
+        label {
+            @include text(700, 18px, $accent-deeper-color);
+        }
+        .title {
+            @include text(700, 36px, $prime-color);
+            margin: 0 0 -7px;
+        }
+
+        img {
+            margin-bottom: 20px;
+            width: 252px;
+            height: 15px;
+        }
+        
+        .gredients {
+            @include text(500, 16px, $prime-color);
+            display: flex;
+            flex-direction: row;
+            margin-left: 2px;
+
+            .g-row {
+                width: 100px;
+
+                p  {
+                    margin-bottom: 3px;
+                }
+            }
+        }
+    }
+}
