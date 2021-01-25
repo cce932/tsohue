@@ -22,8 +22,8 @@ export const MonthlySpecial = ({
 }) => {
     const styled = gredients.map((gredient) => <p>{gredient}</p>)
     const splited = splitToRows(styled, gredientsMaxRow)
-        .map(gredient => 
-            <div className="g-row">{gredient}</div>
+        .map(gredients => 
+            <div className="g-row">{gredients}</div>
     )
 
     return (
@@ -33,11 +33,49 @@ export const MonthlySpecial = ({
             <div className="special">
                 <label>本月特餐</label>
                 <p className="title">{title}</p>
-                <img src="/home-pic/wave.svg" />
+                <img src="/common-pic/wave.svg" />
                 <div className="gredients">
                     {splited}
                 </div>
             </div>
         </div>
     )
+}
+
+export const Footer = ({
+    links,
+    linksMaxRow = 5
+}) => {
+    const styled = links.map((link) => <p>{link}</p>)
+    const splited = splitToRows(styled, linksMaxRow)
+        .map(links => 
+            <div className="g-row">{links}</div>
+    )
+
+    return (
+        <div className="container-bg">
+            <div className={["footer", "container"].join(" ")}>
+                <div className="row">
+                    <div className={["col", "col-9", "left"].join(" ")}>
+                        <label>TsoHue / Right amount for you</label>
+                        <div className="links">
+                            {splited}
+                        </div>
+                    </div>
+                    <div className={["col col-3", "right"].join(" ")}>
+                        <div className="media-icons">
+                            <a herf="#"><img src="/common-pic/fb.svg" alt="Facebook" /></a>
+                            <a herf="#"><img src="/common-pic/ig.svg" alt="Instagram" /></a>
+                        </div>
+                        
+                        <p>02-4566-7000</p>
+                        <p>SUN - FRI  08:00 - 20:00</p>
+                        <p>作伙股份有限公司</p>
+                        <p>tso.hue@tsohue.com</p>
+                        <p>230 台北市大安區基隆路526號</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )    
 }

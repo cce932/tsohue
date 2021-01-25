@@ -1,8 +1,29 @@
 @import 'global';
 
-.banner {
-    width: 100%;
+.main-banner {
+    position: relative;
+
+    .slogan {
+        @include text(700, 54px, $prime-color);
+        position: absolute;
+        top: 350px;
+        right: 300px;
+
+        :first-child {
+            margin-left: -30px; 
+        }
+
+        p {
+            @include text(600, 18px, $prime-color);
+            margin: 50px 8px 0;
+        }
+    }
+
+    .banner {
+        width: 100%;
+    }
 }
+
 .feature {
 
     .col {
@@ -70,13 +91,13 @@
         padding-bottom: 50px;
 
         a {
-            @include text(600, 36px, $accent-deeper-color);
+            @include text(600, 36px, $prime-color);
             // border-bottom: dashed 4px $accent-color;
             line-height: 1.15;
             transition: $default-trans;
         
             &:hover {
-                color: $prime-color;
+                color: $accent-deeper-color;
                 // border-bottom: dashed 4px $secondary-color;
             }
         }
@@ -85,6 +106,7 @@
 
 .monthly-special {
     position: relative;
+    margin-bottom: 50px;
 
     .how-cook {
         position: absolute;
@@ -96,7 +118,7 @@
         transition: $default-trans;
         
         &:hover {
-            background-color: $secondary-color;
+            background-color: $prime-color;
         }
         
         a {

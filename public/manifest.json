@@ -14,11 +14,6 @@
     {
       "src": "/nav-pic/like.svg",
       "type": "image/svg"
-    },
-    {
-      "src": "/home-pic/banner1.png",
-      "type": "image/png",
-      "sizes": "5760x3368"
     }
   ],
   "start_url": ".",
