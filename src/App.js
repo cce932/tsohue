@@ -2,12 +2,12 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
 
-import './shared/css/app.scss';
+import './shared/style/app.scss';
 
-import Home from './components/Home'
-import Login from './components/Login'
-import Register from './components/Register'
-import Member from './components/Member'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Member from './pages/Member'
 import { clearMessage } from './actions/message'
 import { history } from './helpers/history'
 

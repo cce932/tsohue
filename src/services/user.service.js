@@ -1,6 +1,6 @@
 import axios from 'axios'
 import authHeader from './auth-header'
-import { getAuthAPI } from '../shared/urls'
+import { getAuthAPI } from '../shared/constants/urls'
 
 // 抓取每個頁面所需的資料
 

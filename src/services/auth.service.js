@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAuthAPI } from '../shared/urls'
+import { getAuthAPI } from '../shared/constants/urls'
 import userService from './user.service'
 
 const register = (account, password, username, phone, email) => {
