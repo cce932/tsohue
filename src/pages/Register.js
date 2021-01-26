@@ -7,9 +7,9 @@ import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 import { isEmail } from 'validator'
 
-import { register } from '../actions/auth'
-import { history } from '../helpers/history'
-import { clearMessage } from '../actions/message'
+import { register } from 'actions/auth'
+import { history } from 'helpers/history'
+import { clearMessage } from'actions/message'
 
 // 設定驗證
 // dispatch action

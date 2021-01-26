@@ -6,7 +6,7 @@ import {
     LOGOUT,
     SET_MESSAGE
 } from './types'
-import AuthService from '../services/auth.service'
+import AuthService from 'services/auth.service'
 
 // dispatch(action) 一定要回傳action 內容是type屬性和可省略的payload
 export const register = (account, password, username, phone, email) => dispatch => {

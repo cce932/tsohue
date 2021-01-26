@@ -6,7 +6,7 @@ import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 
-import { login } from '../actions/auth'
+import { login } from 'actions/auth'
 
 // 限制帳號密碼格式
 // 如果格式輸入沒錯 就發成功的action

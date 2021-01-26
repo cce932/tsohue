@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { Redirect, Router, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { logout } from '../actions/auth'
-import { clearMessage } from '../actions/message'
-import { history } from '../helpers/history'
+import { logout } from 'actions/auth'
+import { clearMessage } from 'actions/message'
+import { history } from 'helpers/history'
 
 // Errored: member改大寫。 React Hook "useSelector" is called in function "member" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter
 const Member = () => {
