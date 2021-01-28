@@ -1,0 +1,8 @@
+version: '3.3'
+# 定義您想要在應用程式中執行的服務 (或container) 清單
+services: 
+  dronetesthere: 
+    image: tsohue-front-end
+    build: .
+    ports:
+      - '80:3001'

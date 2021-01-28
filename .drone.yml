@@ -1,0 +1,34 @@
+kind: pipeline
+type: docker
+name: Staging
+
+steps:
+  - name: build
+    image: node
+    commands:
+    - yarn install
+
+  - name: Build docker image
+    image: docker/compose:1.23.2
+    volumes:
+      - name: docker_socket
+        path: /var/run/docker.sock
+    commands:
+      - echo "test"
+      - cd /drone/src/
+      - docker build -t dinogame:latest .
+
+  - name: Create service
+    image: docker/compose
+    volumes:
+      - name: docker_socket
+        path: /var/run/docker.sock
+    commands:
+      #把原本的container 關掉
+      - docker-compose -f /drone/src/docker-compose.yml -p backend down
+      #重新開啟現在的container
+      - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
+volumes:
+  - name: docker_socket
+    host:
+      path: /var/run/docker.sock
