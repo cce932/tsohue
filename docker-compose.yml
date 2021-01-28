@@ -1,4 +1,4 @@
-version: '1.0'
+version: '5.0'
 services: 
   dronetesthere: 
     image: tsohue-front-end
