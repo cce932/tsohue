@@ -14,9 +14,8 @@ steps:
       - name: docker_socket
         path: /var/run/docker.sock
     commands:
-      - echo "test"
       - cd /drone/src/
-      - docker build -t dinogame:latest .
+      - docker build -t tsohue-front-end:latest .
 
   - name: Create service
     image: docker/compose
@@ -24,9 +23,7 @@ steps:
       - name: docker_socket
         path: /var/run/docker.sock
     commands:
-      #把原本的container 關掉
       - docker-compose -f /drone/src/docker-compose.yml -p backend down
-      #重新開啟現在的container
       - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
 volumes:
   - name: docker_socket
