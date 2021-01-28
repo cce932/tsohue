@@ -10,6 +10,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install app dependencies
 COPY package.json ./
 RUN yarn install --silent
+RUN yarn global add react-scripts
 
 # add app
 COPY . ./
