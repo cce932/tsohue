@@ -4,4 +4,4 @@ services:
     image: tsohue-front-end
     build: .
     ports:
-      - '3001:3001'
+      - '80:3000'
