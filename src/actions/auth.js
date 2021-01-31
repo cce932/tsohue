@@ -50,8 +50,6 @@ export const register = (account, password, username, phone, email) => (
 export const login = (account, password) => (dispatch) => {
   return AuthService.login(account, password).then(
     (data) => {
-      // data 就是post之後會拿到的token 是response.data
-      // data: token: "Bearer eyJhbG...
 
       dispatch({
         type: LOGIN_SUCCESS,
