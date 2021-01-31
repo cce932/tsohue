@@ -98,13 +98,19 @@
                 display: flex;
                 flex-direction: row;
 
-                a:hover {
-                    transition: $default-trans;
-                    opacity: 70%;
+                button {
+                    background-color: transparent;
+                    border: 0;
+                    outline: 0;
+                    
+                    &:hover {
+                        transition: $default-trans;
+                        opacity: 70%;
+                    }
                 }
                 
                 img {
-                    margin: 0 10px 20px 0;
+                    margin: 0 15px 20px 0;
                     cursor: pointer;
                 }
             }

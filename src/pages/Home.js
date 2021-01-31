@@ -19,7 +19,7 @@ const Home = () => {
             <label> 享受美食第一步</label>
             <p>TsoHue / Right amount for you</p>
           </div>
-          <img className="banner" src="/home-pic/banner1.jpg"></img>
+          <img className="banner" src="/home-pic/banner1.jpg" alt="Main banner"></img>
         </div>
 
         {/* 特色區 */}
@@ -51,7 +51,7 @@ const Home = () => {
           {/* <Link to="#"> */}
           <MonthlySpecial title="梅香東坡肉拌飯" gredients={gredients} />
           {/* </Link> */}
-          <div class="how-cook">
+          <div className="how-cook">
             <Link to="#">
               怎麼煮？
             </Link>
