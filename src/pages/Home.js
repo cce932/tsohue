@@ -1,6 +1,6 @@
 import React from "react"
 import { Router, Link } from "react-router-dom"
-import home from "shared/style/home.scss"
+import "shared/style/home.scss"
 import { history } from 'helpers/history'
 import { FeatureSlot, MonthlySpecial, Footer } from "shared/components/common";
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import common from '../style/common.scss'
+import '../style/common.scss'
 import { splitToRows } from '../utility/common'
 
 export const FeatureSlot = ({
