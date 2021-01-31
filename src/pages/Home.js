@@ -23,7 +23,7 @@ const Home = () => {
         </div>
 
         {/* 特色區 */}
-        <div className={["container", "feature"].join(" ")}>
+        <div className={`container feature`}>
           <div className='row'>
             <div className="col col-8">
               <div className='row'>
