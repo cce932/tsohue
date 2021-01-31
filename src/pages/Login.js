@@ -50,22 +50,20 @@ const Login = (props) => {
     form.current.validateAll()
     // 如果登入資訊沒錯
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(account, password)) // 發送login的action
+      dispatch(login(account, password))
         .then(() => {
           props.history.push("/member") // 成功就跳轉頁面
           window.location.reload()
         })
         .catch((error) => {
-          console.log("Login.js login fail:", error)
           setLoading(false)
         })
     } else {
-      console.log("enter error")
       setLoading(false)
     }
 
     if (isLoggedIn) {
-      return <Redirect to="/member" /> // Redirect跳轉頁面 來自React-router-dom
+      return <Redirect to="/member" />
     }
   }
 
