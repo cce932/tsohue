@@ -1,4 +1,4 @@
-# pull official base image 13.12.0-alpine
+# pull official base image
 FROM node:14.15
 
 # set working directory container 裡面的工作目錄
