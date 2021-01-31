@@ -5,8 +5,8 @@ import { getAuthAPI } from 'shared/constants/urls'
 // 抓取每個頁面所需的資料
 
 // member基本資料
-const getCurrentMemberData = (accessToken = authHeader()) => {
-  return axios.get(getAuthAPI + '/member/me', { headers: accessToken }).then(
+const getCurrentMemberData = (token = authHeader()) => {
+  return axios.get(getAuthAPI + '/member/me', { headers: token }).then(
     response => {
       return response
     },

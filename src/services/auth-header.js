@@ -5,9 +5,8 @@
 // 抓儲存在localStorage的'user'
 const authHeader = () => {
     const user = JSON.parse(localStorage.getItem('user'))
-    // console.log('get header:', user)
-    if ( user && user.accessToken) {
-        return { Authorization: user.accessToken }
+    if ( user && user.token) {
+        return { Authorization: user.token }
     } else {
         return {}
     }
