@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect, Router, Link } from "react-router-dom"
 
-import style from "shared/style/register.scss"
+import "shared/style/register.scss"
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckButton from "react-validation/build/button"
-import { isEmail } from "validator"
+import { isEmail, isNumeric } from "validator"
 
 import { register } from "actions/auth"
 import { history } from "helpers/history"
@@ -37,6 +37,12 @@ const validAccount = (value) => {
 const validPassword = (value) => {
   if (value.length < 8 || value > 20) {
     return <div className="alert">字數請介於8~20</div>
+  }
+}
+
+const validPhone = (value) => {
+  if (!isNumeric(value)) {
+    return <div className="alert">格式不對喔</div>
   }
 }
 
@@ -153,7 +159,7 @@ const Register = () => {
                   name="phone"
                   onChange={onChangePhone}
                   value={phone}
-                  validations={[required]}
+                  validations={[required, validPhone]}
                 />
 
                 <button>{successful ? "註冊中" : "註冊"}</button>
