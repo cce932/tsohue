@@ -6,7 +6,7 @@ import { getAuthAPI } from 'shared/constants/urls'
 
 // member基本資料
 const getCurrentMemberData = (accessToken = authHeader()) => {
-  return axios.get(getAuthAPI + 'member/me', { headers: accessToken }).then(
+  return axios.get(getAuthAPI + '/member/me', { headers: accessToken }).then(
     response => {
       return response
     },

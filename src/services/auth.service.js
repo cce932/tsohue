@@ -3,7 +3,7 @@ import { getAuthAPI } from 'shared/constants/urls'
 import userService from './user.service'
 
 const register = (account, password, username, phone, email) => {
-  return axios.post(getAuthAPI + 'member/register', {
+  return axios.post(getAuthAPI + '/member/register', {
     account,
     password,
     username,
@@ -13,7 +13,7 @@ const register = (account, password, username, phone, email) => {
 }
 
 const login = (account, password) => {
-  return axios.post(getAuthAPI + 'auth/login', {
+  return axios.post(getAuthAPI + '/login', {
     account,
     password
   })
