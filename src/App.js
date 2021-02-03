@@ -2,14 +2,13 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
 
-import './shared/style/app.scss';
-
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Member from './pages/Member'
-import { clearMessage } from './actions/message'
-import { history } from './helpers/history'
+import 'shared/style/app.scss';
+import Home from 'pages/Home'
+import Login from 'pages/Login'
+import Register from 'pages/Register'
+import Member from 'pages/Member'
+import { clearMessage } from 'actions/message'
+import { history } from 'helpers/history'
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
