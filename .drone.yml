@@ -23,8 +23,9 @@ steps:
       - name: docker_socket
         path: /var/run/docker.sock
     commands:
-      - docker-compose -f /drone/src/docker-compose.yml -p backend down
-      - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
+      - docker-compose -f /drone/src/docker-compose.yml -p tsohue down
+      - docker-compose -f /drone/src/docker-compose.yml -p tsohue up -d
+      - docker rmi --force $(docker images -f "dangling=true" -q)
 volumes:
   - name: docker_socket
     host:
