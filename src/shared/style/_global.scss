@@ -13,6 +13,7 @@ $default-trans: all 0.3s ease 0s;
     font-size: $size;
     color: $color;
     text-decoration: none;
+    letter-spacing: 0.03em;
 }
 
 @mixin root {

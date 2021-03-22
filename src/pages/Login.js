@@ -72,7 +72,7 @@ const Login = (props) => {
     <div className={`container`}>
       <div className={`login`}>
         <Form onSubmit={handleLogin} ref={form}>
-          <label htmlFor="account">Account</label>
+          <label htmlFor="account">帳號</label>
           <Input
             type="text"
             name="account"
@@ -81,7 +81,7 @@ const Login = (props) => {
             validations={[required]}
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">密碼</label>
           <Input
             type="text"
             name="password"
@@ -93,9 +93,9 @@ const Login = (props) => {
           <button disabled={loading}>
             {loading && ( // 如果正在loading的話 那就不能按此button
               // <span className='spinner-border spinner-border-sm'></span> // boostrape的寫法 顯示loading icon
-              <span>Loading...</span>
+              <span>登入中</span>
             )}
-            <span>Login</span>
+            <span>確定</span>
           </button>
 
           {message && <div className="message">{message}</div>}

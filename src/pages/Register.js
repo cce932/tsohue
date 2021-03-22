@@ -29,13 +29,13 @@ const validEmail = (value) => {
 }
 
 const validAccount = (value) => {
-  if (value.length < 6 || value > 20) {
+  if (value.length < 6 || value.length > 20) {
     return <div className="alert">字數請介於6~20</div>
   }
 }
 
 const validPassword = (value) => {
-  if (value.length < 8 || value > 20) {
+  if (value.length < 8 || value.length > 20) {
     return <div className="alert">字數請介於8~20</div>
   }
 }
@@ -121,7 +121,7 @@ const Register = () => {
           <Form onSubmit={handleRegister} ref={form}>
             {!successful ? (
               <div className="form">
-                <label>Account</label>
+                <label>帳號</label>
                 <Input
                   type="text"
                   name="account"
@@ -129,7 +129,7 @@ const Register = () => {
                   value={account}
                   validations={[required, validAccount]}
                 />
-                <label>Password</label>
+                <label>密碼</label>
                 <Input
                   type="text"
                   name="password"
@@ -137,7 +137,7 @@ const Register = () => {
                   value={password}
                   validations={[required, validPassword]}
                 />
-                <label>Username</label>
+                <label>姓名</label>
                 <Input
                   type="text"
                   name="username"
@@ -145,7 +145,7 @@ const Register = () => {
                   value={username}
                   validations={[required]}
                 />
-                <label>Email</label>
+                <label>電子信箱</label>
                 <Input
                   type="text"
                   name="email"
@@ -153,7 +153,7 @@ const Register = () => {
                   value={email}
                   validations={[required, validEmail]}
                 />
-                <label>Phone</label>
+                <label>手機</label>
                 <Input
                   type="text"
                   name="phone"
@@ -162,7 +162,7 @@ const Register = () => {
                   validations={[required, validPhone]}
                 />
 
-                <button>{successful ? "註冊中" : "註冊"}</button>
+                <button>{successful ? "註冊中" : "確定"}</button>
               </div>
             ) : (
               <Redirect to="/login" />
