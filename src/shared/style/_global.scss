@@ -1,23 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap");
 
 $prime-color: #755734;
-$secondary-color: #9E8568;
-$accent-color: #FBD779;
-$accent-deeper-color: #F9BD23;
-$linear: linear-gradient(90deg, $prime-color 40%, $secondary-color);
-$default-trans: all 0.3s ease 0s;
+$secondary-color: #9e8568;
+$accent-color: #fbd779;
+$accent-deeper-color: #f9bd23; // f8cb50(manager)
+$first-color: rgb(52, 58, 64);
+$secondary-color: rgb(86, 90, 95);
+$third-color: rgb(179, 183, 188);
+$forth-color: rgb(205, 211, 216);
+$fifth-color: rgb(232, 235, 240);
+$sixth-color: rgb(249, 250, 252);
 
-@mixin text($weight: 700, $size: 16px, $color: $prime-color) {
-    font-family: sans-serif;
-    font-weight: $weight;
-    font-size: $size;
-    color: $color;
-    text-decoration: none;
-    letter-spacing: 0.03em;
+$linear: linear-gradient(90deg, $first-color 40%, $secondary-color);
+$linear-h: linear-gradient(90deg, $forth-color, $fifth-color);
+$linear-v: linear-gradient(230deg, $forth-color, $accent-color);
+$default-trans: all 0.3s ease 0s;
+$default-shadow: 0px 0px 15px rgba($forth-color, 0.7); // offset-x | offset-y | blur-radius | color
+$shadow-lighter: 0px 0px 15px rgba($fifth-color, 0.7);
+$shadow-deeper: 0px 0px 10px rgba($third-color, 0.6);
+$shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
+
+@mixin text($weight: 700, $size: 1rem, $color: $prime-color) {
+  font-family: sans-serif;
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
+  text-decoration: none;
+  letter-spacing: 0.03em;
 }
 
 @mixin root {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@mixin make-container($padding-x: 350px, $margin-top: 150px) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: $margin-top;
 }
