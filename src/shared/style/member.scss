@@ -1,0 +1,5 @@
+@import "global";
+
+div.member.ctm-container {
+  @include make-container();
+}
