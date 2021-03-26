@@ -34,6 +34,34 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
+  .form-control:focus,
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="date"]:focus,
+  input[type="month"]:focus,
+  input[type="time"]:focus,
+  input[type="week"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="color"]:focus,
+  .uneditable-input:focus {
+    outline: 0 none;
+  }
+
+  button:focus,
+  button[type="button"]:focus,
+  a[class="page-link"]:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
 }
 
 @mixin make-container($padding-x: 350px, $margin-top: 150px) {

@@ -4,6 +4,10 @@
     @include root;
 }
 
+.container {
+    min-height: 300px;
+}
+
 header {
     display: flex;
     justify-content: flex-end;

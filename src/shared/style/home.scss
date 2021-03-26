@@ -4,7 +4,6 @@
     position: relative;
 
     .slogan {
-        @include text(600, 54px, $prime-color);
         position: absolute;
         top: 35%;
         left: 65%;
@@ -13,8 +12,12 @@
             margin-left: -30px; 
         }
 
+        label {
+            @include text(600, 3.5rem, $prime-color);
+        }
+
         p {
-            @include text(600, 18px, $prime-color);
+            @include text(600, 1rem, $prime-color);
             margin: 50px 8px 0;
         }
     }
