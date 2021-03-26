@@ -6,7 +6,6 @@ import { logout } from "actions/auth"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
 import "shared/style/member.scss"
-import { PrimaryBtn } from "shared/components/styled"
 import SideList from "shared/components/SideList"
 import {
   allPaths,
