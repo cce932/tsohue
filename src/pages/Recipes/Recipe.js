@@ -1,6 +1,6 @@
 import { SemiRoundedLabel } from "shared/components/styled"
 import { versionOptions } from "shared/constants/options"
-import { BsHeart, BsHeartFill } from "react-icons/bs"
+import { FaHeart, FaRegHeart } from "react-icons/fa"
 import "shared/style/recipe.scss"
 import { useState } from "react"
 
@@ -21,9 +21,9 @@ const Recipe = (props) => {
           <span>
             <button onClick={() => setLike(!like)}>
               {like ? (
-                <BsHeartFill fill="#755734" />
+                <FaHeart fill="#755734" />
               ) : (
-                <BsHeart fill="#755734" />
+                <FaRegHeart fill="#755734" />
               )}
             </button>
             {recipe.likesCount}

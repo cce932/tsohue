@@ -1,58 +1,57 @@
-@import 'global';
+@import "global";
 
 * {
-    @include root;
+  @include root;
 }
 
 .container {
-    min-height: 300px;
+  min-height: 300px;
 }
 
 header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 10%;
-    position: fixed; // 固定在上
-    top: 0; // 固定在上
-    width: 100%; // 固定在上
-    background-color: rgba($color: #ffffff, $alpha: 72%);
-    z-index: 99999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 10%;
+  position: fixed; // 固定在上
+  top: 0; // 固定在上
+  width: 100%; // 固定在上
+  background-color: rgba($color: #ffffff, $alpha: 72%);
+  z-index: 99999;
 
-    .logo-a {
-        margin-right: auto;
+  .logo-a {
+    margin-right: auto;
+  }
+
+  .logo {
+    width: 120px !important;
+  }
+
+  .nav-ul {
+    margin: 0; // 因為bootstrap的預設reboot會導致margin-botton: 1rem，所以這邊先還原
+
+    li {
+      /* li原本是block的 */
+      display: inline-block;
+      transition: $default-trans;
+      background-color: rgba($color: #000000, $alpha: 0);
+
+      &:hover {
+        opacity: 85%;
+      }
+
+      a {
+        @include text();
+        padding: 0 20px;
+      }
+
+      a:nth-child(5) {
+        padding-right: 0;
+      }
+
+      a.icon {
+        padding-left: 0;
+      }
     }
-
-    .logo {
-        width: 120px !important;
-    }
-
-    .nav-ul {
-        margin: 0; // 因為bootstrap的預設reboot會導致margin-botton: 1rem，所以這邊先還原
-
-        li {
-            /* li原本是block的 */
-            display: inline-block;
-            transition: $default-trans;
-            background-color: rgba($color: #000000, $alpha: 0);
-    
-            &:hover {
-                opacity: 85%;
-            }
-
-            a {
-                @include text();
-                padding: 0 20px;
-            }
-            
-            a:nth-child(5) {
-                padding-right: 0;
-            }
-
-            .feature-img {
-                width: 22px;
-                margin: 0 -22px 0 0;
-            }
-        }
-    }
+  }
 }

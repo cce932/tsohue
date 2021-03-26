@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
+import { FaShoppingCart, FaUser, FaHeart } from "react-icons/fa"
 
 import "shared/style/app.scss"
 import Home from "pages/Home"
@@ -60,46 +61,30 @@ const App = () => {
               // 就顯示member頁面
               <li>
                 <Link to={allPaths[member]}>
-                  <img
-                    className="feature-img"
-                    src="/nav-pic/member.svg"
-                    alt="member"
-                  />
+                  <FaUser />
                 </Link>
               </li>
             ) : (
               // 沒登入 就顯示點擊「會員」就會跳到註冊
               <li>
                 <Link to={allPaths[register]}>
-                  <img
-                    className="feature-img"
-                    src="/nav-pic/member.svg"
-                    alt="register"
-                  />
+                  <FaUser />
                 </Link>
               </li>
             )}
 
             {/* shopping cart */}
             <li>
-              <Link to={"#"}>
-                <img
-                  className="feature-img"
-                  src="/nav-pic/cart.svg"
-                  alt="shopping cart"
-                />
+              <Link className="icon" to={"#"}>
+                <FaShoppingCart size="18px" />
               </Link>
             </li>
 
             {/* like */}
             {currentUser && (
               <li>
-                <Link to={"#"}>
-                  <img
-                    className="feature-img"
-                    src="/nav-pic/like.svg"
-                    alt="like"
-                  />
+                <Link className="icon" to={"#"}>
+                  <FaHeart />
                 </Link>
               </li>
             )}
