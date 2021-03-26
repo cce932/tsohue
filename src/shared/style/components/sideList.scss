@@ -1,15 +1,7 @@
 @import "../_global";
 
 div.side-list {
-  position: fixed;
-  left: 10%; // 和logo同步對齊
-  top: 135px;
-  width: auto;
-  background-color: white;
-  box-shadow: $shadow-deeper;
-  padding: 10px 30px;
-  border-radius: 20px;
-
+  z-index: 888888;
   div {
     margin: 10px 0; // 包括top-stroke
 
