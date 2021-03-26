@@ -14,6 +14,7 @@ const SideList = ({ items, style }) => {
     padding: "10px 30px",
     borderRadius: "20px",
     border: "none",
+    textAlign: "left",
     ...style,
   }
 
@@ -26,6 +27,7 @@ const SideList = ({ items, style }) => {
     box-shadow: ${defaultStyle.boxShadow};
     padding: ${defaultStyle.padding};
     border-radius: ${defaultStyle.borderRadius};
+    text-align: ${defaultStyle.textAlign};
     border: ${defaultStyle.border};
   `
 
