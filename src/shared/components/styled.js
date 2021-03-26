@@ -11,7 +11,7 @@ export const PrimaryBtn = styled.button`
   font-size: 1rem;
   color: white;
   text-decoration: none;
-  letter-spacing: $spacing;
+  letter-spacing: 0.03em;
 
   background-color: rgb(231, 104, 69);
   border: none;
@@ -27,7 +27,7 @@ export const SecondaryBtn = styled.button`
   font-size: 1rem;
   color: white;
   text-decoration: none;
-  letter-spacing: $spacing;
+  letter-spacing: 0.03em;
 
   height: fit-content;
   background-color: rgb(86, 90, 95);
@@ -44,7 +44,7 @@ export const ThirdBtn = styled.button`
   font-size: 1rem;
   color: white;
   text-decoration: none;
-  letter-spacing: $spacing;
+  letter-spacing: 0.03em;
 
   height: fit-content;
   background-color: rgb(179, 183, 188);
@@ -61,7 +61,7 @@ export const PrimaryStrokeBtn = styled.button`
   font-size: 1rem;
   color: rgb(231, 104, 69);
   text-decoration: none;
-  letter-spacing: $spacing;
+  letter-spacing: 0.03em;
 
   background-color: white;
   border: rgb(231, 104, 69) solid 1px;
@@ -71,18 +71,17 @@ export const PrimaryStrokeBtn = styled.button`
   transition: all 0.3s ease 0s;
 `
 
-export const SecondaryStrokeBtn = styled.button`
+export const SemiRoundedLabel = styled.label`
   font-family: sans-serif;
   font-weight: normal;
-  font-size: 1rem;
-  color: rgb(86, 90, 95);
+  font-size: 0.9rem;
+  color: white;
   text-decoration: none;
-  letter-spacing: $spacing;
+  letter-spacing: 0.03em;
 
-  background-color: white;
-  border: rgb(86, 90, 95) solid 1px;
-  border-radius: 3px;
-  padding: 5px 15px;
-  margin: 5px;
+  background-color: #755734;
+  border-radius: 25px 0 0 25px;
+  padding: 4px;
+  padding-left: 12px;
   transition: all 0.3s ease 0s;
 `

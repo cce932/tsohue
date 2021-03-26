@@ -7,9 +7,17 @@ import Home from "pages/Home"
 import Login from "pages/Login"
 import Register from "pages/Register"
 import Member from "pages/Member"
+import Recipes from "pages/Recipes"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
-import { allPaths, home, login, register, member } from "shared/constants/pathName"
+import {
+  allPaths,
+  home,
+  login,
+  register,
+  member,
+  recipes,
+} from "shared/constants/pathName"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -40,7 +48,7 @@ const App = () => {
               <Link to={"#"}>惜福良品</Link>
             </li>
             <li>
-              <Link to={"#"}>食譜大全</Link>
+              <Link to={allPaths[recipes]}>{recipes}</Link>
             </li>
             <li>
               <Link to={"#"}>訂購流程</Link>
@@ -106,6 +114,7 @@ const App = () => {
           <Route exact path={allPaths[login]} component={Login} />
           <Route exact path={allPaths[register]} component={Register} />
           <Route exact path={allPaths[member]} component={Member} />
+          <Route exact path={allPaths[recipes]} component={Recipes} />
         </Switch>
       </div>
     </Router>
