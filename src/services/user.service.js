@@ -1,12 +1,12 @@
 import axios from 'axios'
 import authHeader from './auth-header'
-import { getAuthAPI } from 'shared/constants/urls'
+import { TS_API } from 'shared/constants/urls'
 
 // 抓取每個頁面所需的資料
 
 // member基本資料
 const getCurrentMemberData = (token = authHeader()) => {
-  return axios.get(getAuthAPI + '/member/me', { headers: token }).then(
+  return axios.get(TS_API + '/member/me', { headers: token }).then(
     response => {
       return response
     },

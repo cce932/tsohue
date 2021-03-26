@@ -7,7 +7,7 @@ import {
 } from 'actions/types'
 
 const user = JSON.parse(localStorage.getItem('user'))
-console.log("reducer - user", user)
+
 const initialState = user
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null }

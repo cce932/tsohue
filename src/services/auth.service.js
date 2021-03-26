@@ -1,9 +1,9 @@
 import axios from "axios"
-import { getAuthAPI } from "shared/constants/urls"
+import { TS_API } from "shared/constants/urls"
 import userService from "./user.service"
 
 const register = (account, password, username, phone, email) => {
-  return axios.post(getAuthAPI + "/member/register", {
+  return axios.post(TS_API + "/member/register", {
     account,
     password,
     username,
@@ -14,7 +14,7 @@ const register = (account, password, username, phone, email) => {
 
 const login = (account, password) => {
   return axios
-    .post(getAuthAPI + "/login", {
+    .post(TS_API + "/login", {
       account,
       password,
     })
