@@ -1,8 +1,8 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import "shared/style/components/sideList.scss"
 import styled from "styled-components"
-import $ from "jquery"
+import { Link } from "react-router-dom"
+
+import "shared/style/components/sideList.scss"
 
 const SideList = ({ items, style }) => {
   const defaultStyle = {
@@ -30,14 +30,6 @@ const SideList = ({ items, style }) => {
     text-align: ${defaultStyle.textAlign};
     border: ${defaultStyle.border};
   `
-
-  $(window).scroll(function () {
-    if ($(this).scrollTop() < $("#footer").offset().top / 2) {
-      $("#side-list").fadeIn("fast")
-    } else {
-      $("#side-list").fadeOut("fast")
-    }
-  })
 
   return (
     <SideListWapper className="side-list" id="side-list">

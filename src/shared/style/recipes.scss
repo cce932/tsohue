@@ -2,5 +2,57 @@
 
 .recipes {
   margin: 150px auto 50px;
-  text-align: right;
+  text-align: left;
+
+  div.cus-side-list {
+    p {
+      @include text(bolder, 1.1rem, $prime-color);
+      margin: 10px;
+    }
+
+    > div {
+      display: flex;
+
+      button {
+        &.all {
+          @include stroke-border(
+            $secondary-color,
+            $first-color,
+            $secondary-color
+          );
+        }
+
+        &.normal {
+          @include stroke-border($vice-color, $first-color, $vice-color);
+        }
+
+        &.lowfat {
+          @include stroke-border($lowfat-color, $first-color, $lowfat-color);
+        }
+
+        &.meat {
+          @include stroke-border($meat-color, $first-color, $meat-color);
+        }
+
+        &.vage {
+          @include stroke-border($vage-color, $first-color, $vage-color);
+        }
+      }
+    }
+
+    select {
+      margin-bottom: 15px;
+      border-radius: 20px;
+      color: $prime-color;
+
+      &:focus {
+        border: $vice-color solid 1px;
+        box-shadow: none;
+      }
+    }
+  }
+
+  div.col-sm-10 {
+    padding-left: 30px;
+  }
 }
