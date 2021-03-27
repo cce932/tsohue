@@ -62,6 +62,13 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
     box-shadow: none;
     outline: none;
   }
+
+  div#root {
+    // 內容有container和footer
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; // 讓兩者上下排列，另外在container用flex-grow 撐滿高度，使footer置底
+  }
 }
 
 @mixin make-container($padding-x: 350px, $margin-top: 150px) {
