@@ -23,6 +23,18 @@
     position: absolute;
     top: 35px;
     right: 20px;
+
+    &.version-lowfat {
+      color: $lowfat-color;      
+    }
+
+    &.version-meat {
+      color: $meat-color;
+    }
+
+    &.version-vage {
+      color: $vage-color;
+    }
   }
 
   .info {

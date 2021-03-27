@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap");
 
 $prime-color: #755734;
-$secondary-color: #9e8568;
+$vice-color: #9e8568;
 $accent-color: #fbd779;
 $accent-deeper-color: #f9bd23; // f8cb50(manager)
 $first-color: rgb(52, 58, 64);
@@ -10,6 +10,9 @@ $third-color: rgb(179, 183, 188);
 $forth-color: rgb(205, 211, 216);
 $fifth-color: rgb(232, 235, 240);
 $sixth-color: rgb(249, 250, 252);
+$lowfat-color: #8093b5;
+$meat-color: #f09797;
+$vage-color: #7ca390;
 
 $linear: linear-gradient(90deg, $first-color 40%, $secondary-color);
 $linear-h: linear-gradient(90deg, $forth-color, $fifth-color);
@@ -29,11 +32,41 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   letter-spacing: 0.03em;
 }
 
+@mixin stroke-border(
+  $color: $vice-color,
+  $hover-color: $prime-color,
+  $focus-color: $prime-color
+) {
+  @include text(normal, 1rem, $color);
+
+  width: fit-content;
+  height: fit-content;
+  border: $color solid 0.5px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin: 5px;
+  transition: $default-trans;
+  display: block;
+
+  &:hover {
+    border: $hover-color solid 0.5px;
+    color: $hover-color;
+  }
+
+  &:focus {
+    background-color: $focus-color;
+    border: $focus-color solid 0.5px;
+    color: white;
+  }
+}
+
 @mixin root {
   font-size: 16px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 
   .form-control:focus,
   textarea:focus,

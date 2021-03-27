@@ -73,13 +73,13 @@ export const PrimaryStrokeBtn = styled.button`
 
 export const SemiRoundedLabel = styled.label`
   font-family: sans-serif;
-  font-weight: normal;
+  font-weight: bolder;
   font-size: 0.9rem;
-  color: white;
+  color: #9e8568;
   text-decoration: none;
   letter-spacing: 0.03em;
 
-  background-color: #755734;
+  background-color: white;
   border-radius: 25px 0 0 25px;
   padding: 4px;
   padding-left: 12px;

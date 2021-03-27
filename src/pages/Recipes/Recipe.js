@@ -10,7 +10,9 @@ const Recipe = (props) => {
 
   return (
     <div className="recipe">
-      <SemiRoundedLabel className="version">
+      <SemiRoundedLabel
+        className={`version version-${recipe.version.toLowerCase()}`}
+      >
         {versionOptions[recipe.version]}
       </SemiRoundedLabel>
       <img src={recipe.photo} alt={recipe.name + "-img"} />

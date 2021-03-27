@@ -74,7 +74,7 @@
             .line {
                 width: 100%;
                 height: 2px;
-                background: linear-gradient(90deg, $accent-color 40%, $secondary-color);
+                background: linear-gradient(90deg, $accent-color 40%, $vice-color);
             }
 
             .point {
@@ -82,7 +82,7 @@
                 height: 0;
                 border-top: 5px solid transparent;
                 border-bottom: 5px solid transparent;
-                border-left: 10px solid $secondary-color;
+                border-left: 10px solid $vice-color;
             }
         }
     }
@@ -101,7 +101,7 @@
         
             &:hover {
                 color: $accent-deeper-color;
-                // border-bottom: dashed 4px $secondary-color;
+                // border-bottom: dashed 4px $vice-color;
             }
         }
     }
