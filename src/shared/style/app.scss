@@ -8,6 +8,14 @@
   flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
 }
 
+div {
+  overflow: hidden;
+}
+
+div.spinner-border {
+  margin: 10% 45%;
+}
+
 header {
   display: flex;
   justify-content: flex-end;

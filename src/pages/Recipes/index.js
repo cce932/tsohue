@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
-import { Form, Row, Col } from "react-bootstrap"
+import { Form, Row, Col, Spinner } from "react-bootstrap"
 
 import "shared/style/recipes.scss"
 import Recipe from "./Recipe"
@@ -138,10 +138,17 @@ const Recipes = () => {
       <Row>
         <Col sm="2"></Col>
         <Col sm="10">
-          {recipes &&
+          {recipes ? (
             recipes.map((recipe, index) => {
               return <Recipe key={index} recipe={recipe} />
-            })}
+            })
+          ) : (
+            <Spinner
+              animation="border"
+              variant="warning"
+              role="status"
+            ></Spinner>
+          )}
         </Col>
       </Row>
     </div>
