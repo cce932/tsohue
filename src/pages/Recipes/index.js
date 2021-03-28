@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Form, Row, Col, Spinner } from "react-bootstrap"
+import { useLocation } from "react-router-dom"
 
 import "shared/style/recipes.scss"
 import Recipe from "./Recipe"
-import { loadRecipes } from "actions/load"
 import { versionOptions } from "shared/constants/options"
 
 const NAME_ASC = "名稱A-Z"
@@ -29,16 +29,29 @@ const SideListWapper = styled.div`
 `
 
 const Recipes = () => {
-  const dispatch = useDispatch()
   const { allRecipes } = useSelector((state) => state.recipes)
   const [recipes, setRecipes] = useState([])
+  const [queryFiltered, setQqueryFiltered] = useState([])
   const [sortType, setSortType] = useState("")
+  const query = new URLSearchParams(useLocation().search).get("search")
 
   useEffect(() => {
-    dispatch(loadRecipes()).then((data) => {
-      setRecipes(data)
-    })
-  }, [dispatch])
+    if (allRecipes) {
+      if (query) {
+        const _queryFiltered = allRecipes.filter((recipe) =>
+          recipe.name.match(query)
+        )
+        if (_queryFiltered.length) {
+          setRecipes(_queryFiltered)
+          setQqueryFiltered(_queryFiltered)
+        } else {
+          setRecipes(`目前無「${query}」相關的烹飪包喔～`)
+        }
+      } else {
+        setRecipes(allRecipes)
+      }
+    }
+  }, [allRecipes, query])
 
   const compareBy = (key, order) => {
     return function (a, b) {
@@ -60,6 +73,8 @@ const Recipes = () => {
   }
 
   const sort = (order, filteredRecipes = recipes) => {
+    if (typeof filteredRecipes === "string") return
+
     switch (order) {
       case NAME_ASC:
         sortBy("name", ASC, filteredRecipes)
@@ -84,11 +99,22 @@ const Recipes = () => {
 
   const versionFilterOnClick = (e) => {
     const selectedVersion = e.target.outerText.trim() + "版本"
-    const filteredRecipes = allRecipes.filter((recipe) => {
-      return versionOptions[recipe.version] === selectedVersion
-    })
-    setRecipes(filteredRecipes)
-    sort(sortType, filteredRecipes)
+    const versionFiltered = query
+      ? queryFiltered.filter(
+          (recipe) => versionOptions[recipe.version] === selectedVersion
+        )
+      : allRecipes.filter(
+          (recipe) => versionOptions[recipe.version] === selectedVersion
+        )
+
+    setRecipes(
+      versionFiltered.length
+        ? versionFiltered
+        : query
+        ? `「${query}」相關的食譜中 目前沒有${selectedVersion}喔～`
+        : `目前沒有「${selectedVersion}」喔～`
+    )
+    versionFiltered.length && sort(sortType, versionFiltered)
   }
 
   const sortOnChange = (e) => {
@@ -100,31 +126,27 @@ const Recipes = () => {
       <SideListWapper className="cus-side-list" id="side-list">
         <p>分類</p>
         <div>
-          <div>
+          <button
+            className="all"
+            onClick={() => {
+              setRecipes(allRecipes)
+              sort(sortType, allRecipes)
+            }}
+          >
+            全部
+          </button>
+          {Object.keys(versionOptions).map((option, index) => (
             <button
-              className="all"
-              onClick={() => {
-                setRecipes(allRecipes)
-                sort(sortType, allRecipes)
-              }}
+              key={index}
+              className={option.toLowerCase()}
+              onClick={(e) => versionFilterOnClick(e)}
             >
-              全部
+              {versionOptions[option].slice(
+                0,
+                versionOptions[option].length - 2
+              )}
             </button>
-            <button className="normal" onClick={(e) => versionFilterOnClick(e)}>
-              正常
-            </button>
-            <button className="lowfat" onClick={(e) => versionFilterOnClick(e)}>
-              低脂
-            </button>
-          </div>
-          <div>
-            <button className="meat" onClick={(e) => versionFilterOnClick(e)}>
-              多肉
-            </button>
-            <button className="vage" onClick={(e) => versionFilterOnClick(e)}>
-              素食
-            </button>
-          </div>
+          ))}
         </div>
         <p>排序</p>
         <Form.Control as="select" onChange={(e) => sortOnChange(e)}>
@@ -138,10 +160,14 @@ const Recipes = () => {
       <Row>
         <Col sm="2"></Col>
         <Col sm="10">
-          {recipes ? (
-            recipes.map((recipe, index) => {
-              return <Recipe key={index} recipe={recipe} />
-            })
+          {recipes.length ? (
+            typeof recipes === "string" ? (
+              <p className="no-result">{recipes}</p>
+            ) : (
+              recipes.map((recipe, index) => {
+                return <Recipe key={index} recipe={recipe} />
+              })
+            )
           ) : (
             <Spinner
               animation="border"

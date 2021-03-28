@@ -5,15 +5,17 @@
   text-align: left;
 
   div.cus-side-list {
+    width: 190px;
+
     p {
       @include text(bolder, 1.1rem, $prime-color);
       margin: 10px;
     }
 
     > div {
-      display: flex;
-
       button {
+        display: inline-block;
+
         &.all {
           @include stroke-border(
             $secondary-color,

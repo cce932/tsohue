@@ -47,7 +47,6 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   padding: 3px 10px;
   margin: 5px;
   transition: $default-trans;
-  display: block;
 
   &:hover {
     border: $hover-color solid 0.5px;
@@ -58,6 +57,19 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
     background-color: $focus-color;
     border: $focus-color solid 0.5px;
     color: white;
+  }
+}
+
+@mixin default-input($width: 120px, $text-color: $prime-color, $border-color: $vice-color, $holder-color: $vice-color) {
+  @include text(normal, 0.9rem, $text-color);
+  width: $width;
+  border: $border-color solid 1px;
+  border-radius: 12px;
+  padding: 0 10px;
+  background-color: transparent;
+
+  &::placeholder {
+    @include text(normal, 0.9rem, $holder-color);
   }
 }
 
@@ -94,6 +106,11 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
     border: none;
     box-shadow: none;
     outline: none;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
   }
 
   div#root {

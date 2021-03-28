@@ -8,12 +8,19 @@
   flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
 }
 
-div {
+div,
+li {
   overflow: hidden;
 }
 
 div.spinner-border {
   margin: 10% 45%;
+}
+
+p.no-result {
+  @include text(bold, 1.5rem, $accent-deeper-color);
+  margin-top: 10%;
+  text-align: center;
 }
 
 header {
@@ -24,7 +31,7 @@ header {
   position: fixed; // 固定在上
   top: 0; // 固定在上
   width: 100%; // 固定在上
-  background-color: rgba($color: #ffffff, $alpha: 72%);
+  background-color: rgba($color: #ffffff, $alpha: 80%);
   z-index: 99999;
 
   .logo-a {
@@ -45,10 +52,11 @@ header {
       background-color: rgba($color: #000000, $alpha: 0);
 
       &:hover {
-        opacity: 85%;
+        opacity: 0.6;
       }
 
-      a {
+      a,
+      button {
         @include text();
         padding: 0 20px;
       }
@@ -61,5 +69,21 @@ header {
         padding-left: 0;
       }
     }
+  }
+
+  input#search {
+    @include default-input();
+    margin-right: -15px;
+    transition: width 1s cubic-bezier(0, 0.795, 0, 1);
+
+    &.search-close {
+      opacity: 0;
+      width: 0;
+      transition: width 1s cubic-bezier(0, 0.795, 0, 1), opacity 0.5s cubic-bezier(0, 0.795, 0, 1);
+    }
+  }
+
+  button.toggle:hover {
+    opacity: 0.6;
   }
 }

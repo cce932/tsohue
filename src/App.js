@@ -1,8 +1,9 @@
-import React, { useEffect } from "react"
+import $ from "jquery"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
-import { FaShoppingCart, FaUser, FaHeart } from "react-icons/fa"
-import $ from "jquery"
+import { FaShoppingCart, FaUser, FaHeart, FaSearch } from "react-icons/fa"
+import { IoClose } from "react-icons/io5"
 
 import "shared/style/app.scss"
 import Home from "pages/Home"
@@ -12,6 +13,7 @@ import Member from "pages/Member"
 import Recipes from "pages/Recipes"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
+import { loadRecipes } from "actions/load"
 import {
   allPaths,
   home,
@@ -23,6 +25,7 @@ import {
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
+  const [searchToggle, setSearchToggle] = useState(false)
   const dispatch = useDispatch()
 
   // url換了的話(when changing location) 就要清空redux state 內的 message
@@ -30,15 +33,37 @@ const App = () => {
     history.listen((location) => {
       dispatch(clearMessage())
     })
+    dispatch(loadRecipes())
   }, [dispatch])
 
-  $(window).scroll(function () {
-    if ($(this).scrollTop() < $("#footer").offset().top / 2) {
+  $(window).on("scroll", function () {
+    if (
+      // 當畫面的2/3滑過footer的上緣
+      $(this).scrollTop() + ($(this).height() * 2) / 3 <
+      $("#footer").offset().top
+    ) {
       $("#side-list").fadeIn("fast")
     } else {
       $("#side-list").fadeOut("fast")
     }
   })
+
+  $("#search").on("keypress", (e) => { // do not use "keyup", it'll cause accidient submit when typing chinese
+    if (e.key === "Enter") {
+      history.push(`${allPaths[recipes]}?search=${$("#search").val().trim()}`)
+    }
+  })
+
+  const searchOnClick = () => {
+    $("#search").trigger("focus")
+
+    if (searchToggle) {
+      $("#search").val("")
+      window.location.pathname.search(allPaths[recipes]) >= 0 &&
+        history.push(`${allPaths[recipes]}`)
+    }
+    setSearchToggle(!searchToggle)
+  }
 
   return (
     <Router history={history}>
@@ -48,6 +73,21 @@ const App = () => {
         </Link>
         <nav>
           <ul className="nav-ul">
+            <li>
+              <input
+                type="text"
+                id="search"
+                className={!searchToggle && "search-close"}
+                placeholder="搜尋烹飪包"
+              />
+              <button className="toggle" onClick={searchOnClick}>
+                {searchToggle ? (
+                  <IoClose size="22" fill="#755734" />
+                ) : (
+                  <FaSearch fill="#755734" />
+                )}
+              </button>
+            </li>
             <li>
               <Link to={"#"}>本月特餐</Link>
             </li>
