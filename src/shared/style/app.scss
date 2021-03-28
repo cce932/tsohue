@@ -8,11 +8,6 @@
   flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
 }
 
-div,
-li {
-  overflow: hidden;
-}
-
 div.spinner-border {
   margin: 10% 45%;
 }
@@ -79,11 +74,25 @@ header {
     &.search-close {
       opacity: 0;
       width: 0;
-      transition: width 1s cubic-bezier(0, 0.795, 0, 1), opacity 0.5s cubic-bezier(0, 0.795, 0, 1);
+      transition: width 1s cubic-bezier(0, 0.795, 0, 1),
+        opacity 0.5s cubic-bezier(0, 0.795, 0, 1);
     }
   }
 
   button.toggle:hover {
     opacity: 0.6;
   }
+}
+
+a#to-top {
+  visibility: hidden;
+  display: block;
+  box-shadow: $default-shadow;
+  background-color: white;
+  position: fixed;
+  border-radius: 25px;
+  padding: 8px;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999999;
 }

@@ -60,7 +60,12 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   }
 }
 
-@mixin default-input($width: 120px, $text-color: $prime-color, $border-color: $vice-color, $holder-color: $vice-color) {
+@mixin default-input(
+  $width: 120px,
+  $text-color: $prime-color,
+  $border-color: $vice-color,
+  $holder-color: $vice-color
+) {
   @include text(normal, 0.9rem, $text-color);
   width: $width;
   border: $border-color solid 1px;
@@ -111,6 +116,12 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   button {
     border: none;
     background-color: transparent;
+  }
+
+  div,
+  li,
+  a {
+    overflow: hidden;
   }
 
   div#root {

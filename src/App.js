@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
 import { FaShoppingCart, FaUser, FaHeart, FaSearch } from "react-icons/fa"
 import { IoClose } from "react-icons/io5"
+import { FaAngleUp } from "react-icons/fa"
 
 import "shared/style/app.scss"
 import Home from "pages/Home"
@@ -46,9 +47,21 @@ const App = () => {
     } else {
       $("#side-list").fadeOut("fast")
     }
+
+    if ($(this).scrollTop() < 300) {
+      $("#to-top").css("visibility", "hidden").fadeIn("fast")
+    } else {
+      $("#to-top").css("visibility", "visible").fadeIn("slow")
+    }
   })
 
-  $("#search").on("keypress", (e) => { // do not use "keyup", it'll cause accidient submit when typing chinese
+  $("#to-top").on("click", function () {
+    $("html,body").animate({ scrollTop: 0 }, "slow") /* 返回到最頂上 */
+    return false
+  })
+
+  $("#search").on("keypress", (e) => {
+    // do not use "keyup", it'll cause accidient submit when typing chinese
     if (e.key === "Enter") {
       history.push(`${allPaths[recipes]}?search=${$("#search").val().trim()}`)
     }
@@ -140,6 +153,10 @@ const App = () => {
           </ul>
         </nav>
       </header>
+
+      <a id="to-top">
+        <FaAngleUp fill="#fbd779" size="30px" />
+      </a>
 
       {/* 每個路徑 對應到的Component */}
       <Switch>
