@@ -2,10 +2,9 @@ import React from "react"
 import { Router, Link } from "react-router-dom"
 import "shared/style/home.scss"
 import { history } from 'helpers/history'
-import { FeatureSlot, MonthlySpecial, Footer } from "shared/components/common";
+import { FeatureSlot, MonthlySpecial } from "shared/components/common";
 
 const gredients = ["東坡肉", "梅干", "滷蛋", "青江菜", "洋蔥", "紅蔥頭", "鹽", "特調醬料"]
-const footerLinks = ["關於我們", "常見問答", "售後服務", "會員權益", "隱私保護", "門市位置", "企業徵才", "異業合作"]
 
 const Home = () => {
   return (
@@ -58,9 +57,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* 頁尾 */}
-      <Footer links={footerLinks} />
     </Router>
   )
 }
