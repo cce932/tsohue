@@ -1,12 +1,10 @@
 @import "global";
 
 .recipes {
-  margin: 150px auto 50px;
+  margin: 100px auto 50px;
   text-align: left;
 
   div.cus-side-list {
-    width: 200px;
-
     p {
       @include text(bolder, 1.1rem, $prime-color);
       margin: 10px;
@@ -43,13 +41,16 @@
     }
 
     select {
-      margin-bottom: 15px;
+      margin: 0 5px 15px;
       border-radius: 20px;
-      color: $prime-color;
+      color: $vice-color;
+      padding: 5px 5px;
+      width: 92%;
+      border: $vice-color solid 1px;
 
       &:focus {
-        border: $vice-color solid 1px;
         box-shadow: none;
+        outline: none;
       }
     }
   }

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Form, Row, Col, Spinner } from "react-bootstrap"
+import { Row, Col, Spinner } from "react-bootstrap"
 import { useLocation } from "react-router-dom"
 
 import "shared/style/recipes.scss"
@@ -17,12 +17,12 @@ const DESC = "DESC"
 
 const SideListWapper = styled.div`
   position: fixed;
-  top: 200px;
+  top: 150px;
   left: 8%;
-  width: auto;
+  width: 170px;
   background-color: white;
   box-shadow: 0px 0px 15px rgba(205, 211, 216, 0.7);
-  padding: 10px 30px;
+  padding: 10px 20px;
   border-radius: 20px;
   border: none;
   text-align: left;
@@ -149,12 +149,12 @@ const Recipes = () => {
           ))}
         </div>
         <p>排序</p>
-        <Form.Control as="select" onChange={(e) => sortOnChange(e)}>
+        <select onChange={(e) => sortOnChange(e)}>
           <option>{NAME_ASC}</option>
           <option>{NAME_DESC}</option>
           <option>{PRICE_ASC}</option>
           <option>{PRICE_DESC}</option>
-        </Form.Control>
+        </select>
       </SideListWapper>
 
       <Row>

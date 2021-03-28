@@ -67,20 +67,8 @@ header {
   }
 
   input#search {
-    @include default-input();
-    margin-right: -15px;
-    transition: width 1s cubic-bezier(0, 0.795, 0, 1);
-
-    &.search-close {
-      opacity: 0;
-      width: 0;
-      transition: width 1s cubic-bezier(0, 0.795, 0, 1),
-        opacity 0.5s cubic-bezier(0, 0.795, 0, 1);
-    }
-  }
-
-  button.toggle:hover {
-    opacity: 0.6;
+    @include default-input(170px);
+    margin-right: -10px;
   }
 }
 

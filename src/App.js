@@ -2,9 +2,14 @@ import $ from "jquery"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Router, Switch, Route, Link } from "react-router-dom"
-import { FaShoppingCart, FaUser, FaHeart, FaSearch } from "react-icons/fa"
-import { IoClose } from "react-icons/io5"
-import { FaAngleUp } from "react-icons/fa"
+import {
+  FaShoppingCart,
+  FaUser,
+  FaHeart,
+  FaSearch,
+  FaAngleUp,
+} from "react-icons/fa"
+import { CgClose } from "react-icons/cg"
 
 import "shared/style/app.scss"
 import Home from "pages/Home"
@@ -26,8 +31,8 @@ import {
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
-  const [searchToggle, setSearchToggle] = useState(false)
   const dispatch = useDispatch()
+  const [isEmpty, setIsEmpty] = useState(true)
 
   // url換了的話(when changing location) 就要清空redux state 內的 message
   useEffect(() => {
@@ -37,47 +42,53 @@ const App = () => {
     dispatch(loadRecipes())
   }, [dispatch])
 
-  $(window).on("scroll", function () {
-    if (
-      // 當畫面的2/3滑過footer的上緣
-      $(this).scrollTop() + ($(this).height() * 2) / 3 <
-      $("#footer").offset().top
-    ) {
-      $("#side-list").fadeIn("fast")
-    } else {
-      $("#side-list").fadeOut("fast")
-    }
+  // needed, for excuting when DOM is ready
+  $(() => {
+    $(window).on("scroll", function () {
+      if (
+        // 當畫面的2/3滑過footer的上緣
+        $(this).scrollTop() + ($(this).height() * 2) / 3 <
+        $("#footer").offset().top
+      ) {
+        $("#side-list").fadeIn("fast")
+      } else {
+        $("#side-list").fadeOut("fast")
+      }
 
-    if ($(this).scrollTop() < 300) {
-      $("#to-top").css("visibility", "hidden").fadeIn("fast")
-    } else {
-      $("#to-top").css("visibility", "visible").fadeIn("slow")
-    }
-  })
+      if ($(this).scrollTop() < 300) {
+        $("#to-top").css("visibility", "hidden").fadeIn("fast")
+      } else {
+        $("#to-top").css("visibility", "visible").fadeIn("slow")
+      }
+    })
 
-  $("#to-top").on("click", function () {
-    $("html,body").animate({ scrollTop: 0 }, "slow") /* 返回到最頂上 */
-    return false
-  })
+    $("#to-top").on("click", function () {
+      $("html,body").animate({ scrollTop: 0 }, "fast") /* 返回到最頂上 */
+      return false
+    })
 
-  $("#search").on("keypress", (e) => {
-    // do not use "keyup", it'll cause accidient submit when typing chinese
-    if (e.key === "Enter") {
-      history.push(`${allPaths[recipes]}?search=${$("#search").val().trim()}`)
-    }
+    $("#search").on("keypress", function (e) {
+      // do not use "keyup", it'll cause accidient submit when typing chinese
+      if (e.key === "Enter") {
+        searchOnClick()
+      }
+    })
   })
 
   const searchOnClick = () => {
-    $("#search").trigger("focus")
-
-    if (searchToggle) {
-      $("#search").val("")
-      window.location.pathname.search(allPaths[recipes]) >= 0 &&
-        history.push(`${allPaths[recipes]}`)
-    }
-    setSearchToggle(!searchToggle)
+    history.push(`${allPaths[recipes]}?search=${$("#search").val().trim()}`)
   }
 
+  const clearOnClick = () => {
+    $("#search").val("")
+    setIsEmpty(true)
+    window.location.pathname.search(allPaths[recipes]) >= 0 &&
+      history.push(`${allPaths[recipes]}`)
+  }
+
+  const queryOnChange = (e) => {
+    setIsEmpty(e.target.value === "")
+  }
   return (
     <Router history={history}>
       <header>
@@ -90,16 +101,18 @@ const App = () => {
               <input
                 type="text"
                 id="search"
-                className={!searchToggle && "search-close"}
+                onChange={queryOnChange}
                 placeholder="搜尋烹飪包"
               />
-              <button className="toggle" onClick={searchOnClick}>
-                {searchToggle ? (
-                  <IoClose size="22" fill="#755734" />
-                ) : (
+              {isEmpty ? (
+                <button onClick={searchOnClick}>
                   <FaSearch fill="#755734" />
-                )}
-              </button>
+                </button>
+              ) : (
+                <button onClick={clearOnClick}>
+                  <CgClose stroke-width="2px" fill="#755734" />
+                </button>
+              )}
             </li>
             <li>
               <Link to={"#"}>本月特餐</Link>
