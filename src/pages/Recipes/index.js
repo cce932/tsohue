@@ -98,7 +98,7 @@ const Recipes = () => {
   }
 
   const versionFilterOnClick = (e) => {
-    const selectedVersion = e.target.outerText.trim() + "版本"
+    const selectedVersion = e.target.outerText.trim()
     const versionFiltered = query
       ? queryFiltered.filter(
           (recipe) => versionOptions[recipe.version] === selectedVersion
@@ -141,10 +141,7 @@ const Recipes = () => {
               className={option.toLowerCase()}
               onClick={(e) => versionFilterOnClick(e)}
             >
-              {versionOptions[option].slice(
-                0,
-                versionOptions[option].length - 2
-              )}
+              {versionOptions[option]}
             </button>
           ))}
         </div>

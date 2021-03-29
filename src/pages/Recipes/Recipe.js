@@ -3,17 +3,18 @@ import { versionOptions } from "shared/constants/options"
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 import "shared/style/recipe.scss"
 import { useState } from "react"
+import { allPaths, recipe as recipePath } from "shared/constants/pathName"
 
 const Recipe = (props) => {
   const recipe = props.recipe
   const [like, setLike] = useState(false)
 
   return (
-    <div className="recipe">
+    <a className="recipe" href={allPaths[recipePath] + recipe.id}>
       <SemiRoundedLabel
         className={`version version-${recipe.version.toLowerCase()}`}
       >
-        {versionOptions[recipe.version]}
+        {versionOptions[recipe.version]}版本
       </SemiRoundedLabel>
       <img src={recipe.photo} alt={recipe.name + "-img"} />
       <div className="info">
@@ -32,7 +33,7 @@ const Recipe = (props) => {
           </span>
         </div>
       </div>
-    </div>
+    </a>
   )
 }
 

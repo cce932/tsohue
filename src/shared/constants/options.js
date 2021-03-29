@@ -1,6 +1,6 @@
 export const versionOptions = {
-  NORMAL: "正常版本",
-  LOWFAT: "低脂版本",
-  MEAT: "肉多版本",
-  VAGE: "素食版本",
+  NORMAL: "正常",
+  LOWFAT: "低脂",
+  MEAT: "肉多",
+  VAGE: "素食",
 }
