@@ -23,19 +23,19 @@
         }
 
         &.normal {
-          @include stroke-border($vice-color, $first-color, $vice-color);
+          @include stroke-border($vice-color, $vice-color);
         }
 
         &.lowfat {
-          @include stroke-border($lowfat-color, $first-color, $lowfat-color);
+          @include stroke-border($lowfat-color, $lowfat-color);
         }
 
         &.meat {
-          @include stroke-border($meat-color, $first-color, $meat-color);
+          @include stroke-border($meat-color, $meat-color);
         }
 
         &.vage {
-          @include stroke-border($vage-color, $first-color, $vage-color);
+          @include stroke-border($vage-color, $vage-color);
         }
       }
     }

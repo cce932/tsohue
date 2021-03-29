@@ -34,8 +34,8 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 
 @mixin stroke-border(
   $color: $vice-color,
-  $hover-color: $prime-color,
-  $focus-color: $prime-color
+  $focus-color: $prime-color,
+  $hover-color: $secondary-color
 ) {
   @include text(normal, 1rem, $color);
 
@@ -58,6 +58,22 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
     border: $focus-color solid 0.5px;
     color: white;
   }
+}
+
+@mixin solid(
+  $color: $vice-color,
+  $focus-color: $prime-color
+) {
+  @include text(normal, 1rem, white);
+
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  background-color: $color;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin: 5px;
+  transition: $default-trans;
 }
 
 @mixin default-input(
