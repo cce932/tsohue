@@ -11,12 +11,14 @@ import {
 } from "react-icons/fa"
 import { CgClose } from "react-icons/cg"
 
+import "bootstrap/dist/css/bootstrap.min.css"
 import "shared/style/app.scss"
 import Home from "pages/Home"
 import Login from "pages/Login"
 import Register from "pages/Register"
 import Member from "pages/Member"
 import Recipes from "pages/Recipes"
+import RecipeDetail from "pages/RecipeDetail"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
 import { loadRecipes } from "actions/load"
@@ -27,6 +29,7 @@ import {
   register,
   member,
   recipes,
+  recipe,
 } from "shared/constants/pathName"
 
 const App = () => {
@@ -178,6 +181,7 @@ const App = () => {
         <Route exact path={allPaths[register]} component={Register} />
         <Route exact path={allPaths[member]} component={Member} />
         <Route exact path={allPaths[recipes]} component={Recipes} />
+        <Route exact path={allPaths[recipe] + ":id"} component={RecipeDetail} />
       </Switch>
     </Router>
   )

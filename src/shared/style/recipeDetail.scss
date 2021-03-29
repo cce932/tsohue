@@ -1,0 +1,73 @@
+@import "global";
+
+div.recipe-detail {
+  margin-top: 100px;
+
+  div.info {
+    padding-left: 120px;
+    padding-top: 100px;
+
+    div.name {
+      margin-bottom: 20px;
+
+      div {
+        @include text(bold, 2rem, $prime-color);
+        margin-bottom: -8px;
+        width: fit-content;
+      }
+
+      img {
+        height: 15px;
+      }
+    }
+
+    div.version {
+      padding: 5px 0;
+      margin-left: -10px;
+      margin-bottom: 10px;
+
+      a.version {
+        font-size: 0.9rem !important;
+      }
+
+      a.version-normal {
+        @include stroke-border($vice-color);
+
+        &.located {
+          @include solid();
+        }
+      }
+
+      a.version-lowfat {
+        @include stroke-border($lowfat-color, $lowfat-color);
+
+        &.located {
+          @include solid($lowfat-color);
+        }
+      }
+
+      a.version-meat {
+        @include stroke-border($meat-color, $meat-color);
+
+        &.located {
+          @include solid($meat-color);
+        }
+      }
+
+      a.version-vage {
+        @include stroke-border($vage-color, $vage-color);
+
+        &.located {
+          @include solid($vage-color);
+        }
+      }
+    }
+
+    div.description {
+      @include text(bold, 1rem, $prime-color);
+
+      max-width: 350px;
+      text-align: left;
+    }
+  }
+}
