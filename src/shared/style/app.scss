@@ -14,8 +14,7 @@ div.spinner-border {
 
 p.no-result {
   @include text(bold, 1.5rem, $accent-deeper-color);
-  margin-top: 10%;
-  text-align: center;
+  margin: 10% 25%;
 }
 
 header {

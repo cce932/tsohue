@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Row, Col, Spinner } from "react-bootstrap"
+import { Spinner } from "react-bootstrap"
 import { useLocation } from "react-router-dom"
 
 import "shared/style/recipes.scss"
@@ -122,7 +122,7 @@ const Recipes = () => {
   }
 
   return (
-    <div className="container recipes">
+    <div className="recipes">
       <SideListWapper className="cus-side-list" id="side-list">
         <p>分類</p>
         <div>
@@ -154,26 +154,19 @@ const Recipes = () => {
         </select>
       </SideListWapper>
 
-      <Row>
-        <Col sm="2"></Col>
-        <Col sm="10">
-          {recipes.length ? (
-            typeof recipes === "string" ? (
-              <p className="no-result">{recipes}</p>
-            ) : (
-              recipes.map((recipe, index) => {
-                return <Recipe key={index} recipe={recipe} />
-              })
-            )
+      <div className="content">
+        {recipes.length ? (
+          typeof recipes === "string" ? (
+            <p className="no-result">{recipes}</p>
           ) : (
-            <Spinner
-              animation="border"
-              variant="warning"
-              role="status"
-            ></Spinner>
-          )}
-        </Col>
-      </Row>
+            recipes.map((recipe, index) => {
+              return <Recipe key={index} recipe={recipe} />
+            })
+          )
+        ) : (
+          <Spinner animation="border" variant="warning" role="status"></Spinner>
+        )}
+      </div>
     </div>
   )
 }
