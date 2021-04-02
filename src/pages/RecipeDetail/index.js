@@ -1,12 +1,11 @@
 import _ from "lodash"
 import $ from "jquery"
-import styled from "styled-components"
 import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Row, Col, Spinner, Carousel } from "react-bootstrap"
-import { useLocation } from "react-router-dom"
 
 import "shared/style/recipeDetail.scss"
+import Steps from "./Steps"
 import { versionOptions } from "shared/constants/options"
 import { loadRecipeById, loadRecipeImagesById } from "actions/load"
 import { allPaths, recipe as recipePath } from "shared/constants/pathName"
@@ -27,7 +26,7 @@ const RecipeDetail = (props) => {
   })
 
   return !_.isEmpty(recipe) ? (
-    <div sm={5} className="recipe-detail container">
+    <div sm={5} className="recipe-detail">
       <Row>
         <Col className="info">
           <div className="version">
@@ -87,6 +86,11 @@ const RecipeDetail = (props) => {
           </Carousel>
         </Col>
       </Row>
+
+      <Steps
+        steps={recipe.currentRecipe.recipeSteps}
+        link={recipe.currentRecipe.link}
+      />
     </div>
   ) : (
     <Spinner animation="border" variant="warning" role="status" />

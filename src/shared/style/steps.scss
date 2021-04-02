@@ -1,0 +1,37 @@
+@import "global";
+@import "~video-react/styles/scss/video-react";
+
+div.steps {
+  margin: 50px 0;
+
+  > p {
+    @include text(bold, 1.2rem, $prime-color);
+    border-bottom: solid 5px $accent-color;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  div.video {
+    margin-bottom: 50px;
+  }
+
+  div.step {
+    display: flex;
+    height: 50px;
+    align-items: center;
+
+    .order {
+      @include text(bold, 1.5rem, $accent-deeper-color);
+      width: 40px;
+    }
+
+    .time {
+      @include stroke-border($vice-color, $vice-color, $accent-deeper-color);
+      margin-right: 40px;
+    }
+
+    .note {
+      @include text(normal, 1rem, $vice-color);
+    }
+  }
+}

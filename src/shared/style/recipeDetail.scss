@@ -1,7 +1,7 @@
 @import "global";
 
 div.recipe-detail {
-  margin-top: 100px;
+  margin: 100px 10% 0;
 
   div.info {
     padding-left: 120px;
@@ -23,7 +23,7 @@ div.recipe-detail {
 
     div.version {
       padding: 5px 0;
-      margin-left: -10px;
+      margin-left: -5px;
       margin-bottom: 10px;
 
       a.version {

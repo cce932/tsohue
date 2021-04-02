@@ -1,3 +1,4 @@
+import _ from "lodash"
 // 把array以maxRow為限制 分為多維陣列
 export const splitToRows = (array, maxRow) => {
   const result = []
@@ -15,4 +16,15 @@ export const extractErrorMsg = (error) => {
     error.message ||
     error.toString()
   )
+}
+
+const addPrefix = (string, pad, length) => {
+  return (new Array(length + 1).join(pad) + string).slice(-length)
+}
+
+export const transMSecToMin = (totalMSec) => {
+  const totalSec = _.floor(totalMSec / 1000)
+  const minutes = _.floor(totalSec / 60)
+  const seconds = totalSec - minutes * 60
+  return addPrefix(minutes, "0", 2) + ":" + addPrefix(seconds, "0", 2)
 }
