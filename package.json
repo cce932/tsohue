@@ -26,6 +26,7 @@
     "sass": "1.29.0",
     "styled-components": "5.2.1",
     "validator": "13.1.17",
+    "video-react": "0.14.1",
     "web-vitals": "0.2.4"
   },
   "scripts": {
