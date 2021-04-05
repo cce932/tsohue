@@ -1,5 +1,5 @@
 import axios from "axios"
-import { TS_API } from "shared/constants/urls"
+import { TS_API } from "shared/constants/endPoint"
 import userService from "./user.service"
 
 const register = (account, password, username, phone, email) => {

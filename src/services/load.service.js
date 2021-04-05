@@ -1,4 +1,4 @@
-import { rootAxios } from "shared/constants/urls"
+import { rootAxios } from "shared/constants/endPoint"
 
 const loadRecipes = () => rootAxios.get("/recipe/overview")
 
