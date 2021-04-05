@@ -1,11 +1,15 @@
 @import "global";
 
 div.recipe-detail {
-  margin: 100px 10% 0;
+  margin: 100px 0 0;
+
+  div.info-image {
+    margin: 0 10% 0 13%;
+  }
 
   div.info {
-    padding-left: 120px;
     padding-top: 100px;
+    padding-left: 0;
 
     div.name {
       margin-bottom: 20px;

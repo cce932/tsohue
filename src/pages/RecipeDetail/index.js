@@ -1,17 +1,22 @@
 import _ from "lodash"
 import $ from "jquery"
 import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Row, Col, Spinner, Carousel } from "react-bootstrap"
 
 import "shared/style/recipeDetail.scss"
 import Steps from "./Steps"
+import MemberCartAdder from "./MemberCartAdder"
 import { versionOptions } from "shared/constants/options"
 import { loadRecipeById, loadRecipeImagesById } from "actions/load"
 import { allPaths, recipe as recipePath } from "shared/constants/pathName"
+import { addCart } from "actions/add"
+import { MEMBER } from "shared/constants/common"
+import VipCartAdder from "./VipCartAdder"
 
 const RecipeDetail = (props) => {
   const disaptch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
   const [recipe, setRecipe] = useState({})
   const [images, setImages] = useState([])
   const id = props.match.params.id
@@ -25,9 +30,25 @@ const RecipeDetail = (props) => {
     $("#recipe-name-wave").width($("#recipe-name").width())
   })
 
+  const memberAddCartOnClick = () => {
+    if (recipe.currentRecipe.outOfStockIngredients.length > 0) {
+      window.alert("本食譜目前無存貨喔")
+      return
+    }
+
+    const cartData = {
+      recipeId: id,
+      isCustomize: false,
+    }
+
+    disaptch(addCart(cartData)).then(() => {
+      window.alert("已加入購物車")
+    })
+  }
+
   return !_.isEmpty(recipe) ? (
     <div sm={5} className="recipe-detail">
-      <Row>
+      <Row className="info-image">
         <Col className="info">
           <div className="version">
             {recipe.existedVersions.map((version, index) =>
@@ -53,11 +74,11 @@ const RecipeDetail = (props) => {
 
           <div className="name">
             <div id="recipe-name">{recipe.currentRecipe.name}</div>
-            <img
+            {/* <img
               id="recipe-name-wave"
               src="/common-pic/wave.svg"
               alt="Decorating wave"
-            />
+            /> */}
           </div>
 
           <div className="description">{recipe.currentRecipe.description}</div>
@@ -86,6 +107,20 @@ const RecipeDetail = (props) => {
           </Carousel>
         </Col>
       </Row>
+
+      {recipe.currentRecipe.recipeIngredients.length > 0 &&
+        // (!user || user.role === MEMBER ? (
+        (false ? (
+          <MemberCartAdder
+            ingredients={recipe.currentRecipe.recipeIngredients}
+            memberAddCartOnClick={memberAddCartOnClick}
+            price={recipe.currentRecipe.price}
+            // isOutOfStock={recipe.currentRecipe.outOfStockIngredients.length > 0}
+            isOutOfStock={true}
+          />
+        ) : (
+          <VipCartAdder />
+        ))}
 
       <Steps
         steps={recipe.currentRecipe.recipeSteps}

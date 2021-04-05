@@ -2,7 +2,7 @@
 @import "~video-react/styles/scss/video-react";
 
 div.steps {
-  margin: 50px 0;
+  margin: 50px 10%;
 
   > p {
     @include text(bold, 1.2rem, $prime-color);
@@ -28,6 +28,7 @@ div.steps {
     .time {
       @include stroke-border($vice-color, $vice-color, $accent-deeper-color);
       margin-right: 40px;
+      width: 65px;
     }
 
     .note {

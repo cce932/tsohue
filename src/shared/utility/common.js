@@ -28,3 +28,15 @@ export const transMSecToMin = (totalMSec) => {
   const seconds = totalSec - minutes * 60
   return addPrefix(minutes, "0", 2) + ":" + addPrefix(seconds, "0", 2)
 }
+
+export const splitIngredientsByCategory = (ingredients) => {
+  let result = Object.assign({ meat: [], vegetable: [], spice: [], other: [] })
+
+  for (const ingredient of ingredients) {
+    const category = ingredient.ingredient.category.toLowerCase()
+
+    result[category] = result[category].concat(ingredient)
+  }
+
+  return result
+}

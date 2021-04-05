@@ -4,10 +4,11 @@ $prime-color: #755734;
 $vice-color: #9e8568;
 $accent-color: #fbd779;
 $accent-deeper-color: #f9bd23; // f8cb50(manager)
+$accent-red-color: #e76845;
 $first-color: rgb(52, 58, 64);
 $secondary-color: rgb(86, 90, 95);
 $third-color: rgb(179, 183, 188);
-$forth-color: rgb(205, 211, 216);
+$forth-color: rgb(193, 199, 204);
 $fifth-color: rgb(232, 235, 240);
 $sixth-color: rgb(249, 250, 252);
 $lowfat-color: #8093b5;
@@ -62,7 +63,8 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 
 @mixin solid(
   $color: $vice-color,
-  $focus-color: $prime-color
+  $focus-color: $prime-color,
+  $hover-color: $prime-color
 ) {
   @include text(normal, 1rem, white);
 
@@ -74,6 +76,10 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   padding: 3px 10px;
   margin: 5px;
   transition: $default-trans;
+
+  &:hover {
+    background-color: $hover-color;
+  }
 }
 
 @mixin default-input(

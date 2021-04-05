@@ -1,0 +1,53 @@
+@import "global";
+
+.member-cart-adder {
+  background-color: $accent-color;
+  padding: 100px 10% 60px 13%;
+  margin-top: -60px;
+
+  p.category {
+    @include text(bold, 1rem, $prime-color);
+    padding: 0 2px;
+    border-bottom: solid white 4px;
+    width: fit-content;
+  }
+
+  div.ingredients-block {
+    > div > label {
+      @include text(normal, 0.9rem, $prime-color);
+      padding-right: 10px;
+    }
+  }
+
+  div.button {
+    position: relative;
+
+    > div {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+
+      // out of stock
+      span {
+        @include text(bold, 0.9rem, $accent-red-color);
+        padding-left: 15px;
+      }
+
+      // price
+      p {
+        @include stroke-border($accent-color);
+        width: 102px;
+        color: $prime-color;
+        pointer-events: none; // disable hover
+      }
+
+      button {
+        @include solid($prime-color, $vice-color, $vice-color);
+
+        &.disable {
+          background-color: $forth-color; // #c9c5c0
+        }
+      }
+    }
+  }
+}
