@@ -1,17 +1,26 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
+import { useDispatch } from 'react-redux'
 
 import "shared/style/memberCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
 import { splitIngredientsByCategory } from "shared/utility/common"
+import { addCartForDefault } from "actions/add"
 
-const MemberCartAdder = ({
+const CartAdderForDefault = ({
+  recipeId,
   ingredients,
   price,
   isOutOfStock, // ture if one of ingredients out of stock in this recipe
-  memberAddCartOnClick,
 }) => {
+  const dispatch = useDispatch()
   const splitedIngredients = splitIngredientsByCategory(ingredients)
+
+  const AddCartForDefaultOnClick = () => {
+    dispatch(addCartForDefault(recipeId)).then(() => {
+      window.alert("已加入購物車")
+    })
+  }
 
   return (
     <div className="member-cart-adder">
@@ -38,7 +47,7 @@ const MemberCartAdder = ({
             <label className="price">{`總額 NT. ${price}`}</label>
             <button
               type="submit"
-              onClick={memberAddCartOnClick}
+              onClick={AddCartForDefaultOnClick}
               className={isOutOfStock ? "disable" : ""}
             >
               {isOutOfStock ? "目前無存貨" : "加入購物車"}
@@ -50,4 +59,4 @@ const MemberCartAdder = ({
   )
 }
 
-export default MemberCartAdder
+export default CartAdderForDefault

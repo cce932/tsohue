@@ -1,10 +1,16 @@
 import { rootAxios } from "shared/constants/endPoint"
 import authHeader from "services/auth-header"
 
-const addCart = (cartData) =>
-  rootAxios.post("/cart/add", cartData, { headers: authHeader() })
+const addCartForDefault = (recipeId) =>
+  rootAxios.get(`/cart/default/add/${recipeId}`, {
+    headers: authHeader(),
+  })
+
+const addCartForCustomization = (cartData) =>
+  rootAxios.post("/cart/customize/add", cartData, { headers: authHeader() })
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  addCart,
+  addCartForDefault,
+  addCartForCustomization,
 }

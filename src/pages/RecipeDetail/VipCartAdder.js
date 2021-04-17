@@ -3,11 +3,13 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import { Formik } from "formik"
 import * as Yup from "yup"
+import { useDispatch } from "react-redux"
 
 import "shared/style/vipCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
 import { splitIngredientsByCategory } from "shared/utility/common"
 import IngredientsAdjuster from "shared/components/IngredientAdjuster"
+import { addCartForCustomization } from "actions/add"
 
 // format of formik value
 // ingredient: {
@@ -38,13 +40,14 @@ const initQuantityGenerator = (ingredients, outOfStockIngredients) => {
   return result
 }
 
-const VipCartAdder = ({
+const CartAdderForCustomization = ({
+  recipeId,
   ingredients,
   price,
   outOfStockIngredients,
-  vipAddCartOnClick,
   handmadePrice,
 }) => {
+  const dispatch = useDispatch()
   const splitedIngredients = splitIngredientsByCategory(ingredients)
   const isWholeOutOfStock = // ture if more than 1/2 of ingredients out of stock in this recipe
     outOfStockIngredients.length > _.floor(ingredients.length / 2)
@@ -71,6 +74,21 @@ const VipCartAdder = ({
     ),
   })
 
+  const vipAddCartOnClick = (values) => {
+    const customizedIngredients = values.ingredient
+    const cartData = {
+      recipeId,
+      customize: Object.keys(customizedIngredients).map((ingredientId) => ({
+        ingredientId,
+        quantityRequired: customizedIngredients[ingredientId].customizeQuantity,
+      })),
+    }
+
+    dispatch(addCartForCustomization(cartData)).then(() => {
+      window.alert("已加入購物車")
+    })
+  }
+
   return (
     <div className="member-cart-adder vip-cart-adder">
       <Formik
@@ -82,7 +100,7 @@ const VipCartAdder = ({
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values)
+          vipAddCartOnClick(values)
         }}
       >
         {({ values, handleSubmit, setFieldValue, handleReset }) => (
@@ -118,7 +136,7 @@ const VipCartAdder = ({
 
                   <button
                     type="submit"
-                    onClick={vipAddCartOnClick}
+                    onClick={handleSubmit}
                     className={!isWholeOutOfStock ? "" : "disable"}
                   >
                     {isWholeOutOfStock ? "目前無存貨" : "加入購物車"}
@@ -133,4 +151,4 @@ const VipCartAdder = ({
   )
 }
 
-export default VipCartAdder
+export default CartAdderForCustomization
