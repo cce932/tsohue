@@ -6,10 +6,10 @@ $accent-color: #fbd779;
 $accent-deeper-color: #f9bd23; // f8cb50(manager)
 $accent-red-color: #e76845;
 $first-color: rgb(52, 58, 64);
-$secondary-color: rgb(86, 90, 95);
+$secondary-color: rgb(129, 132, 135);
 $third-color: rgb(179, 183, 188);
 $forth-color: rgb(193, 199, 204);
-$fifth-color: rgb(232, 235, 240);
+$fifth-color: rgb(232, 235, 240); // #e8ebf0
 $sixth-color: rgb(249, 250, 252);
 $lowfat-color: #8093b5;
 $meat-color: #f09797;
@@ -86,14 +86,15 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   $width: 120px,
   $text-color: $prime-color,
   $border-color: $vice-color,
-  $holder-color: $vice-color
+  $holder-color: $vice-color,
+  $background: transparent
 ) {
   @include text(normal, 0.9rem, $text-color);
   width: $width;
   border: $border-color solid 1px;
   border-radius: 12px;
   padding: 0 10px;
-  background-color: transparent;
+  background-color: $background;
 
   &::placeholder {
     @include text(normal, 0.9rem, $holder-color);
