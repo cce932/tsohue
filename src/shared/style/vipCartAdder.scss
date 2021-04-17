@@ -1,0 +1,75 @@
+@import "global";
+
+.vip-cart-adder {
+  label,
+  div {
+    @include text(normal, 1rem, $prime-color);
+  }
+
+  form {
+    width: 100%;
+
+    div.ingredients-block {
+      div.name-price {
+        height: fit-content;
+        font-weight: normal;
+      }
+
+      div.default-quantity {
+        color: $prime-color;
+        align-items: center;
+        margin-bottom: 4px;
+        margin-left: 1px;
+        font-size: 0.8rem;
+      }
+
+      label.customize-quantity {
+        background-color: white;
+        width: fit-content;
+        border-radius: 25px;
+        padding: 1px 10px 3px;
+        margin-bottom: 10px;
+
+        input {
+          @include text(normal, 0.8rem, $prime-color);
+          width: 30px;
+          border: 0;
+          text-align: center;
+
+          &:disabled {
+            color: $third-color;
+            background-color: transparent;
+          }
+        }
+      }
+
+      label.error-msg {
+        margin-left: 5px;
+        margin-bottom: 13px;
+        @include text(bold, 0.8rem, $accent-red-color);
+
+        &.no-stock {
+          color: $secondary-color;
+        }
+      }
+    }
+
+    button.reset {
+      @include text(normal, 1rem, $prime-color);
+      background-color: white;
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin: 5px;
+      transition: $default-trans;
+
+      border: none;
+      width: 90%;
+      height: 35px;
+
+      &:hover {
+        background-color: $vice-color;
+        color: white;
+      }
+    }
+  }
+}

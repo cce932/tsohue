@@ -10,6 +10,7 @@
     "@testing-library/user-event": "12.1.10",
     "axios": "0.21.0",
     "bootstrap": "4.6",
+    "formik": "2.2.6",
     "jquery": "3.6.0",
     "lodash": "4.17.21",
     "react": "16.14",
@@ -27,7 +28,8 @@
     "styled-components": "5.2.1",
     "validator": "13.1.17",
     "video-react": "0.14.1",
-    "web-vitals": "0.2.4"
+    "web-vitals": "0.2.4",
+    "yup": "0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,4 @@
-import _ from "lodash"
+import _, { floor } from "lodash"
 import $ from "jquery"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -31,19 +31,23 @@ const RecipeDetail = (props) => {
   })
 
   const memberAddCartOnClick = () => {
-    if (recipe.currentRecipe.outOfStockIngredients.length > 0) {
-      window.alert("本食譜目前無存貨喔")
-      return
-    }
+    // const cartData = {
+    //   recipeId: id,
+    //   isCustomize: false,
+    // }
+    // disaptch(addCart(cartData)).then(() => {
+    //   window.alert("已加入購物車")
+    // })
+  }
 
-    const cartData = {
-      recipeId: id,
-      isCustomize: false,
-    }
-
-    disaptch(addCart(cartData)).then(() => {
-      window.alert("已加入購物車")
-    })
+  const vipAddCartOnClick = () => {
+    // const cartData = {
+    //   recipeId: id,
+    //   isCustomize: false,
+    // }
+    // disaptch(addCart(cartData)).then(() => {
+    //   window.alert("已加入購物車")
+    // })
   }
 
   return !_.isEmpty(recipe) ? (
@@ -109,17 +113,21 @@ const RecipeDetail = (props) => {
       </Row>
 
       {recipe.currentRecipe.recipeIngredients.length > 0 &&
-        // (!user || user.role === MEMBER ? (
-        (false ? (
+        (!user || user.role === MEMBER ? (
           <MemberCartAdder
             ingredients={recipe.currentRecipe.recipeIngredients}
             memberAddCartOnClick={memberAddCartOnClick}
             price={recipe.currentRecipe.price}
-            // isOutOfStock={recipe.currentRecipe.outOfStockIngredients.length > 0}
-            isOutOfStock={true}
+            isOutOfStock={recipe.currentRecipe.outOfStockIngredients.length > 0}
           />
         ) : (
-          <VipCartAdder />
+          <VipCartAdder
+            ingredients={recipe.currentRecipe.recipeIngredients}
+            vipAddCartOnClick={vipAddCartOnClick}
+            price={recipe.currentRecipe.price}
+            outOfStockIngredients={recipe.currentRecipe.outOfStockIngredients}
+            handmadePrice={recipe.handmade}
+          />
         ))}
 
       <Steps

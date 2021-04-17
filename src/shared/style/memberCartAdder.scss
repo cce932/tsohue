@@ -25,27 +25,26 @@
     > div {
       position: absolute;
       bottom: 0;
-      right: 10px;
+      right: 5%;
+      max-width: 200px;
+      width: 95%;
 
-      // out of stock
-      span {
-        @include text(bold, 0.9rem, $accent-red-color);
-        padding-left: 15px;
-      }
-
-      // price
-      p {
-        @include stroke-border($accent-color);
-        width: 102px;
-        color: $prime-color;
+      label.price {
         pointer-events: none; // disable hover
+        border-bottom: white 4px solid;
+        color: $prime-color;
+        margin: 2px 10px 5px;
+        width: fit-content;
+        padding: 0 1px;
       }
 
-      button {
+      button[type="submit"] {
         @include solid($prime-color, $vice-color, $vice-color);
+        width: 90%;
+        height: 37px;
 
         &.disable {
-          background-color: $forth-color; // #c9c5c0
+          background-color: $secondary-color; // #c9c5c0
         }
       }
     }
