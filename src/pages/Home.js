@@ -4,16 +4,7 @@ import "shared/style/home.scss"
 import { history } from "helpers/history"
 import { FeatureSlot, MonthlySpecial } from "shared/components/common"
 
-const gredients = [
-  "東坡肉",
-  "梅干",
-  "滷蛋",
-  "青江菜",
-  "洋蔥",
-  "紅蔥頭",
-  "鹽",
-  "特調醬料",
-]
+const gredients = ["東坡肉", "梅干", "滷蛋", "青江菜", "洋蔥", "紅蔥頭", "鹽", "特調醬料"]
 
 const Home = () => {
   return (
