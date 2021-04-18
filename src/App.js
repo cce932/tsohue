@@ -19,6 +19,7 @@ import Register from "pages/Register"
 import Member from "pages/Member"
 import Recipes from "pages/Recipes"
 import RecipeDetail from "pages/RecipeDetail"
+import RecipeNotFound from "pages/RecipeNotFound"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
 import { loadRecipes } from "actions/load"
@@ -30,6 +31,7 @@ import {
   member,
   recipes,
   recipe,
+  recipeNotFound,
 } from "shared/constants/pathName"
 
 const App = () => {
@@ -181,6 +183,7 @@ const App = () => {
         <Route exact path={allPaths[register]} component={Register} />
         <Route exact path={allPaths[member]} component={Member} />
         <Route exact path={allPaths[recipes]} component={Recipes} />
+        <Route exact path={allPaths[recipeNotFound]} component={RecipeNotFound} />
         <Route exact path={allPaths[recipe] + ":id"} component={RecipeDetail} />
       </Switch>
     </Router>

@@ -9,9 +9,13 @@ import Steps from "./Steps"
 import CartAdderForDefault from "./MemberCartAdder"
 import CartAdderForCustomization from "./VipCartAdder"
 import { versionOptions } from "shared/constants/options"
-import { loadRecipeById, loadRecipeImagesById } from "actions/load"
-import { allPaths, recipe as recipePath } from "shared/constants/pathName"
 import { MEMBER } from "shared/constants/common"
+import { loadRecipeById, loadRecipeImagesById } from "actions/load"
+import {
+  allPaths,
+  recipe as recipePath,
+  recipeNotFound,
+} from "shared/constants/pathName"
 
 const RecipeDetail = (props) => {
   const dispatch = useDispatch()
@@ -21,7 +25,13 @@ const RecipeDetail = (props) => {
   const id = props.match.params.id
 
   useEffect(() => {
-    dispatch(loadRecipeById(id)).then((data) => setRecipe(data))
+    dispatch(loadRecipeById(id))
+      .then((data) => setRecipe(data))
+      .catch((error) => {
+        if (error.status === "NOT_FOUND")
+          window.location = allPaths[recipeNotFound]
+      })
+
     dispatch(loadRecipeImagesById(id)).then((data) => setImages(data))
   }, [dispatch, id])
 
