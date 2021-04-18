@@ -1,6 +1,6 @@
 import React from "react"
 import { Row, Col } from "react-bootstrap"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux"
 
 import "shared/style/memberCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
@@ -15,8 +15,13 @@ const CartAdderForDefault = ({
 }) => {
   const dispatch = useDispatch()
   const splitedIngredients = splitIngredientsByCategory(ingredients)
+  const user = useSelector((state) => state.auth.user)
 
   const AddCartForDefaultOnClick = () => {
+    if (!user) {
+      window.location = `/login?next=${window.location.pathname}`
+    }
+
     dispatch(addCartForDefault(recipeId)).then(() => {
       window.alert("已加入購物車")
     })

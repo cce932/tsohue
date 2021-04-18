@@ -3,13 +3,14 @@ import React from "react"
 import { Row, Col } from "react-bootstrap"
 import { Formik } from "formik"
 import * as Yup from "yup"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import "shared/style/vipCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
 import { splitIngredientsByCategory } from "shared/utility/common"
 import IngredientsAdjuster from "shared/components/IngredientAdjuster"
 import { addCartForCustomization } from "actions/add"
+import { MEMBER } from "shared/constants/common"
 
 // format of formik value
 // ingredient: {
@@ -48,10 +49,12 @@ const CartAdderForCustomization = ({
   handmadePrice,
 }) => {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.user)
   const splitedIngredients = splitIngredientsByCategory(ingredients)
   const isWholeOutOfStock = // ture if more than 1/2 of ingredients out of stock in this recipe
     outOfStockIngredients.length > _.floor(ingredients.length / 2)
   const initQuantity = initQuantityGenerator(ingredients, outOfStockIngredients)
+  const previousSetAmount = localStorage.getItem(recipeId)
 
   const passPriceToAdder = (setFieldValue) => (price) => {
     setFieldValue("currentPrice", price)
@@ -75,6 +78,16 @@ const CartAdderForCustomization = ({
   })
 
   const vipAddCartOnClick = (values) => {
+    if (!user) {
+      window.location = `/login?next=${window.location.pathname}`
+      localStorage.setItem(recipeId, JSON.stringify(values))
+    }
+
+    if (user.role === MEMBER) {
+      window.alert("VIP限定：客製化食材功能")
+      return
+    }
+
     const customizedIngredients = values.ingredient
     const cartData = {
       recipeId,
@@ -92,12 +105,16 @@ const CartAdderForCustomization = ({
   return (
     <div className="member-cart-adder vip-cart-adder">
       <Formik
-        initialValues={{
-          ingredient: {
-            ...initQuantity,
-          },
-          currentPrice: price,
-        }}
+        initialValues={
+          previousSetAmount
+            ? JSON.parse(previousSetAmount)
+            : {
+                ingredient: {
+                  ...initQuantity,
+                },
+                currentPrice: price,
+              }
+        }
         validationSchema={validationSchema}
         onSubmit={(values) => {
           vipAddCartOnClick(values)
@@ -137,7 +154,8 @@ const CartAdderForCustomization = ({
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className={!isWholeOutOfStock ? "" : "disable"}
+                    className={isWholeOutOfStock ? "disable" : ""}
+                    disabled={isWholeOutOfStock}
                   >
                     {isWholeOutOfStock ? "目前無存貨" : "加入購物車"}
                   </button>

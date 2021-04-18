@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Redirect } from "react-router-dom"
 
 import "shared/style/login.scss"
 import Form from "react-validation/build/form"
@@ -8,10 +7,6 @@ import Input from "react-validation/build/input"
 import CheckButton from "react-validation/build/button"
 
 import { login } from "actions/auth"
-
-// 限制帳號密碼格式
-// 如果格式輸入沒錯 就發成功的action
-// 處理dispatch有沒有成功
 
 const required = (value) => {
   if (!value) {
@@ -31,6 +26,12 @@ const Login = (props) => {
   const { message } = useSelector((state) => state.messages)
 
   const dispatch = useDispatch()
+
+  const next = new URL(window.location.href).searchParams.get("next")
+
+  if (isLoggedIn) {
+    window.location = next ? next : "/"
+  }
 
   const onChangeAccount = (e) => {
     const account = e.target.value
@@ -52,7 +53,9 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(account, password))
         .then(() => {
-          props.history.push("/member") // 成功就跳轉頁面
+          window.location = next ? next : "/"
+
+          // props.history.push("/member") // 成功就跳轉頁面
           window.location.reload()
         })
         .catch((error) => {
@@ -61,11 +64,9 @@ const Login = (props) => {
     } else {
       setLoading(false)
     }
-
-    if (isLoggedIn) {
-      return <Redirect to="/member" />
-    }
   }
+
+  console.log("referrer", document.referrer)
 
   return (
     // ref的form來自 form=useRef()
@@ -90,7 +91,7 @@ const Login = (props) => {
             validations={[required]}
           />
 
-          <button disabled={loading}>
+          <button type="submit" disabled={loading}>
             {loading && ( // 如果正在loading的話 那就不能按此button
               // <span className='spinner-border spinner-border-sm'></span> // boostrape的寫法 顯示loading icon
               <span>登入中</span>
