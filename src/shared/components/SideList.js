@@ -29,6 +29,7 @@ const SideList = ({ items, style }) => {
     border-radius: ${defaultStyle.borderRadius};
     text-align: ${defaultStyle.textAlign};
     border: ${defaultStyle.border};
+    text-align: ${defaultStyle.textAlign};
   `
 
   return (
