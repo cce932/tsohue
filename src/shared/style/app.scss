@@ -8,6 +8,10 @@
   flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
 }
 
+.ctm-container {
+  @include ctm-container();
+}
+
 div.spinner-border {
   margin: 10% 45%;
 }

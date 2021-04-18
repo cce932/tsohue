@@ -156,7 +156,7 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   }
 }
 
-@mixin make-container($padding-x: 350px, $margin-top: 150px) {
+@mixin ctm-container($padding-x: 350px, $margin-top: 150px) {
   width: 100%;
   padding-right: $padding-x;
   padding-left: $padding-x;

@@ -16,7 +16,7 @@ const Recipe = (props) => {
       >
         {versionOptions[recipe.version]}版本
       </SemiRoundedLabel>
-      {recipe.photo == "No Image" ? (
+      {recipe.photo === "No Image" ? (
         <img src="/common-pic/loading.gif" alt="loading-pic" />
       ) : (
         <img src={recipe.photo} alt={recipe.name + "-img"} />

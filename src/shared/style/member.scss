@@ -1,7 +1,6 @@
 @import "global";
 
-div.member.ctm-container {
-  @include make-container();
+div.member {
   min-height: 300px;
   height: calc(100vh - 450px);
 }
