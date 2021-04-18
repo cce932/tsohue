@@ -1,8 +1,8 @@
-import _, { floor } from "lodash"
+import _ from "lodash"
 import $ from "jquery"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Row, Col, Spinner, Carousel } from "react-bootstrap"
+import { Row, Col, Spinner, Carousel, Tabs, Tab } from "react-bootstrap"
 
 import "shared/style/recipeDetail.scss"
 import Steps from "./Steps"
@@ -91,15 +91,23 @@ const RecipeDetail = (props) => {
         </Col>
       </Row>
 
-      {recipe.currentRecipe.recipeIngredients.length > 0 &&
-        (!user || user.role === MEMBER ? (
+      <Tabs
+        defaultActiveKey={
+          !user || user.role === MEMBER
+            ? "CartAdderForDefault"
+            : "CartAdderForCustomization"
+        }
+        id="uncontrolled-tab-example"
+      >
+        <Tab eventKey="CartAdderForDefault" title="推薦食材內容">
           <CartAdderForDefault
             recipeId={id}
             ingredients={recipe.currentRecipe.recipeIngredients}
             price={recipe.currentRecipe.price}
             isOutOfStock={recipe.currentRecipe.outOfStockIngredients.length > 0}
           />
-        ) : (
+        </Tab>
+        <Tab eventKey="CartAdderForCustomization" title="客製食材內容">
           <CartAdderForCustomization
             recipeId={id}
             ingredients={recipe.currentRecipe.recipeIngredients}
@@ -107,7 +115,8 @@ const RecipeDetail = (props) => {
             outOfStockIngredients={recipe.currentRecipe.outOfStockIngredients}
             handmadePrice={recipe.handmade}
           />
-        ))}
+        </Tab>
+      </Tabs>
 
       <Steps
         steps={recipe.currentRecipe.recipeSteps}

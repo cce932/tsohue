@@ -4,12 +4,19 @@ div.recipe-detail {
   margin: 100px 0 0;
 
   div.info-image {
-    margin: 0 10% 0 13%;
+    margin: 0 10% -90px 13%;
+    min-height: 300px;
+
+    div.carousel {
+      z-index: 8888;
+      border-radius: 15px;
+    }
   }
 
   div.info {
     padding-top: 100px;
     padding-left: 0;
+    height: fit-content;
 
     div.name {
       margin-bottom: 20px;
