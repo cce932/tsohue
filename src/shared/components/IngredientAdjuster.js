@@ -10,7 +10,7 @@ const IngredientsBlock = ({
   handmadePrice,
   passPriceToAdder,
 }) => {
-  const { values, setFieldValue, handleChange, errors } = useFormikContext()
+  const { values, setFieldValue, errors } = useFormikContext()
 
   useEffect(() => {
     passPriceToAdder(calculatePrice(values))
@@ -25,14 +25,22 @@ const IngredientsBlock = ({
   const calculatePrice = (formikValues) => {
     let _price = 0
     let isDefault = true
+    let isPurchaseNothing = true // whether more than one ingredient's quantity>0 or not
 
     if (errors.ingredient?.length) return -1
 
     try {
       for (const formikValue of Object.values(formikValues.ingredient)) {
-        if (formikValue.customizeQuantity !== formikValue.defaultQuantity) {
-          isDefault = false
-        }
+        isDefault =
+          formikValue.customizeQuantity !== formikValue.defaultQuantity
+            ? false
+            : isDefault
+
+        isPurchaseNothing =
+          parseInt(formikValue.customizeQuantity) !== 0
+            ? false
+            : isPurchaseNothing
+
         _price +=
           parseInt(formikValue.customizeQuantity) * parseInt(formikValue.price)
       }
@@ -40,27 +48,43 @@ const IngredientsBlock = ({
       return -1
     }
 
-    return isDefault ? -1 : _price + parseInt(handmadePrice)
+    return {
+      price: isDefault ? -1 : _price + parseInt(handmadePrice),
+      isPurchaseNothing,
+    }
   }
 
   const addOnClick = (e) => {
     e.preventDefault()
     const ingredientId = e.currentTarget.name // In order to binding the each input, set the name of button with ingredient id
+    const originQuantity = parseInt(
+      values.ingredient[ingredientId].customizeQuantity
+    )
 
     setFieldValue(
       `ingredient.${ingredientId}.customizeQuantity`,
-      parseInt(values.ingredient[ingredientId].customizeQuantity) + 1
+      originQuantity + 1
     )
   }
 
   const minusOnClick = (e) => {
     e.preventDefault()
     const ingredientId = e.currentTarget.name
+    const quantity = parseInt(values.ingredient[ingredientId].customizeQuantity)
 
-    setFieldValue(
-      `ingredient.${ingredientId}.customizeQuantity`,
-      parseInt(values.ingredient[ingredientId].customizeQuantity) - 1
-    )
+    if (quantity > 0) {
+      setFieldValue(
+        `ingredient.${ingredientId}.customizeQuantity`,
+        parseInt(values.ingredient[ingredientId].customizeQuantity) - 1
+      )
+    }
+  }
+
+  const inputOnChange = (e) => {
+    const value = e.target.value
+    const formikFieldValue = e.target.name
+
+    setFieldValue(formikFieldValue, value.replace(/[^\d]/g, ""))
   }
 
   return (
@@ -72,6 +96,8 @@ const IngredientsBlock = ({
           const isOutOfStock = outOfStockIngredients.includes(
             ingredient.id.toString()
           )
+          const ingredientQuantity =
+            values.ingredient[ingredient.id].customizeQuantity
           return (
             <div key={index}>
               <div className="name-price">
@@ -86,28 +112,36 @@ const IngredientsBlock = ({
                 <button
                   onClick={minusOnClick}
                   name={ingredient.id.toString()}
-                  disabled={isOutOfStock}
+                  disabled={isOutOfStock || parseInt(ingredientQuantity) === 0}
                 >
                   <FaMinus
                     size="15px"
-                    fill={isOutOfStock ? "#e8ebf0" : "#fbd779"}
+                    fill={
+                      isOutOfStock || parseInt(ingredientQuantity) === 0
+                        ? "#e8ebf0"
+                        : "#fbd779"
+                    }
                   />
                 </button>
                 <input
                   name={`ingredient.${ingredient.id}.customizeQuantity`}
                   type="text"
-                  value={values.ingredient[ingredient.id].customizeQuantity}
-                  onChange={handleChange}
+                  value={ingredientQuantity}
+                  onChange={inputOnChange}
                   disabled={isOutOfStock}
                 />
                 <button
                   onClick={addOnClick}
                   name={ingredient.id.toString()}
-                  disabled={isOutOfStock}
+                  disabled={isOutOfStock || parseInt(ingredientQuantity) === 20}
                 >
                   <FaPlus
                     size="15px"
-                    fill={isOutOfStock ? "#e8ebf0" : "#fbd779"}
+                    fill={
+                      isOutOfStock || parseInt(ingredientQuantity) === 20
+                        ? "#e8ebf0"
+                        : "#fbd779"
+                    }
                   />
                 </button>
               </label>

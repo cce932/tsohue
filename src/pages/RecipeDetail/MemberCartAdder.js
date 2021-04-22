@@ -53,7 +53,7 @@ const CartAdderForDefault = ({
             <button
               type="submit"
               onClick={AddCartForDefaultOnClick}
-              className={isOutOfStock ? "disable" : ""}
+              disabled={isOutOfStock}
             >
               {isOutOfStock ? "目前無存貨" : "加入購物車"}
             </button>
