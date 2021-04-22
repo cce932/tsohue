@@ -69,7 +69,7 @@ const CartAdderForCustomization = ({
     outOfStockIngredients,
     localStorage.getItem(recipeId)
   )
-  const isVip = user.role === VIP
+  const isVip = user?.role === VIP
 
   const passPriceToAdder = (setFieldValue) => ({
     price,
