@@ -3,6 +3,7 @@ import $ from "jquery"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Row, Col, Spinner, Carousel, Tabs, Tab } from "react-bootstrap"
+import { RiVipFill } from "react-icons/ri"
 
 import "shared/style/recipeDetail.scss"
 import Steps from "./Steps"
@@ -117,7 +118,15 @@ const RecipeDetail = (props) => {
             isOutOfStock={recipe.currentRecipe.outOfStockIngredients.length > 0}
           />
         </Tab>
-        <Tab eventKey="CartAdderForCustomization" title="客製食材內容">
+        <Tab
+          eventKey="CartAdderForCustomization"
+          title={
+            <span>
+              客製食材內容
+              <RiVipFill size="20px" />
+            </span>
+          }
+        >
           <CartAdderForCustomization
             recipeId={id}
             ingredients={recipe.currentRecipe.recipeIngredients}

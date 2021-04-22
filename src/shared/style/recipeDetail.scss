@@ -5,11 +5,17 @@ div.recipe-detail {
 
   div.info-image {
     margin: 0 10% -90px 13%;
-    min-height: 300px;
+    min-height: 400px;
 
     div.carousel {
       z-index: 8888;
       border-radius: 15px;
+    }
+  }
+
+  nav.nav-tabs {
+    svg {
+      margin: -2px 3px 0;
     }
   }
 

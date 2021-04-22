@@ -54,6 +54,17 @@
       }
     }
 
+    div.error-msg {
+      @include text(bold, 0.8rem, $accent-red-color);
+      text-align: center;
+      margin: 0 5px;
+    }
+
+    div.fee-notification {
+      @include text(bold, 0.8rem, $secondary-color);
+      margin: 0 11px 30px;
+    }
+
     button.reset {
       @include text(normal, 1rem, $prime-color);
       background-color: white;
@@ -69,6 +80,14 @@
       &:hover {
         background-color: $vice-color;
         color: white;
+      }
+    }
+
+    button.vip-upgrade {
+      background-color: $accent-red-color !important;
+
+      svg {
+        margin: -5px 2px 0;
       }
     }
   }

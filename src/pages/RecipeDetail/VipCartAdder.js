@@ -4,13 +4,14 @@ import { Row, Col } from "react-bootstrap"
 import { Formik } from "formik"
 import * as Yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
+import { IoIosUnlock } from "react-icons/io"
 
 import "shared/style/vipCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
 import { splitIngredientsByCategory } from "shared/utility/common"
 import IngredientsAdjuster from "shared/components/IngredientAdjuster"
 import { addCartForCustomization } from "actions/add"
-import { MEMBER } from "shared/constants/common"
+import { VIP } from "shared/constants/common"
 
 // format of formik value
 // ingredient: {
@@ -25,16 +26,26 @@ import { MEMBER } from "shared/constants/common"
 //     price: 50,
 //   },
 // }
-const initQuantityGenerator = (ingredients, outOfStockIngredients) => {
+const initQuantityGenerator = (
+  ingredients,
+  outOfStockIngredients,
+  previousValuesForLogin
+) => {
   let result = Object.assign({})
   for (const ingredient of ingredients) {
+    const _ingredientId = ingredient.ingredient.id
     const isOutOfStock = outOfStockIngredients.includes(
-      ingredient.ingredient.id.toString()
+      _ingredientId.toString()
     )
+    const _previousValue = previousValuesForLogin?.ingredient?._ingredientId
 
-    result[ingredient.ingredient.id] = {
+    result[_ingredientId] = {
       defaultQuantity: ingredient.quantityRequired,
-      customizeQuantity: isOutOfStock ? 0 : ingredient.quantityRequired,
+      customizeQuantity: isOutOfStock
+        ? 0
+        : _previousValue
+        ? _previousValue
+        : ingredient.quantityRequired,
       price: ingredient.ingredient.price,
     }
   }
@@ -53,11 +64,19 @@ const CartAdderForCustomization = ({
   const splitedIngredients = splitIngredientsByCategory(ingredients)
   const isWholeOutOfStock = // ture if more than 1/2 of ingredients out of stock in this recipe
     outOfStockIngredients.length > _.floor(ingredients.length / 2)
-  const initQuantity = initQuantityGenerator(ingredients, outOfStockIngredients)
-  const previousSetAmount = localStorage.getItem(recipeId)
+  const initQuantity = initQuantityGenerator(
+    ingredients,
+    outOfStockIngredients,
+    localStorage.getItem(recipeId)
+  )
+  const isVip = user.role === VIP
 
-  const passPriceToAdder = (setFieldValue) => (price) => {
+  const passPriceToAdder = (setFieldValue) => ({
+    price,
+    isPurchaseNothing,
+  }) => {
     setFieldValue("currentPrice", price)
+    setFieldValue("isPurchaseNothing", isPurchaseNothing)
   }
 
   const validationSchema = Yup.object().shape({
@@ -83,11 +102,6 @@ const CartAdderForCustomization = ({
       localStorage.setItem(recipeId, JSON.stringify(values))
     }
 
-    if (user.role === MEMBER) {
-      window.alert("VIP限定：客製化食材功能")
-      return
-    }
-
     const customizedIngredients = values.ingredient
     const cartData = {
       recipeId,
@@ -105,22 +119,19 @@ const CartAdderForCustomization = ({
   return (
     <div className="member-cart-adder vip-cart-adder">
       <Formik
-        initialValues={
-          previousSetAmount
-            ? JSON.parse(previousSetAmount)
-            : {
-                ingredient: {
-                  ...initQuantity,
-                },
-                currentPrice: price,
-              }
-        }
+        initialValues={{
+          ingredient: {
+            ...initQuantity,
+          },
+          currentPrice: price,
+          isPurchaseNothing: false,
+        }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
           vipAddCartOnClick(values)
         }}
       >
-        {({ values, handleSubmit, setFieldValue, handleReset }) => (
+        {({ values, errors, handleSubmit, setFieldValue, handleReset }) => (
           <form onSubmit={handleSubmit}>
             <Row>
               <Col sm="10">
@@ -146,19 +157,37 @@ const CartAdderForCustomization = ({
                     {"總額 NT. "}
                     {values.currentPrice < 0 ? price : values.currentPrice}
                   </label>
-
+                  <div className="fee-notification">內含客製化服務費</div>
                   <button className="reset" type="reset" onClick={handleReset}>
                     重設數量
                   </button>
-
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className={isWholeOutOfStock ? "disable" : ""}
-                    disabled={isWholeOutOfStock}
+                    className={`${!isVip && "vip-upgrade"}`}
+                    disabled={
+                      !_.isEmpty(errors) ||
+                      isWholeOutOfStock ||
+                      values.isPurchaseNothing ||
+                      !isVip
+                    }
                   >
-                    {isWholeOutOfStock ? "目前無存貨" : "加入購物車"}
+                    {isVip ? (
+                      "加入購物車"
+                    ) : (
+                      <>
+                        <IoIosUnlock size="18px" />
+                        升級VIP
+                      </>
+                    )}
                   </button>
+                  <div className="error-msg">
+                    {isWholeOutOfStock
+                      ? "目前無存貨"
+                      : values.isPurchaseNothing
+                      ? "至少購買1樣食材喔"
+                      : ""}
+                  </div>
                 </div>
               </Col>
             </Row>
