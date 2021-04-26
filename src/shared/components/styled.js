@@ -55,19 +55,20 @@ export const ThirdBtn = styled.button`
   transition: all 0.3s ease 0s;
 `
 
-export const PrimaryStrokeBtn = styled.button`
+export const StrokeLabel = styled.span`
   font-family: sans-serif;
   font-weight: normal;
-  font-size: 1rem;
-  color: rgb(231, 104, 69);
+  font-size: ${(props) => props.size || "0.8rem"};
+  color: ${(props) => props.theme[props.color] || props.theme.primeColor};
   text-decoration: none;
   letter-spacing: 0.03em;
 
   background-color: white;
-  border: rgb(231, 104, 69) solid 1px;
-  border-radius: 3px;
-  padding: 5px 15px;
-  margin: 5px;
+  border: ${(props) => props.theme[props.borderColor] || props.theme.primeColor}
+    solid 1px;
+  border-radius: 25px;
+  padding: 1px 8px 2px;
+  margin-left: 15px;
   transition: all 0.3s ease 0s;
 `
 

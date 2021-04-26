@@ -1,0 +1,32 @@
+@import "global";
+
+.cart {
+  margin-top: 150px;
+  div.title {
+    @include text(normal, 2rem, $vice-color);
+    margin-left: 65px;
+  }
+
+  div.bottom {
+    @include text(normal, 1rem, $prime-color);
+    margin-bottom: 20px;
+
+    label.select-all {
+      margin-top: 18px;
+    }
+
+    .right {
+      float: right;
+
+      button[type="submit"] {
+        @include solid($prime-color, $prime-color, $vice-color);
+        width: 150px;
+        margin-left: 40px;
+      }
+
+      > * {
+        font-size: 1.2rem !important;
+      }
+    }
+  }
+}

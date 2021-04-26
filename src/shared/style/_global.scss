@@ -6,7 +6,7 @@ $accent-color: #fbd779;
 $accent-deeper-color: #f9bd23; // f8cb50(manager)
 $accent-red-color: #e76845;
 $first-color: rgb(52, 58, 64);
-$secondary-color: rgb(129, 132, 135);
+$secondary-color: rgb(129, 132, 135); // #818487
 $third-color: rgb(179, 183, 188);
 $forth-color: rgb(193, 199, 204);
 $fifth-color: rgb(232, 235, 240); // #e8ebf0
@@ -157,6 +157,7 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 }
 
 @mixin ctm-container($padding-x: 350px, $margin-top: 150px) {
+  flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
   width: 100%;
   padding-right: $padding-x;
   padding-left: $padding-x;
