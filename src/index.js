@@ -6,6 +6,7 @@ import store from "./store"
 import reportWebVitals from "./reportWebVitals"
 import { Provider } from "react-redux"
 import { Footer } from "./shared/components/common"
+import { ThemeProvider, css } from "styled-components"
 
 const footerLinks = [
   "關於我們",
@@ -18,10 +19,35 @@ const footerLinks = [
   "異業合作",
 ]
 
+const theme = {
+  primeColor: "#755734",
+  vicecolor: "#9e8568",
+  accentColor: "#fbd779",
+  accentDeeperColor: "#f9bd23",
+  accentRedColor: "#e76845",
+  firstColor: "rgb(52, 58, 64)",
+  secondaryColor: "rgb(129, 132, 135)",
+  thirdColor: "rgb(123, 127, 131)",
+  forthColor: "rgb(193, 199, 204)",
+  fifthColor: "rgb(232, 235, 240)",
+  sixthColor: "rgb(249, 250, 252)",
+  normalColor: "#9e8568",
+  lowfatColor: "#8093b5",
+  meatColor: "#f09797",
+  vageColor: "#7ca390",
+  font: css`
+    font-family: sans-serif;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  `,
+}
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
-    <Footer links={footerLinks} />
+    <ThemeProvider theme={theme}>
+      <App />
+      <Footer links={footerLinks} />
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 )
