@@ -38,7 +38,7 @@ const ShoppingCart = () => {
   }
 
   return (
-    <div className="container cart">
+    <div className="container cart pages">
       <div className="title">購物車</div>
       <Formik
         initialValues={{ checked: [], selectAll: false, currentSum: 0 }}

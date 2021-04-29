@@ -157,7 +157,6 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 }
 
 @mixin ctm-container($padding-x: 350px, $margin-top: 150px) {
-  flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
   width: 100%;
   padding-right: $padding-x;
   padding-left: $padding-x;

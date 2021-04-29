@@ -122,7 +122,7 @@ const Recipes = () => {
   }
 
   return (
-    <div className="recipes">
+    <div className="recipes pages">
       <SideListWapper className="cus-side-list" id="side-list">
         <p>分類</p>
         <div>

@@ -61,7 +61,7 @@ const Member = () => {
 
   return (
     <Router history={history}>
-      <div className="ctm-container member">
+      <div className="member pages">
         <SideList items={sideListItems} />
 
         <p>您好, {currentUser.username}</p>

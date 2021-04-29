@@ -116,7 +116,7 @@ const Register = () => {
 
   return (
     <Router history={history}>
-      <div className={`container`}>
+      <div className="container pages">
         <div className={`register`}>
           <Form onSubmit={handleRegister} ref={form}>
             {!successful ? (

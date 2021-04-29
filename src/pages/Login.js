@@ -66,11 +66,9 @@ const Login = (props) => {
     }
   }
 
-  console.log("referrer", document.referrer)
-
   return (
     // ref的form來自 form=useRef()
-    <div className={`container`}>
+    <div className="container pages">
       <div className={`login`}>
         <Form onSubmit={handleLogin} ref={form}>
           <label htmlFor="account">帳號</label>

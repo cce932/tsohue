@@ -9,7 +9,7 @@ const gredients = ["東坡肉", "梅干", "滷蛋", "青江菜", "洋蔥", "紅�
 const Home = () => {
   return (
     <Router history={history}>
-      <div>
+      <div className="home pages">
         {/* 主banner */}
         <div className="main-banner">
           <div className="slogan">
