@@ -16,8 +16,8 @@ export const FeatureSlot = ({ title, content1, content2 }) => (
 )
 
 export const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
-  const styled = gredients.map((gredient, index) => (
-    <p key={index}>{gredient}</p>
+  const styled = gredients.map((ingredient, index) => (
+    <p key={index}>{ingredient}</p>
   ))
   const splited = splitToRows(styled, gredientsMaxRow).map(
     (gredients, index) => (
