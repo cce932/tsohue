@@ -4,11 +4,11 @@ div.recipe-detail {
   margin: 100px 0 0;
 
   div.info-image {
-    margin: 0 10% -90px 13%;
+    margin: 0 10% 40px 13%;
     min-height: 400px;
 
     div.carousel {
-      z-index: 8888;
+      z-index: 888;
       border-radius: 15px;
     }
   }
@@ -22,7 +22,7 @@ div.recipe-detail {
   div.info {
     padding-top: 100px;
     padding-left: 0;
-    height: fit-content;
+    height: 400px;
 
     div.name {
       margin-bottom: 20px;
@@ -33,9 +33,9 @@ div.recipe-detail {
         width: fit-content;
       }
 
-      img {
-        height: 15px;
-      }
+      // img {
+      //   height: 15px;
+      // }
     }
 
     div.version {
@@ -81,10 +81,30 @@ div.recipe-detail {
     }
 
     div.description {
-      @include text(bold, 1rem, $prime-color);
+      @include text(normal, 0.9rem, $prime-color);
 
       max-width: 350px;
       text-align: left;
+    }
+  }
+
+  div.carousel-inner {
+    height: 400px;
+
+    img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+
+  @media (min-width: 1780px) {
+    div.carousel-inner {
+      height: 500px;
+
+      img {
+        height: 500px;
+      }
     }
   }
 }
