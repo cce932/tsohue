@@ -1,4 +1,5 @@
 import LoadService from "services/load.service"
+import { allPaths, shoppingCart } from 'shared/constants/pathName'
 import { extractErrorMsg } from "shared/utility/common"
 import { setMessage } from "./message"
 import { LOAD_RECIPES_SUCCESS, LOAD_CART_SUCCESS } from "./types"
@@ -53,7 +54,7 @@ export const loadCart = () => (dispatch) => {
     })
     .catch((error) => {
       const message = extractErrorMsg(error)
-      dispatch(setMessage(message))
+      dispatch(setMessage({...message, next: allPaths[shoppingCart].slice(1)}))
       return Promise.reject(message)
     })
 }
