@@ -22,10 +22,12 @@
         @include solid($prime-color, $prime-color, $vice-color);
         width: 150px;
         margin-left: 40px;
+        font-size: 1.2rem;
       }
 
-      > * {
-        font-size: 1.2rem !important;
+      span.price {
+        font-size: 1.5rem;
+        margin-left: 5px;
       }
     }
   }
