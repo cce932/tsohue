@@ -1,14 +1,12 @@
 import React from "react"
 import { Col, Row } from "react-bootstrap"
-import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import { Field, useFormikContext } from "formik"
-
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
+
 import { splitToRows } from "shared/utility/common"
 import { StrokeLabel } from "shared/components/styled"
 import { versionOptions } from "shared/constants/options"
-import { removeCartItem } from "actions/edit"
 
 const Item = styled.div`
   width: 100%;
@@ -72,13 +70,8 @@ const FlexDiv = styled.div`
   }
 `
 
-const SingleCart = ({ cartId, recipe, customize, sum, isCustomize }) => {
-  const dispatch = useDispatch()
+const CartItem = ({ cartId, recipe, customize, sum, isCustomize, removeOnClick }) => {
   const { values, setFieldValue } = useFormikContext()
-
-  const remove = (cartId) => () => {
-    dispatch(removeCartItem(cartId))
-  }
 
   const styled = customize.map((ingredient, index) => (
     <IngredientTd key={index}>
@@ -139,7 +132,7 @@ const SingleCart = ({ cartId, recipe, customize, sum, isCustomize }) => {
               {isCustomize && <StrokeLabel>客製化</StrokeLabel>}
               <FloatRight>
                 <StyledFont>NT. {sum}</StyledFont>
-                <button onClick={remove(cartId)}>
+                <button onClick={removeOnClick(cartId)}>
                   <AiOutlineDelete fill="#e76845" size="18px" />
                 </button>
                 <button>
@@ -163,4 +156,4 @@ const SingleCart = ({ cartId, recipe, customize, sum, isCustomize }) => {
   )
 }
 
-export default SingleCart
+export default CartItem

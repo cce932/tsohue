@@ -1,40 +1,51 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-
-import "shared/style/shoppingCart.scss"
-import "shared/style/components/checkbox.scss"
-import SingleCart from "./item"
-import { loadCart } from "actions/load"
+import React, { useEffect } from "react"
 import { Field, Formik } from "formik"
 import { Form } from "react-bootstrap"
 
+import "shared/style/shoppingCart.scss"
+import CartItem from "./CartItem"
+import LoadService from "services/load.service"
+import { createDispatch } from "shared/utility/hooks"
+import useCartreducer from "reducers/cart"
+import EditService from "services/edit.service"
+import {
+  DELETE_CART_ITEM,
+  LOAD_CART_SUCCESS,
+  SET_CART_IDS,
+  SET_CART_SUM,
+} from "./constant"
+
 const ShoppingCart = () => {
-  const dispatch = useDispatch()
-  const [cart, setCart] = useState([])
-  const [lightCartData, setLightCartData] = useState({})
+  const [state, dispatch] = useCartreducer()
+  const { originalSum, ids, data } = state
+  const cartDispatch = createDispatch(dispatch)
 
   useEffect(() => {
-    dispatch(loadCart()).then((data) => {
-      setCart(data)
+    LoadService.loadCart().then(({ data }) => {
+      cartDispatch(LOAD_CART_SUCCESS, data)
+
       let _cartIds = []
       let _cartSum = 0
       for (const cart of data) {
         _cartIds.push(cart.id.toString())
         _cartSum += cart.sum
       }
-      setLightCartData({ ids: _cartIds, allSum: _cartSum })
-      console.log(_cartIds, _cartSum)
+      cartDispatch(SET_CART_IDS, _cartIds)
+      cartDispatch(SET_CART_SUM, _cartSum)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
-  // const validationSchema = {}
+  const removeOnClick = (cartId) => () => {
+    cartDispatch(DELETE_CART_ITEM, cartId)
+    EditService.deleteCartItem(cartId)
+  }
 
-  const selectAllOnChange = (e, values, setFieldValue) => {
+  const selectAllOnChange = (values, setFieldValue) => () => {
     const isSelectAll = values.selectAll
-    console.log("select all", isSelectAll, values)
     setFieldValue("selectAll", !isSelectAll)
-    setFieldValue("checked", isSelectAll ? [] : lightCartData.ids)
-    setFieldValue("currentSum", isSelectAll ? 0 : lightCartData.allSum)
+    setFieldValue("checked", isSelectAll ? [] : ids)
+    setFieldValue("currentSum", isSelectAll ? 0 : originalSum)
   }
 
   return (
@@ -42,7 +53,6 @@ const ShoppingCart = () => {
       <div className="title">購物車</div>
       <Formik
         initialValues={{ checked: [], selectAll: false, currentSum: 0 }}
-        // validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values)
         }}
@@ -50,23 +60,19 @@ const ShoppingCart = () => {
         {({ values, handleSubmit, setFieldValue }) => (
           <Form onSubmit={handleSubmit}>
             <div role="group">
-              {cart.map((item) => {
-                const recipe = item.recipe
-                const customize = item.customize
-
-                return (
-                  <SingleCart
-                    key={item.id}
-                    {...{
-                      cartId: item.id,
-                      recipe,
-                      customize,
-                      sum: item.sum,
-                      isCustomize: item.isCustomize,
-                    }}
-                  />
-                )
-              })}
+              {data.map((item) => (
+                <CartItem
+                  key={item.id}
+                  {...{
+                    cartId: item.id,
+                    recipe: item.recipe,
+                    customize: item.customize,
+                    sum: item.sum,
+                    isCustomize: item.isCustomize,
+                    removeOnClick,
+                  }}
+                />
+              ))}
             </div>
             <div className="bottom">
               <label className="select-all">
@@ -75,13 +81,14 @@ const ShoppingCart = () => {
                   type="checkbox"
                   name="selectAll"
                   id="styled-checkbox-select-all" // In formik, single checkbox don't need "value", but checkbox group need.
-                  onChange={(e) => selectAllOnChange(e, values, setFieldValue)}
+                  onChange={selectAllOnChange(values, setFieldValue)}
                 />
                 <label htmlFor="styled-checkbox-select-all">全選</label>
               </label>
               <div className="right">
                 <span>
-                  共{values.checked.length}項 總額NT.{values.currentSum}
+                  共 {values.checked.length} 項&ensp;&ensp;總額NT.
+                  <span className="price">{values.currentSum}</span>
                 </span>
                 <button type="submit">訂購</button>
               </div>

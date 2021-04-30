@@ -8,7 +8,6 @@ export const SET_MESSAGE = "SET_MESSAGE" // 用來設定登入失敗/成功時�
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE"
 
 export const LOAD_RECIPES_SUCCESS = "LOAD_RECIPES_SUCCESS"
-export const LOAD_CART_SUCCESS = "LOAD_CART_SUCCESS"
 
 export const CREATE_CART_SUCCESS = "CREATE_CART_SUCCESS"
 
