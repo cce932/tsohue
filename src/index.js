@@ -21,14 +21,14 @@ const footerLinks = [
 
 const theme = {
   primeColor: "#755734",
-  vicecolor: "#9e8568",
+  viceColor: "#9e8568",
   accentColor: "#fbd779",
   accentDeeperColor: "#f9bd23",
   accentRedColor: "#e76845",
   firstColor: "rgb(52, 58, 64)",
   secondaryColor: "rgb(129, 132, 135)",
   thirdColor: "rgb(123, 127, 131)",
-  forthColor: "rgb(193, 199, 204)",
+  forthColor: "rgb(183, 186, 191)",
   fifthColor: "rgb(232, 235, 240)",
   sixthColor: "rgb(249, 250, 252)",
   normalColor: "#9e8568",
