@@ -1,19 +1,13 @@
 import React, { useEffect } from "react"
 import { Field, Formik } from "formik"
-import { Form } from "react-bootstrap"
+import { Form, Spinner } from "react-bootstrap"
 
 import "shared/style/shoppingCart.scss"
 import CartItem from "./CartItem"
 import LoadService from "services/load.service"
 import { createDispatch } from "shared/utility/hooks"
 import useCartreducer from "reducers/cart"
-import EditService from "services/edit.service"
-import {
-  DELETE_CART_ITEM,
-  LOAD_CART_SUCCESS,
-  SET_CART_IDS,
-  SET_CART_SUM,
-} from "./constant"
+import { LOAD_CART, SET_CART_IDS, SET_CART_SUM } from "./constant"
 
 const ShoppingCart = () => {
   const [state, dispatch] = useCartreducer()
@@ -22,7 +16,7 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     LoadService.loadCart().then(({ data }) => {
-      cartDispatch(LOAD_CART_SUCCESS, data)
+      cartDispatch(LOAD_CART, data)
 
       let _cartIds = []
       let _cartSum = 0
@@ -35,11 +29,6 @@ const ShoppingCart = () => {
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
-
-  const removeOnClick = (cartId) => () => {
-    cartDispatch(DELETE_CART_ITEM, cartId)
-    EditService.deleteCartItem(cartId)
-  }
 
   const selectAllOnChange = (values, setFieldValue) => () => {
     const isSelectAll = values.selectAll
@@ -60,19 +49,24 @@ const ShoppingCart = () => {
         {({ values, handleSubmit, setFieldValue }) => (
           <Form onSubmit={handleSubmit}>
             <div role="group">
-              {data.map((item) => (
-                <CartItem
-                  key={item.id}
-                  {...{
-                    cartId: item.id,
-                    recipe: item.recipe,
-                    customize: item.customize,
-                    sum: item.sum,
-                    isCustomize: item.isCustomize,
-                    removeOnClick,
-                  }}
-                />
-              ))}
+              {data.length > 0 ? (
+                data.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    {...{
+                      cartId: item.id.toString(),
+                      recipe: item.recipe,
+                      customize: item.customize,
+                      sum: item.sum,
+                      isCustomize: item.isCustomize,
+                      reactDispatch: cartDispatch,
+                      ids: ids,
+                    }}
+                  />
+                ))
+              ) : (
+                <Spinner animation="border" variant="warning" role="status" />
+              )}
             </div>
             <div className="bottom">
               <label className="select-all">

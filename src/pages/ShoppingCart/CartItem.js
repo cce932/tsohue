@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import { Col, Row } from "react-bootstrap"
 import styled from "styled-components"
 import { Field, useFormikContext } from "formik"
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
 
+import CartItemEditor from "./CartItemEditor"
+import EditService from "services/edit.service"
+import color from "shared/style/color"
 import { splitToRows } from "shared/utility/common"
 import { StrokeLabel } from "shared/components/styled"
 import { versionOptions } from "shared/constants/options"
+import { DELETE_CART_ITEM } from "./constant"
 
 const Item = styled.div`
   width: 100%;
@@ -46,6 +50,10 @@ const IngredientTd = styled.td`
   font-size: 0.8rem;
   padding: 4px;
   padding-left: 0;
+
+  &.quantitiy-zero {
+    color: ${(props) => props.theme.forthColor};
+  }
 `
 
 const StyledFont = styled.span`
@@ -70,11 +78,23 @@ const FlexDiv = styled.div`
   }
 `
 
-const CartItem = ({ cartId, recipe, customize, sum, isCustomize, removeOnClick }) => {
+const CartItem = ({
+  cartId,
+  recipe,
+  customize,
+  sum,
+  isCustomize, // for controlling editable
+  reactDispatch, // for deleting cart item
+  ids, // for controlling selectAll checkbox
+}) => {
   const { values, setFieldValue } = useFormikContext()
+  const [modalShow, setModalShow] = useState(false)
 
   const styled = customize.map((ingredient, index) => (
-    <IngredientTd key={index}>
+    <IngredientTd
+      key={index}
+      className={`${ingredient.quantityRequired === 0 ? "quantitiy-zero" : ""}`}
+    >
       {ingredient.ingredient.name + " "}
       {ingredient.quantityRequired + " "}
       {ingredient.ingredient.unit}
@@ -100,6 +120,26 @@ const CartItem = ({ cartId, recipe, customize, sum, isCustomize, removeOnClick }
 
     setFieldValue("checked", newChecked)
     setFieldValue("currentSum", newCurrentSum)
+
+    //　controll selectAll checkbox
+    const currentCheckedLength = isChecked
+      ? values.checked.length + 1
+      : values.checked.length - 1
+    !isChecked && setFieldValue("selectAll", false)
+    ids.length === currentCheckedLength && setFieldValue("selectAll", true)
+  }
+
+  const editOnClick = () => {
+    setModalShow(true)
+  }
+
+  const removeOnClick = () => {
+    reactDispatch(DELETE_CART_ITEM, cartId) // delete this item on UI
+    EditService.deleteCartItem(cartId) // delete this item's data in DB
+    setFieldValue(
+      "checked",
+      values.checked.filter((itemId) => itemId !== cartId)
+    ) // update the price
   }
 
   return (
@@ -109,20 +149,24 @@ const CartItem = ({ cartId, recipe, customize, sum, isCustomize, removeOnClick }
           className="styled-checkbox"
           type="checkbox"
           name="checked"
-          id={`styled-checkbox-${cartId.toString()}`}
-          value={cartId.toString()}
-          onChange={(e) => checkboxOnChange(e, cartId.toString(), sum)}
+          id={`styled-checkbox-${cartId}`}
+          value={cartId}
+          onChange={(e) => checkboxOnChange(e, cartId, sum)}
         />
-        <label htmlFor={`styled-checkbox-${cartId.toString()}`}></label>
+        <label htmlFor={`styled-checkbox-${cartId}`}></label>
       </div>
       <Item>
         <Row>
           <Col sm="3">
-            <ItmeImg src="/common-pic/temp.jpg" />
+            <a href={`/recipe/${recipe.id}`}>
+              <ItmeImg src={"/common-pic/temp.jpg"} />
+            </a>
           </Col>
           <Col sm="9">
             <BottomLine>
-              <StyledFont weight="bold">{recipe.name}</StyledFont>
+              <a href={`/recipe/${recipe.id}`}>
+                <StyledFont weight="bold">{recipe.name}</StyledFont>
+              </a>
               <StrokeLabel
                 color={recipe.version.toLowerCase() + "Color"}
                 borderColor={recipe.version.toLowerCase() + "Color"}
@@ -132,11 +176,14 @@ const CartItem = ({ cartId, recipe, customize, sum, isCustomize, removeOnClick }
               {isCustomize && <StrokeLabel>客製化</StrokeLabel>}
               <FloatRight>
                 <StyledFont>NT. {sum}</StyledFont>
-                <button onClick={removeOnClick(cartId)}>
+                <button onClick={removeOnClick}>
                   <AiOutlineDelete fill="#e76845" size="18px" />
                 </button>
-                <button>
-                  <AiOutlineEdit fill="#818487" size="18px" />
+                <button onClick={editOnClick} disabled={!isCustomize}>
+                  <AiOutlineEdit
+                    fill={isCustomize ? color.third : color.forth}
+                    size="18px"
+                  />
                 </button>
               </FloatRight>
             </BottomLine>
@@ -152,6 +199,14 @@ const CartItem = ({ cartId, recipe, customize, sum, isCustomize, removeOnClick }
           </Col>
         </Row>
       </Item>
+      <CartItemEditor
+        cartId={cartId}
+        recipe={recipe}
+        customize={customize}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        reactDispatch={reactDispatch}
+      />
     </FlexDiv>
   )
 }

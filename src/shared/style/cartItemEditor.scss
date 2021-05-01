@@ -1,0 +1,36 @@
+@import "global";
+
+div.cart-item-editor {
+  div.modal-content {
+    padding-left: 30px;
+    background-color: $accent-color;
+    border-radius: 20px;
+
+    p.title {
+      @include text(bolder, 1.2rem, $prime-color);
+      margin: 10px 0 20px;
+    }
+
+    .right {
+      float: right;
+      margin-top: 30px;
+
+      button:not([type="submit"]) {
+        @include solid(white, white, white, 5px 20px);
+        color: $prime-color;
+
+        &:hover {
+          color: $vice-color;
+        }
+      }
+
+      button[type="submit"] {
+        @include solid($prime-color, $vice-color, $vice-color, 5px 20px);
+
+        &:disabled {
+          background-color: $secondary-color;
+        }
+      }
+    }
+  }
+}
