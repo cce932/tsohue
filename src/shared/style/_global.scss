@@ -8,7 +8,7 @@ $accent-red-color: #e76845;
 $first-color: rgb(52, 58, 64);
 $secondary-color: rgb(129, 132, 135); // #818487
 $third-color: rgb(179, 183, 188);
-$forth-color: rgb(193, 199, 204);
+$forth-color: rgb(183, 186, 191);
 $fifth-color: rgb(232, 235, 240); // #e8ebf0
 $sixth-color: rgb(249, 250, 252);
 $lowfat-color: #8093b5;
@@ -64,7 +64,8 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 @mixin solid(
   $color: $vice-color,
   $focus-color: $prime-color,
-  $hover-color: $prime-color
+  $hover-color: $prime-color,
+  $padding: 3px 10px
 ) {
   @include text(normal, 1rem, white);
 
@@ -72,8 +73,8 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   height: fit-content;
   border: none;
   background-color: $color;
-  border-radius: 20px;
-  padding: 3px 10px;
+  border-radius: 25px;
+  padding: $padding;
   margin: 5px;
   transition: $default-trans;
 
@@ -134,6 +135,10 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
     border: none;
     box-shadow: none;
     outline: none;
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 
   button {
