@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Col, Row } from "react-bootstrap"
+import { Col, Row, Spinner } from "react-bootstrap"
 import styled from "styled-components"
 import { Field, useFormikContext } from "formik"
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
@@ -44,6 +44,22 @@ const BottomLine = styled.div`
   border-bottom: solid ${(props) => props.theme.fifthColor} 1px;
 `
 
+const FloatDiv = styled.div`
+  position: absolute;
+  text-align: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: -20px;
+`
+
+const RelativeDiv = styled.div`
+  position: relative;
+  height: 100%;
+`
+
 const IngredientTd = styled.td`
   ${(props) => props.theme.font}
   color: ${(props) => props.theme.thirdColor};
@@ -86,6 +102,7 @@ const CartItem = ({
   isCustomize, // for controlling editable
   reactDispatch, // for deleting cart item
   ids, // for controlling selectAll checkbox
+  updatingCart, // controlling updating spinner
 }) => {
   const { values, setFieldValue } = useFormikContext()
   const [modalShow, setModalShow] = useState(false)
@@ -188,14 +205,19 @@ const CartItem = ({
               </FloatRight>
             </BottomLine>
 
-            <div>
+            <RelativeDiv>
               <StyledFont color="thirdColor" weight="bold" size="0.8rem">
                 食材
               </StyledFont>
               <IngredientsTable>
                 <tbody>{splited}</tbody>
               </IngredientsTable>
-            </div>
+              {updatingCart.some((itemId) => itemId === cartId) && (
+                <FloatDiv>
+                  <Spinner animation="border" variant="warning" role="status" />
+                </FloatDiv>
+              )}
+            </RelativeDiv>
           </Col>
         </Row>
       </Item>

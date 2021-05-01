@@ -11,7 +11,7 @@ import { LOAD_CART, SET_CART_IDS, SET_CART_SUM } from "./constant"
 
 const ShoppingCart = () => {
   const [state, dispatch] = useCartreducer()
-  const { originalSum, ids, data } = state
+  const { originalSum, ids, data, updatingCart } = state
   const cartDispatch = createDispatch(dispatch)
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const ShoppingCart = () => {
                       isCustomize: item.isCustomize,
                       reactDispatch: cartDispatch,
                       ids: ids,
+                      updatingCart,
                     }}
                   />
                 ))

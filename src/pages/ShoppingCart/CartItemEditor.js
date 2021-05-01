@@ -8,7 +8,7 @@ import "shared/style/cartItemEditor.scss"
 import IngredientAdjuster from "shared/components/IngredientAdjuster"
 import { splitIngredientsByCategory } from "shared/utility/common"
 import { categoryOptions } from "shared/constants/options"
-import { LOAD_CART } from "./constant"
+import { LOAD_CART, UPDATE_CART_ITEM_START, UPDATE_CART_ITEM_END } from "./constant"
 import editService from "services/edit.service"
 import loadService from "services/load.service"
 
@@ -53,10 +53,15 @@ const CartItemEditor = ({
         quantityRequired: currentValue[ingredientId].customizeQuantity,
       })),
     }
+
+    reactDispatch(UPDATE_CART_ITEM_START, cartId) // show loading spinner
     editService.editCartItem(cartId, body).then(() => {
-      loadService.loadCart().then(({ data }) => {
-        reactDispatch(LOAD_CART, data)
-      })
+      loadService
+        .loadCart()
+        .then(({ data }) => {
+          reactDispatch(LOAD_CART, data)
+        })
+        .then(() => reactDispatch(UPDATE_CART_ITEM_END, cartId)) // cancel loading spinner
     })
     onHide()
   }
