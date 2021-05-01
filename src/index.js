@@ -40,6 +40,7 @@ const theme = {
     text-decoration: none;
     letter-spacing: 0.03em;
   `,
+  defaultShadow: "0px 0px 15px rgba(183, 186, 191, 0.3)",
 }
 
 ReactDOM.render(

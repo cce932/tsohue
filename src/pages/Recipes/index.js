@@ -8,8 +8,8 @@ import "shared/style/recipes.scss"
 import Recipe from "./Recipe"
 import { versionOptions } from "shared/constants/options"
 
-const NAME_ASC = "名稱A-Z"
-const NAME_DESC = "名稱Z-A"
+const NAME_ASC = "名稱順序"
+const NAME_DESC = "名稱倒序"
 const PRICE_ASC = "價格低到高"
 const PRICE_DESC = "價格高到低"
 const ASC = "ASC"
@@ -21,7 +21,7 @@ const SideListWapper = styled.div`
   left: 8%;
   width: 170px;
   background-color: white;
-  box-shadow: 0px 0px 15px rgba(205, 211, 216, 0.7);
+  box-shadow: ${(props) => props.theme.defaultShadow};
   padding: 10px 20px;
   border-radius: 20px;
   border: none;
