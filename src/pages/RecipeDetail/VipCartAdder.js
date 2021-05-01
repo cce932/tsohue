@@ -9,7 +9,7 @@ import { IoIosUnlock } from "react-icons/io"
 import "shared/style/vipCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
 import { splitIngredientsByCategory } from "shared/utility/common"
-import IngredientsAdjuster from "shared/components/IngredientAdjuster"
+import IngredientAdjuster from "shared/components/IngredientAdjuster"
 import { addCartForCustomization } from "actions/add"
 import { VIP } from "shared/constants/common"
 
@@ -139,7 +139,7 @@ const CartAdderForCustomization = ({
                   {Object.keys(splitedIngredients).map(
                     (category, index) =>
                       splitedIngredients[category].length > 0 && (
-                        <IngredientsAdjuster
+                        <IngredientAdjuster
                           key={index}
                           categoryName={categoryOptions[category]}
                           categoryIngredients={splitedIngredients[category]}
