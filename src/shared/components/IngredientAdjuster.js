@@ -1,19 +1,21 @@
-import { ErrorMessage, useFormikContext } from "formik"
+import { useFormikContext } from "formik"
 import { useEffect } from "react"
 import { Col } from "react-bootstrap"
 import { FaPlus, FaMinus } from "react-icons/fa"
+
+import "shared/style/components/ingredientAdjuster.scss"
 
 const IngredientsBlock = ({
   categoryName,
   categoryIngredients,
   outOfStockIngredients,
-  handmadePrice,
-  passPriceToAdder,
+  handmadePrice = 0,
+  passPriceToAdder = null,
 }) => {
   const { values, setFieldValue, errors } = useFormikContext()
 
   useEffect(() => {
-    passPriceToAdder(calculatePrice(values))
+    passPriceToAdder && passPriceToAdder(calculatePrice(values))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values.ingredient, errors])
@@ -88,7 +90,7 @@ const IngredientsBlock = ({
   }
 
   return (
-    <Col>
+    <Col className="ingredient-adjuster">
       <p className="category">{categoryName}</p>
       <div className="ingredients-block">
         {categoryIngredients.map((splitedIngredient, index) => {

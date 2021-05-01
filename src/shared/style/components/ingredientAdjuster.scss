@@ -1,0 +1,55 @@
+@import "../_global";
+
+div.ingredient-adjuster {
+  p.category {
+    @include text(bold, 1rem, $prime-color);
+    padding: 0 2px;
+    border-bottom: solid white 4px;
+    width: fit-content;
+  }
+
+  div.ingredients-block {
+    div.name-price {
+      height: fit-content;
+      @include text(normal, 1rem, $prime-color);
+    }
+
+    div.default-quantity {
+      color: $prime-color;
+      align-items: center;
+      margin-bottom: 4px;
+      margin-left: 1px;
+      font-size: 0.8rem;
+    }
+
+    label.customize-quantity {
+      background-color: white;
+      width: fit-content;
+      border-radius: 25px;
+      padding: 1px 10px 3px;
+      margin-bottom: 10px;
+
+      input {
+        @include text(normal, 0.8rem, $prime-color);
+        width: 30px;
+        border: 0;
+        text-align: center;
+
+        &:disabled {
+          color: $third-color;
+          background-color: transparent;
+        }
+      }
+    }
+
+    label.error-msg {
+      margin-left: 5px;
+      margin-bottom: 13px;
+      @include text(bold, 0.8rem, $accent-red-color);
+
+      &.no-stock {
+        color: $secondary-color;
+      }
+    }
+  }
+}
