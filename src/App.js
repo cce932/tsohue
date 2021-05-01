@@ -12,6 +12,7 @@ import {
 import { CgClose } from "react-icons/cg"
 
 import "bootstrap/dist/css/bootstrap.min.css"
+import "shared/style/components/checkbox.scss"
 import "shared/style/app.scss"
 import Home from "pages/Home"
 import Login from "pages/Login"
@@ -35,6 +36,8 @@ import {
   recipeNotFound,
   shoppingCart,
 } from "shared/constants/pathName"
+import { OverlayTrigger } from "react-bootstrap"
+import CartPopup from "pages/ShoppingCart/popup"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -52,15 +55,15 @@ const App = () => {
   // needed, for excuting when DOM is ready
   $(() => {
     $(window).on("scroll", function () {
-      if (
-        // 當畫面的2/3滑過footer的上緣
-        $(this).scrollTop() + ($(this).height() * 2) / 3 <
-        $("#footer").offset().top
-      ) {
-        $("#side-list").fadeIn("fast")
-      } else {
-        $("#side-list").fadeOut("fast")
-      }
+      // if (
+      //   // 當畫面的2/3滑過footer的上緣
+      //   $(this).scrollTop() + ($(this).height() * 2) / 3 <
+      //   $("#footer").offset().top
+      // ) {
+      //   $("#side-list").fadeIn("fast")
+      // } else {
+      //   $("#side-list").fadeOut("fast")
+      // }
 
       if ($(this).scrollTop() < 300) {
         $("#to-top").css("visibility", "hidden").fadeIn("fast")
@@ -112,11 +115,11 @@ const App = () => {
                 placeholder="搜尋烹飪包"
               />
               {isEmpty ? (
-                <button onClick={searchOnClick}>
+                <button className="search" onClick={searchOnClick}>
                   <FaSearch fill="#755734" />
                 </button>
               ) : (
-                <button onClick={clearOnClick}>
+                <button className="search" onClick={clearOnClick}>
                   <CgClose stroke-width="2px" fill="#755734" />
                 </button>
               )}
@@ -142,32 +145,46 @@ const App = () => {
               // 如果currentUser存在(已登入)
               // 就顯示member頁面
               <li>
-                <Link to={allPaths[member]}>
-                  <FaUser />
-                </Link>
+                <button className="icon">
+                  <Link to={allPaths[member]}>
+                    <FaUser />
+                  </Link>
+                </button>
               </li>
             ) : (
               // 沒登入 就顯示點擊「會員」就會跳到註冊
               <li>
-                <Link to={allPaths[register]}>
-                  <FaUser />
-                </Link>
+                <button className="icon">
+                  <Link to={allPaths[register]}>
+                    <FaUser />
+                  </Link>
+                </button>
               </li>
             )}
 
             {/* shopping cart */}
             <li>
-              <Link className="icon" to={"#"}>
-                <FaShoppingCart size="18px" />
-              </Link>
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<CartPopup />}
+                // trigger="click"
+              >
+                <button className="icon">
+                  <Link className="icon" to={allPaths[shoppingCart]}>
+                    <FaShoppingCart size="18px" />
+                  </Link>
+                </button>
+              </OverlayTrigger>
             </li>
 
             {/* like */}
             {currentUser && (
               <li>
-                <Link className="icon" to={"#"}>
-                  <FaHeart />
-                </Link>
+                <button className="icon">
+                  <Link className="icon" to={"#"}>
+                    <FaHeart />
+                  </Link>
+                </button>
               </li>
             )}
           </ul>
