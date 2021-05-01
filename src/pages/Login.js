@@ -56,7 +56,7 @@ const Login = (props) => {
           window.location = next ? next : "/"
 
           // props.history.push("/member") // 成功就跳轉頁面
-          window.location.reload()
+          // window.location.reload()
         })
         .catch((error) => {
           setLoading(false)
