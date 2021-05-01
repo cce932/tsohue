@@ -11,6 +11,7 @@ import { splitToRows } from "shared/utility/common"
 import { StrokeLabel } from "shared/components/styled"
 import { versionOptions } from "shared/constants/options"
 import { DELETE_CART_ITEM } from "./constant"
+import { allPaths, recipe as recipePath } from "shared/constants/pathName"
 
 const Item = styled.div`
   width: 100%;
@@ -175,7 +176,7 @@ const CartItem = ({
       <Item>
         <Row>
           <Col sm="3">
-            <a href={`/recipe/${recipe.id}`}>
+            <a href={allPaths[recipePath] + recipe.id}>
               <ItmeImg src={"/common-pic/temp.jpg"} />
             </a>
           </Col>
