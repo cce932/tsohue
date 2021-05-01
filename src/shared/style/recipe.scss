@@ -26,7 +26,7 @@
     right: 20px;
 
     &.version-lowfat {
-      color: $lowfat-color;      
+      color: $lowfat-color;
     }
 
     &.version-meat {
@@ -38,16 +38,16 @@
     }
   }
 
-  .info {
-    padding: 5px 0 0;
-    
-    p {
-      font-weight: bolder;
-      text-align: left;
-      font-size: 1.1rem;
-      margin: 5px 0;
-    }
+  // title
+  p {
+    font-weight: bolder;
+    text-align: left;
+    font-size: 1.1rem;
+    margin: 10px 0 5px;
+    color: $prime-color;
+  }
 
+  .info {
     button {
       background-color: transparent;
       border: 0;

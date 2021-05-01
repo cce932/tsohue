@@ -10,19 +10,21 @@ const Recipe = (props) => {
   const [like, setLike] = useState(false)
 
   return (
-    <a className="recipe" href={allPaths[recipePath] + recipe.id}>
-      <SemiRoundedLabel
-        className={`version version-${recipe.version.toLowerCase()}`}
-      >
-        {versionOptions[recipe.version]}版本
-      </SemiRoundedLabel>
-      {recipe.photo === "No Image" ? (
-        <img src="/common-pic/loading.gif" alt="loading-pic" />
-      ) : (
-        <img src={recipe.photo} alt={recipe.name + "-img"} />
-      )}
-      <div className="info">
+    <div className="recipe">
+      <a href={allPaths[recipePath] + recipe.id}>
+        <SemiRoundedLabel
+          className={`version version-${recipe.version.toLowerCase()}`}
+        >
+          {versionOptions[recipe.version]}版本
+        </SemiRoundedLabel>
+        {recipe.photo === "No Image" ? (
+          <img src="/common-pic/loading.gif" alt="loading-pic" />
+        ) : (
+          <img src={recipe.photo} alt={recipe.name + "-img"} />
+        )}
         <p>{recipe.name}</p>
+      </a>
+      <div className="info">
         <div className="distributed">
           <span> $ {recipe.price}</span>
           <span>
@@ -37,7 +39,7 @@ const Recipe = (props) => {
           </span>
         </div>
       </div>
-    </a>
+    </div>
   )
 }
 
