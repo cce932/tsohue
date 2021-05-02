@@ -1,8 +1,53 @@
-@import 'global';
+@import "global";
 
 .register {
-    margin: 80px 0;
+  .block {
+    box-shadow: $default-shadow;
+    position: relative;
+    float: right;
+    width: 400px;
+    min-height: fit-content;
+    margin: 100px 0;
+    padding: 50px 50px 20px;
+    border-radius: 20px;
+
+    .input-row {
+      @include text(normal, 1rem, $prime-color);
+      display: flex;
+
+      label {
+        margin: 0 28px 40px;
+      }
+
+      input {
+        border: 1px solid $forth-color;
+        border-radius: 5px;
+        padding: 1px 4px;
+      }
+
+      .alert {
+        @include text(bold, 0.8rem, $accent-red-color);
+        height: fit-content;
+        margin: 0;
+        padding: 5px 3px 0;
+      }
+    }
+
+    .bottom {
+      text-align: center;
+
+      button {
+        @include solid($prime-color, $vice-color, $vice-color, 8px 100px);
+      }
+
+      p {
+        @include text(normal, 1rem, $prime-color);
+        margin-top: 10px;
+        a {
+          color: $accent-deeper-color;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
-
-
-

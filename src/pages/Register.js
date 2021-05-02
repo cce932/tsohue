@@ -11,6 +11,8 @@ import { isEmail, isNumeric } from "validator"
 import { register } from "actions/auth"
 import { history } from "helpers/history"
 import { clearMessage } from "actions/message"
+import { Spinner } from 'react-bootstrap'
+import { allPaths, login } from 'shared/constants/pathName'
 
 // 設定驗證
 // dispatch action
@@ -28,11 +30,11 @@ const validEmail = (value) => {
   }
 }
 
-const validAccount = (value) => {
-  if (value.length < 6 || value.length > 20) {
-    return <div className="alert">字數請介於6~20</div>
-  }
-}
+// const validAccount = (value) => {
+//   if (value.length < 6 || value.length > 20) {
+//     return <div className="alert">字數請介於6~20</div>
+//   }
+// }
 
 const validPassword = (value) => {
   if (value.length < 8 || value.length > 20) {
@@ -101,6 +103,7 @@ const Register = () => {
         .then(() => {
           // 不直接跳轉至login
           setSuccessful(true)
+          window.location = allPaths[login]
         })
         .catch(() => {
           setSuccessful(false)
@@ -116,53 +119,78 @@ const Register = () => {
 
   return (
     <Router history={history}>
-      <div className="container pages">
-        <div className={`register`}>
+      <div className="container pages register">
+        <div className="block">
           <Form onSubmit={handleRegister} ref={form}>
             {!successful ? (
               <div className="form">
-                <label>帳號</label>
-                <Input
-                  type="text"
-                  name="account"
-                  onChange={onChangeAccount}
-                  value={account}
-                  validations={[required, validAccount]}
-                />
-                <label>密碼</label>
-                <Input
-                  type="text"
-                  name="password"
-                  onChange={onChangePassword}
-                  value={password}
-                  validations={[required, validPassword]}
-                />
-                <label>姓名</label>
-                <Input
-                  type="text"
-                  name="username"
-                  onChange={onChangeUsername}
-                  value={username}
-                  validations={[required]}
-                />
-                <label>電子信箱</label>
-                <Input
-                  type="text"
-                  name="email"
-                  onChange={onChangeEmail}
-                  value={email}
-                  validations={[required, validEmail]}
-                />
-                <label>手機</label>
-                <Input
-                  type="text"
-                  name="phone"
-                  onChange={onChangePhone}
-                  value={phone}
-                  validations={[required, validPhone]}
-                />
+                <div className="input-row">
+                  <label>帳號</label>
+                  <Input
+                    type="text"
+                    name="account"
+                    onChange={onChangeAccount}
+                    value={account}
+                    validations={[required]}
+                  />
+                </div>
 
-                <button>{successful ? "註冊中" : "確定"}</button>
+                <div className="input-row">
+                  <label>密碼</label>
+                  <Input
+                    type="text"
+                    name="password"
+                    onChange={onChangePassword}
+                    value={password}
+                    validations={[required, validPassword]}
+                  />
+                </div>
+
+                <div className="input-row">
+                  <label>姓名</label>
+                  <Input
+                    type="text"
+                    name="username"
+                    onChange={onChangeUsername}
+                    value={username}
+                    validations={[required]}
+                  />
+                </div>
+
+                <div className="input-row">
+                  <label>信箱</label>
+                  <Input
+                    type="text"
+                    name="email"
+                    onChange={onChangeEmail}
+                    value={email}
+                    validations={[required, validEmail]}
+                  />
+                </div>
+
+                <div className="input-row">
+                  <label>手機</label>
+                  <Input
+                    type="text"
+                    name="phone"
+                    onChange={onChangePhone}
+                    value={phone}
+                    validations={[required, validPhone]}
+                  />
+                </div>
+
+                <div className="bottom">
+                  <button>
+                    {successful ? (
+                      <Spinner animation="border" size="sm"></Spinner>
+                    ) : (
+                      "註冊"
+                    )}
+                  </button>
+                  <p>
+                    已經是會員了嗎？<Link to={"/login"}>點我登入</Link>
+                  </p>
+                </div>
               </div>
             ) : (
               <Redirect to="/login" />
@@ -175,10 +203,6 @@ const Register = () => {
                 So this button will not display on the form. */}
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
-
-          <p>
-            已經是會員了嗎？<Link to={"/login"}>點我登入</Link>
-          </p>
         </div>
       </div>
     </Router>
