@@ -31,4 +31,16 @@
       }
     }
   }
+
+  .empty-cart {
+    text-align: center;
+    img {
+      width: 250px;
+      opacity: 0.7;
+    }
+    > div {
+      @include text(normal, 1.2rem, $secondary-color);
+      margin-top: 20px;
+    }
+  }
 }
