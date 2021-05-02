@@ -7,6 +7,9 @@ import Input from "react-validation/build/input"
 import CheckButton from "react-validation/build/button"
 
 import { login } from "actions/auth"
+import { Link } from "react-router-dom"
+import { allPaths, register } from "shared/constants/pathName"
+import { Spinner } from 'react-bootstrap'
 
 const required = (value) => {
   if (!value) {
@@ -60,6 +63,7 @@ const Login = (props) => {
         })
         .catch((error) => {
           setLoading(false)
+          window.alert("帳號或密碼錯誤囉")
         })
     } else {
       setLoading(false)
@@ -68,36 +72,45 @@ const Login = (props) => {
 
   return (
     // ref的form來自 form=useRef()
-    <div className="container pages">
-      <div className={`login`}>
+    <div className={"container pages login"}>
+      <div className="block">
         <Form onSubmit={handleLogin} ref={form}>
-          <label htmlFor="account">帳號</label>
-          <Input
-            type="text"
-            name="account"
-            value={account}
-            onChange={onChangeAccount}
-            validations={[required]}
-          />
+          <div className="input-row">
+            <label htmlFor="account">帳號</label>
+            <Input
+              type="text"
+              name="account"
+              value={account}
+              onChange={onChangeAccount}
+              validations={[required]}
+            />
+          </div>
+          <div className="input-row">
+            <label htmlFor="password">密碼</label>
+            <Input
+              type="text"
+              name="password"
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
+            />
+          </div>
 
-          <label htmlFor="password">密碼</label>
-          <Input
-            type="text"
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-            validations={[required]}
-          />
+          <div className="bottom">
+            <button type="submit" disabled={loading}>
+              {loading ? ( // 如果正在loading的話 那就不能按此button
+                // <span className='spinner-border spinner-border-sm'></span> // boostrape的寫法 顯示loading icon
+                <Spinner animation="border" size="sm"></Spinner>
+              ) : (
+                <span>登入</span>
+              )}
+            </button>
 
-          <button type="submit" disabled={loading}>
-            {loading && ( // 如果正在loading的話 那就不能按此button
-              // <span className='spinner-border spinner-border-sm'></span> // boostrape的寫法 顯示loading icon
-              <span>登入中</span>
-            )}
-            <span>確定</span>
-          </button>
-
-          {message && <div className="message">{message}</div>}
+            {message && <div className="message">{message}</div>}
+            <p>
+              還沒加入會員嗎？<Link to={allPaths[register]}>點我註冊</Link>
+            </p>
+          </div>
 
           {/* 用來控制validation的 */}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
