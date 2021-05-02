@@ -1,6 +1,7 @@
 // status
 export const BAD_REQUEST = "BAD_REQUEST" // 400
 export const UNAUTHORIZED = "UNAUTHORIZED" // 401
+export const CONFLICT = "CONFLICT" // 409
 
 // message
 export const UNEXPECTED_ERROR = /Unexpected error/ // 400
@@ -17,7 +18,6 @@ export const EMPTY_TOKEN = /JWT String argument cannot be null or empty/ // UNEX
 // export const FORBIDDEN = "FORBIDDEN" //403
 // export const NEED_AUTHORIZATION = "NEED AUTHORIZATION" // 2
 
-// export const CONFLICT = "CONFLICT" // 409
 // export const ACCOUNT_DUPLICATED = /account/ // 2,3
 // export const EMAIL_DUPLICATED = /email/ // 2,3
 // export const INGRIDIENT_DUPLICATED = /No data!/ // 2,3

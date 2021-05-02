@@ -6,6 +6,7 @@ import {
   EMPTY_TOKEN,
   UNAUTHORIZED,
   LOGIN_FAILURE,
+  CONFLICT,
 } from "shared/constants/error"
 import {logout} from "actions/auth"
 
@@ -31,6 +32,9 @@ const handleError = (store) => (next) => (action) => {
           window.location = `/login?next=${next}`
           window.alert("請登入")
         }
+        break
+      case CONFLICT:
+        window.alert("此帳號已被使用，請試試其他名稱喔")
         break
       default:
         if (status && message && debugMessage) {

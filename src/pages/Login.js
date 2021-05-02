@@ -57,11 +57,8 @@ const Login = (props) => {
       dispatch(login(account, password))
         .then(() => {
           window.location = next ? next : "/"
-
-          // props.history.push("/member") // 成功就跳轉頁面
-          // window.location.reload()
         })
-        .catch((error) => {
+        .catch(() => {
           setLoading(false)
           window.alert("帳號或密碼錯誤囉")
         })
@@ -98,8 +95,7 @@ const Login = (props) => {
 
           <div className="bottom">
             <button type="submit" disabled={loading}>
-              {loading ? ( // 如果正在loading的話 那就不能按此button
-                // <span className='spinner-border spinner-border-sm'></span> // boostrape的寫法 顯示loading icon
+              {loading ? (
                 <Spinner animation="border" size="sm"></Spinner>
               ) : (
                 <span>登入</span>
