@@ -24,6 +24,13 @@
         border-radius: 5px;
         padding: 1px 4px;
       }
+      
+      .alert {
+        @include text(bold, 0.8rem, $accent-red-color);
+        height: fit-content;
+        margin: 0;
+        padding: 5px 3px 0;
+      }
     }
 
     .bottom {
@@ -35,6 +42,7 @@
 
       button {
         @include solid($prime-color, $vice-color, $vice-color, 8px 100px);
+        width: 233px;
       }
 
       p {
