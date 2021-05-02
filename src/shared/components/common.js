@@ -1,4 +1,5 @@
 import React from "react"
+
 import "../style/common.scss"
 import { splitToRows } from "../utility/common"
 
@@ -34,7 +35,7 @@ export const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
       <div className="special">
         <label>本月特餐</label>
         <p className="title">{title}</p>
-        <img src="/common-pic/wave.svg" alt="Decorating wave" />
+        {/* <img src="/common-pic/wave.svg" alt="Decorating wave" /> */}
         <div className="gredients">{splited}</div>
       </div>
     </div>
@@ -54,17 +55,17 @@ export const Footer = ({ links, linksMaxRow = 5 }) => {
       <div className={`footer container`} id="footer">
         <div className="row">
           <div className={`col col-9 left`}>
-            <label>TsoHue / Right amount for you</label>
+            <label>TsoHue / 作伙</label>
             <div className="links">{splited}</div>
           </div>
           <div className={`col col-3 right`}>
             <div className="media-icons">
-              <button>
+              <a href="https://www.ntust.edu.tw/home.php">
                 <img src="/common-pic/fb.svg" alt="Facebook" />
-              </button>
-              <button>
+              </a>
+              <a href="https://www.ntust.edu.tw/home.php">
                 <img src="/common-pic/ig.svg" alt="Instagram" />
-              </button>
+              </a>
             </div>
 
             <p>02-4566-7000</p>

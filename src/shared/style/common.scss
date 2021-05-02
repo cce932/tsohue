@@ -27,14 +27,15 @@
     }
     .title {
       @include text(700, 36px, $prime-color);
-      margin: 0 0 -7px;
+      margin: 0 0 20px;
+      border-bottom: 5px solid $accent-color;
     }
 
-    img {
-      margin-bottom: 20px;
-      width: 252px;
-      height: 15px;
-    }
+    // img {
+    //   margin-bottom: 20px;
+    //   width: 252px;
+    //   height: 15px;
+    // }
 
     .gredients {
       @include text(500, 16px, $prime-color);

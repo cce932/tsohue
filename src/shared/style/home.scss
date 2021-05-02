@@ -17,10 +17,10 @@ div.home {
         @include text(600, 3.5rem, $prime-color);
       }
 
-      p {
-        @include text(600, 1rem, $prime-color);
-        margin: 50px 8px 0;
-      }
+      // p {
+      //   @include text(600, 1rem, $prime-color);
+      //   margin: 50px 8px 0;
+      // }
     }
 
     .banner {
@@ -115,14 +115,12 @@ div.home {
       position: absolute;
       top: 450px;
       right: 28px;
-      border-radius: 25px;
-      padding: 3px 8px 1px 10px;
-      background-color: $accent-deeper-color;
-      transition: $default-trans;
-
-      &:hover {
-        background-color: $prime-color;
-      }
+      @include solid(
+        $accent-deeper-color,
+        $prime-color,
+        $prime-color,
+        5px 20px
+      );
 
       a {
         @include text(600, 24px, #ffffff);

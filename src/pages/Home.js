@@ -1,8 +1,10 @@
 import React from "react"
 import { Router, Link } from "react-router-dom"
+
 import "shared/style/home.scss"
 import { history } from "helpers/history"
 import { FeatureSlot, MonthlySpecial } from "shared/components/common"
+import { allPaths, recipe } from 'shared/constants/pathName'
 
 const gredients = ["東坡肉", "梅干", "滷蛋", "青江菜", "洋蔥", "紅蔥頭", "鹽", "特調醬料"]
 
@@ -16,7 +18,7 @@ const Home = () => {
             <label>作伙料理小師傅</label>
             <br />
             <label> 享受美食第一步</label>
-            <p>TsoHue / Right amount for you</p>
+            {/* <p>TsoHue / Right amount for you</p> */}
           </div>
           <img
             className="banner"
@@ -59,7 +61,7 @@ const Home = () => {
             </div>
 
             <div className="col col-3">
-              <Link to="#">怎麼買？</Link>
+              <Link to="#">怎麼買 ?</Link>
             </div>
           </div>
         </div>
@@ -70,7 +72,7 @@ const Home = () => {
           <MonthlySpecial title="梅香東坡肉拌飯" gredients={gredients} />
           {/* </Link> */}
           <div className="how-cook">
-            <Link to="#">怎麼煮？</Link>
+            <Link to={`${allPaths[recipe]}1`}>怎麼煮 ?</Link>
           </div>
         </div>
       </div>
