@@ -10,7 +10,7 @@ import "shared/style/vipCartAdder.scss"
 import { categoryOptions } from "shared/constants/options"
 import { splitIngredientsByCategory } from "shared/utility/common"
 import IngredientAdjuster from "shared/components/IngredientAdjuster"
-import { addCartForCustomization } from "actions/add"
+import { addCartForCustomization, addCartForDefault } from "actions/add"
 import { VIP } from "shared/constants/common"
 
 // format of formik value
@@ -111,9 +111,16 @@ const CartAdderForCustomization = ({
       })),
     }
 
-    dispatch(addCartForCustomization(cartData)).then(() => {
-      window.alert("已加入購物車")
-    })
+    if (values.currentPrice < 0) {
+      // currentPrice < 0 from IngredientAdjuster means that the quantities are default
+      dispatch(addCartForDefault(recipeId)).then(() => {
+        window.alert("已加入購物車")
+      })
+    } else {
+      dispatch(addCartForCustomization(cartData)).then(() => {
+        window.alert("已加入購物車（客製化）")
+      })
+    }
   }
 
   return (
