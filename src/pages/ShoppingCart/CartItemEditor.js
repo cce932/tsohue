@@ -36,6 +36,7 @@ const initQuantityGenerator = (
       cartId: cartIngredients[i].id,
     }
   }
+
   return result
 }
 
@@ -54,7 +55,9 @@ const CartItemEditor = ({
     recipe.outOfStockIngredients
   )
 
-  const updateOnClick = (cartId, values, onHide) => () => {
+  const updateOnClick = (e) => (cartId, values, onHide) => {
+    e.preventDefault()
+
     const currentValue = values.ingredient
     const body = {
       customize: Object.keys(values.ingredient).map((ingredientId) => ({
@@ -107,8 +110,8 @@ const CartItemEditor = ({
           console.log("submit", values)
         }}
       >
-        {({ values, errors, handleSubmit, handleReset }) => (
-          <form onSubmit={handleSubmit}>
+        {({ values, errors }) => (
+          <form>
             <Modal.Body>
               <p className="title">編輯食材</p>
               <Row>
@@ -126,8 +129,8 @@ const CartItemEditor = ({
               </Row>
               <div className="right">
                 <button
-                  onClick={updateOnClick(cartId, values, onHide)}
-                  type="submit"
+                  onClick={(e) => updateOnClick(e)(cartId, values, onHide)}
+                  className="submit" // do not use type="submit" in order to prevent the  submit action of nested Formik with ShoppingCart
                   disabled={!_.isEmpty(errors)}
                 >
                   確定

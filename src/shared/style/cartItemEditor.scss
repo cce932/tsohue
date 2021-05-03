@@ -20,7 +20,7 @@ div.cart-item-editor {
         color: $prime-color;
       }
 
-      button[type="submit"] {
+      button.submit {
         @include solid($prime-color, $prime-lighter-color, $prime-lighter-color, 5px 20px);
 
         &:disabled {
