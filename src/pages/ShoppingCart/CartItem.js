@@ -17,7 +17,7 @@ const Item = styled.div`
   width: 100%;
   height: fit-content;
   border-radius: 15px;
-  margin: 20px 0 40px;
+  margin: 20px 13px 40px 0; // [right: 13px] align to float-bottom
   border: 1px ${(props) => props.theme.fifthColor} solid;
   background-color: white;
   padding: 20px 25px;
@@ -87,6 +87,7 @@ const IngredientsTable = styled.table`
 
 const FlexDiv = styled.div`
   display: flex;
+  padding-left: 30px; // align to float-bottom
 
   & > input[type="checkbox"],
   label {

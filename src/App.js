@@ -66,9 +66,19 @@ const App = () => {
       // }
 
       if ($(this).scrollTop() < 300) {
-        $("#to-top").css("visibility", "hidden").fadeIn("fast")
+        $("#to-top").css("visibility", "hidden").fadeIn("slow")
       } else {
         $("#to-top").css("visibility", "visible").fadeIn("slow")
+      }
+
+      // if the distance btw [bottom of screen] and [bottom of page] is smaller than 300px
+      // turn the position to absolute
+      let scrollBottom =
+        $(document).height() - $(window).height() - $(window).scrollTop()
+      if (scrollBottom < 300) {
+        $("#cart-bottom").css("position", "absolute").css("bottom", "45px")
+      } else {
+        $("#cart-bottom").css("position", "fixed").css("bottom", "20px")
       }
     })
 

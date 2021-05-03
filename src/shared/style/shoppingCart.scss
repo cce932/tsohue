@@ -1,18 +1,39 @@
 @import "global";
 
 .cart {
-  margin-top: 150px;
+  padding: 150px 0;
+  position: relative;
+
   div.title {
     @include text(normal, 2rem, $vice-color);
-    margin-left: 65px;
+    margin-left: 85px;
+    margin-bottom: 20px;
   }
 
   div.bottom {
     @include text(normal, 1rem, $prime-color);
-    margin-bottom: 20px;
+    padding: 0; // cancle .container padding
+    
+    // position: fixed/absolute; // is controlled by jquery in app.js
+    z-index: 999;
+    // bottom: 40px;
+
+    .float {
+      width: 98%; // for shadow space
+      margin: 10px; // for shadow space
+      background-color: rgba(white, 0.9);
+      box-shadow: $shadow-deeper;
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px); // has minimal browser support
+    }
 
     label.select-all {
-      margin-top: 18px;
+      margin: 10px 0 0;
+
+      > label {
+        margin: 0;
+      }
     }
 
     .right {

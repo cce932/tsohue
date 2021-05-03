@@ -70,23 +70,26 @@ const ShoppingCart = () => {
                   />
                 ))}
               </div>
-              <div className="bottom">
-                <label className="select-all">
-                  <Field
-                    className="styled-checkbox"
-                    type="checkbox"
-                    name="selectAll"
-                    id="styled-checkbox-select-all" // In formik, single checkbox don't need "value", but checkbox group need.
-                    onChange={selectAllOnChange(values, setFieldValue)}
-                  />
-                  <label htmlFor="styled-checkbox-select-all">全選</label>
-                </label>
-                <div className="right">
-                  <span>
-                    共 {values.checked.length} 項&ensp;&ensp;總額NT.
-                    <span className="price">{values.currentSum}</span>
-                  </span>
-                  <button type="submit">訂購</button>
+              {/* For aligning with the rwd block of items, container is added */}
+              <div className="bottom container" id="cart-bottom">
+                <div className="float">
+                  <label className="select-all">
+                    <Field
+                      className="styled-checkbox"
+                      type="checkbox"
+                      name="selectAll"
+                      id="styled-checkbox-select-all" // In formik, single checkbox don't need "value", but checkbox group need.
+                      onChange={selectAllOnChange(values, setFieldValue)}
+                    />
+                    <label htmlFor="styled-checkbox-select-all">全選</label>
+                  </label>
+                  <div className="right">
+                    <span>
+                      共 {values.checked.length} 項&ensp;&ensp;總額NT.
+                      <span className="price">{values.currentSum}</span>
+                    </span>
+                    <button type="submit">訂購</button>
+                  </div>
                 </div>
               </div>
             </Form>

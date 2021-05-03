@@ -21,7 +21,7 @@ $linear-v: linear-gradient(230deg, $forth-color, $accent-color);
 $default-trans: all 0.3s ease 0s;
 $default-shadow: 0px 0px 15px rgba($forth-color, 0.3); // offset-x | offset-y | blur-radius | color
 $shadow-lighter: 0px 0px 15px rgba($fifth-color, 0.7);
-$shadow-deeper: 0px 0px 10px rgba($third-color, 0.6);
+$shadow-deeper: 0px 0px 10px rgba($third-color, 0.8);
 $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 
 @mixin text($weight: 700, $size: 1rem, $color: $prime-color) {

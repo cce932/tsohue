@@ -74,12 +74,12 @@ header {
 a#to-top {
   visibility: hidden;
   display: block;
-  box-shadow: $default-shadow;
+  box-shadow: $shadow-deeper;
   background-color: white;
   position: fixed;
   border-radius: 25px;
   padding: 8px;
-  bottom: 20px;
+  bottom: 25px;
   right: 20px;
   z-index: 900;
 }
