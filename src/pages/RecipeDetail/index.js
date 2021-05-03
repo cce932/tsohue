@@ -86,7 +86,14 @@ const RecipeDetail = (props) => {
                 {images.length ? (
                   images.map((image, index) => (
                     <Carousel.Item key={index}>
-                      <img src={image.s3Url} alt={`${index}-slide`} />
+                      <img
+                        src={image.s3Url}
+                        alt={`${index}-slide`}
+                        onError={(e) => {
+                          e.target.onerror = null
+                          e.target.src = "/common-pic/noImage.jpg"
+                        }}
+                      />
                     </Carousel.Item>
                   ))
                 ) : (

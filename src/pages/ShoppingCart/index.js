@@ -63,6 +63,7 @@ const ShoppingCart = () => {
                         recipe: item.recipe,
                         customize: item.customize,
                         sum: item.sum,
+                        recipeImage: item.recipeImage,
                         isCustomize: item.isCustomize,
                         reactDispatch: cartDispatch,
                         ids: ids,

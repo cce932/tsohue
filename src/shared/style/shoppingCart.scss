@@ -13,7 +13,7 @@
   div.bottom {
     @include text(normal, 1rem, $prime-color);
     padding: 0; // cancle .container padding
-    
+
     // position: fixed/absolute; // is controlled by jquery in app.js
     z-index: 999;
     // bottom: 40px;
@@ -55,10 +55,12 @@
 
   .empty-cart {
     text-align: center;
+
     img {
       width: 250px;
       opacity: 0.7;
     }
+
     > div {
       @include text(normal, 1.2rem, $secondary-color);
       margin-top: 20px;

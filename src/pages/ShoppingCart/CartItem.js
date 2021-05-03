@@ -24,8 +24,10 @@ const Item = styled.div`
 `
 
 const ItmeImg = styled.img`
-  width: 100%;
+  width: 229px;
   border-radius: 13px;
+  height: 140px;
+  object-fit: cover;
 `
 
 const FloatRight = styled.div`
@@ -101,6 +103,7 @@ const CartItem = ({
   recipe,
   customize,
   sum,
+  recipeImage,
   isCustomize, // for controlling editable
   reactDispatch, // for deleting cart item
   ids, // for controlling selectAll checkbox
@@ -180,7 +183,13 @@ const CartItem = ({
         <Row>
           <Col sm="3">
             <a href={allPaths[recipePath] + recipe.id}>
-              <ItmeImg src={"/common-pic/temp.jpg"} />
+              <ItmeImg
+                src={recipeImage}
+                onError={(e) => {
+                  e.target.onerror = null
+                  e.target.src = "/common-pic/noImage.jpg"
+                }}
+              />
             </a>
           </Col>
           <Col sm="9">
