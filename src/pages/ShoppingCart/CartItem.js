@@ -153,12 +153,14 @@ const CartItem = ({
   }
 
   const removeOnClick = () => {
-    reactDispatch(DELETE_CART_ITEM, cartId) // delete this item on UI
-    EditService.deleteCartItem(cartId) // delete this item's data in DB
-    setFieldValue(
-      "checked",
-      values.checked.filter((itemId) => itemId !== cartId)
-    ) // update the price
+    if (window.confirm("您確定要刪除此項烹飪包嗎？")) {
+      reactDispatch(DELETE_CART_ITEM, cartId) // delete this item on UI
+      EditService.deleteCartItem(cartId) // delete this item's data in DB
+      setFieldValue(
+        "checked",
+        values.checked.filter((itemId) => itemId !== cartId)
+      ) // update the price
+    }
   }
 
   return (
@@ -200,7 +202,7 @@ const CartItem = ({
                 </button>
                 <button onClick={editOnClick} disabled={!isCustomize}>
                   <AiOutlineEdit
-                    fill={isCustomize ? color.third : color.forth}
+                    fill={isCustomize ? color.vage : color.fifth}
                     size="18px"
                   />
                 </button>
