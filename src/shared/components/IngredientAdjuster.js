@@ -100,6 +100,9 @@ const IngredientsBlock = ({
           )
           const ingredientQuantity =
             values.ingredient[ingredient.id].customizeQuantity
+          const defaultQuantity =
+            values.ingredient[ingredient.id].defaultQuantity
+
           return (
             <div key={index}>
               <div className="name-price">
@@ -107,7 +110,7 @@ const IngredientsBlock = ({
               </div>
 
               <div className="default-quantity">
-                推薦 {splitedIngredient.quantityRequired} {ingredient.unit}
+                推薦 {defaultQuantity} {ingredient.unit}
               </div>
 
               <label className="customize-quantity">

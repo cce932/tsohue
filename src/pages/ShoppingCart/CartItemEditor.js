@@ -8,23 +8,32 @@ import "shared/style/cartItemEditor.scss"
 import IngredientAdjuster from "shared/components/IngredientAdjuster"
 import { splitIngredientsByCategory } from "shared/utility/common"
 import { categoryOptions } from "shared/constants/options"
-import { LOAD_CART, UPDATE_CART_ITEM_START, UPDATE_CART_ITEM_END } from "./constant"
+import {
+  LOAD_CART,
+  UPDATE_CART_ITEM_START,
+  UPDATE_CART_ITEM_END,
+} from "./constant"
 import editService from "services/edit.service"
 import loadService from "services/load.service"
 
-const initQuantityGenerator = (cartIngredients, outOfStockIngredients) => {
+const initQuantityGenerator = (
+  defalutIngredients,
+  cartIngredients,
+  outOfStockIngredients
+) => {
   let result = Object.assign({})
-  for (const cartIngredient of cartIngredients) {
-    const _ingredientId = cartIngredient.ingredient.id
+
+  for (let i = 0; i < defalutIngredients.length; i++) {
+    const _ingredientId = cartIngredients[i].ingredient.id
     const isOutOfStock = outOfStockIngredients.includes(
       _ingredientId.toString()
     )
 
     result[_ingredientId] = {
-      defaultQuantity: cartIngredient.quantityRequired,
-      customizeQuantity: isOutOfStock ? 0 : cartIngredient.quantityRequired,
-      price: cartIngredient.ingredient.price,
-      cartId: cartIngredient.id,
+      defaultQuantity: defalutIngredients[i].quantityRequired, // for recommand quantity
+      customizeQuantity: isOutOfStock ? 0 : cartIngredients[i].quantityRequired,
+      price: cartIngredients[i].ingredient.price,
+      cartId: cartIngredients[i].id,
     }
   }
   return result
@@ -40,6 +49,7 @@ const CartItemEditor = ({
 }) => {
   const splitedIngredients = splitIngredientsByCategory(customize)
   const initQuantity = initQuantityGenerator(
+    recipe.recipeIngredients,
     customize,
     recipe.outOfStockIngredients
   )
@@ -122,10 +132,14 @@ const CartItemEditor = ({
                 >
                   確定
                 </button>
-                {/* <button onClick={handleReset} type="reset">
-                  取消
+                {/*  Return to customized quantity
+                But it would cause user confuse so not valid for now
+                <button onClick={handleReset} type="reset">
+                  重設
                 </button> */}
-                <button className="hide" onClick={onHide}>離開</button>
+                <button className="hide" onClick={onHide}>
+                  離開
+                </button>
               </div>
             </Modal.Body>
           </form>
