@@ -29,7 +29,7 @@ const theme = {
   secondaryColor: "rgb(129, 132, 135)",
   thirdColor: "rgb(123, 127, 131)",
   forthColor: "rgb(183, 186, 191)",
-  fifthColor: "rgb(232, 235, 240)",
+  fifthColor: "rgb(225, 228, 233)",
   sixthColor: "rgb(249, 250, 252)",
   normalColor: "#9e8568",
   lowfatColor: "#8093b5",

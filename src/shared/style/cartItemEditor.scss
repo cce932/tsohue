@@ -15,22 +15,22 @@ div.cart-item-editor {
       float: right;
       margin-top: 30px;
 
-      button:not([type="submit"]) {
-        @include solid(white, white, white, 5px 20px);
+      button.hide {
+        @include solid(white, $sixth-color, $sixth-color, 5px 20px);
         color: $prime-color;
-
-        &:hover {
-          color: $vice-color;
-        }
       }
 
       button[type="submit"] {
-        @include solid($prime-color, $vice-color, $vice-color, 5px 20px);
+        @include solid($prime-color, $prime-lighter-color, $prime-lighter-color, 5px 20px);
 
         &:disabled {
           background-color: $secondary-color;
         }
       }
+
+      // button[type="reset"] {
+      //   @include solid($vice-color, $vice-lighter-color, $vice-lighter-color, 5px 20px);
+      // }
     }
   }
 }

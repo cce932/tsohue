@@ -8,7 +8,7 @@ const color = {
   secondary: "rgb(129, 132, 135)",
   third: "rgb(123, 127, 131)",
   forth: "rgb(183, 186, 191)",
-  fifth: "rgb(232, 235, 240)",
+  fifth: "rgb(225, 228, 233)",
   sixth: "rgb(249, 250, 252)",
   normal: "#9e8568",
   lowfat: "#8093b5",

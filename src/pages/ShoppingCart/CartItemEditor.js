@@ -122,10 +122,10 @@ const CartItemEditor = ({
                 >
                   確定
                 </button>
-                <button onClick={handleReset} type="reset">
-                  重設數量
-                </button>
-                <button onClick={onHide}>取消</button>
+                {/* <button onClick={handleReset} type="reset">
+                  取消
+                </button> */}
+                <button className="hide" onClick={onHide}>離開</button>
               </div>
             </Modal.Body>
           </form>
