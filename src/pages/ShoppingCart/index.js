@@ -29,7 +29,7 @@ const ShoppingCart = () => {
         cartDispatch(SET_CART_SUM, _cartSum)
       })
       .catch(() => {
-        cartDispatch(LOAD_CART, "你的購物車還是空的喔")
+        cartDispatch(LOAD_CART, [])
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
@@ -43,58 +43,60 @@ const ShoppingCart = () => {
 
   return (
     <div className="container cart pages">
-      <div className="title">購物車</div>
       {typeof data !== "string" && data.length > 0 ? (
-        <Formik
-          initialValues={{ checked: [], selectAll: false, currentSum: 0 }}
-          onSubmit={(values) => {
-            console.log(values)
-          }}
-        >
-          {({ values, handleSubmit, setFieldValue }) => (
-            <Form onSubmit={handleSubmit}>
-              <div role="group">
-                {data.map((item) => (
-                  <CartItem
-                    key={item.id}
-                    {...{
-                      cartId: item.id.toString(),
-                      recipe: item.recipe,
-                      customize: item.customize,
-                      sum: item.sum,
-                      isCustomize: item.isCustomize,
-                      reactDispatch: cartDispatch,
-                      ids: ids,
-                      updatingCart,
-                    }}
-                  />
-                ))}
-              </div>
-              {/* For aligning with the rwd block of items, container is added */}
-              <div className="bottom container" id="cart-bottom">
-                <div className="float">
-                  <label className="select-all">
-                    <Field
-                      className="styled-checkbox"
-                      type="checkbox"
-                      name="selectAll"
-                      id="styled-checkbox-select-all" // In formik, single checkbox don't need "value", but checkbox group need.
-                      onChange={selectAllOnChange(values, setFieldValue)}
+        <>
+          <div className="title">購物車</div>
+          <Formik
+            initialValues={{ checked: [], selectAll: false, currentSum: 0 }}
+            onSubmit={(values) => {
+              console.log(values)
+            }}
+          >
+            {({ values, handleSubmit, setFieldValue }) => (
+              <Form onSubmit={handleSubmit}>
+                <div role="group">
+                  {data.map((item) => (
+                    <CartItem
+                      key={item.id}
+                      {...{
+                        cartId: item.id.toString(),
+                        recipe: item.recipe,
+                        customize: item.customize,
+                        sum: item.sum,
+                        isCustomize: item.isCustomize,
+                        reactDispatch: cartDispatch,
+                        ids: ids,
+                        updatingCart,
+                      }}
                     />
-                    <label htmlFor="styled-checkbox-select-all">全選</label>
-                  </label>
-                  <div className="right">
-                    <span>
-                      共 {values.checked.length} 項&ensp;&ensp;總額NT.
-                      <span className="price">{values.currentSum}</span>
-                    </span>
-                    <button type="submit">訂購</button>
+                  ))}
+                </div>
+                {/* For aligning with the rwd block of items, container is added */}
+                <div className="bottom container" id="cart-bottom">
+                  <div className="float">
+                    <label className="select-all">
+                      <Field
+                        className="styled-checkbox"
+                        type="checkbox"
+                        name="selectAll"
+                        id="styled-checkbox-select-all" // In formik, single checkbox don't need "value", but checkbox group need.
+                        onChange={selectAllOnChange(values, setFieldValue)}
+                      />
+                      <label htmlFor="styled-checkbox-select-all">全選</label>
+                    </label>
+                    <div className="right">
+                      <span>
+                        共 {values.checked.length} 項&ensp;&ensp;總額NT.
+                        <span className="price">{values.currentSum}</span>
+                      </span>
+                      <button type="submit">訂購</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </>
       ) : typeof data === "string" ? (
         <div className="empty-cart">
           <img src="/common-pic/emptyCart.png" alt="empty-cart" />
