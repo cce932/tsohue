@@ -93,7 +93,7 @@ const OrderedRecipe = ({
   modifiable = true,
   editOnClick = () => null,
   removeOnClick = () => null,
-  updatingCart = false,
+  updatingCart = [],
 }) => {
   const styled = customize.map((ingredient, index) => (
     <IngredientTd

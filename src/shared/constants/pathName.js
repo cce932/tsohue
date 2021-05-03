@@ -8,7 +8,8 @@ export const allPaths = {
   烹飪包大全: "/recipes",
   烹飪包詳細: "/recipe/",
   無此烹飪包: "/recipe/not-found",
-  購物車: "/shopping-cart"
+  購物車: "/shopping-cart",
+  訂購: "/order",
 }
 
 export const home = "首頁"
@@ -22,3 +23,4 @@ export const recipes = "烹飪包大全"
 export const recipe = "烹飪包詳細"
 export const recipeNotFound = "無此烹飪包"
 export const shoppingCart = "購物車"
+export const order = "訂購"

@@ -22,6 +22,7 @@ import Recipes from "pages/Recipes"
 import RecipeDetail from "pages/RecipeDetail"
 import RecipeNotFound from "pages/RecipeNotFound"
 import ShoppingCart from "pages/ShoppingCart"
+import Order from "pages/Order"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
 import { loadRecipes } from "actions/load"
@@ -35,6 +36,7 @@ import {
   recipe,
   recipeNotFound,
   shoppingCart,
+  order,
 } from "shared/constants/pathName"
 import { OverlayTrigger } from "react-bootstrap"
 import CartPopup from "pages/ShoppingCart/popup"
@@ -201,7 +203,8 @@ const App = () => {
         </nav>
       </header>
 
-      <a id="to-top">
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <a href="#" id="to-top">
         <FaAngleUp fill="#fbd779" size="30px" />
       </a>
 
@@ -219,6 +222,7 @@ const App = () => {
         />
         <Route exact path={allPaths[recipe] + ":id"} component={RecipeDetail} />
         <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
+        <Route exact path={allPaths[order]} component={Order} />
       </Switch>
     </Router>
   )

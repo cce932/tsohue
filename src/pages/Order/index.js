@@ -1,0 +1,150 @@
+import React, { useEffect} from "react"
+import { Form, Field, Formik } from "formik"
+import { Spinner } from "react-bootstrap"
+
+import "shared/style/order.scss"
+import useCartreducer from "reducers/order"
+import { LOAD_CART, SET_SUM } from "./constant"
+import loadService from "services/load.service"
+import { createDispatch } from "shared/utility/hooks"
+import OrderedRecipe from "shared/components/OrderedRecipe"
+import { allPaths, shoppingCart } from "shared/constants/pathName"
+
+const Order = () => {
+  const [state, dispatch] = useCartreducer()
+  const orderDispatch = createDispatch(dispatch)
+  const { data, sum } = state
+  const cartIds = new URL(window.location.href).searchParams
+    .get("cartIds")
+    .split("_")
+
+  useEffect(() => {
+    cartIds.forEach((id) => {
+      loadService.loadCartById(id).then(({ data }) => {
+        orderDispatch(LOAD_CART, data)
+        orderDispatch(SET_SUM, data.sum)
+      })
+    })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return (
+    <div className="container order pages">
+      <div className="title">結帳</div>
+      <div role="group">
+        {data.length === cartIds.length ? (
+          data.map((item) => (
+            <OrderedRecipe
+              key={item.id}
+              {...{
+                cartId: item.id,
+                recipe: item.recipe,
+                customize: item.customize,
+                sum: item.sum,
+                recipeImage: item.recipeImage,
+                isCustomize: item.isCustomize,
+                modifiable: false,
+              }}
+            />
+          ))
+        ) : (
+          <Spinner size="lg" animation="border" variant="warning" role="status" />
+        )}
+      </div>
+      <Formik
+        initialValues={{
+          payWay: "",
+          serviceWay: "",
+          hopeDeliverTime: Date.now(),
+          transportFee: 60,
+        }}
+        onSubmit={(values) => {
+          console.log(values)
+        }}
+      >
+        {({ values, handleSubmit, handleChange }) => (
+          <Form>
+            <div className="flex">
+              <div className="left">
+                <div className="block">
+                  <label htmlFor="discount">折價券</label>
+                  <Field as="select" id="discount" name="discount">
+                    <option value="noDiscount">目前無任何折價券</option>
+                  </Field>
+                </div>
+
+                <div className="block">
+                  <label htmlFor="payWay">付款方式</label>
+                  <Field as="select" id="payWay" name="payWay">
+                    <option value="cashOnDelivery">貨到付款</option>
+                    <option value="transfer">銀行轉帳</option>
+                    <option value="creditCard">信用卡</option>
+                    <option value="payOnline">電子支付</option>
+                  </Field>
+                </div>
+
+                <div className="block">
+                  <label htmlFor="serviceWay">配送方式</label>
+                  <Field as="select" id="serviceWay" name="serviceWay">
+                    <option value="homeDelivery">宅配</option>
+                    <option value="family">全家</option>
+                    <option value="seven">7-11</option>
+                  </Field>
+                </div>
+
+                <div className="block">
+                  <label htmlFor="address">地址</label>
+                  <Field id="address" name="address" />
+                </div>
+                <div className="block">
+                  <label htmlFor="hopeDeliverTime">送達時間</label>
+                  <input
+                    id="hopeDeliverTime"
+                    name="hopeDeliverTime"
+                    label="Next appointment"
+                    type="datetime-local"
+                    defaultValue={new Date().toISOString()}
+                    value={values.hopeDeliverTime}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="right">
+                <div className="block">
+                  <label htmlFor="transportFee">運費總額</label>
+                  <label id="transportFee" name="transportFee">
+                    NT$ {values.transportFee}
+                  </label>
+                </div>
+
+                <div className="block">
+                  <label htmlFor="sum">商品總額</label>
+                  <label id="sum" name="sum">
+                    NT$ {sum}
+                  </label>
+                </div>
+
+                <div className="block">
+                  <label htmlFor="paySum">付款總額</label>
+                  <label id="paySum">NT$ {values.transportFee + sum}</label>
+                </div>
+
+                <button
+                  onClick={() => (window.location = allPaths[shoppingCart])}
+                  className="return-to-cart"
+                >
+                  回購物車
+                </button>
+                <button type="submit">下訂單</button>
+              </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  )
+}
+
+export default Order
