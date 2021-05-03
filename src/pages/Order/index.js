@@ -1,25 +1,28 @@
-import React, { useEffect} from "react"
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { Form, Field, Formik } from "formik"
 import { Spinner } from "react-bootstrap"
 
 import "shared/style/order.scss"
-import useCartreducer from "reducers/order"
-import { LOAD_CART, SET_SUM } from "./constant"
-import loadService from "services/load.service"
-import { createDispatch } from "shared/utility/hooks"
 import OrderedRecipe from "shared/components/OrderedRecipe"
+import useCartreducer from "reducers/order"
+import loadService from "services/load.service"
+import { LOAD_CART, SET_SUM } from "./constant"
+import { createDispatch } from "shared/utility/hooks"
 import { allPaths, shoppingCart } from "shared/constants/pathName"
+import { createOrder } from "actions/add"
 
 const Order = () => {
+  const reduxDispatch = useDispatch()
   const [state, dispatch] = useCartreducer()
   const orderDispatch = createDispatch(dispatch)
   const { data, sum } = state
-  const cartIds = new URL(window.location.href).searchParams
+  const cartId = new URL(window.location.href).searchParams
     .get("cartIds")
     .split("_")
 
   useEffect(() => {
-    cartIds.forEach((id) => {
+    cartId.forEach((id) => {
       loadService.loadCartById(id).then(({ data }) => {
         orderDispatch(LOAD_CART, data)
         orderDispatch(SET_SUM, data.sum)
@@ -33,7 +36,7 @@ const Order = () => {
     <div className="container order pages">
       <div className="title">結帳</div>
       <div role="group">
-        {data.length === cartIds.length ? (
+        {data.length === cartId.length ? (
           data.map((item) => (
             <OrderedRecipe
               key={item.id}
@@ -49,18 +52,46 @@ const Order = () => {
             />
           ))
         ) : (
-          <Spinner size="lg" animation="border" variant="warning" role="status" />
+          <Spinner
+            size="lg"
+            animation="border"
+            variant="warning"
+            role="status"
+          />
         )}
       </div>
       <Formik
         initialValues={{
-          payWay: "",
-          serviceWay: "",
-          hopeDeliverTime: Date.now(),
+          discount: 0,
+          payWay: "cashOnDelivery",
+          serviceWay: "homeDelivery",
+          address: "",
+          hopeDeliverTime: new Date().toISOString(),
           transportFee: 60,
         }}
         onSubmit={(values) => {
-          console.log(values)
+          const {
+            discount,
+            payWay,
+            serviceWay,
+            address,
+            hopeDeliverTime,
+            transportFee,
+          } = values
+          const orderData = {
+            cartId,
+            discount,
+            payWay,
+            serviceWay,
+            address,
+            hopeDeliverTime,
+            transportFee,
+            sum, // value from react reducer
+          }
+
+          reduxDispatch(createOrder(orderData)).then((data) => {
+            console.log("success", data)
+          })
         }}
       >
         {({ values, handleSubmit, handleChange }) => (
@@ -70,7 +101,7 @@ const Order = () => {
                 <div className="block">
                   <label htmlFor="discount">折價券</label>
                   <Field as="select" id="discount" name="discount">
-                    <option value="noDiscount">目前無任何折價券</option>
+                    <option value="0">目前無任何折價券</option>
                   </Field>
                 </div>
 

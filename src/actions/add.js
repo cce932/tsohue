@@ -36,3 +36,13 @@ export const addCartForCustomization = (cartData) => (dispatch) => {
       return Promise.reject(message)
     })
 }
+
+export const createOrder = (orderData) => (dispatch) => {
+  return CreateService.createOrder(orderData)
+    .then(({ data }) => data)
+    .catch((error) => {
+      const message = extractErrorMsg(error)
+      dispatch(setMessage(message))
+      return Promise.reject(message)
+    })
+}

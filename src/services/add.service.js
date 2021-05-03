@@ -9,8 +9,12 @@ const addCartForDefault = (recipeId) =>
 const addCartForCustomization = (cartData) =>
   rootAxios.post("/cart/customize/add", cartData, { headers: authHeader() })
 
+const createOrder = (orderData) =>
+  rootAxios.post("/order/create", orderData, { headers: authHeader() })
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   addCartForDefault,
   addCartForCustomization,
+  createOrder,
 }
