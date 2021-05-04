@@ -18,20 +18,20 @@ const login = (account, password) => {
       account,
       password,
     })
-    .then((response) => {
-      let allResponse = {}
+    .then(async (response) => {
+      let allResponse = { ...response.data }
 
       if (response.data.token) {
         const header = { Authorization: response.data.token } // Authorization 名稱不可改動
+        const memberData = await userService.getCurrentMemberData(header) // 如果沒加await 就會直接return 不等getCurrentMemberData
 
-        userService.getCurrentMemberData(header).then((memberData) => {
-          allResponse = {
-            ...response.data,
-            ...memberData.data,
-          }
-          localStorage.setItem("user", JSON.stringify(allResponse)) // save token in localStorage
-        })
+        allResponse = {
+          ...allResponse,
+          ...memberData.data,
+        }
       }
+      localStorage.setItem("user", JSON.stringify(allResponse))
+
       return allResponse
     })
 }
