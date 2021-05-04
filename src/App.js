@@ -77,7 +77,7 @@ const App = () => {
       // turn the position to absolute
       let scrollBottom =
         $(document).height() - $(window).height() - $(window).scrollTop()
-      if (scrollBottom < 300) {
+      if (scrollBottom < 325) {
         $("#cart-bottom").css("position", "absolute").css("bottom", "45px")
       } else {
         $("#cart-bottom").css("position", "fixed").css("bottom", "20px")
@@ -153,52 +153,31 @@ const App = () => {
             </li>
             <li>|</li>
 
-            {currentUser ? (
-              // 如果currentUser存在(已登入)
-              // 就顯示member頁面
-              <li>
-                <button className="icon">
-                  <Link to={allPaths[member]}>
-                    <FaUser />
-                  </Link>
-                </button>
-              </li>
-            ) : (
-              // 沒登入 就顯示點擊「會員」就會跳到註冊
-              <li>
-                <button className="icon">
-                  <Link to={allPaths[register]}>
-                    <FaUser />
-                  </Link>
-                </button>
-              </li>
-            )}
-
-            {/* shopping cart */}
             <li>
-              <OverlayTrigger
-                placement="bottom"
-                overlay={<CartPopup />}
-                // trigger="click"
-              >
+              <button className="icon">
+                <Link to={currentUser ? allPaths[member] : allPaths[register]}>
+                  <FaUser />
+                </Link>
+              </button>
+            </li>
+
+            <li>
+              <OverlayTrigger placement="bottom" overlay={<CartPopup />}>
                 <button className="icon">
-                  <Link className="icon" to={allPaths[shoppingCart]}>
+                  <Link className="icon" to={currentUser ? allPaths[shoppingCart] : allPaths[login]}>
                     <FaShoppingCart size="18px" />
                   </Link>
                 </button>
               </OverlayTrigger>
             </li>
 
-            {/* like */}
-            {currentUser && (
-              <li>
-                <button className="icon">
-                  <Link className="icon" to={"#"}>
-                    <FaHeart />
-                  </Link>
-                </button>
-              </li>
-            )}
+            <li>
+              <button className="icon">
+                <Link className="icon" to={"#"}>
+                  <FaHeart />
+                </Link>
+              </button>
+            </li>
           </ul>
         </nav>
       </header>
