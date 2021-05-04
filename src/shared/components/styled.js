@@ -67,7 +67,7 @@ export const StrokeLabel = styled.span`
   border: ${(props) => props.theme[props.borderColor] || props.theme.primeColor}
     solid 1px;
   border-radius: 25px;
-  padding: 1px 8px 2px;
+  padding: 2px 8px;
   margin-left: 15px;
   transition: all 0.3s ease 0s;
 `

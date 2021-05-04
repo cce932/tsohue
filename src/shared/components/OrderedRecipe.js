@@ -17,6 +17,7 @@ const ItemBlock = styled.div`
   border: 1px ${(props) => props.theme.fifthColor} solid;
   background-color: white;
   padding: 20px 25px;
+  text-align: left;
 `
 
 const ItmeImg = styled.img`
