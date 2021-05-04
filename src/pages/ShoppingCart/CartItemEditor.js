@@ -23,21 +23,27 @@ const initQuantityGenerator = (
 ) => {
   let result = Object.assign({})
 
-  for (let i = 0; i < defalutIngredients.length; i++) {
-    const _ingredientId = cartIngredients[i].ingredient.id
-    const isOutOfStock = outOfStockIngredients.includes(
-      _ingredientId.toString()
-    )
+  try {
+    for (let i = 0; i < defalutIngredients.length; i++) {
+      const _ingredientId = cartIngredients[i].ingredient.id
+      const isOutOfStock = outOfStockIngredients.includes(
+        _ingredientId.toString()
+      )
 
-    result[_ingredientId] = {
-      defaultQuantity: defalutIngredients[i].quantityRequired, // for recommand quantity
-      customizeQuantity: isOutOfStock ? 0 : cartIngredients[i].quantityRequired,
-      price: cartIngredients[i].ingredient.price,
-      cartId: cartIngredients[i].id,
+      result[_ingredientId] = {
+        defaultQuantity: defalutIngredients[i].quantityRequired, // for recommand quantity
+        customizeQuantity: isOutOfStock
+          ? 0
+          : cartIngredients[i].quantityRequired,
+        price: cartIngredients[i].ingredient.price,
+        cartId: cartIngredients[i].id,
+      }
     }
-  }
 
-  return result
+    return result
+  } catch (e) {
+    console.error("recipe updated > [recipe ingredients] async with the [cart ingreidnets] > cause the CartItemEditor error")
+  }
 }
 
 const CartItemEditor = ({
@@ -56,7 +62,7 @@ const CartItemEditor = ({
   )
 
   const updateOnClick = (e) => (cartId, values, onHide) => {
-    e.preventDefault()
+    onHide(e) // pass `e` to prevent the  submit action of nested Formik with ShoppingCart
 
     const currentValue = values.ingredient
     const body = {
@@ -76,7 +82,6 @@ const CartItemEditor = ({
         })
         .then(() => reactDispatch(UPDATE_CART_ITEM_END, cartId)) // cancel loading spinner
     })
-    onHide()
   }
 
   const validationSchema = Yup.object().shape({
