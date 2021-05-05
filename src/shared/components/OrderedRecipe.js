@@ -101,10 +101,9 @@ const OrderedRecipe = ({
       key={index}
       className={`${ingredient.quantityRequired === 0 ? "quantitiy-zero" : ""}`}
     >
-      {/* for /cart/all, /cart/get/:id || /order/all */}
-      {ingredient?.ingredient?.name || ingredient?.ingredientName}
-      {" " + ingredient.quantityRequired + " "}
-      {ingredient?.ingredient?.unit || ingredient?.ingredientUnit}
+      {ingredient.ingredient.name + " "}
+      {ingredient.quantityRequired + " "}
+      {ingredient.ingredient.unit}
     </IngredientTd>
   ))
 
