@@ -10,7 +10,6 @@ import { versionOptions } from "shared/constants/options"
 import { allPaths, recipe as recipePath } from "shared/constants/pathName"
 
 const ItemBlock = styled.div`
-  width: 100%;
   height: fit-content;
   border-radius: 15px;
   margin: 20px 13px 40px 0; // [right: 13px] align to float-bottom
@@ -21,7 +20,7 @@ const ItemBlock = styled.div`
 `
 
 const ItmeImg = styled.img`
-  width: 229px;
+  width: 100%;
   border-radius: 13px;
   height: 140px;
   object-fit: cover;
@@ -101,9 +100,10 @@ const OrderedRecipe = ({
       key={index}
       className={`${ingredient.quantityRequired === 0 ? "quantitiy-zero" : ""}`}
     >
-      {ingredient.ingredient.name + " "}
-      {ingredient.quantityRequired + " "}
-      {ingredient.ingredient.unit}
+      {/* for /cart/all, /cart/get/:id || /order/all */}
+      {ingredient?.ingredient?.name || ingredient?.ingredientName}
+      {" " + ingredient.quantityRequired + " "}
+      {ingredient?.ingredient?.unit || ingredient?.ingredientUnit}
     </IngredientTd>
   ))
 
@@ -114,7 +114,7 @@ const OrderedRecipe = ({
   ))
 
   return (
-    <ItemBlock>
+    <ItemBlock className="ordered-recipe">
       <Row>
         <Col sm="3">
           <a href={allPaths[recipePath] + recipe.id}>

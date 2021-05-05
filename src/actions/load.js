@@ -57,3 +57,13 @@ export const loadRecipeImagesById = (id) => (dispatch) => {
 //       return Promise.reject(message)
 //     })
 // }
+
+export const loadAllOrders = () => (dispatch) => {
+  return LoadService.loadAllOrders()
+    .then(({ data }) => Promise.resolve(data))
+    .catch((error) => {
+      const message = extractErrorMsg(error)
+      dispatch(setMessage(message))
+      return Promise.reject(message)
+    })
+}

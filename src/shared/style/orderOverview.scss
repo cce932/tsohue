@@ -1,0 +1,38 @@
+@import "global";
+
+div.order-overview {
+  padding-left: 150px;
+
+  nav.nav-tabs {
+    background-color: $fifth-color;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+
+    a.nav-item {
+      margin: 0 5px;
+      border-radius: 10px;
+      border: none;
+
+      &:not(.active) {
+        color: $prime-color;
+
+        &:hover {
+          background-color: $sixth-color;
+          transition: $default-trans;
+        }
+      }
+
+      &.active {
+        color: $vice-color;
+      }
+    }
+  }
+
+  div.no-order {
+    text-align: center;
+    > div {
+      @include text;
+    }
+  }
+}

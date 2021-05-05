@@ -1,4 +1,10 @@
 import _ from "lodash"
+import {
+  STATUS_ALL,
+  STATUS_FINISH,
+  STATUS_TO_CONFIRM,
+  STATUS_TO_DELIVER,
+} from "shared/constants/options"
 // 把array以maxRow為限制 分為多維陣列
 export const splitToRows = (array, maxRow) => {
   const result = []
@@ -36,6 +42,24 @@ export const splitIngredientsByCategory = (ingredients) => {
     const category = ingredient.ingredient.category.toLowerCase()
 
     result[category] = result[category].concat(ingredient)
+  }
+
+  return result
+}
+
+export const splitOrdersByStatus = (orders) => {
+  let result = Object.assign({
+    [STATUS_ALL]: [],
+    [STATUS_TO_CONFIRM]: [],
+    [STATUS_TO_DELIVER]: [],
+    [STATUS_FINISH]: [],
+  })
+
+  for (const item of orders) {
+    const status = item.status
+
+    result[status] = result[status].concat(item)
+    result[STATUS_ALL] = result[STATUS_ALL].concat(item)
   }
 
   return result

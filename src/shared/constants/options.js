@@ -24,3 +24,14 @@ export const serviceWay = {
   family: "全家",
   seven: "7-11",
 }
+
+export const orderStatusOptions = {
+  尚未確認: "尚未確認",
+  toDeliver: "待配送",
+  finish: "已完成",
+}
+
+export const STATUS_TO_CONFIRM = "尚未確認"
+export const STATUS_TO_DELIVER = "toDeliver"
+export const STATUS_FINISH = "finish"
+export const STATUS_ALL = "all"
