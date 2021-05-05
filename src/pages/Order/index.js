@@ -8,7 +8,7 @@ import "shared/style/order.scss"
 import OrderedRecipe from "shared/components/OrderedRecipe"
 import useCartreducer from "reducers/order"
 import loadService from "services/load.service"
-import { LOAD_CART, SET_SUM } from "./constant"
+import { LOAD_CART, SET_SUM, SUBMIT_START, SUBMIT_END } from "./constant"
 import { createDispatch } from "shared/utility/hooks"
 import { allPaths, shoppingCart } from "shared/constants/pathName"
 import { createOrder } from "actions/add"
@@ -17,13 +17,13 @@ const Order = () => {
   const reduxDispatch = useDispatch()
   const [state, dispatch] = useCartreducer()
   const orderDispatch = createDispatch(dispatch)
-  const { data, sum } = state
-  const cartId = new URL(window.location.href).searchParams
+  const { data, sum, submitting } = state
+  const cartIds = new URL(window.location.href).searchParams
     .get("cartIds")
     .split("_")
 
   useEffect(() => {
-    cartId.forEach((id) => {
+    cartIds.forEach((id) => {
       loadService.loadCartById(id).then(({ data }) => {
         orderDispatch(LOAD_CART, data)
         orderDispatch(SET_SUM, data.sum)
@@ -37,7 +37,7 @@ const Order = () => {
     <div className="container order pages">
       <div className="title">結帳</div>
       <div role="group">
-        {data.length === cartId.length ? (
+        {data.length === cartIds.length ? (
           data.map((item) => (
             <OrderedRecipe
               key={item.id}
@@ -71,6 +71,7 @@ const Order = () => {
           transportFee: 60,
         }}
         onSubmit={(values) => {
+          orderDispatch(SUBMIT_START)
           const {
             discount,
             payWay,
@@ -79,8 +80,14 @@ const Order = () => {
             hopeDeliverTime,
             transportFee,
           } = values
+
+          const carts = data.map((cart) => ({
+            cartId: cart.id,
+            cartSum: cart.sum,
+          }))
+
           const orderData = {
-            cartId,
+            carts,
             discount,
             payWay,
             serviceWay,
@@ -91,12 +98,13 @@ const Order = () => {
           }
 
           reduxDispatch(createOrder(orderData)).then((data) => {
-            console.log("success", data)
+            window.location = `${allPaths.orderSuccess}?id=${data.id}&number=${data.orderNumber}`
+            orderDispatch(SUBMIT_END)
           })
         }}
       >
         {({ values, handleSubmit, handleChange }) => (
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <div className="flex">
               <div className="left">
                 <div className="block">
@@ -162,14 +170,23 @@ const Order = () => {
                   <label htmlFor="paySum">付款總額</label>
                   <label id="paySum">NT$ {values.transportFee + sum}</label>
                 </div>
-
-                <button
-                  onClick={() => (window.location = allPaths[shoppingCart])}
-                  className="return-to-cart"
-                >
-                  回購物車
-                </button>
-                <button type="submit">下訂單</button>
+                <div className="bottom">
+                  <button
+                    onClick={() => (window.location = allPaths[shoppingCart])}
+                    className="return-to-cart"
+                  >
+                    回購物車
+                  </button>
+                  <button type="submit" disabled={submitting}>
+                    {submitting ? (
+                      <span>
+                        <Spinner animation="border" size="sm" />
+                      </span>
+                    ) : (
+                      "下訂單"
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </Form>

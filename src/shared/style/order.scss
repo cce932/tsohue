@@ -63,19 +63,28 @@ div.order {
       position: relative;
       text-align: center;
 
-      button {
-        @include stroke-border($prime-color);
-        width: 150px;
-        font-size: 1.2rem;
-        margin-top: 60px;
-        margin-right: 20px;
-      }
+      div.bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
 
-      button[type="submit"] {
-        @include solid($prime-color, $prime-color, $vice-color);
-        width: 150px;
-        font-size: 1.2rem;
-        margin-top: 60px;
+        button {
+          @include stroke-border($prime-color);
+          width: 150px;
+          font-size: 1.2rem;
+          margin-right: 20px;
+        }
+
+        button[type="submit"] {
+          @include solid($prime-color, $prime-color, $vice-color);
+          width: 150px;
+          font-size: 1.2rem;
+
+          .spinner-border {
+            margin: 0;
+          }
+        }
       }
     }
   }

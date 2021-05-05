@@ -1,4 +1,9 @@
-import { LOAD_CART, SET_SUM } from "pages/Order/constant"
+import {
+  LOAD_CART,
+  SET_SUM,
+  SUBMIT_END,
+  SUBMIT_START,
+} from "pages/Order/constant"
 import { useReducer } from "react"
 
 const orderReducer = (state, action) => {
@@ -11,10 +16,19 @@ const orderReducer = (state, action) => {
         data: [...state.data, payload],
       }
     case SET_SUM:
-      console.log(state.sum)
       return {
         ...state,
         sum: state.sum + payload,
+      }
+    case SUBMIT_START:
+      return {
+        ...state,
+        submitting: true,
+      }
+    case SUBMIT_END:
+      return {
+        ...state,
+        submitting: false,
       }
     default:
       return state
@@ -24,6 +38,7 @@ const orderReducer = (state, action) => {
 const initialState = {
   data: [],
   sum: 0,
+  submitting: false,
 }
 
 const useOrderReducer = () => useReducer(orderReducer, initialState)
