@@ -43,6 +43,7 @@ import {
   orderDetail,
 } from "shared/constants/pathName"
 import { OverlayTrigger } from "react-bootstrap"
+import OrderSuccess from "pages/Order/OrderSuccess"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -206,11 +207,12 @@ const App = () => {
         <Route
           exact
           path={allPaths[recipeNotFound]}
-          component={NotFound}
+          render={() => <NotFound message="抱歉 此烹飪包已經下架囉～" />}
         />
         <Route exact path={allPaths[recipe] + ":id"} component={RecipeDetail} />
         <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
         <Route exact path={allPaths[order]} component={Order} />
+        <Route exact path={allPaths.orderSuccess} component={OrderSuccess} />
         <Route
           exact
           path={allPaths[orderDetail] + ":id"}
@@ -218,12 +220,7 @@ const App = () => {
         />
         <Route
           path={""}
-          render={() => (
-            <NotFound
-              message="敬請期待 新功能即將上線"
-              isAuthed={true}
-            />
-          )}
+          render={() => <NotFound message="敬請期待 新功能即將上線" />}
         />
       </Switch>
     </Router>

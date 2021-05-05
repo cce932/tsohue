@@ -5,54 +5,33 @@ export const ExpandDiv = styled.div`
   height: max-content;
 `
 
-export const PrimaryBtn = styled.button`
+export const SolidA = styled.a`
   font-family: sans-serif;
   font-weight: normal;
-  font-size: 1rem;
-  color: white;
+  font-size: ${(props) => props.fontSize || "1rem"};
   text-decoration: none;
   letter-spacing: 0.03em;
 
-  background-color: rgb(231, 104, 69);
-  border: none;
-  border-radius: 3px;
-  padding: 5px 15px;
-  margin: 5px;
-  transition: all 0.3s ease 0s;
-`
-
-export const SecondaryBtn = styled.button`
-  font-family: sans-serif;
-  font-weight: normal;
-  font-size: 1rem;
-  color: white;
-  text-decoration: none;
-  letter-spacing: 0.03em;
+  color: ${(props) => props.color || "white"};
+  background-color: ${(props) =>
+    props.backgroundColor || props.theme.primeColor};
+  border: ${(props) => props.border || "none"};
 
   height: fit-content;
-  background-color: rgb(86, 90, 95);
-  border: none;
-  border-radius: 3px;
-  padding: 5px 15px;
-  margin: 5px;
+  padding: ${(props) => props.padding || "5px 15px"};
+  margin: ${(props) => props.margin || "5px"};
+  border-radius: 25px;
+  display: inline-block;
   transition: all 0.3s ease 0s;
-`
 
-export const ThirdBtn = styled.button`
-  font-family: sans-serif;
-  font-weight: normal;
-  font-size: 1rem;
-  color: white;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-
-  height: fit-content;
-  background-color: rgb(179, 183, 188);
-  border: none;
-  border-radius: 3px;
-  padding: 5px 15px;
-  margin: 5px;
-  transition: all 0.3s ease 0s;
+  &:hover {
+    color: ${(props) => props.hoverColor || props.color || "white"};
+    background-color: ${(props) =>
+      props.hoverBackgroundColor ||
+      props.backgroundColor ||
+      props.theme.primeColor};
+    border: ${(props) => props.hoverBorder || props.border || "none"};
+  }
 `
 
 export const StrokeLabel = styled.span`

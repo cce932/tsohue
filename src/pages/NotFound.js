@@ -32,8 +32,8 @@ const StyledA = styled.a`
 const NotFound = ({ message }) => (
   <StyledDiv className="pages">
     <img src="/common-pic/notFound.gif" alt="not-found" width="300px"></img>
-    <StyledP>{message || "不好意思 此食譜已下架囉～"}</StyledP>
-    <StyledA href="/recipes">點我繼續逛食譜</StyledA>
+    <StyledP>{message}</StyledP>
+    <StyledA href="/recipes">點我看更多烹飪包</StyledA>
   </StyledDiv>
 )
 
