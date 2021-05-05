@@ -4,13 +4,20 @@ import moment from "moment"
 import "shared/style/orderItem.scss"
 import { orderStatusOptions } from "shared/constants/options"
 import OrderedRecipe from "shared/components/OrderedRecipe"
+import { allPaths, orderDetail } from "shared/constants/pathName"
 
 const OrderItem = ({ data }) => {
+  const toOrderDetail = (id) => () => {
+    window.location = allPaths[orderDetail] + id
+  }
+
   return (
     <div className="order-item">
       <label className="left">
-        <label className="item-number">{data.orderNumber}</label>
-        <label>{orderStatusOptions[data.status]}</label>
+        <button className="item-number" onClick={toOrderDetail(data.id)}>
+          {data.orderNumber}
+        </button>
+        <span>{orderStatusOptions[data.status]}</span>
       </label>
       <label className="right">
         <label>{moment(data.orderTime).format("YYYY-MM-DD HH:mm")}</label>
