@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 const StyledDiv = styled.div`
   text-align: center;
-  padding-top: 100px;
 `
 
 const StyledP = styled.p`

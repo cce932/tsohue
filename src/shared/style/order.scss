@@ -1,8 +1,6 @@
 @import "global";
 
 div.order {
-  margin-top: 150px;
-
   div.title {
     @include text(normal, 2rem, $vice-color);
     margin-left: 30px;

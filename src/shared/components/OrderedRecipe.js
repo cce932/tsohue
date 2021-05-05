@@ -13,7 +13,7 @@ const ItemBlock = styled.div`
   width: 100%;
   height: fit-content;
   border-radius: 15px;
-  margin: 20px 13px 40px 0; // [right: 13px] align to float-bottom
+  margin: 10px 13px 30px 0; // [right: 13px] align to float-bottom
   border: 1px ${(props) => props.theme.fifthColor} solid;
   background-color: white;
   padding: 20px 25px;
