@@ -67,7 +67,7 @@ const Order = () => {
           payWay: "cashOnDelivery",
           serviceWay: "homeDelivery",
           address: "",
-          hopeDeliverTime: new Date().toISOString(),
+          hopeDeliverTime: moment(Date.now()).format("YYYY-MM-DDTHH:mm"),
           transportFee: 60,
         }}
         onSubmit={(values) => {
@@ -144,7 +144,6 @@ const Order = () => {
                     name="hopeDeliverTime"
                     label="Next appointment"
                     type="datetime-local"
-                    defaultValue={new Date().toISOString()}
                     value={values.hopeDeliverTime}
                     onChange={handleChange}
                   />
