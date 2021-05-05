@@ -9,6 +9,7 @@ import { createDispatch } from "shared/utility/hooks"
 import useCartreducer from "reducers/cart"
 import { LOAD_CART, SET_CART_IDS, SET_CART_SUM } from "./constant"
 import { allPaths, order } from "shared/constants/pathName"
+import Empty from "shared/components/Empty"
 
 const ShoppingCart = () => {
   const [state, dispatch] = useCartreducer()
@@ -97,7 +98,9 @@ const ShoppingCart = () => {
                         共 {values.checked.length} 項&ensp;&ensp;總額NT.
                         <span className="price">{values.currentSum}</span>
                       </span>
-                      <button type="submit" onClick={handleSubmit}>訂購</button>
+                      <button type="submit" onClick={handleSubmit}>
+                        訂購
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -106,10 +109,7 @@ const ShoppingCart = () => {
           </Formik>
         </>
       ) : typeof data === "string" ? (
-        <div className="empty-cart">
-          <img src="/common-pic/emptyCart.png" alt="empty-cart" />
-          <div>{data}</div>
-        </div>
+        <Empty message={data} />
       ) : (
         <Spinner animation="border" variant="warning" role="status" />
       )}
