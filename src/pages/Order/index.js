@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import moment from "moment"
 import { useDispatch } from "react-redux"
 import { Form, Field, Formik } from "formik"
 import { Spinner } from "react-bootstrap"
@@ -84,7 +85,7 @@ const Order = () => {
             payWay,
             serviceWay,
             address,
-            hopeDeliverTime,
+            hopeDeliverTime: moment(hopeDeliverTime).toISOString(),
             transportFee,
             sum, // value from react reducer
           }
