@@ -105,7 +105,10 @@ const CartItem = ({
         recipe={recipe}
         customize={customize}
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={(e) => {
+          e.preventDefault()
+          setModalShow(false)
+        }}
         reactDispatch={reactDispatch}
       />
     </FlexDiv>
