@@ -1,7 +1,5 @@
 @import "global";
 
 div.member {
-  @include ctm-container();
-  min-height: 300px;
-  height: calc(100vh - 450px);
+  margin-top: 150px;
 }

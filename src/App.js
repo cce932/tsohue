@@ -23,6 +23,7 @@ import RecipeDetail from "pages/RecipeDetail"
 import RecipeNotFound from "pages/RecipeNotFound"
 import ShoppingCart from "pages/ShoppingCart"
 import Order from "pages/Order"
+import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
 import { loadRecipes } from "actions/load"
@@ -37,9 +38,9 @@ import {
   recipeNotFound,
   shoppingCart,
   order,
+  orderOverview,
 } from "shared/constants/pathName"
 import { OverlayTrigger } from "react-bootstrap"
-import CartPopup from "pages/ShoppingCart/popup"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -155,7 +156,7 @@ const App = () => {
 
             <li>
               <button className="icon">
-                <Link to={currentUser ? allPaths[member] : allPaths[register]}>
+                <Link to={currentUser ? allPaths[member]+allPaths[orderOverview] : allPaths[register]}>
                   <FaUser />
                 </Link>
               </button>
@@ -164,7 +165,10 @@ const App = () => {
             <li>
               <OverlayTrigger placement="bottom" overlay={<CartPopup />}>
                 <button className="icon">
-                  <Link className="icon" to={currentUser ? allPaths[shoppingCart] : allPaths[login]}>
+                  <Link
+                    className="icon"
+                    to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
+                  >
                     <FaShoppingCart size="18px" />
                   </Link>
                 </button>
@@ -192,7 +196,7 @@ const App = () => {
         <Route exact path={["/", allPaths[home]]} component={Home} />
         <Route exact path={allPaths[login]} component={Login} />
         <Route exact path={allPaths[register]} component={Register} />
-        <Route exact path={allPaths[member]} component={Member} />
+        <Route path={allPaths[member]} component={Member} />
         <Route exact path={allPaths[recipes]} component={Recipes} />
         <Route
           exact

@@ -3,8 +3,9 @@ export const allPaths = {
   註冊: "/register",
   登入: "/login",
   會員: "/member",
-  我的訂單: "/member/orders",
-  個人檔案: "/member/profile",
+  我的訂單: "/order-overview",
+  個人檔案: "/profile",
+  優惠券: "/coupons",
   烹飪包大全: "/recipes",
   烹飪包詳細: "/recipe/",
   無此烹飪包: "/recipe/not-found",
@@ -17,7 +18,8 @@ export const register = "註冊"
 export const login = "登入"
 export const logout = "登出"
 export const member = "會員"
-export const orders = "我的訂單"
+export const orderOverview = "我的訂單"
+export const coupons = "優惠券"
 export const profile = "個人檔案"
 export const recipes = "烹飪包大全"
 export const recipe = "烹飪包詳細"
