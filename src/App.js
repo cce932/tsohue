@@ -23,6 +23,7 @@ import RecipeDetail from "pages/RecipeDetail"
 import RecipeNotFound from "pages/RecipeNotFound"
 import ShoppingCart from "pages/ShoppingCart"
 import Order from "pages/Order"
+import OrderDetail from "pages/OrderDetail"
 import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
@@ -39,6 +40,7 @@ import {
   shoppingCart,
   order,
   orderOverview,
+  orderDetail,
 } from "shared/constants/pathName"
 import { OverlayTrigger } from "react-bootstrap"
 
@@ -156,7 +158,13 @@ const App = () => {
 
             <li>
               <button className="icon">
-                <Link to={currentUser ? allPaths[member]+allPaths[orderOverview] : allPaths[register]}>
+                <Link
+                  to={
+                    currentUser
+                      ? allPaths[member] + allPaths[orderOverview]
+                      : allPaths[register]
+                  }
+                >
                   <FaUser />
                 </Link>
               </button>
@@ -206,6 +214,7 @@ const App = () => {
         <Route exact path={allPaths[recipe] + ":id"} component={RecipeDetail} />
         <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
         <Route exact path={allPaths[order]} component={Order} />
+        <Route exact path={allPaths[orderDetail]+":id"} component={OrderDetail} />
       </Switch>
     </Router>
   )

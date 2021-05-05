@@ -67,3 +67,13 @@ export const loadAllOrders = () => (dispatch) => {
       return Promise.reject(message)
     })
 }
+
+export const loadOrderById = (id) => (dispatch) => {
+  return LoadService.loadOrderById(id)
+    .then(({ data }) => Promise.resolve(data))
+    .catch((error) => {
+      const message = extractErrorMsg(error)
+      dispatch(setMessage(message))
+      return Promise.reject(message)
+    })
+}

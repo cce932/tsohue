@@ -1,0 +1,64 @@
+@import "global";
+
+div.order-detail {
+  margin-top: 150px;
+
+  div.title {
+    margin-bottom: 20px;
+    display: flex;
+
+    > div {
+      @include text(normal, 2rem, $vice-color);
+    }
+
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  div.block {
+    @include text(normal, 1rem, $prime-color);
+    margin: 0 30px 15px;
+
+    label.key {
+      min-width: 150px;
+      font-weight: bold;
+    }
+
+    label.value {
+      @include text(normal, 1rem, $first-color);
+      width: 150px;
+
+      &#paySum {
+        color: $accent-red-color;
+        font-size: 1.2rem;
+      }
+    }
+
+    &#paySum {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  div.flex {
+    margin: 60px 0;
+    display: flex;
+
+    > div {
+      width: 100%;
+    }
+
+    .left {
+      border-right: 1px solid $fifth-color;
+      padding-left: 40px;
+    }
+
+    .right {
+      position: relative;
+      text-align: center;
+    }
+  }
+}

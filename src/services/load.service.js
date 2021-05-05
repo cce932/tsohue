@@ -16,6 +16,9 @@ const loadCartById = (id, token = authHeader()) =>
 const loadAllOrders = (token = authHeader()) =>
   rootAxios.get(`/order/all`, { headers: token })
 
+const loadOrderById = (id, token = authHeader()) =>
+  rootAxios.get(`/order/id/${id}`, { headers: token })
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   loadRecipes,
@@ -24,4 +27,5 @@ export default {
   loadCart,
   loadCartById,
   loadAllOrders,
+  loadOrderById,
 }
