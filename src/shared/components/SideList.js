@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 import "shared/style/components/sideList.scss"
 
 const SideList = ({ items, style }) => {
   const defaultStyle = {
-    top: "135px",
+    top: "150px",
     left: "10%",
     width: "fit-content",
     backgroundColor: "white",
@@ -37,9 +37,13 @@ const SideList = ({ items, style }) => {
       {items.map((item, index) => (
         <div key={index}>
           {item.topStroke && <div className="top-stroke" />}
-          <Link to={item.url} onClick={item.onClick}>
+          <NavLink
+            activeClassName="selected"
+            to={item?.url || "#"}
+            onClick={item?.onClick}
+          >
             {item.title}
-          </Link>
+          </NavLink>
         </div>
       ))}
     </SideListWapper>

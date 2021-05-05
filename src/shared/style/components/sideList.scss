@@ -13,5 +13,10 @@ div.side-list {
       height: 2px;
       background-color: $accent-color;
     }
+
+    a.selected {
+      color: $accent-deeper-color;
+      font-weight: bold;
+    }
   }
 }
