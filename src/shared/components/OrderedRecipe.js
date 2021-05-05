@@ -10,6 +10,7 @@ import { versionOptions } from "shared/constants/options"
 import { allPaths, recipe as recipePath } from "shared/constants/pathName"
 
 const ItemBlock = styled.div`
+  width: 100%;
   height: fit-content;
   border-radius: 15px;
   margin: 20px 13px 40px 0; // [right: 13px] align to float-bottom
