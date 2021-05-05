@@ -30,7 +30,7 @@ const OrderOverview = () => {
   }, [dispatch])
 
   return (
-    <div className="container order-overview pages">
+    <div className="order-overview">
       {typeof orders === "object" ? (
         orders.all?.length > 0 ? (
           <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">

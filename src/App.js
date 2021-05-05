@@ -20,7 +20,7 @@ import Register from "pages/Register"
 import Member from "pages/Member"
 import Recipes from "pages/Recipes"
 import RecipeDetail from "pages/RecipeDetail"
-import RecipeNotFound from "pages/RecipeNotFound"
+import NotFound from "pages/NotFound"
 import ShoppingCart from "pages/ShoppingCart"
 import Order from "pages/Order"
 import OrderDetail from "pages/OrderDetail"
@@ -140,19 +140,16 @@ const App = () => {
               )}
             </li>
             <li>
-              <Link to={"#"}>本月特餐</Link>
+              <Link to={allPaths.event}>特價活動</Link>
             </li>
             <li>
-              <Link to={"#"}>特價活動</Link>
-            </li>
-            <li>
-              <Link to={"#"}>惜福良品</Link>
+              <Link to={allPaths.sale}>惜福良品</Link>
             </li>
             <li>
               <Link to={allPaths[recipes]}>{recipes}</Link>
             </li>
             <li>
-              <Link to={"#"}>訂購流程</Link>
+              <Link to={allPaths.instruction}>訂購流程</Link>
             </li>
             <li>|</li>
 
@@ -185,7 +182,7 @@ const App = () => {
 
             <li>
               <button className="icon">
-                <Link className="icon" to={"#"}>
+                <Link className="icon" to={allPaths.favorite}>
                   <FaHeart />
                 </Link>
               </button>
@@ -209,12 +206,25 @@ const App = () => {
         <Route
           exact
           path={allPaths[recipeNotFound]}
-          component={RecipeNotFound}
+          component={NotFound}
         />
         <Route exact path={allPaths[recipe] + ":id"} component={RecipeDetail} />
         <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
         <Route exact path={allPaths[order]} component={Order} />
-        <Route exact path={allPaths[orderDetail]+":id"} component={OrderDetail} />
+        <Route
+          exact
+          path={allPaths[orderDetail] + ":id"}
+          component={OrderDetail}
+        />
+        <Route
+          path={""}
+          render={() => (
+            <NotFound
+              message="敬請期待 新功能即將上線"
+              isAuthed={true}
+            />
+          )}
+        />
       </Switch>
     </Router>
   )

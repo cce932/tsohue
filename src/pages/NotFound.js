@@ -17,27 +17,24 @@ const StyledP = styled.p`
 `
 
 const StyledA = styled.a`
-  font-family: sans-serif;
   font-weight: normal;
   font-size: 1rem;
-  color: #9e8568;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-
-  border-bottom: 4px solid #fbd779;
+  color: ${(props) => props.theme.primeColor};
+  ${(props) => props.theme.font}}
+  border-bottom: 3px solid ${(props) => props.theme.accentColor};
 
   &:hover {
     text-decoration: none;
-    color: #755734;
+    color: ${(props) => props.theme.viceColor};
   }
 `
 
-const RecipeNotFound = () => (
+const NotFound = ({ message }) => (
   <StyledDiv className="pages">
     <img src="/common-pic/notFound.gif" alt="not-found" width="300px"></img>
-    <StyledP>不好意思 此食譜已下架囉～</StyledP>
-    <StyledA href="/recipes">點我看更多食譜</StyledA>
+    <StyledP>{message || "不好意思 此食譜已下架囉～"}</StyledP>
+    <StyledA href="/recipes">點我繼續逛食譜</StyledA>
   </StyledDiv>
 )
 
-export default RecipeNotFound
+export default NotFound

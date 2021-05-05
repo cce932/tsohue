@@ -16,6 +16,7 @@ import {
   profile,
 } from "shared/constants/pathName"
 import OrderOverview from "./OrderOverview"
+import Empty from 'shared/components/Empty'
 
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -68,7 +69,15 @@ const Member = () => {
           {currentUser.roles && <div>currentUser.roles</div>} */}
 
         <Switch>
-          <Route exact path={"/order-overview"} component={OrderOverview} />
+          <Route exact path={allPaths[orderOverview]} component={OrderOverview} />
+          <Route
+            path={allPaths[coupons]}
+            render={() => (
+              <div>
+                <Empty message="您目前沒有優惠券喔" />
+              </div>
+            )}
+          />
         </Switch>
       </div>
     </BrowserRouter>

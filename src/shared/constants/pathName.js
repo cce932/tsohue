@@ -12,6 +12,10 @@ export const allPaths = {
   無此烹飪包: "/recipe/not-found",
   購物車: "/shopping-cart",
   訂購: "/order",
+  event: "/event",
+  sale: "/sale",
+  instruction: "/instruction",
+  favorite: "/favorite",
 }
 
 export const home = "首頁"
