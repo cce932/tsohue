@@ -16,10 +16,10 @@ export const payWayOptions = {
   cashOnDelivery: "貨到付款",
   transfer: "銀行轉帳",
   creditcard: "信用卡",
-  payOnline: "電子支付"
+  payOnline: "電子支付",
 }
 
-export const serviceWay = {
+export const serviceWayOptions = {
   homeDelivery: "宅配",
   family: "全家",
   seven: "7-11",
