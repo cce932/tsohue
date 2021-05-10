@@ -20,6 +20,11 @@ div.order-item {
       @include solid($prime-color, $vice-color, $vice-color);
       margin-right: 20px;
     }
+
+    span.status {
+      color: $accent-red-color;
+      font-weight: bold;
+    }
   }
 
   label.right {

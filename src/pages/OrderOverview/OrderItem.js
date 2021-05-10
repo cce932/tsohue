@@ -17,7 +17,7 @@ const OrderItem = ({ data }) => {
         <button className="item-number" onClick={toOrderDetail(data.id)}>
           {data.orderNumber}
         </button>
-        <span>{orderStatusOptions[data.status]}</span>
+        <span className="status">{orderStatusOptions[data.status]}</span>
       </label>
       <label className="right">
         <label>{moment(data.orderTime).format("YYYY-MM-DD HH:mm")}</label>
