@@ -1,6 +1,6 @@
 import _ from "lodash"
-import React from "react"
-import { Row, Col } from "react-bootstrap"
+import React, { useState } from "react"
+import { Row, Col, Spinner } from "react-bootstrap"
 import { Formik } from "formik"
 import * as Yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
@@ -61,6 +61,7 @@ const CartAdderForCustomization = ({
 }) => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const splitedIngredients = splitIngredientsByCategory(ingredients)
   const isWholeOutOfStock = // ture if more than 1/2 of ingredients out of stock in this recipe
     outOfStockIngredients.length > _.floor(ingredients.length / 2)
@@ -97,6 +98,7 @@ const CartAdderForCustomization = ({
   })
 
   const vipAddCartOnClick = (values) => {
+    setIsSubmitting(true)
     if (!user) {
       window.location = `/login?next=${window.location.pathname}`
       localStorage.setItem(recipeId, JSON.stringify(values))
@@ -114,11 +116,13 @@ const CartAdderForCustomization = ({
     if (values.currentPrice < 0) {
       // currentPrice < 0 from IngredientAdjuster means that the quantities are default
       dispatch(addCartForDefault(recipeId)).then(() => {
+        setIsSubmitting(false)
         window.alert("已加入購物車")
       })
     } else {
       dispatch(addCartForCustomization(cartData)).then(() => {
-        window.alert("已加入購物車（客製化）")
+        setIsSubmitting(false)
+        window.alert("已加入購物車 [客製化]")
       })
     }
   }
@@ -180,7 +184,11 @@ const CartAdderForCustomization = ({
                     }
                   >
                     {isVip ? (
-                      "加入購物車"
+                      isSubmitting ? (
+                        <Spinner animation="border" variant="light" size="sm" />
+                      ) : (
+                        "加入購物車"
+                      )
                     ) : (
                       <>
                         <IoIosUnlock size="18px" />
