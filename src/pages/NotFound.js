@@ -2,6 +2,8 @@ import styled from "styled-components"
 
 const StyledDiv = styled.div`
   text-align: center;
+  margin-top: 150px !important;
+  padding-bottom: 40px;
 `
 
 const StyledP = styled.p`
