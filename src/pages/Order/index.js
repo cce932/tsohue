@@ -12,6 +12,7 @@ import { LOAD_CART, SET_SUM, SUBMIT_START, SUBMIT_END } from "./constant"
 import { createDispatch } from "shared/utility/hooks"
 import { allPaths, shoppingCart } from "shared/constants/pathName"
 import { createOrder } from "actions/add"
+import { payWayOptions, serviceWayOptions } from "shared/constants/options"
 
 const Order = () => {
   const reduxDispatch = useDispatch()
@@ -117,19 +118,20 @@ const Order = () => {
                 <div className="block">
                   <label htmlFor="payWay">付款方式</label>
                   <Field as="select" id="payWay" name="payWay">
-                    <option value="cashOnDelivery">貨到付款</option>
-                    <option value="transfer">銀行轉帳</option>
-                    <option value="creditCard">信用卡</option>
-                    <option value="payOnline">電子支付</option>
+                    {Object.keys(payWayOptions).map((option) => (
+                      <option value={option}>{payWayOptions[option]}</option>
+                    ))}
                   </Field>
                 </div>
 
                 <div className="block">
                   <label htmlFor="serviceWay">配送方式</label>
                   <Field as="select" id="serviceWay" name="serviceWay">
-                    <option value="homeDelivery">宅配</option>
-                    <option value="family">全家</option>
-                    <option value="seven">7-11</option>
+                    {Object.keys(serviceWayOptions).map((option) => (
+                      <option value={option}>
+                        {serviceWayOptions[option]}
+                      </option>
+                    ))}
                   </Field>
                 </div>
 

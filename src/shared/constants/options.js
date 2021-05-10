@@ -14,9 +14,9 @@ export const categoryOptions = {
 
 export const payWayOptions = {
   cashOnDelivery: "貨到付款",
-  transfer: "銀行轉帳",
-  creditcard: "信用卡",
-  payOnline: "電子支付",
+  // transfer: "銀行轉帳",
+  // creditcard: "信用卡",
+  // payOnline: "電子支付",
 }
 
 export const serviceWayOptions = {
@@ -26,12 +26,12 @@ export const serviceWayOptions = {
 }
 
 export const orderStatusOptions = {
-  尚未確認: "尚未確認",
+  toConfirm: "待確認",
   toDeliver: "待配送",
   finish: "已完成",
 }
 
-export const STATUS_TO_CONFIRM = "尚未確認"
+export const STATUS_TO_CONFIRM = "toConfirm"
 export const STATUS_TO_DELIVER = "toDeliver"
 export const STATUS_FINISH = "finish"
 export const STATUS_ALL = "all"
