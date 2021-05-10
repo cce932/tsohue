@@ -180,9 +180,7 @@ const Order = () => {
                   </button>
                   <button type="submit" disabled={submitting}>
                     {submitting ? (
-                      <span>
                         <Spinner animation="border" size="sm" />
-                      </span>
                     ) : (
                       "下訂單"
                     )}
