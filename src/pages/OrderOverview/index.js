@@ -17,7 +17,7 @@ import Empty from "shared/components/Empty"
 
 const OrderOverview = () => {
   const dispatch = useDispatch()
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState({})
 
   useEffect(() => {
     dispatch(loadAllOrders())
