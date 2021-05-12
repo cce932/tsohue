@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 import LoadService from "services/load.service"
 import { extractErrorMsg } from "shared/utility/common"
 import { setMessage } from "./message"
@@ -67,7 +69,7 @@ export const loadAllOrders = () => (dispatch) => {
     .then(({ data }) => {
       dispatch({
         type: LOAD_ORDERS_SUCCESS,
-        payload: data,
+        payload: _.reverse(data),
       })
     })
     .catch((error) => {

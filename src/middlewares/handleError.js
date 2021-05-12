@@ -47,7 +47,7 @@ const handleError = (store) => (next) => (action) => {
               debugMessage
           )
         } else {
-          return console.error("未知錯誤！！\n" + action.payload)
+          return console.error("未知錯誤！！\n" + JSON.stringify(action.payload))
         }
     }
   } else {

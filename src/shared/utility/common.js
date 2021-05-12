@@ -50,20 +50,26 @@ export const splitIngredientsByCategory = (ingredients) => {
 }
 
 export const splitOrdersByStatus = (orders) => {
-  let result = Object.assign({
-    [STATUS_ALL]: [],
-    [STATUS_TO_CONFIRM]: [],
-    [STATUS_TO_DELIVER]: [],
-    [STATUS_FINISH]: [],
-    [STATUS_CANCELED]: [],
-  })
+  try {
+    if (!orders || typeof orders !== "object") return
 
-  for (const item of orders) {
-    const status = item.status
+    let result = Object.assign({
+      [STATUS_ALL]: [],
+      [STATUS_TO_CONFIRM]: [],
+      [STATUS_TO_DELIVER]: [],
+      [STATUS_FINISH]: [],
+      [STATUS_CANCELED]: [],
+    })
 
-    result[status] = result[status].concat(item)
-    result[STATUS_ALL] = result[STATUS_ALL].concat(item)
+    for (const item of orders) {
+      const status = item.status
+
+      result[status] = result[status].concat(item)
+      result[STATUS_ALL] = result[STATUS_ALL].concat(item)
+    }
+
+    return result
+  } catch (error) {
+    console.error("error from splitOrdersByStatus", error)
   }
-
-  return result
 }
