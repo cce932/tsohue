@@ -1,12 +1,13 @@
 import styled from "styled-components"
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Spinner } from "react-bootstrap"
+import { Pagination, Spinner } from "react-bootstrap"
 import { useLocation } from "react-router-dom"
 
 import "shared/style/recipes.scss"
 import Recipe from "./Recipe"
 import { versionOptions } from "shared/constants/options"
+import { splitToRows } from "shared/utility/common"
 
 const NAME_ASC = "名稱順序"
 const NAME_DESC = "名稱倒序"
@@ -19,7 +20,7 @@ const SideListWapper = styled.div`
   position: fixed;
   top: 150px;
   left: 8%;
-  width: 170px;
+  width: 171px;
   background-color: white;
   box-shadow: ${(props) => props.theme.defaultShadow};
   padding: 10px 20px;
@@ -33,6 +34,7 @@ const Recipes = () => {
   const [recipes, setRecipes] = useState([])
   const [queryFiltered, setQqueryFiltered] = useState([])
   const [sortType, setSortType] = useState("")
+  const [activePage, setActivePage] = useState(1)
   const query = new URLSearchParams(useLocation().search).get("search")
 
   useEffect(() => {
@@ -121,6 +123,41 @@ const Recipes = () => {
     sort(e.target.value)
   }
 
+  const ITEMS_PER_PAGE = 12
+  const PAGE_COUNT = recipes.length / ITEMS_PER_PAGE
+  let pageitems = []
+
+  const pageOnChange = (e) => {
+    const to = e.target.id
+
+    if (/next/.test(to)) {
+      setActivePage(
+        parseInt(activePage) < PAGE_COUNT
+          ? parseInt(activePage) + 1
+          : activePage
+      )
+    } else if (/prev/.test(to)) {
+      setActivePage(
+        parseInt(activePage) > 1 ? parseInt(activePage) - 1 : activePage
+      )
+    } else {
+      setActivePage(e.target.text)
+    }
+  }
+
+  for (let number = 1; number <= Math.ceil(PAGE_COUNT); number++) {
+    pageitems.push(
+      <Pagination.Item
+        id={number}
+        key={number}
+        active={number === parseInt(activePage)}
+        onClick={pageOnChange}
+      >
+        {number}
+      </Pagination.Item>
+    )
+  }
+
   return (
     <div className="recipes pages">
       <SideListWapper className="cus-side-list" id="side-list">
@@ -159,13 +196,23 @@ const Recipes = () => {
           typeof recipes === "string" ? (
             <p className="no-result">{recipes}</p>
           ) : (
-            recipes.map((recipe, index) => {
-              return <Recipe key={index} recipe={recipe} />
-            })
+            splitToRows(recipes, ITEMS_PER_PAGE)[activePage - 1].map(
+              (recipe, index) => {
+                return <Recipe key={index} recipe={recipe} />
+              }
+            )
           )
         ) : (
           <Spinner animation="border" variant="warning" role="status"></Spinner>
         )}
+
+        <div className="pagination">
+          <Pagination>
+            <Pagination.Prev id="prev" onClick={pageOnChange} />
+            {pageitems}
+            <Pagination.Next id="next" onClick={pageOnChange} />
+          </Pagination>
+        </div>
       </div>
     </div>
   )

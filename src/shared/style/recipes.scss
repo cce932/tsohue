@@ -1,8 +1,7 @@
 @import "global";
 
 .recipes {
-  margin: 105px 0 50px !important;
-  padding: 0 8% 0 18%;
+  margin: 105px 8% 50px 18% !important;
 
   div.cus-side-list {
     p {
@@ -54,11 +53,42 @@
       }
     }
   }
-  
+
   div.content {
     display: flex;
     flex: 0 1 auto;
-    flex-wrap: wrap;
+    flex-wrap: wrap; // break a line if items exceeded max width 
     padding-left: 3%;
+
+    ul.pagination {
+      margin-left: 25px;
+      width: 100vw; // for breaking line
+      padding: 20px;
+      
+      li.page-item {
+        box-shadow: $default-shadow;
+        border-radius: 8px;
+        border: 1px solid $fifth-color;
+        margin-right: 10px;
+        width: 38px;
+        text-align: center;
+        
+        // maybe a(inactive) or span(active)
+        & > * {
+          color: $prime-color;
+          border: none;
+        }
+
+        & > a.page-link#next > span,
+        & > a.page-link#prev > span {
+          pointer-events: none; // prevent from clicking on the nest elements
+        }
+
+        &.active > span {
+          background-color: $accent-color;
+          border: $accent-color 1px solid;
+        }
+      }
+    }
   }
 }
