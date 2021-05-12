@@ -1,58 +1,43 @@
 import React from "react"
 import { Router, Link } from "react-router-dom"
-import { Carousel } from 'react-bootstrap';
+import { Carousel } from "react-bootstrap"
 
 import "shared/style/home.scss"
 import { history } from "helpers/history"
 import { FeatureSlot, MonthlySpecial } from "shared/components/common"
-import { allPaths, recipe } from 'shared/constants/pathName'
+import { allPaths, recipe } from "shared/constants/pathName"
 
-const gredients = ["東坡肉", "梅干", "滷蛋", "青江菜", "洋蔥", "紅蔥頭", "鹽", "特調醬料"]
+const gredients = [
+  "東坡肉",
+  "梅干",
+  "滷蛋",
+  "青江菜",
+  "洋蔥",
+  "紅蔥頭",
+  "鹽",
+  "特調醬料",
+]
 
 const Home = () => {
   return (
     <Router history={history}>
       <div className="home pages">
-        {/* 主banner */}
         <Carousel fade>
-                <Carousel.Item className="header-carousel-item bg-cover">
-                    <img
-                        className="d-block w-100"
-                        src="/home-pic/banner2.jpg"
-                        alt="Second slide"
-                    />
-
-                    {/* <Carousel.Caption>
-                        <h3>Cook</h3>
-                        <p>Enjoy Life, Enjoy Food, Enjoy the Process <br />Tsoheu Took you to Culinary World.
-                        </p>
-                    </Carousel.Caption> */}
-                </Carousel.Item>
-                <Carousel.Item className="header-carousel-item bg-cover">
-                    <img
-                        className="d-block w-100"
-                        src="/home-pic/health.jpg"
-                        alt="Second slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Fast and Convenience</h3>
-                        <p>Let Tsohue brings <br />What you need every day.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item className="header-carousel-item bg-cover">
-                    <img
-                        className="d-block w-100"
-                        src="/home-pic/veg.jpg"
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Health</h3>
-                        <p>We take care your health.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+          <Carousel.Item className="header-carousel-item bg-cover">
+            <img
+              className="d-block w-100"
+              src="/home-pic/banner1.jpg"
+              alt="Second slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item className="header-carousel-item bg-cover">
+            <img
+              className="d-block w-100"
+              src="/home-pic/banner2.jpg"
+              alt="Second slide"
+            />
+          </Carousel.Item>
+        </Carousel>
 
         {/* 特色區 */}
         <div className={`container feature`}>
