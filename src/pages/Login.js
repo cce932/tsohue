@@ -10,6 +10,7 @@ import { login } from "actions/auth"
 import { Link } from "react-router-dom"
 import { allPaths, register } from "shared/constants/pathName"
 import { Spinner } from 'react-bootstrap'
+import { encrypt } from 'shared/utility/common'
 
 const required = (value) => {
   if (!value) {
@@ -54,7 +55,7 @@ const Login = (props) => {
     form.current.validateAll()
     // 如果登入資訊沒錯
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(account, password))
+      dispatch(login(account, encrypt(password, account)))
         .then(() => {
           window.location = next ? next : "/"
         })
@@ -85,7 +86,7 @@ const Login = (props) => {
           <div className="input-row">
             <label htmlFor="password">密碼</label>
             <Input
-              type="text"
+              type="password"
               name="password"
               value={password}
               onChange={onChangePassword}

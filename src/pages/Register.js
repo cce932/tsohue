@@ -11,8 +11,9 @@ import { isEmail, isNumeric } from "validator"
 import { register } from "actions/auth"
 import { history } from "helpers/history"
 import { clearMessage } from "actions/message"
-import { Spinner } from 'react-bootstrap'
-import { allPaths, login } from 'shared/constants/pathName'
+import { Spinner } from "react-bootstrap"
+import { allPaths, login } from "shared/constants/pathName"
+import { encrypt } from "shared/utility/common"
 
 // 設定驗證
 // dispatch action
@@ -99,7 +100,9 @@ const Register = () => {
     form.current.validateAll()
 
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(account, password, username, phone, email))
+      dispatch(
+        register(account, encrypt(password, account), username, phone, email)
+      )
         .then(() => {
           // 不直接跳轉至login
           setSuccessful(true)
@@ -138,7 +141,7 @@ const Register = () => {
                 <div className="input-row">
                   <label>密碼</label>
                   <Input
-                    type="text"
+                    type="password"
                     name="password"
                     onChange={onChangePassword}
                     value={password}

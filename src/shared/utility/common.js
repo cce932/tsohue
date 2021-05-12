@@ -1,4 +1,6 @@
 import _ from "lodash"
+import crypto from "crypto"
+
 import {
   STATUS_ALL,
   STATUS_FINISH,
@@ -72,4 +74,8 @@ export const splitOrdersByStatus = (orders) => {
   } catch (error) {
     console.error("error from splitOrdersByStatus", error)
   }
+}
+
+export const encrypt = (info, key = "%E9%A3%9F%E8%AD%9C") => {
+  return crypto.createHmac("sha256", key).update(info).digest("hex")
 }
