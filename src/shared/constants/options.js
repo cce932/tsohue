@@ -29,9 +29,11 @@ export const orderStatusOptions = {
   toConfirm: "待確認",
   toDeliver: "待配送",
   finish: "已完成",
+  canceled: "已取消",
 }
 
 export const STATUS_TO_CONFIRM = "toConfirm"
 export const STATUS_TO_DELIVER = "toDeliver"
 export const STATUS_FINISH = "finish"
 export const STATUS_ALL = "all"
+export const STATUS_CANCELED = "canceled"

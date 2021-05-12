@@ -4,7 +4,9 @@ import {
   STATUS_FINISH,
   STATUS_TO_CONFIRM,
   STATUS_TO_DELIVER,
+  STATUS_CANCELED,
 } from "shared/constants/options"
+
 // 把array以maxRow為限制 分為多維陣列
 export const splitToRows = (array, maxRow) => {
   const result = []
@@ -53,6 +55,7 @@ export const splitOrdersByStatus = (orders) => {
     [STATUS_TO_CONFIRM]: [],
     [STATUS_TO_DELIVER]: [],
     [STATUS_FINISH]: [],
+    [STATUS_CANCELED]: [],
   })
 
   for (const item of orders) {

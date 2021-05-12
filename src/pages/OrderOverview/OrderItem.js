@@ -1,14 +1,27 @@
 import React from "react"
+import { useDispatch } from "react-redux"
 import moment from "moment"
 
 import "shared/style/orderItem.scss"
-import { orderStatusOptions } from "shared/constants/options"
 import OrderedRecipe from "shared/components/OrderedRecipe"
+import { SolidBtn } from "shared/components/styled"
+import { cancelOrderItem } from "actions/edit"
+import { orderStatusOptions, STATUS_TO_CONFIRM } from "shared/constants/options"
 import { allPaths, orderDetail } from "shared/constants/pathName"
+import color from "shared/style/color"
 
 const OrderItem = ({ data }) => {
+  const dispatch = useDispatch()
   const toOrderDetail = (id) => () => {
     window.location = allPaths[orderDetail] + id
+  }
+
+  const cancelOrderOnClick = (id) => () => {
+    dispatch(cancelOrderItem(id)).then((data) => {
+      window.alert(
+        `已成功刪除訂單 [編號: ${data.orderNumber}]，可至 [已取消] 標籤查看`
+      )
+    })
   }
 
   return (
@@ -32,11 +45,24 @@ const OrderItem = ({ data }) => {
             customize: item.customize,
             sum: item.itemPrice,
             recipeImage: item.recipeImage,
-            isCustomize: false, // TODO: change to `item.isCustomze`, waiting for api
+            isCustomize: item.isCustomze,
             modifiable: false,
           }}
         />
       ))}
+
+      <div className="tools">
+        <SolidBtn
+          backgroundColor={
+            data.status === STATUS_TO_CONFIRM ? color.secondary : color.fifth
+          }
+          disabled={data.status !== STATUS_TO_CONFIRM}
+          margin="0"
+          onClick={cancelOrderOnClick(data.id)}
+        >
+          取消訂單
+        </SolidBtn>
+      </div>
     </div>
   )
 }

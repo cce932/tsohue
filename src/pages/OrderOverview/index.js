@@ -1,47 +1,43 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Spinner, Tabs, Tab } from "react-bootstrap"
 
 import "shared/style/orderOverview.scss"
+import OrderItem from "./OrderItem"
+import Empty from "shared/components/Empty"
 import { loadAllOrders } from "actions/load"
 import { splitOrdersByStatus } from "shared/utility/common"
-import OrderItem from "./OrderItem"
 import {
   orderStatusOptions,
   STATUS_ALL,
-  STATUS_FINISH,
   STATUS_TO_CONFIRM,
   STATUS_TO_DELIVER,
+  STATUS_FINISH,
+  STATUS_CANCELED,
 } from "shared/constants/options"
-import Empty from "shared/components/Empty"
 
 const OrderOverview = () => {
+  const { allOrders } = useSelector((state) => state.orderOverview)
+  const splitAllOrders = splitOrdersByStatus(allOrders)
   const dispatch = useDispatch()
-  const [orders, setOrders] = useState({})
 
   useEffect(() => {
     dispatch(loadAllOrders())
-      .then((data) => {
-        setOrders(splitOrdersByStatus(data))
-      })
-      .catch(() => {
-        setOrders("目前沒有訂單喔")
-      })
   }, [dispatch])
 
   return (
     <div className="order-overview">
-      {typeof orders === "object" ? (
-        orders.all?.length > 0 ? (
+      {typeof allOrders === "object" ? (
+        allOrders.length > 0 ? (
           <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
             <Tab eventKey={STATUS_ALL} title="全部">
-              {orders[STATUS_ALL].map((order) => (
+              {splitAllOrders[STATUS_ALL].map((order) => (
                 <OrderItem data={order} />
               ))}
             </Tab>
             <Tab eventKey={STATUS_TO_CONFIRM} title="待確認">
-              {orders[STATUS_TO_CONFIRM].length > 0 ? (
-                orders[STATUS_TO_CONFIRM].map((order) => (
+              {splitAllOrders[STATUS_TO_CONFIRM].length > 0 ? (
+                splitAllOrders[STATUS_TO_CONFIRM].map((order) => (
                   <OrderItem data={order} />
                 ))
               ) : (
@@ -51,8 +47,8 @@ const OrderOverview = () => {
               )}
             </Tab>
             <Tab eventKey={STATUS_TO_DELIVER} title="待配送">
-              {orders[STATUS_TO_DELIVER].length > 0 ? (
-                orders[STATUS_TO_DELIVER].map((order) => (
+              {splitAllOrders[STATUS_TO_DELIVER].length > 0 ? (
+                splitAllOrders[STATUS_TO_DELIVER].map((order) => (
                   <OrderItem data={order} />
                 ))
               ) : (
@@ -62,11 +58,24 @@ const OrderOverview = () => {
               )}
             </Tab>
             <Tab eventKey={STATUS_FINISH} title="已完成">
-              {orders[STATUS_FINISH].length > 0 ? (
-                orders[STATUS_FINISH].map((order) => <OrderItem data={order} />)
+              {splitAllOrders[STATUS_FINISH].length > 0 ? (
+                splitAllOrders[STATUS_FINISH].map((order) => (
+                  <OrderItem data={order} />
+                ))
               ) : (
                 <Empty
                   message={`目前沒有${orderStatusOptions[STATUS_FINISH]}的訂單喔`}
+                />
+              )}
+            </Tab>
+            <Tab eventKey={STATUS_CANCELED} title="已取消">
+              {splitAllOrders[STATUS_CANCELED].length > 0 ? (
+                splitAllOrders[STATUS_CANCELED].map((order) => (
+                  <OrderItem data={order} />
+                ))
+              ) : (
+                <Empty
+                  message={`目前沒有${orderStatusOptions[STATUS_CANCELED]}的訂單喔`}
                 />
               )}
             </Tab>
@@ -75,7 +84,7 @@ const OrderOverview = () => {
           <Spinner animation="border" variant="warning" role="status" />
         )
       ) : (
-        <Empty message={orders} />
+        <Empty message={allOrders} />
       )}
     </div>
   )

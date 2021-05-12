@@ -11,8 +11,12 @@ const editCartItem = (cartId, body) =>
     { headers: authHeader() }
   )
 
+const cancelOrderItem = (id) =>
+  rootAxios.patch(`/order/update/member/${id}`, {}, { headers: authHeader() })
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   deleteCartItem,
   editCartItem,
+  cancelOrderItem,
 }

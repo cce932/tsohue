@@ -34,6 +34,36 @@ export const SolidA = styled.a`
   }
 `
 
+export const SolidBtn = styled.button`
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: ${(props) => props.fontSize || "1rem"};
+  text-decoration: none;
+  letter-spacing: 0.03em;
+
+  color: ${(props) => props.color || "white"};
+  background-color: ${(props) =>
+    props.backgroundColor || props.theme.primeColor};
+  border: ${(props) => props.border || "none"};
+
+  height: fit-content;
+  padding: ${(props) => props.padding || "5px 15px"};
+  margin: ${(props) => props.margin || "5px"};
+  border-radius: 25px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    color: ${(props) => props.hoverColor || props.color || "white"};
+    background-color: ${(props) =>
+      props.hoverBackgroundColor ||
+      props.backgroundColor ||
+      props.theme.primeColor};
+    opacity: 0.8;
+    border: ${(props) => props.hoverBorder || props.border || "none"};
+  }
+`
+
 export const StrokeLabel = styled.span`
   font-family: sans-serif;
   font-weight: normal;

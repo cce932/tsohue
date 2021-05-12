@@ -1,7 +1,11 @@
 import LoadService from "services/load.service"
 import { extractErrorMsg } from "shared/utility/common"
 import { setMessage } from "./message"
-import { LOAD_RECIPES_SUCCESS } from "./types"
+import {
+  LOAD_ORDERS_SUCCESS,
+  LOAD_RECIPES_SUCCESS,
+  LOAD_ORDERS_FAILURE,
+} from "./types"
 
 export const loadRecipes = () => (dispatch) => {
   return LoadService.loadRecipes()
@@ -60,10 +64,21 @@ export const loadRecipeImagesById = (id) => (dispatch) => {
 
 export const loadAllOrders = () => (dispatch) => {
   return LoadService.loadAllOrders()
-    .then(({ data }) => Promise.resolve(data))
+    .then(({ data }) => {
+      dispatch({
+        type: LOAD_ORDERS_SUCCESS,
+        payload: data,
+      })
+    })
     .catch((error) => {
       const message = extractErrorMsg(error)
+
+      dispatch({
+        type: LOAD_ORDERS_FAILURE,
+        payload: "目前沒有訂單喔",
+      })
       dispatch(setMessage(message))
+
       return Promise.reject(message)
     })
 }
