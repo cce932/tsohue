@@ -10,6 +10,7 @@ import {
   FaAngleUp,
 } from "react-icons/fa"
 import { CgClose } from "react-icons/cg"
+// import { OverlayTrigger } from "react-bootstrap"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "shared/style/components/checkbox.scss"
@@ -24,7 +25,8 @@ import NotFound from "pages/NotFound"
 import ShoppingCart from "pages/ShoppingCart"
 import Order from "pages/Order"
 import OrderDetail from "pages/OrderDetail"
-import CartPopup from "pages/ShoppingCart/popup"
+import OrderSuccess from "pages/Order/OrderSuccess"
+// import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
 import { loadRecipes } from "actions/load"
@@ -42,8 +44,6 @@ import {
   orderOverview,
   orderDetail,
 } from "shared/constants/pathName"
-import { OverlayTrigger } from "react-bootstrap"
-import OrderSuccess from "pages/Order/OrderSuccess"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -169,7 +169,7 @@ const App = () => {
             </li>
 
             <li>
-              <OverlayTrigger placement="bottom" overlay={<CartPopup />}>
+              {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
                 <button className="icon">
                   <Link
                     className="icon"
@@ -178,7 +178,7 @@ const App = () => {
                     <FaShoppingCart size="18px" />
                   </Link>
                 </button>
-              </OverlayTrigger>
+              {/* </OverlayTrigger> */}
             </li>
 
             <li>
