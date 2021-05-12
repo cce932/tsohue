@@ -1,5 +1,6 @@
 import React from "react"
 import { Router, Link } from "react-router-dom"
+import { Carousel } from 'react-bootstrap';
 
 import "shared/style/home.scss"
 import { history } from "helpers/history"
@@ -13,19 +14,45 @@ const Home = () => {
     <Router history={history}>
       <div className="home pages">
         {/* 主banner */}
-        <div className="main-banner">
-          <div className="slogan">
-            <label>作伙料理小師傅</label>
-            <br />
-            <label> 享受美食第一步</label>
-            {/* <p>TsoHue / Right amount for you</p> */}
-          </div>
-          <img
-            className="banner"
-            src="/home-pic/banner1.jpg"
-            alt="Main banner"
-          ></img>
-        </div>
+        <Carousel fade>
+                <Carousel.Item className="header-carousel-item bg-cover">
+                    <img
+                        className="d-block w-100"
+                        src="/home-pic/banner2.jpg"
+                        alt="Second slide"
+                    />
+
+                    {/* <Carousel.Caption>
+                        <h3>Cook</h3>
+                        <p>Enjoy Life, Enjoy Food, Enjoy the Process <br />Tsoheu Took you to Culinary World.
+                        </p>
+                    </Carousel.Caption> */}
+                </Carousel.Item>
+                <Carousel.Item className="header-carousel-item bg-cover">
+                    <img
+                        className="d-block w-100"
+                        src="/home-pic/health.jpg"
+                        alt="Second slide"
+                    />
+
+                    <Carousel.Caption>
+                        <h3>Fast and Convenience</h3>
+                        <p>Let Tsohue brings <br />What you need every day.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item className="header-carousel-item bg-cover">
+                    <img
+                        className="d-block w-100"
+                        src="/home-pic/veg.jpg"
+                        alt="Third slide"
+                    />
+
+                    <Carousel.Caption>
+                        <h3>Health</h3>
+                        <p>We take care your health.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
 
         {/* 特色區 */}
         <div className={`container feature`}>

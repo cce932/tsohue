@@ -1,132 +1,162 @@
 @import "global";
+.btn {
+    border-width: 2px;
+}
+
+.feature-img {
+    width: 450px;
+    // margin-left: 20%;
+    background-size: cover;
+    /* 以中間內容為主呈現 */
+    background-position: center;
+}
+
+.rotate {
+    transform: rotate(45deg);
+    p {
+        transform: rotate(-45deg); // 轉回來
+        padding-right: 4px; // 微調 字往右
+    }
+}
+
+.show {
+    border: 1px;
+    border-color: black;
+}
+
+.feature {
+    font-family: 'Microsoft JhengHei';
+    color: rgba(117, 87, 52, 1);
+    font-weight: bold;
+}
+
+.form-control {
+    border-width: 2px;
+}
+
+.header-carousel-item {
+    height: 750px;
+    p,
+    h3 {
+        font-weight: 600;
+        font-family: 'Times New Roman', Times, serif;
+    }
+}
+
+.bg-cover {
+    background-size: cover;
+    /* 以中間內容為主呈現 */
+    background-position: center;
+}
+
+.carousel-caption {
+    color: rgba(117, 87, 52, 1);
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
 
 div.home {
-  margin: 0 !important;
-
-  .main-banner {
-    position: relative;
-
-    .slogan {
-      position: absolute;
-      top: 35%;
-      left: 65%;
-
-      :nth-child(3) {
-        padding-left: 20px;
-      }
-
-      label {
-        @include text(600, 3.5rem, $prime-color);
-      }
-
-      // p {
-      //   @include text(600, 1rem, $prime-color);
-      //   margin: 50px 8px 0;
-      // }
-    }
-
-    .banner {
-      width: 100%;
-    }
-  }
-
-  .feature {
-    .col {
-      height: 300px;
-
-      .sc {
-        width: 70px;
-        height: 70px;
-        background-color: $accent-color;
-        border-radius: 48%;
-        border: solid #ffffff 10px;
-        // margin: 0 auto; // 在父div內 水平置中sc
-
-        p {
-          @include text(600, 24px, $prime-color);
-          text-align: center;
-          padding: 8px 0 0; // 微調 字往下
+    margin: 0 !important;
+    .main-banner {
+        position: relative;
+        .slogan {
+            position: absolute;
+            top: 35%;
+            left: 65%;
+             :nth-child(3) {
+                padding-left: 20px;
+            }
+            label {
+                @include text(600, 3.5rem, $prime-color);
+            }
+            // p {
+            //   @include text(600, 1rem, $prime-color);
+            //   margin: 50px 8px 0;
+            // }
         }
-      }
-
-      .rotate {
-        transform: rotate(45deg);
-        p {
-          transform: rotate(-45deg); // 轉回來
-          padding-right: 4px; // 微調 字往右
+        .banner {
+            width: 100%;
         }
-      }
     }
-
-    .col-8 > .row {
-      display: flex;
-      position: relative;
-      // padding: 0 70px; // 讓4個.feature更水平集中
-
-      .arrow {
-        z-index: -2;
-        width: 99%;
-        // margin: 0 -20; // 對應到.col-9 > .row的padding左右20px 這邊為了不讓line變短
-        position: absolute; // 讓他橫跨在4個col之間
-        top: 120px; // 絕對位置
-        left: 20px; // 絕對位置
-        display: flex; // 讓.lin .point 水平置中
-        align-items: center; // 讓.lin .point 水平置中
-
-        .line {
-          width: 100%;
-          height: 2px;
-          background: linear-gradient(90deg, $accent-color 40%, $vice-color);
+    .feature {
+        .col {
+            height: 300px;
+            .sc {
+                width: 70px;
+                height: 70px;
+                background-color: $accent-color;
+                border-radius: 48%;
+                border: solid #ffffff 10px;
+                // margin: 0 auto; // 在父div內 水平置中sc
+                p {
+                    @include text(600, 24px, $prime-color);
+                    text-align: center;
+                    padding: 8px 0 0; // 微調 字往下
+                }
+            }
+            .rotate {
+                transform: rotate(45deg);
+                p {
+                    transform: rotate(-45deg); // 轉回來
+                    padding-right: 4px; // 微調 字往右
+                }
+            }
         }
-
-        .point {
-          width: 0;
-          height: 0;
-          border-top: 5px solid transparent;
-          border-bottom: 5px solid transparent;
-          border-left: 10px solid $vice-color;
+        .col-8>.row {
+            display: flex;
+            position: relative;
+            // padding: 0 70px; // 讓4個.feature更水平集中
+            .arrow {
+                z-index: -2;
+                width: 99%;
+                // margin: 0 -20; // 對應到.col-9 > .row的padding左右20px 這邊為了不讓line變短
+                position: absolute; // 讓他橫跨在4個col之間
+                top: 120px; // 絕對位置
+                left: 20px; // 絕對位置
+                display: flex; // 讓.lin .point 水平置中
+                align-items: center; // 讓.lin .point 水平置中
+                .line {
+                    width: 100%;
+                    height: 2px;
+                    background: linear-gradient(90deg, $accent-color 40%, $vice-color);
+                }
+                .point {
+                    width: 0;
+                    height: 0;
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                    border-left: 10px solid $vice-color;
+                }
+            }
         }
-      }
-    }
-
-    .col-3 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 50px;
-
-      a {
-        @include text(600, 36px, $prime-color);
-        // border-bottom: dashed 4px $accent-color;
-        line-height: 1.15;
-        transition: $default-trans;
-
-        &:hover {
-          color: $accent-deeper-color;
-          // border-bottom: dashed 4px $vice-color;
+        .col-3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 50px;
+            a {
+                @include text(600, 36px, $prime-color);
+                // border-bottom: dashed 4px $accent-color;
+                line-height: 1.15;
+                transition: $default-trans;
+                &:hover {
+                    color: $accent-deeper-color;
+                    // border-bottom: dashed 4px $vice-color;
+                }
+            }
         }
-      }
     }
-  }
-
-  .monthly-special {
-    position: relative;
-    margin-bottom: 50px;
-
-    .how-cook {
-      position: absolute;
-      top: 450px;
-      right: 28px;
-      @include solid(
-        $accent-deeper-color,
-        $prime-color,
-        $prime-color,
-        5px 20px
-      );
-
-      a {
-        @include text(600, 24px, #ffffff);
-      }
+    .monthly-special {
+        position: relative;
+        margin-bottom: 50px;
+        .how-cook {
+            position: absolute;
+            top: 450px;
+            right: 28px;
+            @include solid( $accent-deeper-color, $prime-color, $prime-color, 5px 20px);
+            a {
+                @include text(600, 24px, #ffffff);
+            }
+        }
     }
-  }
 }
