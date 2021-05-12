@@ -1,4 +1,4 @@
-import {SET_MESSAGE} from "actions/types"
+import { SET_MESSAGE } from "actions/types"
 import {
   BAD_REQUEST,
   UNEXPECTED_ERROR,
@@ -8,11 +8,11 @@ import {
   LOGIN_FAILURE,
   CONFLICT,
 } from "shared/constants/error"
-import {logout} from "actions/auth"
+import { logout } from "actions/auth"
 
 const handleError = (store) => (next) => (action) => {
-    if (action.type === SET_MESSAGE) {
-    const { status, message, debugMessage, next } = action.payload
+  if (action.type === SET_MESSAGE) {
+    const { status, message, debugMessage, next: from } = action.payload
 
     switch (status) {
       case BAD_REQUEST:
@@ -29,7 +29,7 @@ const handleError = (store) => (next) => (action) => {
         break
       case UNAUTHORIZED:
         if (message === LOGIN_FAILURE) {
-          window.location = `/login?next=${next}`
+          window.location = `/login?next=${from || window.location.pathname}`
           window.alert("請登入")
         }
         break
