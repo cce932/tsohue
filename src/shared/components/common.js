@@ -54,11 +54,11 @@ export const Footer = ({ links, linksMaxRow = 5 }) => {
     <div className="container-bg">
       <div className={`footer container`} id="footer">
         <div className="row">
-          <div className={`col col-9 left`}>
+          <div className="left">
             <label>TsoHue / 作伙</label>
             <div className="links">{splited}</div>
           </div>
-          <div className={`col col-3 right`}>
+          <div className="right">
             <div className="media-icons">
               <a href="https://www.ntust.edu.tw/home.php">
                 <img src="/common-pic/fb.svg" alt="Facebook" />

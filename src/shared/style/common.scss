@@ -71,6 +71,7 @@
 
     .left {
       border-right: solid 1px $prime-color;
+      flex: 3;
 
       label {
         @include text(700, 18px, $prime-color);
@@ -93,6 +94,7 @@
 
     .right {
       padding-left: 50px;
+      flex: 1;
 
       .media-icons {
         display: flex;
