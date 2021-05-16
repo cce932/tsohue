@@ -14,7 +14,6 @@ export const allPaths = {
   訂購: "/order",
   orderSuccess: "/order/success",
   event: "/event",
-  sale: "/sale",
   instruction: "/instruction",
   favorite: "/favorite",
   升級VIP: "/vip",
