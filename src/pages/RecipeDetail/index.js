@@ -24,10 +24,14 @@ const RecipeDetail = (props) => {
   const [recipe, setRecipe] = useState({})
   const [images, setImages] = useState([])
   const id = props.match.params.id
+  const [description, setDescription] = useState([])
 
   useEffect(() => {
     dispatch(loadRecipeById(id))
-      .then((data) => setRecipe(data))
+      .then((data) => {
+        setRecipe(data)
+        setDescription(data.currentRecipe.description.split("\n"))
+      })
       .catch((error) => {
         if (error.status === "NOT_FOUND")
           window.location = allPaths[recipeNotFound]
@@ -78,7 +82,7 @@ const RecipeDetail = (props) => {
               </div>
 
               <div className="description">
-                {recipe.currentRecipe.description}
+                {description && description.map((des) => <p>{des}</p>)}
               </div>
             </Col>
             <Col sm={7}>

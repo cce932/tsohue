@@ -80,11 +80,11 @@ div.recipe-detail {
       }
     }
 
-    div.description {
+    div.description > p {
       @include text(normal, 0.9rem, $prime-color);
-
-      max-width: 350px;
-      text-align: left;
+      line-height: 1;
+      overflow: hidden;
+      margin-bottom: 10px;
     }
   }
 
