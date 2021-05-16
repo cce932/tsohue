@@ -1,87 +1,94 @@
 @import "global";
-
 * {
-  @include root;
-  > div.pages {
-    flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
-    margin-top: 150px;
-  }
+    @include root;
+    >div.pages {
+        flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
+        margin-top: 150px;
+    }
 }
 
 div.spinner-border {
-  margin: 10% 45%;
+    margin: 10% 45%;
 }
 
 p.no-result {
-  @include text(bold, 1.5rem, $accent-deeper-color);
-  margin: 10% 25%;
+    @include text(bold, 1.5rem, $accent-deeper-color);
+    margin: 10% 25%;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 10px 10%;
-  position: fixed; // 固定在上
-  top: 0; // 固定在上
-  width: 100%; // 固定在上
-  background-color: rgba($color: #ffffff, $alpha: 80%);
-  z-index: 999;
-  backdrop-filter: blur(6px); // has minimal browser support
+.col-1 {
+    margin-top: 8px;
+    margin-left: 20px;
+}
 
-  .logo-a {
-    margin-right: auto;
-  }
+.nav-text {
+    font-family: sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    color: #755734 !important;
+    text-decoration: none !important;
+    letter-spacing: 0.03em !important;
+}
 
-  .logo {
-    width: 110px !important;
-  }
-
-  .nav-ul {
-    margin: 0; // 因為bootstrap的預設reboot會導致margin-botton: 1rem，所以這邊先還原
-
-    li {
-      /* li原本是block的 */
-      display: inline-block;
-      transition: $default-trans;
-      background-color: rgba($color: #000000, $alpha: 0);
-
-      &:hover {
-        opacity: 0.6;
-      }
-
-      a,
-      button.search {
-        @include text();
-        padding: 0 20px;
-      }
-
-      a:nth-child(5) {
-        padding-right: 0;
-      }
-
-      button.icon,
-      a.icon {
-        padding-left: 0;
-      }
+.header-bar {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding: 10px 10% !important;
+    position: fixed !important; // 固定在上
+    top: 0 !important; // 固定在上
+    width: 100% !important; // 固定在上
+    background-color: rgba($color: #ffffff, $alpha: 80%) !important;
+    z-index: 999 !important;
+    backdrop-filter: blur(6px) !important; // has minimal browser support
+    .logo-a {
+        margin-right: auto !important;
     }
-  }
-
-  input#search {
-    @include default-input(170px);
-    margin-right: -10px;
-  }
+    .logo {
+        width: 110px !important;
+        margin-right: 5rem !important;
+    }
+    .nav-ul {
+        margin: 0; // 因為bootstrap的預設reboot會導致margin-botton: 1rem，所以這邊先還原
+        li {
+            /* li原本是block的 */
+            display: inline-block !important;
+            transition: $default-trans !important;
+            background-color: rgba($color: #000000, $alpha: 0) !important;
+            &:hover {
+                opacity: 0.6 !important;
+            }
+            a,
+            button.search {
+                @include text();
+                padding: 0 20px;
+            }
+            a:nth-child(5) {
+                padding-right: 0 !important;
+            }
+            button.icon,
+            a.icon {
+                margin-top: 7px;
+                padding-left: 0 !important;
+            }
+        }
+    }
+    input#search {
+        @include default-input(170px);
+        margin-right: -10px;
+        margin-top: 8px
+    }
 }
 
 a#to-top {
-  visibility: hidden;
-  display: block;
-  box-shadow: $shadow-deeper;
-  background-color: white;
-  position: fixed;
-  border-radius: 25px;
-  padding: 8px;
-  bottom: 25px;
-  right: 20px;
-  z-index: 900;
+    visibility: hidden;
+    display: block;
+    box-shadow: $shadow-deeper;
+    background-color: white;
+    position: fixed;
+    border-radius: 25px;
+    padding: 8px;
+    bottom: 25px;
+    right: 20px;
+    z-index: 900;
 }

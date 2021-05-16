@@ -44,6 +44,7 @@ import {
   orderOverview,
   orderDetail,
 } from "shared/constants/pathName"
+import { Form, Nav, Navbar } from "react-bootstrap"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -117,45 +118,47 @@ const App = () => {
   }
   return (
     <Router history={history}>
-      <header>
-        <Link to={"/"} className="logo-a">
-          <img className="logo" src="/nav-pic/logo.svg" alt="logo" />
-        </Link>
-        <nav>
-          <ul className="nav-ul">
-            <li>
-              <input
-                type="text"
-                id="search"
-                onChange={queryOnChange}
-                placeholder="搜尋烹飪包"
-              />
-              {isEmpty ? (
-                <button className="search" onClick={searchOnClick}>
-                  <FaSearch fill="#755734" />
-                </button>
-              ) : (
-                <button className="search" onClick={clearOnClick}>
-                  <CgClose stroke-width="2px" fill="#755734" />
-                </button>
-              )}
-            </li>
-            <li>
-              <Link to={allPaths.event}>特價活動</Link>
-            </li>
-            <li>
-              <Link to={allPaths.sale}>惜福良品</Link>
-            </li>
-            <li>
-              <Link to={allPaths[recipes]}>{recipes}</Link>
-            </li>
-            <li>
-              <Link to={allPaths.instruction}>訂購流程</Link>
-            </li>
-            <li>|</li>
 
-            <li>
-              <button className="icon">
+      <Navbar bg="light" expand="lg" className="nav-ul header-bar">
+        <Navbar.Brand href='/'><img className='logo' src='/nav-pic/logo.svg' alt='logo' /></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="ml-auto my-2 my-lg-0 nav-ul"
+            navbarScroll
+          >
+            <Form className="d-flex">
+              <li>
+                <input
+                  type="text"
+                  id="search"
+                  onChange={queryOnChange}
+                  placeholder="搜尋烹飪包"
+                />
+                {isEmpty ? (
+                  <button className="search" onClick={searchOnClick}>
+                    <FaSearch fill="#755734" />
+                  </button>
+                ) : (
+                  <button className="search" onClick={clearOnClick}>
+                    <CgClose stroke-width="2px" fill="#755734" />
+                  </button>
+                )}
+              </li>
+            </Form>
+
+            <Nav.Link href={allPaths.event} className="nav-text">特價活動</Nav.Link>
+            <Nav.Link href={allPaths.sale} className="nav-text">惜福良品</Nav.Link>
+            <Nav.Link href={allPaths[recipes]} className="nav-text">{recipes}</Nav.Link>
+            <Nav.Link href={allPaths.instruction} className="nav-text">訂購流程</Nav.Link>
+
+            <Nav>
+              <div className="row">
+                <div className="col-1">
+                  |
+                </div>
+
+              <li><button className="icon">
                 <Link
                   to={
                     currentUser
@@ -166,10 +169,9 @@ const App = () => {
                   <FaUser />
                 </Link>
               </button>
-            </li>
-
-            <li>
-              {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
+              </li>
+              <li>
+                {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
                 <button className="icon">
                   <Link
                     className="icon"
@@ -178,19 +180,26 @@ const App = () => {
                     <FaShoppingCart size="18px" />
                   </Link>
                 </button>
-              {/* </OverlayTrigger> */}
-            </li>
+              </li>
+              <li>
+                {/* </OverlayTrigger> */}
+                <button className="icon">
+                  <Link className="icon" to={allPaths.favorite}>
+                    <FaHeart />
+                  </Link>
+                </button>
+              </li>
+            
+              </div>
+            </Nav>
 
-            <li>
-              <button className="icon">
-                <Link className="icon" to={allPaths.favorite}>
-                  <FaHeart />
-                </Link>
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
+
+          </Nav>
+
+        </Navbar.Collapse>
+      </Navbar>
+
+
 
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a href="#" id="to-top">
