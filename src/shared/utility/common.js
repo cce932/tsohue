@@ -77,5 +77,5 @@ export const splitOrdersByStatus = (orders) => {
 }
 
 export const encrypt = (info, key = "%E9%A3%9F%E8%AD%9C") => {
-  return crypto.createHmac("sha256", key).update(info).digest("hex")
+  return crypto.createHash("sha256").update(info).digest("hex")
 }
