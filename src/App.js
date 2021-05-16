@@ -120,7 +120,7 @@ const App = () => {
     <Router history={history}>
 
       <Navbar bg="light" expand="lg" className="nav-ul header-bar">
-        <Navbar.Brand href='/'><img className='logo' src='/nav-pic/logo.svg' alt='logo' /></Navbar.Brand>
+        <img className='logo' src='/nav-pic/logo.svg' alt='logo' />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -154,42 +154,39 @@ const App = () => {
 
             <Nav>
               <div className="row">
-                <div className="col-1">
-                  |
-                </div>
 
-              <li><button className="icon">
-                <Link
-                  to={
-                    currentUser
-                      ? allPaths[member] + allPaths[orderOverview]
-                      : allPaths[register]
-                  }
-                >
-                  <FaUser />
-                </Link>
-              </button>
-              </li>
-              <li>
-                {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
-                <button className="icon">
+                <li><button className="icon">
                   <Link
-                    className="icon"
-                    to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
+                    to={
+                      currentUser
+                        ? allPaths[member] + allPaths[orderOverview]
+                        : allPaths[register]
+                    }
                   >
-                    <FaShoppingCart size="18px" />
+                    <FaUser />
                   </Link>
                 </button>
-              </li>
-              <li>
-                {/* </OverlayTrigger> */}
-                <button className="icon">
-                  <Link className="icon" to={allPaths.favorite}>
-                    <FaHeart />
-                  </Link>
-                </button>
-              </li>
-            
+                </li>
+                <li>
+                  {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
+                  <button className="icon">
+                    <Link
+                      className="icon"
+                      to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
+                    >
+                      <FaShoppingCart size="18px" />
+                    </Link>
+                  </button>
+                </li>
+                <li>
+                  {/* </OverlayTrigger> */}
+                  <button className="icon">
+                    <Link className="icon" to={allPaths.favorite}>
+                      <FaHeart />
+                    </Link>
+                  </button>
+                </li>
+
               </div>
             </Nav>
 

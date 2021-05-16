@@ -21,6 +21,14 @@ p.no-result {
     margin-left: 20px;
 }
 
+.feature-img {
+    width: 450px;
+    // margin-left: 20%;
+    background-size: cover;
+    /* 以中間內容為主呈現 */
+    background-position: center;
+}
+
 .nav-text {
     font-family: sans-serif !important;
     font-weight: 700 !important;
@@ -32,9 +40,8 @@ p.no-result {
 
 .header-bar {
     display: flex !important;
-    justify-content: flex-end !important;
+    // justify-content: flex-end !important;
     align-items: center !important;
-    padding: 10px 10% !important;
     position: fixed !important; // 固定在上
     top: 0 !important; // 固定在上
     width: 100% !important; // 固定在上
@@ -47,6 +54,7 @@ p.no-result {
     .logo {
         width: 110px !important;
         margin-right: 5rem !important;
+        margin-left: 10%;
     }
     .nav-ul {
         margin: 0; // 因為bootstrap的預設reboot會導致margin-botton: 1rem，所以這邊先還原
@@ -68,7 +76,7 @@ p.no-result {
             }
             button.icon,
             a.icon {
-                margin-top: 7px;
+                margin-top: 4px;
                 padding-left: 0 !important;
             }
         }
@@ -91,4 +99,27 @@ a#to-top {
     bottom: 25px;
     right: 20px;
     z-index: 900;
+}
+
+@media (max-width: 450px) {
+    * {
+        font-size: 0.9rem;
+    }
+    .header-bar {
+        .logo {
+            width: 80px !important;
+        }
+    }
+    .navbar {
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 987px) {
+    .header-bar {
+        align-items: center !important;
+        .logo {
+            width: 80px !important;
+        }
+    }
 }

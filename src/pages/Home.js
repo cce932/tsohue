@@ -42,39 +42,41 @@ const Home = () => {
         {/* 特色區 */}
         <div className={`container feature`}>
           <div className="row">
-            <div className="col col-1"></div>
-            <div className="col col-8">
+            <div className="col-12 mt-5" >
               <div className="row">
-                <div className="arrow">
+                <div className="arrow col-sm-12">
                   <div className="line"></div>
                   <div className="point"></div>
                 </div>
                 <FeatureSlot
+                  className="col-sm-6"
                   title="源"
                   content1="適量選購"
                   content2="與能源作伙"
                 />
                 <FeatureSlot
+                  className="col-sm-6"
                   title="食"
                   content1="精緻食譜"
                   content2="與廚食作伙"
                 />
                 <FeatureSlot
+                  className="col-sm-6"
                   title="康"
                   content1="原料透明"
                   content2="與健康作伙"
                 />
                 <FeatureSlot
+                  className="col-sm-6"
                   title="學"
                   content1="料理教學"
                   content2="與科技作伙"
                 />
               </div>
             </div>
-
-            <div className="col col-3">
+            {/* <div className="howtobuy col-12">
               <Link to="#">怎麼買 ?</Link>
-            </div>
+            </div> */}
           </div>
         </div>
 

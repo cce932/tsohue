@@ -1,125 +1,106 @@
 @import "global";
-
 .feature-slot {
-  display: flex;
-  flex-direction: column; // 讓.sc和p 上下排
-  justify-content: center; // 在父層div內 垂直置中
-
-  & > p {
-    @include text(500, 16px, $prime-color);
-    margin: 5px 0 0 12px;
-  }
+    display: flex;
+    flex-direction: column; // 讓.sc和p 上下排
+    justify-content: center; // 在父層div內 垂直置中
+    text-align: center !important;
+    align-items: center;
+    &>p {
+        @include text(500, 16px, $prime-color);
+        margin: 0 0 0 0;
+    }
 }
 
 .monthly-special {
-  position: relative;
-  img {
-    width: 90%;
-  }
-
-  .special {
-    position: absolute;
-    top: 150px;
-    right: 28px;
-
-    label {
-      @include text(700, 18px, $accent-deeper-color);
+    position: relative;
+    img {
+        width: 90%;
     }
-    .title {
-      @include text(700, 36px, $prime-color);
-      margin: 0 0 20px;
-      border-bottom: 5px solid $accent-color;
-    }
-
-    // img {
-    //   margin-bottom: 20px;
-    //   width: 252px;
-    //   height: 15px;
-    // }
-
-    .gredients {
-      @include text(500, 16px, $prime-color);
-      display: flex;
-      flex-direction: row;
-      margin-left: 2px;
-
-      .g-row {
-        width: 100px;
-
-        p {
-          margin-bottom: 3px;
+    .special {
+        position: absolute;
+        top: 150px;
+        right: 28px;
+        label {
+            @include text(700, 18px, $accent-deeper-color);
         }
-      }
+        .title {
+            @include text(700, 36px, $prime-color);
+            margin: 0 0 20px;
+            border-bottom: 5px solid $accent-color;
+        }
+        // img {
+        //   margin-bottom: 20px;
+        //   width: 252px;
+        //   height: 15px;
+        // }
+        .gredients {
+            @include text(500, 16px, $prime-color);
+            display: flex;
+            flex-direction: row;
+            margin-left: 2px;
+            .g-row {
+                width: 100px;
+                p {
+                    margin-bottom: 3px;
+                }
+            }
+        }
     }
-  }
 }
 
 .container-bg {
-  background-color: $accent-color;
-  width: 100vw;
-
-  .footer {
-    @include text(500, 14px, $prime-color);
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .row {
-      width: 100%;
-    }
-
-    .left {
-      border-right: solid 1px $prime-color;
-      flex: 3;
-
-      label {
-        @include text(700, 18px, $prime-color);
-        margin-bottom: 20px;
-      }
-
-      .links {
+    background-color: $accent-color;
+    width: 100vw;
+    .footer {
+        @include text(500, 14px, $prime-color);
+        height: 300px;
         display: flex;
-        flex-direction: row;
-
-        .g-row {
-          margin-right: 40px;
+        justify-content: center;
+        align-items: center;
+        .row {
+            width: 100%;
         }
-
-        p {
-          margin-bottom: 3px;
+        .left {
+            border-right: solid 1px $prime-color;
+            flex: 3;
+            label {
+                @include text(700, 18px, $prime-color);
+                margin-bottom: 20px;
+            }
+            .links {
+                display: flex;
+                flex-direction: row;
+                .g-row {
+                    margin-right: 40px;
+                }
+                p {
+                    margin-bottom: 3px;
+                }
+            }
         }
-      }
+        .right {
+            padding-left: 50px;
+            flex: 1;
+            .media-icons {
+                display: flex;
+                flex-direction: row;
+                button {
+                    background-color: transparent;
+                    border: 0;
+                    outline: 0;
+                    &:hover {
+                        transition: $default-trans;
+                        opacity: 70%;
+                    }
+                }
+                img {
+                    margin: 0 15px 20px 0;
+                    cursor: pointer;
+                }
+            }
+            p {
+                margin-bottom: 3px;
+            }
+        }
     }
-
-    .right {
-      padding-left: 50px;
-      flex: 1;
-
-      .media-icons {
-        display: flex;
-        flex-direction: row;
-
-        button {
-          background-color: transparent;
-          border: 0;
-          outline: 0;
-
-          &:hover {
-            transition: $default-trans;
-            opacity: 70%;
-          }
-        }
-
-        img {
-          margin: 0 15px 20px 0;
-          cursor: pointer;
-        }
-      }
-
-      p {
-        margin-bottom: 3px;
-      }
-    }
-  }
 }

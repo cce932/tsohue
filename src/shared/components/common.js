@@ -5,8 +5,8 @@ import { splitToRows } from "../utility/common"
 
 export const FeatureSlot = ({ title, content1, content2 }) => (
   <div className={`col feature-slot`}>
-    <div className="sc">
-      <p>{title}</p>
+    <div className="sc row">
+      <p className="col-sm-12">{title}</p>
     </div>
     <p>
       {content1}
