@@ -26,14 +26,14 @@ const Home = () => {
           <Carousel.Item className="header-carousel-item bg-cover">
             <img
               className="d-block w-100"
-              src="/home-pic/banner1.jpg"
+              src="/static-page-pic/home-banner1.jpg"
               alt="Second slide"
             />
           </Carousel.Item>
           <Carousel.Item className="header-carousel-item bg-cover">
             <img
               className="d-block w-100"
-              src="/home-pic/banner2.jpg"
+              src="/static-page-pic/home-banner2.jpg"
               alt="Second slide"
             />
           </Carousel.Item>

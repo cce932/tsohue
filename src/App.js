@@ -26,6 +26,7 @@ import ShoppingCart from "pages/ShoppingCart"
 import Order from "pages/Order"
 import OrderDetail from "pages/OrderDetail"
 import OrderSuccess from "pages/Order/OrderSuccess"
+import AboutUs from "pages/AboutUs"
 // import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
@@ -44,6 +45,7 @@ import {
   orderOverview,
   orderDetail,
   vip,
+  aboutUs,
 } from "shared/constants/pathName"
 import Vip from "pages/Vip"
 
@@ -221,6 +223,7 @@ const App = () => {
           path={allPaths[orderDetail] + ":id"}
           component={OrderDetail}
         />
+        <Route exact path={allPaths[aboutUs]} component={AboutUs} />
         <Route
           path={""}
           render={() => <NotFound message="敬請期待 新功能即將上線" />}

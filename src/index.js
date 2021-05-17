@@ -7,16 +7,17 @@ import reportWebVitals from "./reportWebVitals"
 import { Provider } from "react-redux"
 import { Footer } from "./shared/components/common"
 import { ThemeProvider, css } from "styled-components"
+import { aboutUs, allPaths } from "shared/constants/pathName"
 
 const footerLinks = [
-  "關於我們",
-  "常見問答",
-  "售後服務",
-  "會員權益",
-  "隱私保護",
-  "門市位置",
-  "企業徵才",
-  "異業合作",
+  { title: "關於我們", href: allPaths[aboutUs] },
+  { title: "常見問答", href: "/developing" },
+  { title: "售後服務", href: "/developing" },
+  { title: "會員權益", href: "/developing" },
+  { title: "隱私保護", href: "/developing" },
+  { title: "門市位置", href: "/developing" },
+  { title: "企業徵才", href: "/developing" },
+  { title: "異業合作", href: "/developing" },
 ]
 
 const theme = {
@@ -37,7 +38,7 @@ const theme = {
   vageColor: "#7ca390",
   font: css`
     font-family: sans-serif;
-    text-decoration: none;
+    text-decoration: developing;
     letter-spacing: 0.03em;
   `,
   defaultShadow: "0px 0px 15px rgba(183, 186, 191, 0.3)",

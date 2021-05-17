@@ -46,9 +46,9 @@ export const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
 }
 
 export const Footer = ({ links, linksMaxRow = 5 }) => {
-  const styled = links.map((link, index) => <p key={index}>{link}</p>)
+  const styled = links.map((link, index) => <a href={link.href} key={index}>{link.title}</a>)
   const splited = splitToRows(styled, linksMaxRow).map((links, index) => (
-    <div className="g-row" key={index}>
+    <div className="g-row" key={index} >
       {links}
     </div>
   ))

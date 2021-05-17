@@ -86,8 +86,10 @@
           margin-right: 40px;
         }
 
-        p {
+        a {
+          display: block;
           margin-bottom: 3px;
+          color: $prime-color;
         }
       }
     }
