@@ -1,3 +1,8 @@
+export const roleOptions = {
+  MEMBER: "一般會員",
+  VIP: "VIP",
+}
+
 export const versionOptions = {
   NORMAL: "正常",
   LOWFAT: "低脂",

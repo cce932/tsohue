@@ -17,6 +17,7 @@ import {
   profile,
 } from "shared/constants/pathName"
 import OrderOverview from "./OrderOverview"
+import Profile from "./Profile"
 import Empty from "shared/components/Empty"
 
 const Member = () => {
@@ -62,18 +63,16 @@ const Member = () => {
     <BrowserRouter basename={allPaths[member]} history={history}>
       <div className="member container pages">
         <SideList items={sideListItems} />
-
-        {/* <p>您好, {currentUser.username}</p>
-          <p>ID: {currentUser.id}</p>
-          <p>名稱: {currentUser.username}</p>
-          <p>郵件: {currentUser.email}</p>
-          {currentUser.roles && <div>currentUser.roles</div>} */}
-
         <Switch>
           <Route
             exact
             path={allPaths[orderOverview]}
             component={OrderOverview}
+          />
+          <Route
+            exact
+            path={allPaths[profile]}
+            render={() => <Profile currentUser={currentUser} />}
           />
           <Route
             path={allPaths[coupons]}
