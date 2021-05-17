@@ -17,6 +17,7 @@ export const allPaths = {
   sale: "/sale",
   instruction: "/instruction",
   favorite: "/favorite",
+  升級VIP: "/vip",
 }
 
 export const home = "首頁"
@@ -33,3 +34,4 @@ export const recipeNotFound = "無此烹飪包"
 export const shoppingCart = "購物車"
 export const order = "訂購"
 export const orderDetail = "訂單詳細"
+export const vip = "升級VIP"

@@ -30,7 +30,10 @@ export const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
 
   return (
     <div className="monthly-special">
-      <img src="/home-pic/monthlySpecial.jpg" alt="Monthly special" />
+      <img
+        src="/static-page-pic/home-monthlySpecial.jpg"
+        alt="Monthly special"
+      />
 
       <div className="special">
         <label>本月特餐</label>

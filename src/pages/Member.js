@@ -12,11 +12,12 @@ import {
   coupons,
   home,
   logout as logoutName,
+  member,
   orderOverview,
   profile,
 } from "shared/constants/pathName"
 import OrderOverview from "./OrderOverview"
-import Empty from 'shared/components/Empty'
+import Empty from "shared/components/Empty"
 
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -58,7 +59,7 @@ const Member = () => {
   ]
 
   return (
-    <BrowserRouter basename="/member" history={history}>
+    <BrowserRouter basename={allPaths[member]} history={history}>
       <div className="member container pages">
         <SideList items={sideListItems} />
 
@@ -69,7 +70,11 @@ const Member = () => {
           {currentUser.roles && <div>currentUser.roles</div>} */}
 
         <Switch>
-          <Route exact path={allPaths[orderOverview]} component={OrderOverview} />
+          <Route
+            exact
+            path={allPaths[orderOverview]}
+            component={OrderOverview}
+          />
           <Route
             path={allPaths[coupons]}
             render={() => (

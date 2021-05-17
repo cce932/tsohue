@@ -64,7 +64,7 @@ export const SolidBtn = styled.button`
   }
 `
 
-export const StrokeLabel = styled.span`
+export const StrokeSpan = styled.span`
   font-family: sans-serif;
   font-weight: normal;
   font-size: ${(props) => props.size || "0.8rem"};
@@ -73,11 +73,15 @@ export const StrokeLabel = styled.span`
   letter-spacing: 0.03em;
 
   background-color: white;
-  border: ${(props) => props.theme[props.borderColor] || props.theme.primeColor}
+  border: ${(props) =>
+      props.theme[props.borderColor] ||
+      props.theme[props.color] ||
+      props.theme.primeColor}
     solid 1px;
   border-radius: 25px;
-  padding: 2px 8px;
-  margin-left: 15px;
+  padding: ${(props) => props.padding || "2px 8px"};
+  margin: ${(props) => props.margin || "0 0 0 15px"};
+  line-height: ${(props) => props.lineHeight || "auto"};
   transition: all 0.3s ease 0s;
 `
 
@@ -94,4 +98,14 @@ export const SemiRoundedLabel = styled.label`
   padding: 4px;
   padding-left: 12px;
   transition: all 0.3s ease 0s;
+`
+
+export const StyledFont = styled.p`
+  ${(props) => props.theme.font}
+  color: ${(props) => props.color || props.theme.secondaryColor};
+  font-weight: ${(props) => props.weight || "normal"};
+  font-size: ${(props) => props.fontSize || "1rem"};
+  padding: ${(props) => props.padding || "0"};
+  margin: ${(props) => props.margin || "0"};
+  width: ${(props) => props.width || "auto"};
 `

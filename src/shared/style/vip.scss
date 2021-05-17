@@ -1,0 +1,19 @@
+@import "global";
+
+.vip {
+  margin-bottom: 40px;
+
+  img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .block {
+    margin: 20px 0;
+
+    & > p {
+      padding: 3px 20px;
+    }
+    display: flex;
+  }
+}

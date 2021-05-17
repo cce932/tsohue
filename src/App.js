@@ -43,7 +43,9 @@ import {
   order,
   orderOverview,
   orderDetail,
+  vip,
 } from "shared/constants/pathName"
+import Vip from "pages/Vip"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -141,10 +143,10 @@ const App = () => {
               )}
             </li>
             <li>
-              <Link to={allPaths.event}>特價活動</Link>
+              <Link to={allPaths[vip]}>{vip}</Link>
             </li>
             <li>
-              <Link to={allPaths.sale}>惜福良品</Link>
+              <Link to={allPaths.event}>特價活動</Link>
             </li>
             <li>
               <Link to={allPaths[recipes]}>{recipes}</Link>
@@ -170,14 +172,14 @@ const App = () => {
 
             <li>
               {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
-                <button className="icon">
-                  <Link
-                    className="icon"
-                    to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
-                  >
-                    <FaShoppingCart size="18px" />
-                  </Link>
-                </button>
+              <button className="icon">
+                <Link
+                  className="icon"
+                  to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
+                >
+                  <FaShoppingCart size="18px" />
+                </Link>
+              </button>
               {/* </OverlayTrigger> */}
             </li>
 
@@ -213,6 +215,7 @@ const App = () => {
         <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
         <Route exact path={allPaths[order]} component={Order} />
         <Route exact path={allPaths.orderSuccess} component={OrderSuccess} />
+        <Route exact path={allPaths[vip]} component={Vip} />
         <Route
           exact
           path={allPaths[orderDetail] + ":id"}

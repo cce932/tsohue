@@ -5,7 +5,7 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
 
 import color from "shared/style/color"
 import { splitToRows } from "shared/utility/common"
-import { StrokeLabel } from "shared/components/styled"
+import { StrokeSpan } from "shared/components/styled"
 import { versionOptions } from "shared/constants/options"
 import { allPaths, recipe as recipePath } from "shared/constants/pathName"
 
@@ -132,13 +132,13 @@ const OrderedRecipe = ({
             <a href={`/recipe/${recipe.id}`}>
               <StyledFont weight="bold">{recipe.name}</StyledFont>
             </a>
-            <StrokeLabel
+            <StrokeSpan
               color={recipe.version.toLowerCase() + "Color"}
               borderColor={recipe.version.toLowerCase() + "Color"}
             >
               {versionOptions[recipe.version] + "版本"}
-            </StrokeLabel>
-            {isCustomize && <StrokeLabel>客製化</StrokeLabel>}
+            </StrokeSpan>
+            {isCustomize && <StrokeSpan>客製化</StrokeSpan>}
             <FloatRight>
               <StyledFont>NT. {sum}</StyledFont>
               {modifiable && (
