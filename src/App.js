@@ -49,7 +49,6 @@ import {
   vip,
   aboutUs,
 } from "shared/constants/pathName"
-import { Form, Nav, Navbar } from "react-bootstrap"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)

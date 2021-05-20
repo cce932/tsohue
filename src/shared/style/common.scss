@@ -27,6 +27,14 @@
   }
 }
 
+.g-row {
+  width: 100px;
+
+  p {
+    margin-bottom: 3px;
+  }
+}
+
 .monthly-special {
   position: relative;
   padding-bottom: 40px;
@@ -74,72 +82,63 @@
       display: flex;
       flex-direction: row;
       margin-left: 2px;
+    }
+  }
+}
 
-      .g-row {
-        width: 100px;
+.footer-container-bg {
+  background-color: $accent-color;
 
-        p {
+  .footer {
+    @include text(500, 14px, $prime-color);
+    height: 300px;
+    display: flex;
+    padding: 50px 0;
+
+    .left {
+      border-right: solid 1px $prime-color;
+      flex: 3;
+
+      label.title {
+        @include text(700, 18px, $prime-color);
+        margin-bottom: 20px;
+      }
+
+      .links {
+        display: flex;
+
+        .row {
+          width: 100%;
+        }
+
+        a {
+          display: block;
           margin-bottom: 3px;
+          color: $prime-color;
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }
 
-    .footer-container-bg {
-      background-color: $accent-color;
+    .right {
+      padding-left: 50px;
+      flex: 1;
 
-      .footer {
-        @include text(500, 14px, $prime-color);
-        height: 300px;
+      .media-icons {
         display: flex;
-        padding: 50px 0;
+        flex-direction: row;
 
-        .left {
-          border-right: solid 1px $prime-color;
-          flex: 3;
-
-          label.title {
-            @include text(700, 18px, $prime-color);
-            margin-bottom: 20px;
-          }
-
-          .links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .row {
-              width: 100%;
-            }
-
-            a {
-              display: block;
-              margin-bottom: 3px;
-              color: $prime-color;
-
-              &:hover {
-                opacity: 0.8;
-              }
-            }
-          }
+        img {
+          margin: 0 15px 20px 0;
+          cursor: pointer;
         }
+      }
 
-        .right {
-          padding-left: 50px;
-          flex: 1;
-
-          .media-icons {
-            display: flex;
-            flex-direction: row;
-
-            img {
-              margin: 0 15px 20px 0;
-              cursor: pointer;
-            }
-          }
-
-          p {
-            margin-bottom: 3px;
-          }
-        }
+      p {
+        margin-bottom: 3px;
       }
     }
   }
