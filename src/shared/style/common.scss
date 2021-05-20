@@ -83,63 +83,63 @@
         }
       }
     }
-  }
-}
 
-.footer-container-bg {
-  background-color: $accent-color;
+    .footer-container-bg {
+      background-color: $accent-color;
 
-  .footer {
-    @include text(500, 14px, $prime-color);
-    height: 300px;
-    display: flex;
-    padding: 50px 0;
-
-    .left {
-      border-right: solid 1px $prime-color;
-      flex: 3;
-
-      label.title {
-        @include text(700, 18px, $prime-color);
-        margin-bottom: 20px;
-      }
-
-      .links {
+      .footer {
+        @include text(500, 14px, $prime-color);
+        height: 300px;
         display: flex;
-        flex-direction: row;
+        padding: 50px 0;
 
-        .g-row {
-          margin-right: 40px;
-        }
+        .left {
+          border-right: solid 1px $prime-color;
+          flex: 3;
 
-        a {
-          display: block;
-          margin-bottom: 3px;
-          color: $prime-color;
+          label.title {
+            @include text(700, 18px, $prime-color);
+            margin-bottom: 20px;
+          }
 
-          &:hover {
-            opacity: 0.8;
+          .links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .row {
+              width: 100%;
+            }
+
+            a {
+              display: block;
+              margin-bottom: 3px;
+              color: $prime-color;
+
+              &:hover {
+                opacity: 0.8;
+              }
+            }
           }
         }
-      }
-    }
 
-    .right {
-      padding-left: 50px;
-      flex: 1;
+        .right {
+          padding-left: 50px;
+          flex: 1;
 
-      .media-icons {
-        display: flex;
-        flex-direction: row;
+          .media-icons {
+            display: flex;
+            flex-direction: row;
 
-        img {
-          margin: 0 15px 20px 0;
-          cursor: pointer;
+            img {
+              margin: 0 15px 20px 0;
+              cursor: pointer;
+            }
+          }
+
+          p {
+            margin-bottom: 3px;
+          }
         }
-      }
-
-      p {
-        margin-bottom: 3px;
       }
     }
   }

@@ -40,21 +40,25 @@ const Home = () => {
                   <div className="point"></div>
                 </div> */}
                 <FeatureSlot
+                  className="col-sm-6"
                   title="源"
                   content1="適量選購"
                   content2="與能源作伙"
                 />
                 <FeatureSlot
+                  className="col-sm-6"
                   title="食"
                   content1="精緻食譜"
                   content2="與廚食作伙"
                 />
                 <FeatureSlot
+                  className="col-sm-6"
                   title="康"
                   content1="原料透明"
                   content2="與健康作伙"
                 />
                 <FeatureSlot
+                  className="col-sm-6"
                   title="學"
                   content1="料理教學"
                   content2="與科技作伙"
