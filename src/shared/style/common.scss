@@ -4,23 +4,63 @@
   display: flex;
   flex-direction: column; // 讓.sc和p 上下排
   justify-content: center; // 在父層div內 垂直置中
+  text-align: center;
+  align-items: center;
 
   & > p {
     @include text(500, 16px, $prime-color);
-    margin: 5px 0 0 12px;
+    margin: 0;
+  }
+
+  .sc {
+    width: 70px;
+    height: 70px;
+    background-color: $accent-color;
+    border-radius: 48%;
+    border: solid #ffffff 10px;
+
+    p {
+      @include text(600, 24px, $prime-color);
+      text-align: center;
+      padding: 8px 0 0; // 微調 字往下
+    }
+  }
+}
+
+.g-row {
+  width: 100px;
+
+  p {
+    margin-bottom: 3px;
   }
 }
 
 .monthly-special {
   position: relative;
+  padding-bottom: 40px;
   img {
     width: 90%;
   }
 
+  .how-to-cook {
+    position: absolute;
+    top: 450px;
+    right: 15px;
+    @include solid($accent-deeper-color, $prime-color, $prime-color, 5px 20px);
+    margin: 20px 0;
+
+    a {
+      @include text(600, 24px, #ffffff);
+    }
+  }
+
   .special {
     position: absolute;
-    top: 150px;
-    right: 28px;
+    background-color: rgba($color: #ffffff, $alpha: 0.7);
+    top: 170px;
+    right: 0px;
+    padding: 15px;
+    border-radius: 20px;
 
     label {
       @include text(700, 18px, $accent-deeper-color);
@@ -31,65 +71,54 @@
       border-bottom: 5px solid $accent-color;
     }
 
-    // img {
-    //   margin-bottom: 20px;
-    //   width: 252px;
-    //   height: 15px;
-    // }
+    img {
+      margin-bottom: 20px;
+      width: 252px;
+      height: 15px;
+    }
 
     .gredients {
       @include text(500, 16px, $prime-color);
       display: flex;
       flex-direction: row;
       margin-left: 2px;
-
-      .g-row {
-        width: 100px;
-
-        p {
-          margin-bottom: 3px;
-        }
-      }
     }
   }
 }
 
-.container-bg {
+.footer-container-bg {
   background-color: $accent-color;
-  width: 100vw;
 
   .footer {
     @include text(500, 14px, $prime-color);
     height: 300px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .row {
-      width: 100%;
-    }
+    padding: 50px 0;
 
     .left {
       border-right: solid 1px $prime-color;
       flex: 3;
 
-      label {
+      label.title {
         @include text(700, 18px, $prime-color);
         margin-bottom: 20px;
       }
 
       .links {
         display: flex;
-        flex-direction: row;
 
-        .g-row {
-          margin-right: 40px;
+        .row {
+          width: 100%;
         }
 
         a {
           display: block;
           margin-bottom: 3px;
           color: $prime-color;
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }
@@ -101,17 +130,6 @@
       .media-icons {
         display: flex;
         flex-direction: row;
-
-        button {
-          background-color: transparent;
-          border: 0;
-          outline: 0;
-
-          &:hover {
-            transition: $default-trans;
-            opacity: 70%;
-          }
-        }
 
         img {
           margin: 0 15px 20px 0;

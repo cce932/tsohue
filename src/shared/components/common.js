@@ -1,10 +1,11 @@
 import React from "react"
+import { Col } from "react-bootstrap"
 
 import "../style/common.scss"
 import { splitToRows } from "../utility/common"
 
 export const FeatureSlot = ({ title, content1, content2 }) => (
-  <div className={`col feature-slot`}>
+  <Col className="feature-slot">
     <div className="sc">
       <p>{title}</p>
     </div>
@@ -13,7 +14,7 @@ export const FeatureSlot = ({ title, content1, content2 }) => (
       <br />
       {content2}
     </p>
-  </div>
+  </Col>
 )
 
 export const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
@@ -46,37 +47,39 @@ export const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
 }
 
 export const Footer = ({ links, linksMaxRow = 5 }) => {
-  const styled = links.map((link, index) => <a href={link.href} key={index}>{link.title}</a>)
+  const styled = links.map((link, index) => (
+    <a href={link.href} key={index}>
+      {link.title}
+    </a>
+  ))
   const splited = splitToRows(styled, linksMaxRow).map((links, index) => (
-    <div className="g-row" key={index} >
+    <div className="g-row" key={index}>
       {links}
     </div>
   ))
 
   return (
-    <div className="container-bg">
-      <div className={`footer container`} id="footer">
-        <div className="row">
-          <div className="left">
-            <label>TsoHue / 作伙</label>
-            <div className="links">{splited}</div>
+    <div className="container-bg footer-container-bg">
+      <div className="footer container" id="footer">
+        <div className="left">
+          <label className="title">TsoHue / 作伙</label>
+          <div className="links">{splited}</div>
+        </div>
+        <div className="right">
+          <div className="media-icons">
+            <a href="https://www.facebook.com/tsohuecook/">
+              <img src="/common-pic/fb.svg" alt="Facebook" />
+            </a>
+            <a href="https://www.instagram.com/tsohue_cook/">
+              <img src="/common-pic/ig.svg" alt="Instagram" />
+            </a>
           </div>
-          <div className="right">
-            <div className="media-icons">
-              <a href="https://www.ntust.edu.tw/home.php">
-                <img src="/common-pic/fb.svg" alt="Facebook" />
-              </a>
-              <a href="https://www.ntust.edu.tw/home.php">
-                <img src="/common-pic/ig.svg" alt="Instagram" />
-              </a>
-            </div>
 
-            <p>02-4566-7000</p>
-            <p>SUN - FRI 08:00 - 20:00</p>
-            <p>作伙股份有限公司</p>
-            <p>tso.hue@tsohue.com</p>
-            <p>230 台北市大安區基隆路526號</p>
-          </div>
+          <p>02-4566-7000</p>
+          <p>SUN - FRI 08:00 - 20:00</p>
+          <p>作伙股份有限公司</p>
+          <p>tso.hue@tsohue.com</p>
+          <p>230 台北市大安區基隆路526號</p>
         </div>
       </div>
     </div>

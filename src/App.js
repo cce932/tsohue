@@ -1,7 +1,7 @@
 import $ from "jquery"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Router, Switch, Route, Link } from "react-router-dom"
+import { Router, Switch, Route } from "react-router-dom"
 import {
   FaShoppingCart,
   FaUser,
@@ -10,6 +10,7 @@ import {
   FaAngleUp,
 } from "react-icons/fa"
 import { CgClose } from "react-icons/cg"
+import { Form, Nav, Navbar } from "react-bootstrap"
 // import { OverlayTrigger } from "react-bootstrap"
 
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -27,6 +28,7 @@ import Order from "pages/Order"
 import OrderDetail from "pages/OrderDetail"
 import OrderSuccess from "pages/Order/OrderSuccess"
 import AboutUs from "pages/AboutUs"
+import Vip from "pages/Vip"
 // import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
@@ -47,7 +49,6 @@ import {
   vip,
   aboutUs,
 } from "shared/constants/pathName"
-import Vip from "pages/Vip"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -97,19 +98,24 @@ const App = () => {
       return false
     })
 
-    $("#search").on("keypress", function (e) {
-      // do not use "keyup", it'll cause accidient submit when typing chinese
-      if (e.key === "Enter") {
-        searchOnClick()
-      }
-    })
+    // $("#search").on("keypress", function (e) {
+    //   // do not use "keyup", it'll cause accidient submit when typing chinese
+    //   if (e.key === "Enter") {
+    //     searchOnClick()
+    //   }
+    // })
   })
 
-  const searchOnClick = () => {
+  const searchOnClick = (e) => {
+    e?.preventDefault()
+    console.log("search")
     history.push(`${allPaths[recipes]}?search=${$("#search").val().trim()}`)
   }
 
-  const clearOnClick = () => {
+  const clearOnClick = (e) => {
+    e?.preventDefault()
+    console.log("reset")
+
     $("#search").val("")
     setIsEmpty(true)
     window.location.pathname.search(allPaths[recipes]) >= 0 &&
@@ -121,81 +127,94 @@ const App = () => {
   }
   return (
     <Router history={history}>
-      <header>
-        <Link to={"/"} className="logo-a">
+      <Navbar fixed="top" expand="lg" className="ts-header">
+        <Navbar.Brand href="/">
           <img className="logo" src="/nav-pic/logo.svg" alt="logo" />
-        </Link>
-        <nav>
-          <ul className="nav-ul">
-            <li>
-              <input
-                type="text"
-                id="search"
-                onChange={queryOnChange}
-                placeholder="搜尋烹飪包"
-              />
-              {isEmpty ? (
-                <button className="search" onClick={searchOnClick}>
-                  <FaSearch fill="#755734" />
-                </button>
-              ) : (
-                <button className="search" onClick={clearOnClick}>
-                  <CgClose stroke-width="2px" fill="#755734" />
-                </button>
-              )}
-            </li>
-            <li>
-              <Link to={allPaths[vip]}>{vip}</Link>
-            </li>
-            <li>
-              <Link to={allPaths.event}>特價活動</Link>
-            </li>
-            <li>
-              <Link to={allPaths[recipes]}>{recipes}</Link>
-            </li>
-            <li>
-              <Link to={allPaths.instruction}>訂購流程</Link>
-            </li>
-            <li>|</li>
-
-            <li>
-              <button className="icon">
-                <Link
-                  to={
-                    currentUser
-                      ? allPaths[member] + allPaths[orderOverview]
-                      : allPaths[register]
-                  }
-                >
-                  <FaUser />
-                </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse className="justify-content-end">
+          <Form className="d-flex" onSubmit={(e) => searchOnClick(e)}>
+            <input
+              type="text"
+              id="search"
+              onChange={queryOnChange}
+              placeholder="搜尋烹飪包"
+            />
+            {isEmpty ? (
+              <button
+                type="submit"
+                className="search"
+                onClick={(e) => searchOnClick(e)}
+              >
+                <FaSearch fill="#755734" />
               </button>
-            </li>
-
-            <li>
-              {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
-              <button className="icon">
-                <Link
-                  className="icon"
-                  to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
-                >
-                  <FaShoppingCart size="18px" />
-                </Link>
+            ) : (
+              <button
+                type="reset"
+                className="search"
+                onClick={(e) => clearOnClick(e)}
+              >
+                <CgClose strokeWidth="2px" fill="#755734" />
               </button>
-              {/* </OverlayTrigger> */}
-            </li>
+            )}
+          </Form>
+          <Nav
+          // className="ml-10 my-lg-0"
+          >
+            <Nav.Link href={allPaths[vip]} className="nav-text">
+              {vip}
+            </Nav.Link>
+            <Nav.Link href={allPaths.event} className="nav-text">
+              特價活動
+            </Nav.Link>
+            <Nav.Link href={allPaths.instruction} className="nav-text">
+              訂購流程
+            </Nav.Link>
+            <Nav.Link href={allPaths[recipes]} className="nav-text">
+              {recipes}
+            </Nav.Link>
 
-            <li>
-              <button className="icon">
-                <Link className="icon" to={allPaths.favorite}>
-                  <FaHeart />
-                </Link>
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
+            {/* div is for max-width 992: place in one row */}
+            <div>
+              <Nav.Link
+                className="ts-icon-feature"
+                href={
+                  currentUser
+                    ? allPaths[member] + allPaths[orderOverview]
+                    : allPaths[register]
+                }
+              >
+                <FaUser />
+              </Nav.Link>
 
+              {
+                // <li>
+                //   {/* <OverlayTrigger placement="bottom" overlay={<CartPopup />}> */}
+                //   <button className="icon">
+                //     <Link
+                //       className="icon"
+                //       to={currentUser ? allPaths[shoppingCart] : allPaths[login]}
+                //     >
+                //       <FaShoppingCart size="18px" />
+                //     </Link>
+                //   </button>
+                //   {/* </OverlayTrigger> */}
+                // </li>
+              }
+              <Nav.Link
+                href={currentUser ? allPaths[shoppingCart] : allPaths[login]}
+                className="ts-icon-feature"
+              >
+                <FaShoppingCart size="18px" />
+              </Nav.Link>
+
+              <Nav.Link href={allPaths.favorite} className="ts-icon-feature">
+                <FaHeart />
+              </Nav.Link>
+            </div>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a href="#" id="to-top">
         <FaAngleUp fill="#fbd779" size="30px" />
