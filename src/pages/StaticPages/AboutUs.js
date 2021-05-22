@@ -27,6 +27,42 @@ const RoundedImg = styled.img`
   object-fit: cover;
 `
 
+const Feature = ({ title, description }) => (
+  <div>
+    <StyledP fontSize="1.1rem" weight="bold" color={color.prime} margin="5px 0">
+      <IoMdCheckmark fill={color.vage} size="22px" /> {title}
+    </StyledP>
+    <StyledP
+      fontSize="1rem"
+      color={color.prime}
+      margin="0 0 15px"
+      lineHeight="2"
+    >
+      {description}
+    </StyledP>
+  </div>
+)
+
+const webFeatureContent = [
+  {
+    title: "多版本烹飪包",
+    description:
+      "讓使用者能購買食譜上的食材或進行份量客製，以解決食材浪費的問題。",
+  },
+  {
+    title: "食物不浪費",
+    description:
+      "購買食譜時，有不同版本可供選擇（低脂版、多肉版），方便消費者作熱量與營養的控管。",
+  },
+]
+
+const appFeatureContent = [
+  {
+    title: "APP聲控教學",
+    description: "搭配行動裝置APP，讓使用者可以邊聲控操作影片邊做菜。",
+  },
+]
+
 const AboutUs = () => {
   const joinVIpOnClick = () => window.alert("此功能尚在策劃中，感謝您的支持")
 
@@ -75,32 +111,9 @@ const AboutUs = () => {
 
         <Row>
           <Col sm="5">
-            <div>
-              <StyledP
-                fontSize="1.1rem"
-                weight="bold"
-                color={color.prime}
-                margin="10px 0"
-              >
-                <IoMdCheckmark fill={color.vage} size="22px" /> 多版本烹飪包
-              </StyledP>
-              <StyledP fontSize="1rem" color={color.prime} margin="0 0 15px">
-                購買食譜時，有不同版本可供選擇（低脂版、多肉版），方便消費者作熱量與營養的控管。
-              </StyledP>
-            </div>
-            <div>
-              <StyledP
-                fontSize="1.1rem"
-                weight="bold"
-                color={color.prime}
-                margin="10px 0"
-              >
-                <IoMdCheckmark fill={color.vage} size="22px" /> 食物不浪費
-              </StyledP>
-              <StyledP fontSize="1rem" color={color.prime} margin="0 0 15px">
-                讓使用者能購買食譜上的食材或進行份量客製，以解決食材浪費的問題。
-              </StyledP>
-            </div>
+            {webFeatureContent.map((item) => (
+              <Feature {...{ ...item }} />
+            ))}
           </Col>
           <Col sm="7">
             <RoundedImg
@@ -112,19 +125,9 @@ const AboutUs = () => {
         </Row>
         <Row>
           <Col sm="5">
-            <div>
-              <StyledP
-                fontSize="1.1rem"
-                weight="bold"
-                color={color.prime}
-                margin="10px 0"
-              >
-                <IoMdCheckmark fill={color.vage} size="22px" /> APP聲控教學
-              </StyledP>
-              <StyledP fontSize="1rem" color={color.prime} margin="0 0 15px">
-                搭配行動裝置APP，讓使用者可以邊聲控操作影片邊做菜。
-              </StyledP>
-            </div>
+            {appFeatureContent.map((item) => (
+              <Feature {...{ ...item }} />
+            ))}
           </Col>
           <Col sm="7">
             <RoundedImg
