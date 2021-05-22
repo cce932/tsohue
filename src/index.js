@@ -7,14 +7,21 @@ import reportWebVitals from "./reportWebVitals"
 import { Provider } from "react-redux"
 import { Footer } from "./shared/components/common"
 import { ThemeProvider, css } from "styled-components"
-import { aboutUs, allPaths, QA } from "shared/constants/pathName"
+import {
+  aboutUs,
+  allPaths,
+  policies,
+  privacy,
+  QA,
+} from "shared/constants/pathName"
 
 const footerLinks = [
-  { title: "關於我們", href: allPaths[aboutUs] },
-  { title: "常見問答", href: allPaths[QA] },
+  { title: aboutUs, href: allPaths[aboutUs] },
+  { title: QA, href: allPaths[QA] },
+  { title: policies, href: allPaths[policies] },
+  { title: privacy, href: allPaths[privacy] },
   { title: "售後服務", href: "/developing" },
   { title: "會員權益", href: "/developing" },
-  { title: "隱私保護", href: "/developing" },
   { title: "門市位置", href: "/developing" },
   { title: "企業徵才", href: "/developing" },
   { title: "異業合作", href: "/developing" },

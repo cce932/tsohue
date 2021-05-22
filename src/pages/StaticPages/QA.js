@@ -44,7 +44,7 @@ const Item = ({ question, answer }) => (
       {answer.map((t, index) => (
         <>
           {t}
-          {index < question.length - 1 && <br />}
+          {index < answer.length - 1 && <br />}
         </>
       ))}
     </StyledP>
@@ -53,6 +53,7 @@ const Item = ({ question, answer }) => (
 
 const WrapperDiv = styled.div`
   margin-bottom: 50px;
+  margin-top: 100px !important;
 `
 
 const QA = () => {

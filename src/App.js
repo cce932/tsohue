@@ -49,9 +49,13 @@ import {
   vip,
   aboutUs,
   QA as QAPathname,
+  policies,
+  privacy,
 } from "shared/constants/pathName"
 import Instruction from "pages/StaticPages/Instruction"
 import QA from "pages/StaticPages/QA"
+import Policy from 'pages/StaticPages/Policies'
+import Privacy from 'pages/StaticPages/Privacy'
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -248,6 +252,8 @@ const App = () => {
         />
         <Route exact path={allPaths[aboutUs]} component={AboutUs} />
         <Route exact path={allPaths[QAPathname]} component={QA} />
+        <Route exact path={allPaths[policies]} component={Policy} />
+        <Route exact path={allPaths[privacy]} component={Privacy} />
         <Route
           path={""}
           render={() => <NotFound message="敬請期待 新功能即將上線" />}
