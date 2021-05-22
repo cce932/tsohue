@@ -18,6 +18,7 @@ export const allPaths = {
   favorite: "/favorite",
   升級VIP: "/vip",
   關於我們: "/about-us",
+  常見問答: "/qa",
 }
 
 export const home = "首頁"
@@ -36,3 +37,4 @@ export const order = "訂購"
 export const orderDetail = "訂單詳細"
 export const vip = "升級VIP"
 export const aboutUs = "關於我們"
+export const QA = "常見問答"
