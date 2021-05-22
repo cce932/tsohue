@@ -1,7 +1,7 @@
 @import "global";
 
 .recipes {
-  margin: 105px 8% 50px 18% !important;
+  margin: 105px 5% 50px 20% !important;
 
   div.cus-side-list {
     p {
@@ -58,7 +58,6 @@
     display: flex;
     flex: 0 1 auto;
     flex-wrap: wrap; // break a line if items exceeded max width 
-    padding-left: 3%;
 
     ul.pagination {
       margin-left: 25px;
