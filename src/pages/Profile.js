@@ -1,18 +1,18 @@
 import React from "react"
 
 import color from "shared/style/color"
-import { StyledFont } from "shared/components/styled"
+import { StyledP } from "shared/components/styled"
 import { roleOptions } from "shared/constants/options"
 import { Col, Row } from "react-bootstrap"
 
 const Item = ({ type, info }) => (
   <Col className="block">
-    <StyledFont lineHeight="2" fontSize="1.2rem" color={color.prime}>
+    <StyledP lineHeight="2" fontSize="1.2rem" color={color.prime}>
       {type}
-    </StyledFont>
-    <StyledFont fontSize="0.9rem" color={color.prime}>
+    </StyledP>
+    <StyledP fontSize="0.9rem" color={color.prime}>
       {info}
-    </StyledFont>
+    </StyledP>
   </Col>
 )
 
@@ -26,14 +26,14 @@ const Profile = ({ currentUser }) => {
 
   return (
     <div className="profile container">
-      <StyledFont
+      <StyledP
         margin="0 0 50px"
         fontSize="1.5rem"
         weight="bold"
         color={color.prime}
       >
         你好，{currentUser.username}
-      </StyledFont>
+      </StyledP>
 
       <div>
         <Row>

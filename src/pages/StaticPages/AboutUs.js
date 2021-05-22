@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Row, Col } from "react-bootstrap"
 import { IoMdCheckmark } from "react-icons/io"
 
-import { StrokeSpan, StyledFont } from "shared/components/styled"
+import { StrokeSpan, StyledP } from "shared/components/styled"
 import color from "shared/style/color"
 
 const intention = [
@@ -49,7 +49,7 @@ const AboutUs = () => {
           初心
         </StrokeSpan>
 
-        <StyledFont
+        <StyledP
           fontSize="1rem"
           lineHeight="2"
           color={color.prime}
@@ -61,7 +61,7 @@ const AboutUs = () => {
               <br />
             </>
           ))}
-        </StyledFont>
+        </StyledP>
 
         <StrokeSpan
           size="1.5rem"
@@ -76,30 +76,30 @@ const AboutUs = () => {
         <Row>
           <Col sm="5">
             <div>
-              <StyledFont
+              <StyledP
                 fontSize="1.1rem"
                 weight="bold"
                 color={color.prime}
                 margin="10px 0"
               >
                 <IoMdCheckmark fill={color.vage} size="22px" /> 多版本烹飪包
-              </StyledFont>
-              <StyledFont fontSize="1rem" color={color.prime} margin="0 0 15px">
+              </StyledP>
+              <StyledP fontSize="1rem" color={color.prime} margin="0 0 15px">
                 購買食譜時，有不同版本可供選擇（低脂版、多肉版），方便消費者作熱量與營養的控管。
-              </StyledFont>
+              </StyledP>
             </div>
             <div>
-              <StyledFont
+              <StyledP
                 fontSize="1.1rem"
                 weight="bold"
                 color={color.prime}
                 margin="10px 0"
               >
                 <IoMdCheckmark fill={color.vage} size="22px" /> 食物不浪費
-              </StyledFont>
-              <StyledFont fontSize="1rem" color={color.prime} margin="0 0 15px">
+              </StyledP>
+              <StyledP fontSize="1rem" color={color.prime} margin="0 0 15px">
                 讓使用者能購買食譜上的食材或進行份量客製，以解決食材浪費的問題。
-              </StyledFont>
+              </StyledP>
             </div>
           </Col>
           <Col sm="7">
@@ -113,17 +113,17 @@ const AboutUs = () => {
         <Row>
           <Col sm="5">
             <div>
-              <StyledFont
+              <StyledP
                 fontSize="1.1rem"
                 weight="bold"
                 color={color.prime}
                 margin="10px 0"
               >
                 <IoMdCheckmark fill={color.vage} size="22px" /> APP聲控教學
-              </StyledFont>
-              <StyledFont fontSize="1rem" color={color.prime} margin="0 0 15px">
+              </StyledP>
+              <StyledP fontSize="1rem" color={color.prime} margin="0 0 15px">
                 搭配行動裝置APP，讓使用者可以邊聲控操作影片邊做菜。
-              </StyledFont>
+              </StyledP>
             </div>
           </Col>
           <Col sm="7">

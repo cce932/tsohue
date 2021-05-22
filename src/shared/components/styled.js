@@ -100,7 +100,7 @@ export const SemiRoundedLabel = styled.label`
   transition: all 0.3s ease 0s;
 `
 
-export const StyledFont = styled.p`
+export const StyledP = styled.p`
   ${(props) => props.theme.font}
   color: ${(props) => props.color || props.theme.secondaryColor};
   font-weight: ${(props) => props.weight || "normal"};
@@ -110,4 +110,16 @@ export const StyledFont = styled.p`
   width: ${(props) => props.width || "auto"};
   line-height: ${(props) => props.lineHeight || "auto"};
   text-align: justify;
+  min-height: ${(props) => props.minHeight || "auto"};
+`
+
+export const StyledLabel = styled.label`
+  ${(props) => props.theme.font}
+  color: ${(props) => props.color || props.theme.secondaryColor};
+  font-weight: ${(props) => props.weight || "normal"};
+  font-size: ${(props) => props.fontSize || "1rem"};
+  padding: ${(props) => props.padding || "0"};
+  margin: ${(props) => props.margin || "0"};
+  width: ${(props) => props.width || "auto"};
+  line-height: ${(props) => props.lineHeight || "auto"};
 `

@@ -1,7 +1,7 @@
 import React from "react"
 
 import "shared/style/vip.scss"
-import { StrokeSpan, StyledFont } from "shared/components/styled"
+import { StrokeSpan, StyledP } from "shared/components/styled"
 import color from "shared/style/color"
 
 const content = [
@@ -23,16 +23,16 @@ const content = [
 
 const Item = ({ type, info, index }) => (
   <div className="block">
-    <StyledFont fontSize="2rem" color={color.accentDeeper}>
+    <StyledP fontSize="2rem" color={color.accentDeeper}>
       {index + 1}
-    </StyledFont>
+    </StyledP>
     <div>
-      <StyledFont fontSize="1.3rem" weight="bold" color={color.prime}>
+      <StyledP fontSize="1.3rem" weight="bold" color={color.prime}>
         {type}
-      </StyledFont>
-      <StyledFont fontSize="0.9rem" color={color.prime}>
+      </StyledP>
+      <StyledP fontSize="0.9rem" color={color.prime}>
         {info}
-      </StyledFont>
+      </StyledP>
     </div>
   </div>
 )

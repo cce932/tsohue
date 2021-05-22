@@ -23,6 +23,7 @@ const footerLinks = [
 const theme = {
   primeColor: "#755734",
   viceColor: "#9e8568",
+  viceLighterColor: "#FEF5E5",
   accentColor: "#fbd779",
   accentDeeperColor: "#f9bd23",
   accentRedColor: "#e76845",

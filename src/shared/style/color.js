@@ -1,6 +1,7 @@
 const color = {
   prime: "#755734",
   vice: "#9e8568",
+  viceLighter: "#FEF5E5",
   accent: "#fbd779",
   accentDeeper: "#f9bd23",
   accentRed: "#e76845",
