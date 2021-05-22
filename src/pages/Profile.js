@@ -35,13 +35,11 @@ const Profile = ({ currentUser }) => {
         你好，{currentUser.username}
       </StyledP>
 
-      <div>
-        <Row>
-          {content.map((item) => (
-            <Item {...{ ...item }} />
-          ))}
-        </Row>
-      </div>
+      <Row>
+        {content.map((item) => (
+          <Item {...{ ...item }} />
+        ))}
+      </Row>
     </div>
   )
 }
