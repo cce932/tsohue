@@ -51,11 +51,12 @@ import {
   QA as QAPathname,
   policies,
   privacy,
+  position,
 } from "shared/constants/pathName"
 import Instruction from "pages/StaticPages/Instruction"
 import QA from "pages/StaticPages/QA"
-import Policy from 'pages/StaticPages/Policies'
-import Privacy from 'pages/StaticPages/Privacy'
+import Policy from "pages/StaticPages/Policies"
+import Privacy from "pages/StaticPages/Privacy"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -254,6 +255,23 @@ const App = () => {
         <Route exact path={allPaths[QAPathname]} component={QA} />
         <Route exact path={allPaths[policies]} component={Policy} />
         <Route exact path={allPaths[privacy]} component={Privacy} />
+        <Route
+          exact
+          path={allPaths[position]}
+          render={() => (
+            <div className="pages container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14461.716049522005!2d121.5484174!3d25.0195109!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aa2176c4c0ad%3A0x90db5e44ee29f455!2z5ZyL56uL6Ie654Gj56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1621672373986!5m2!1szh-TW!2stw"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                title="ts-position"
+              ></iframe>
+            </div>
+          )}
+        />
         <Route
           path={""}
           render={() => <NotFound message="敬請期待 新功能即將上線" />}

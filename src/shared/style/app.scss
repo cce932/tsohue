@@ -1,19 +1,21 @@
 @import "global";
 * {
-    @include root;
-    >div.pages {
-        flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
-        margin-top: 150px;
-    }
+  @include root;
+
+  > div.pages {
+    flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
+    margin-top: 150px;
+    margin-bottom: 50px;
+  }
 }
 
 div.spinner-border {
-    margin: 10% 45%;
+  margin: 10% 45%;
 }
 
 p.no-result {
-    @include text(bold, 1.5rem, $accent-deeper-color);
-    margin: 10% 25%;
+  @include text(bold, 1.5rem, $accent-deeper-color);
+  margin: 10% 25%;
 }
 
 .ts-header {
@@ -66,37 +68,37 @@ p.no-result {
 }
 
 a#to-top {
-    visibility: hidden;
-    display: block;
-    box-shadow: $shadow-deeper;
-    background-color: white;
-    position: fixed;
-    border-radius: 25px;
-    padding: 8px;
-    bottom: 25px;
-    right: 20px;
-    z-index: 900;
+  visibility: hidden;
+  display: block;
+  box-shadow: $shadow-deeper;
+  background-color: white;
+  position: fixed;
+  border-radius: 25px;
+  padding: 8px;
+  bottom: 25px;
+  right: 20px;
+  z-index: 900;
 }
 
 @media (max-width: 450px) {
-    * {
-        font-size: 0.9rem;
+  * {
+    font-size: 0.9rem;
+  }
+  .header-bar {
+    .logo {
+      width: 80px !important;
     }
-    .header-bar {
-        .logo {
-            width: 80px !important;
-        }
-    }
-    .navbar {
-        padding: 4px 8px;
-    }
+  }
+  .navbar {
+    padding: 4px 8px;
+  }
 }
 
 @media (max-width: 987px) {
-    .header-bar {
-        align-items: center !important;
-        .logo {
-            width: 80px !important;
-        }
+  .header-bar {
+    align-items: center !important;
+    .logo {
+      width: 80px !important;
     }
+  }
 }

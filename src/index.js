@@ -11,6 +11,7 @@ import {
   aboutUs,
   allPaths,
   policies,
+  position,
   privacy,
   QA,
 } from "shared/constants/pathName"
@@ -20,9 +21,9 @@ const footerLinks = [
   { title: QA, href: allPaths[QA] },
   { title: policies, href: allPaths[policies] },
   { title: privacy, href: allPaths[privacy] },
+  { title: position, href: allPaths[position] },
   { title: "售後服務", href: "/developing" },
   { title: "會員權益", href: "/developing" },
-  { title: "門市位置", href: "/developing" },
   { title: "企業徵才", href: "/developing" },
   { title: "異業合作", href: "/developing" },
 ]

@@ -21,6 +21,7 @@ export const allPaths = {
   常見問答: "/qa",
   作伙條款: "/policy",
   隱私保護: "/privacy",
+  門市位置: "/position",
 }
 
 export const home = "首頁"
@@ -42,3 +43,4 @@ export const aboutUs = "關於我們"
 export const QA = "常見問答"
 export const policies = "作伙條款"
 export const privacy = "隱私保護"
+export const position = "門市位置"
