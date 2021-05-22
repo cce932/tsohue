@@ -48,6 +48,8 @@
     right: 15px;
     @include solid($accent-deeper-color, $prime-color, $prime-color, 5px 20px);
     margin: 20px 0;
+    width: auto; // safari
+    height: auto; // safari
 
     a {
       @include text(600, 24px, #ffffff);

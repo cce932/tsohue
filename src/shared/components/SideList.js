@@ -8,7 +8,7 @@ const SideList = ({ items, style }) => {
   const defaultStyle = {
     top: "150px",
     left: "10%",
-    width: "fit-content",
+    width: "auto", // safari
     backgroundColor: "white",
     boxShadow: "0px 0px 15px rgba(205, 211, 216, 0.7)",
     padding: "10px 30px",
