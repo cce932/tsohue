@@ -27,8 +27,8 @@ import ShoppingCart from "pages/ShoppingCart"
 import Order from "pages/Order"
 import OrderDetail from "pages/OrderDetail"
 import OrderSuccess from "pages/Order/OrderSuccess"
-import AboutUs from "pages/AboutUs"
-import Vip from "pages/Vip"
+import AboutUs from "pages/StaticPages/AboutUs"
+import Vip from "pages/StaticPages/Vip"
 // import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from "actions/message"
 import { history } from "helpers/history"
@@ -49,6 +49,7 @@ import {
   vip,
   aboutUs,
 } from "shared/constants/pathName"
+import Instruction from "pages/StaticPages/Instruction"
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -168,7 +169,7 @@ const App = () => {
               特價活動
             </Nav.Link>
             <Nav.Link href={allPaths.instruction} className="nav-text">
-              訂購流程
+              訂購指南
             </Nav.Link>
             <Nav.Link href={allPaths[recipes]} className="nav-text">
               {recipes}
@@ -237,6 +238,7 @@ const App = () => {
         <Route exact path={allPaths[order]} component={Order} />
         <Route exact path={allPaths.orderSuccess} component={OrderSuccess} />
         <Route exact path={allPaths[vip]} component={Vip} />
+        <Route exact path={allPaths.instruction} component={Instruction} />
         <Route
           exact
           path={allPaths[orderDetail] + ":id"}
