@@ -10,10 +10,10 @@
 
   .block {
     margin: 20px 0;
+    display: flex;
 
     & > p {
       padding: 3px 20px;
     }
-    display: flex;
   }
 }
