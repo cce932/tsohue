@@ -76,32 +76,32 @@ const appContent = [
   {
     title: "進入主頁",
     description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/index.png",
+    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/index.jpg",
   },
   {
     title: "登入後點選訂單總覽",
     description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/order.png",
+    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/order.jpg",
   },
   {
     title: ["查看訂單詳細", "並點擊欲導覽的食譜"],
     description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/orderDetail.png",
+    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/orderDetail.jpg",
   },
   {
     title: ["跳轉至食譜詳細頁面", "並點選分頁「食譜影片」"],
     description: "也可以直接由「食譜總覽」進入本頁面喔",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/recipeDetail.png",
+    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/recipeDetail.jpg",
   },
   {
     title: "點擊「點我進行影片教學」",
     description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/recipeVideo.png",
+    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/recipeVideo.jpg",
   },
   {
     title: "開始聲控料理導覽～",
     description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/instruction.png",
+    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/instruction.jpg",
     isLandscape: true,
   },
 ]
