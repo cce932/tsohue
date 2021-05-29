@@ -109,6 +109,7 @@ const Recipes = () => {
           (recipe) => versionOptions[recipe.version] === selectedVersion
         )
 
+    setActivePage(1)
     setRecipes(
       versionFiltered.length
         ? versionFiltered
