@@ -67,7 +67,7 @@ const Home = () => {
             </Col>
             <Col sm="3">
               <div className="how-to-buy">
-                <Link to="#">怎麼買 ?</Link>
+                <Link to={allPaths.instruction}>怎麼買 ?</Link>
               </div>
             </Col>
           </Row>
