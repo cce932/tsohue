@@ -1,9 +1,9 @@
 const color = {
-  prime: "#755734",
-  vice: "#9e8568",
+  prime: "#6D836A",
+  vice: "#DAE1D9",
   viceLighter: "#FEF5E5",
-  accent: "#fbd779",
-  accentDeeper: "#f9bd23",
+  accent: "#FFD79B",
+  accentDeeper: "#FFC56F",
   accentRed: "#e76845",
   first: "rgb(52, 58, 64)",
   secondary: "rgb(129, 132, 135)",

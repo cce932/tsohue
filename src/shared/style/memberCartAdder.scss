@@ -11,7 +11,7 @@
 
   & > a.active {
     color: $prime-color !important;
-    border: $accent-color 1px solid !important;
+    border: $vice-lighter-color 1px solid !important;
   }
 
   & > a:not(.active) {
@@ -20,7 +20,7 @@
 }
 
 .member-cart-adder {
-  background-color: $accent-color;
+  background-color: $vice-lighter-color;
   padding: 100px 10% 60px 13%;
   > form > div {
     min-height: 200px;

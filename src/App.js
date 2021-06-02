@@ -57,6 +57,7 @@ import Instruction from "pages/StaticPages/Instruction"
 import QA from "pages/StaticPages/QA"
 import Policy from "pages/StaticPages/Policies"
 import Privacy from "pages/StaticPages/Privacy"
+import color from 'shared/style/color'
 
 const App = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -137,7 +138,7 @@ const App = () => {
     <Router history={history}>
       <Navbar fixed="top" expand="lg" className="ts-header">
         <Navbar.Brand href="/">
-          <img className="logo" src="/nav-pic/logo.svg" alt="logo" />
+          <img className="logo" src="/nav-pic/logo.jpg" alt="logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
@@ -154,7 +155,7 @@ const App = () => {
                 className="search"
                 onClick={(e) => searchOnClick(e)}
               >
-                <FaSearch fill="#755734" />
+                <FaSearch fill={color.prime} />
               </button>
             ) : (
               <button
@@ -162,7 +163,7 @@ const App = () => {
                 className="search"
                 onClick={(e) => clearOnClick(e)}
               >
-                <CgClose strokeWidth="2px" fill="#755734" />
+                <CgClose strokeWidth="2px" fill={color.prime} />
               </button>
             )}
           </Form>

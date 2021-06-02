@@ -1,8 +1,11 @@
 import React from "react"
 import { Col } from "react-bootstrap"
+import { AiFillInstagram } from "react-icons/ai"
+import { GrFacebookOption, GrInstagram } from "react-icons/gr"
 
 import "../style/common.scss"
 import { splitToRows } from "../utility/common"
+import color from "shared/style/color"
 
 export const FeatureSlot = ({ title, content1, content2 }) => (
   <Col className="feature-slot">
@@ -68,10 +71,10 @@ export const Footer = ({ links, linksMaxRow = 5 }) => {
         <div className="right">
           <div className="media-icons">
             <a href="https://www.facebook.com/tsohuecook/">
-              <img src="/common-pic/fb.svg" alt="Facebook" />
+              <GrFacebookOption size="24px" fill={color.prime} />
             </a>
             <a href="https://www.instagram.com/tsohue_cook/">
-              <img src="/common-pic/ig.svg" alt="Instagram" />
+              <GrInstagram size="23px" fill={color.prime} />
             </a>
           </div>
 
