@@ -10,7 +10,7 @@ const Item = ({ type, info }) => (
     <StyledP lineHeight="2" fontSize="1.2rem" color={color.prime}>
       {type}
     </StyledP>
-    <StyledP fontSize="0.9rem" color={color.prime}>
+    <StyledP fontSize="1rem" color={color.secondary}>
       {info}
     </StyledP>
   </Col>

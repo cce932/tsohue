@@ -65,7 +65,7 @@ export const Footer = ({ links, linksMaxRow = 5 }) => {
     <div className="container-bg footer-container-bg">
       <div className="footer container" id="footer">
         <div className="left">
-          <label className="title">TsoHue / 作伙</label>
+          <label className="title">JUST DIET / 一起戒DIET吧</label>
           <div className="links">{splited}</div>
         </div>
         <div className="right">
@@ -80,8 +80,8 @@ export const Footer = ({ links, linksMaxRow = 5 }) => {
 
           <p>02-4566-7000</p>
           <p>SUN - FRI 08:00 - 20:00</p>
-          <p>作伙股份有限公司</p>
-          <p>tso.hue@tsohue.com</p>
+          <p>戒大股份有限公司</p>
+          <p>just.diet@diet.com</p>
           <p>230 台北市大安區基隆路526號</p>
         </div>
       </div>
