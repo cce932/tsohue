@@ -1,6 +1,6 @@
 # Welcome to TsoHue Front-End
 
-To getting start you should:
+### Getting started
 1. Download [yarn](https://classic.yarnpkg.com/zh-Hant/docs/install/#windows-stable)
 2. Open this file on VScode
 ```
