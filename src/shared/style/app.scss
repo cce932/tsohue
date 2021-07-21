@@ -1,4 +1,6 @@
 @import "global";
+@import "~bootstrap/scss/bootstrap";
+
 * {
   @include root;
 
@@ -28,6 +30,7 @@ p.no-result {
 
   .logo {
     width: 110px;
+    height: fit-content;
   }
 
   button.search {
@@ -59,12 +62,6 @@ p.no-result {
     display: inline-block !important;
     width: fit-content;
   }
-
-  @media (max-width: 992px) {
-    a.ts-icon-feature {
-      padding-right: 20px;
-    }
-  }
 }
 
 a#to-top {
@@ -80,25 +77,24 @@ a#to-top {
   z-index: 900;
 }
 
-@media (max-width: 450px) {
+@include media-breakpoint-down(xs) {
   * {
-    font-size: 0.9rem;
-  }
-  .header-bar {
-    .logo {
-      width: 80px !important;
-    }
-  }
-  .navbar {
-    padding: 4px 8px;
+    font-size: 14px;
   }
 }
-
-@media (max-width: 987px) {
-  .header-bar {
-    align-items: center !important;
-    .logo {
-      width: 80px !important;
-    }
+// @include media-breakpoint-down(sm) {  }
+@include media-breakpoint-down(md) {
+  * {
+    font-size: 16px;
   }
+
+  .logo {
+    width: 80px !important;
+  }
+
+  a.ts-icon-feature {
+    padding-right: 20px;
+  }
+}
+@include media-breakpoint-down(lg) {
 }

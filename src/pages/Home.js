@@ -1,13 +1,21 @@
-import React from "react"
-import { Router, Link } from "react-router-dom"
-import { Carousel, Col, Row } from "react-bootstrap"
+import React from "react";
+import { Router, Link } from "react-router-dom";
+import { Carousel, Col, Row } from "react-bootstrap";
 
-import "shared/style/home.scss"
-import { history } from "helpers/history"
-import { FeatureSlot, MonthlySpecial } from "shared/components/common"
-import { allPaths, recipe } from "shared/constants/pathName"
+import "shared/style/home.scss";
+import { history } from "helpers/history";
+import { FeatureSlot, MonthlySpecial } from "shared/components/common";
+import { allPaths, recipe } from "shared/constants/pathName";
 
-const gredients = ["五花肉塊", "梅干菜", "辣椒", "蔥", "大蒜", "冰糖", "昆布粉"]
+const gredients = [
+  "五花肉塊",
+  "梅干菜",
+  "辣椒",
+  "蔥",
+  "大蒜",
+  "冰糖",
+  "昆布粉"
+];
 
 const Home = () => {
   return (
@@ -21,20 +29,21 @@ const Home = () => {
               alt="Second slide"
             />
           </Carousel.Item>
-          <Carousel.Item className="header-carousel-item bg-cover">
+
+          {/* <Carousel.Item className="header-carousel-item bg-cover">
             <img
               className="d-block w-100"
               src="/static-page-pic/home-banner2.jpg"
               alt="Second slide"
             />
-          </Carousel.Item>
+          </Carousel.Item> */}
         </Carousel>
 
         {/* 特色區 */}
         <div className="container feature">
           <Row>
             <Col sm="9">
-              <Row>
+              <Row xs="2" lg="4">
                 {/* <div className="arrow col-sm-12">
                   <div className="line"></div>
                   <div className="point"></div>
@@ -84,7 +93,7 @@ const Home = () => {
         </div>
       </div>
     </Router>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

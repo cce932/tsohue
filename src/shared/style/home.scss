@@ -1,4 +1,6 @@
 @import "global";
+@import "~bootstrap/scss/bootstrap";
+
 .home {
   margin: 0 !important;
 
@@ -50,5 +52,17 @@
         }
       }
     }
+  }
+
+  @include media-breakpoint-down(xs) {
+    .carousel img {
+      height: 70vh;
+      object-fit: cover;
+    }
+  }
+  // @include media-breakpoint-down(sm) {  }
+  @include media-breakpoint-down(md) {
+  }
+  @include media-breakpoint-down(lg) {
   }
 }
