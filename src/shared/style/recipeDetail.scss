@@ -99,6 +99,7 @@ div.recipe-detail {
   }
 
   @media (min-width: 1780px) {
+    // TODO: 這邊另外設定row依照寬度設定要有幾col
     div.carousel-inner {
       height: 500px;
 
