@@ -1,99 +1,75 @@
-import React from "react";
-import { Router, Link } from "react-router-dom";
-import { Carousel, Col, Row } from "react-bootstrap";
+import React from 'react'
+import { Router, Link } from 'react-router-dom'
+import { Row } from 'react-bootstrap'
+import {
+  IoPhonePortrait,
+  IoReceipt,
+  IoLeaf,
+  IoPieChart
+} from 'react-icons/io5'
 
-import "shared/style/home.scss";
-import { history } from "helpers/history";
-import { FeatureSlot, MonthlySpecial } from "shared/components/common";
-import { allPaths, recipe } from "shared/constants/pathName";
+import 'shared/style/home.scss'
+import { history } from 'helpers/history'
+import { FeatureSlot, MonthlySpecial } from 'shared/components/common'
+import { allPaths } from 'shared/constants/pathName'
+import color from 'shared/style/color'
 
 const gredients = [
-  "五花肉塊",
-  "梅干菜",
-  "辣椒",
-  "蔥",
-  "大蒜",
-  "冰糖",
-  "昆布粉"
-];
+  '五花肉塊',
+  '梅干菜',
+  '辣椒',
+
+  '蔥',
+  '大蒜',
+  '冰糖',
+  '昆布粉'
+]
 
 const Home = () => {
   return (
     <Router history={history}>
       <div className="home pages">
-        <Carousel fade>
-          <Carousel.Item className="header-carousel-item bg-cover">
-            <img
-              className="d-block w-100"
-              src="/static-page-pic/home-banner1.jpg"
-              alt="Second slide"
-            />
-          </Carousel.Item>
+        <section className="banner">
+          <div className="title">
+            <h1>作伙料理</h1>
+            <h1>享受美食第一步</h1>
+            <h4>Delicious recipes delivered to your door</h4>
+          </div>
+        </section>
 
-          {/* <Carousel.Item className="header-carousel-item bg-cover">
-            <img
-              className="d-block w-100"
-              src="/static-page-pic/home-banner2.jpg"
-              alt="Second slide"
-            />
-          </Carousel.Item> */}
-        </Carousel>
-
-        {/* 特色區 */}
-        <div className="container feature">
-          <Row>
-            <Col sm="9">
-              <Row xs="2" lg="4">
-                {/* <div className="arrow col-sm-12">
+        <section className="container feature">
+          <Row xs="2" lg="4" className="mb-3">
+            {/* <div className="arrow col-sm-12">
                   <div className="line"></div>
                   <div className="point"></div>
                 </div> */}
-                <FeatureSlot
-                  className="col-sm-6"
-                  title="源"
-                  content1="適量選購"
-                  content2="與能源作伙"
-                />
-                <FeatureSlot
-                  className="col-sm-6"
-                  title="食"
-                  content1="精緻食譜"
-                  content2="與廚食作伙"
-                />
-                <FeatureSlot
-                  className="col-sm-6"
-                  title="康"
-                  content1="原料透明"
-                  content2="與健康作伙"
-                />
-                <FeatureSlot
-                  className="col-sm-6"
-                  title="學"
-                  content1="料理教學"
-                  content2="與科技作伙"
-                />
-              </Row>
-            </Col>
-            <Col sm="3">
-              <div className="how-to-buy">
-                <Link to={allPaths.instruction}>怎麼買 ?</Link>
-              </div>
-            </Col>
+            <FeatureSlot content1="適量選購" content2="與能源作伙">
+              <IoLeaf color={color.vice} size="3rem" />
+            </FeatureSlot>
+            <FeatureSlot content1="獨家食譜" content2="與廚食作伙">
+              <IoReceipt color={color.vice} size="3rem" />
+            </FeatureSlot>
+            <FeatureSlot content1="原料透明" content2="與健康作伙">
+              <IoPieChart color={color.vice} size="3rem" />
+            </FeatureSlot>
+            <FeatureSlot content1="料理教學" content2="與科技作伙">
+              <IoPhonePortrait color={color.vice} size="3rem" />
+            </FeatureSlot>
           </Row>
-        </div>
+          <Link
+            className="how-to-btn buy__how-to-btn"
+            to={allPaths.instruction}
+          >
+            怎麼買 ?
+          </Link>
+        </section>
 
-        {/* 本月特餐 */}
-        <div className={["container", "monthly-special"].join(" ")}>
-          {/* <Link to="#"> */}
+        <section className="">
           <MonthlySpecial title="梅干扣肉" gredients={gredients} />
-          {/* </Link> */}
-          <div className="how-to-cook">
-            <Link to={`${allPaths[recipe]}16`}>怎麼煮 ?</Link>
-          </div>
-        </div>
+        </section>
       </div>
     </Router>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

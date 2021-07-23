@@ -1,14 +1,29 @@
 @import "global";
-@import "~bootstrap/scss/bootstrap";
 
 * {
-  @include root;
+  @include ts-reboot;
+  font-size: 16px;
 
   > div.pages {
     flex-grow: 1; // 在內容高度不夠時 撐高度 讓footer黏在底部
     margin-top: 150px;
     margin-bottom: 50px;
   }
+
+  p,
+  span,
+  label {
+    @include text(normal, 1rem, $prime-color);
+  }
+}
+
+h1 {
+  @include text(400, 2.5rem, $prime-color);
+}
+
+h4 {
+  @include text(400, 1rem, $prime-color);
+  margin-left: 4px;
 }
 
 div.spinner-border {
@@ -21,16 +36,15 @@ p.no-result {
 }
 
 .ts-header {
-  background-color: rgba($color: #ffffff, $alpha: 80%);
-  backdrop-filter: blur(6px); // has minimal browser support
+  background-color: rgba($color: #ffffff, $alpha: 90%);
+  // backdrop-filter: blur(6px); // has minimal browser support
 
   form {
     padding: 10px 0;
   }
 
   .logo {
-    width: 110px;
-    height: fit-content;
+    width: 100px;
   }
 
   button.search {
@@ -45,7 +59,7 @@ p.no-result {
 
   // Nav.Link
   a {
-    @include text(bold, 1rem, $prime-color);
+    @include text(bolder, 1rem, $prime-color);
     color: $prime-color !important;
     transition: $default-trans !important;
 
@@ -77,24 +91,21 @@ a#to-top {
   z-index: 900;
 }
 
-@include media-breakpoint-down(xs) {
-  * {
-    font-size: 14px;
-  }
+@include media-breakpoint-down(lg) {
 }
-// @include media-breakpoint-down(sm) {  }
-@include media-breakpoint-down(md) {
-  * {
-    font-size: 16px;
-  }
 
+@include media-breakpoint-down(md) {
   .logo {
     width: 80px !important;
   }
 
   a.ts-icon-feature {
-    padding-right: 20px;
+    padding-right: 15px !important;
   }
 }
-@include media-breakpoint-down(lg) {
+
+@include media-breakpoint-down(xs) {
+  * {
+    font-size: 14px;
+  }
 }

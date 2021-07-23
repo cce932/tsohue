@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap");
 
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/mixins/_breakpoints";
+
 $prime-color: #755734;
 $prime-lighter-color: #8c6941;
 $vice-color: #9e8568;
-$vice-lighter-color: #FEF5E5; // FCEAD2
+$vice-lighter-color: #fef5e5; // FCEAD2
 $accent-color: #fbd779;
 $accent-deeper-color: #f9bd23; // f8cb50(manager)
 $accent-red-color: #e76845;
@@ -28,7 +32,7 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 
 @mixin text($weight: 700, $size: 1rem, $color: $prime-color) {
   font-family: sans-serif;
-  font-weight: $weight;
+  font-weight: $weight !important;
   font-size: $size;
   color: $color;
   text-decoration: none;
@@ -104,8 +108,7 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   }
 }
 
-@mixin root {
-  font-size: 16px;
+@mixin ts-reboot {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -139,12 +142,18 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   li,
   a,
   nav,
-  label {
+  label,
+  section,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     overflow: hidden;
   }
 
   div#root {
-    // 內容有container和footer
     min-height: 100vh;
     display: flex;
     flex-direction: column; // 讓兩者上下排列，另外在container用flex-grow 撐滿高度，使footer置底

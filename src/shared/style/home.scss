@@ -1,68 +1,59 @@
 @import "global";
-@import "~bootstrap/scss/bootstrap";
 
 .home {
   margin: 0 !important;
 
-  .feature {
-    padding: 40px 0;
+  .banner {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(
+        170deg,
+        rgba(253, 247, 238, 0) 35%,
+        rgba(255, 255, 255, 0.8) 75%
+      ),
+      url("../../shared/images/home-banner1.jpg");
+    background-position: center;
+    position: relative;
 
-    // arrow
-    // .col > .row {
-    //   display: flex;
-    //   position: relative;
-    //   // padding: 0 70px; // 讓4個.feature更水平集中
+    .title {
+      position: absolute;
+      bottom: 30px;
+      right: 60px;
+      max-width: 40vw;
 
-    //   .arrow {
-    //     z-index: -2;
-    //     width: 97%;
-    //     // margin: 0 -20; // 對應到.col-9 > .row的padding左右20px 這邊為了不讓line變短
-    //     position: absolute; // 讓他橫跨在4個col之間
-    //     top: 120px; // 絕對位置
-    //     left: 20px; // 絕對位置
-    //     display: flex; // 讓.lin .point 水平置中
-    //     align-items: center; // 讓.lin .point 水平置中
-    //     .line {
-    //       width: 100%;
-    //       height: 2px;
-    //       background: linear-gradient(90deg, $accent-color 40%, $vice-color);
-    //     }
-
-    //     .point {
-    //       width: 0;
-    //       height: 0;
-    //       border-top: 5px solid transparent;
-    //       border-bottom: 5px solid transparent;
-    //       border-left: 10px solid $vice-color;
-    //     }
-    //   }
-    // }
-
-    .how-to-buy {
-      margin-top: 35px;
-      margin-left: 30px;
-
-      a {
-        @include text(600, 36px, $prime-color);
-        line-height: 1.15;
-        transition: $default-trans;
-
-        &:hover {
-          color: $accent-deeper-color;
-        }
+      h4 {
+        margin-top: 20px;
       }
     }
   }
 
-  @include media-breakpoint-down(xs) {
-    .carousel img {
+  .feature {
+    margin: 60px auto;
+    text-align: center;
+  }
+
+  a.how-to-btn {
+    @include solid($vice-color, $prime-color, $prime-color, 8px 40px);
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+
+  @include media-breakpoint-down(lg) {
+    .banner {
       height: 70vh;
       object-fit: cover;
     }
   }
-  // @include media-breakpoint-down(sm) {  }
-  @include media-breakpoint-down(md) {
-  }
-  @include media-breakpoint-down(lg) {
+
+  @include media-breakpoint-down(xs) {
+    .banner {
+      .title {
+        text-align: center;
+        max-width: 90vw;
+        right: 5vw;
+        left: 5vw;
+      }
+    }
   }
 }
