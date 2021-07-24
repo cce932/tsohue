@@ -1,16 +1,17 @@
-import React from "react"
-import { useDispatch } from "react-redux"
-import moment from "moment"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import moment from 'moment'
 
-import "shared/style/orderItem.scss"
-import OrderedRecipe from "shared/components/OrderedRecipe"
-import { SolidBtn } from "shared/components/styled"
-import { cancelOrderItem } from "actions/edit"
-import { orderStatusOptions, STATUS_TO_CONFIRM } from "shared/constants/options"
-import { allPaths, orderDetail } from "shared/constants/pathName"
-import color from "shared/style/color"
+import 'shared/style/orderItem.scss'
+import OrderedRecipe from 'shared/components/OrderedRecipe'
+import { SolidBtn } from 'shared/components/styled'
+import { cancelOrderItem } from 'actions/edit'
+import { orderStatusOptions, STATUS_TO_CONFIRM } from 'shared/constants/options'
+import { allPaths, orderDetail } from 'shared/constants/pathName'
+import color from 'shared/style/color'
 
-const OrderItem = ({ data }) => {
+const OrderItem = ({ orderNumber, id, status, orderTime, sum, transportFee, orderItems }) => {
   const dispatch = useDispatch()
   const toOrderDetail = (id) => () => {
     window.location = allPaths[orderDetail] + id
@@ -19,7 +20,7 @@ const OrderItem = ({ data }) => {
   const cancelOrderOnClick = (id) => () => {
     dispatch(cancelOrderItem(id)).then((data) => {
       window.alert(
-        `已成功刪除訂單 [編號: ${data.orderNumber}]，可至 [已取消] 標籤查看`
+        `已成功刪除訂單 [編號: ${orderNumber}]，可至 [已取消] 標籤查看`,
       )
     })
   }
@@ -27,16 +28,16 @@ const OrderItem = ({ data }) => {
   return (
     <div className="order-item">
       <label className="left">
-        <button className="item-number" onClick={toOrderDetail(data.id)}>
-          {data.orderNumber}
+        <button className="item-number" onClick={toOrderDetail(id)}>
+          {orderNumber}
         </button>
-        <span className="status">{orderStatusOptions[data.status]}</span>
+        <span className="status">{orderStatusOptions[status]}</span>
       </label>
       <label className="right">
-        <label>{moment(data.orderTime).format("YYYY-MM-DD HH:mm")}</label>
-        <label className="sum">NT. {data.sum + data.transportFee}</label>
+        <label>{moment(orderTime).format('YYYY-MM-DD HH:mm')}</label>
+        <label className="sum">NT. {sum + transportFee}</label>
       </label>
-      {data.orderItems.map((item) => (
+      {orderItems.map((item) => (
         <OrderedRecipe
           key={item.id}
           {...{
@@ -54,17 +55,27 @@ const OrderItem = ({ data }) => {
       <div className="tools">
         <SolidBtn
           backgroundColor={
-            data.status === STATUS_TO_CONFIRM ? color.secondary : color.fifth
+            status === STATUS_TO_CONFIRM ? color.secondary : color.fifth
           }
-          disabled={data.status !== STATUS_TO_CONFIRM}
+          disabled={status !== STATUS_TO_CONFIRM}
           margin="0"
-          onClick={cancelOrderOnClick(data.id)}
+          onClick={cancelOrderOnClick(id)}
         >
           取消訂單
         </SolidBtn>
       </div>
     </div>
   )
+}
+
+OrderItem.propTypes = {
+  orderNumber: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  orderTime: PropTypes.string.isRequired,
+  sum: PropTypes.number.isRequired,
+  transportFee: PropTypes.number.isRequired,
+  orderItems: PropTypes.object.isRequired,
 }
 
 export default OrderItem
