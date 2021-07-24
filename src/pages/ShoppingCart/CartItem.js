@@ -1,11 +1,12 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-import { Field, useFormikContext } from "formik"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Field, useFormikContext } from 'formik'
 
-import CartItemEditor from "./CartItemEditor"
-import EditService from "services/edit.service"
-import { DELETE_CART_ITEM } from "./constant"
-import OrderedRecipe from "shared/components/OrderedRecipe"
+import CartItemEditor from './CartItemEditor'
+import EditService from 'services/edit.service'
+import { DELETE_CART_ITEM } from './constant'
+import OrderedRecipe from 'shared/components/OrderedRecipe'
 
 const FlexDiv = styled.div`
   display: flex;
@@ -44,15 +45,15 @@ const CartItem = ({
       ? prevCurrentSum + currentCartPrice
       : prevCurrentSum - currentCartPrice
 
-    setFieldValue("checked", newChecked)
-    setFieldValue("currentSum", newCurrentSum)
+    setFieldValue('checked', newChecked)
+    setFieldValue('currentSum', newCurrentSum)
 
-    //　controll selectAll checkbox
+    // controll selectAll checkbox
     const currentCheckedLength = isChecked
       ? values.checked.length + 1
       : values.checked.length - 1
-    !isChecked && setFieldValue("selectAll", false)
-    ids.length === currentCheckedLength && setFieldValue("selectAll", true)
+    !isChecked && setFieldValue('selectAll', false)
+    ids.length === currentCheckedLength && setFieldValue('selectAll', true)
   }
 
   const editOnClick = (e) => {
@@ -61,12 +62,12 @@ const CartItem = ({
   }
 
   const removeOnClick = () => {
-    if (window.confirm("您確定要刪除此項烹飪包嗎？")) {
+    if (window.confirm('您確定要刪除此項烹飪包嗎？')) {
       reactDispatch(DELETE_CART_ITEM, cartId) // delete this item on UI
       EditService.deleteCartItem(cartId) // delete this item's data in DB
       setFieldValue(
-        "checked",
-        values.checked.filter((itemId) => itemId !== cartId)
+        'checked',
+        values.checked.filter((itemId) => itemId !== cartId),
       ) // update the price
     }
   }
@@ -115,4 +116,16 @@ const CartItem = ({
   )
 }
 
+CartItem.propTypes = {
+  cartId: PropTypes.number.isRequired,
+  recipe: PropTypes.string.isRequired,
+  customize: PropTypes.object.isRequired,
+  sum: PropTypes.number.isRequired,
+  recipeImage: PropTypes.string.isRequired,
+  isCustomize: PropTypes.bool.isRequired,
+  modifiable: PropTypes.bool,
+  reactDispatch: PropTypes.func,
+  ids: PropTypes.array,
+  updatingCart: PropTypes.bool,
+}
 export default CartItem

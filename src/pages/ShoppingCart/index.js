@@ -1,15 +1,15 @@
-import React, { useEffect } from "react"
-import { Field, Formik } from "formik"
-import { Form, Spinner } from "react-bootstrap"
+import React, { useEffect } from 'react'
+import { Field, Formik } from 'formik'
+import { Form, Spinner } from 'react-bootstrap'
 
-import "shared/style/shoppingCart.scss"
-import CartItem from "./CartItem"
-import LoadService from "services/load.service"
-import { createDispatch } from "shared/utility/hooks"
-import useCartreducer from "reducers/cart"
-import { LOAD_CART, SET_CART_IDS, SET_CART_SUM } from "./constant"
-import { allPaths, order } from "shared/constants/pathName"
-import Empty from "shared/components/Empty"
+import 'shared/style/shoppingCart.scss'
+import CartItem from './CartItem'
+import LoadService from 'services/load.service'
+import { createDispatch } from 'shared/utility/hooks'
+import useCartreducer from 'reducers/cart'
+import { LOAD_CART, SET_CART_IDS, SET_CART_SUM } from './constant'
+import { allPaths, order } from 'shared/constants/pathName'
+import Empty from 'shared/components/Empty'
 
 const ShoppingCart = () => {
   const [state, dispatch] = useCartreducer()
@@ -21,7 +21,7 @@ const ShoppingCart = () => {
       .then(({ data }) => {
         cartDispatch(LOAD_CART, data)
 
-        let _cartIds = []
+        const _cartIds = []
         let _cartSum = 0
         for (const cart of data) {
           _cartIds.push(cart.id.toString())
@@ -33,20 +33,20 @@ const ShoppingCart = () => {
       .catch(() => {
         cartDispatch(LOAD_CART, [])
       })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
   const selectAllOnChange = (values, setFieldValue) => () => {
     const isSelectAll = values.selectAll
-    setFieldValue("selectAll", !isSelectAll)
-    setFieldValue("checked", isSelectAll ? [] : ids)
-    setFieldValue("currentSum", isSelectAll ? 0 : originalSum)
+    setFieldValue('selectAll', !isSelectAll)
+    setFieldValue('checked', isSelectAll ? [] : ids)
+    setFieldValue('currentSum', isSelectAll ? 0 : originalSum)
   }
 
   return (
     <div className="container cart pages">
-      {typeof data !== "string" && data.length > 0 ? (
-        <>
+      {typeof data !== 'string' &&
+      data.length > 0
+        ? (<>
           <div className="title">購物車</div>
           <Formik
             initialValues={{ checked: [], selectAll: false, currentSum: 0 }}
@@ -54,9 +54,9 @@ const ShoppingCart = () => {
               if (values.checked.length) {
                 window.location = `${
                   allPaths[order]
-                }?cartIds=${values.checked.join("_")}`
+                }?cartIds=${values.checked.join('_')}`
               } else {
-                window.alert("請至少勾選一個烹飪包喔")
+                window.alert('請至少勾選一個烹飪包喔')
               }
             }}
           >
@@ -108,11 +108,14 @@ const ShoppingCart = () => {
             )}
           </Formik>
         </>
-      ) : typeof data === "string" ? (
+          )
+        : typeof data === 'string'
+          ? (
         <Empty message={data} />
-      ) : (
+            )
+          : (
         <Spinner animation="border" variant="warning" role="status" />
-      )}
+            )}
     </div>
   )
 }

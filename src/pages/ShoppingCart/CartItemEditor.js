@@ -1,33 +1,34 @@
-import React from "react"
-import { Modal, Row } from "react-bootstrap"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import _ from "lodash"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Modal, Row } from 'react-bootstrap'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import _ from 'lodash'
 
-import "shared/style/cartItemEditor.scss"
-import IngredientAdjuster from "shared/components/IngredientAdjuster"
-import { splitIngredientsByCategory } from "shared/utility/common"
-import { categoryOptions } from "shared/constants/options"
+import 'shared/style/cartItemEditor.scss'
+import IngredientAdjuster from 'shared/components/IngredientAdjuster'
+import { splitIngredientsByCategory } from 'shared/utility/common'
+import { categoryOptions } from 'shared/constants/options'
 import {
   LOAD_CART,
   UPDATE_CART_ITEM_START,
   UPDATE_CART_ITEM_END,
-} from "./constant"
-import editService from "services/edit.service"
-import loadService from "services/load.service"
+} from './constant'
+import editService from 'services/edit.service'
+import loadService from 'services/load.service'
 
 const initQuantityGenerator = (
   defalutIngredients,
   cartIngredients,
-  outOfStockIngredients
+  outOfStockIngredients,
 ) => {
-  let result = Object.assign({})
+  const result = Object.assign({})
 
   try {
     for (let i = 0; i < defalutIngredients.length; i++) {
       const _ingredientId = cartIngredients[i].ingredient.id
       const isOutOfStock = outOfStockIngredients.includes(
-        _ingredientId.toString()
+        _ingredientId.toString(),
       )
 
       result[_ingredientId] = {
@@ -42,7 +43,7 @@ const initQuantityGenerator = (
 
     return result
   } catch (e) {
-    console.error("recipe updated > [recipe ingredients] async with the [cart ingreidnets] > cause the CartItemEditor error")
+    console.error('recipe updated > [recipe ingredients] async with the [cart ingreidnets] > cause the CartItemEditor error')
   }
 }
 
@@ -58,7 +59,7 @@ const CartItemEditor = ({
   const initQuantity = initQuantityGenerator(
     recipe.recipeIngredients,
     customize,
-    recipe.outOfStockIngredients
+    recipe.outOfStockIngredients,
   )
 
   const updateOnClick = (e) => (cartId, values, onHide) => {
@@ -89,10 +90,10 @@ const CartItemEditor = ({
       Yup.object(
         _.mapValues(obj, () =>
           Yup.object({
-            customizeQuantity: Yup.number().max(20, "數量請低於20喔"),
-          })
-        )
-      )
+            customizeQuantity: Yup.number().max(20, '數量請低於20喔'),
+          }),
+        ),
+      ),
     ),
   })
 
@@ -112,7 +113,7 @@ const CartItemEditor = ({
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log("submit", values)
+          console.log('submit', values)
         }}
       >
         {({ values, errors }) => (
@@ -129,7 +130,7 @@ const CartItemEditor = ({
                         categoryIngredients={splitedIngredients[category]}
                         outOfStockIngredients={recipe.outOfStockIngredients}
                       />
-                    )
+                    ),
                 )}
               </Row>
               <div className="right">
@@ -155,6 +156,15 @@ const CartItemEditor = ({
       </Formik>
     </Modal>
   )
+}
+
+CartItemEditor.propTypes = {
+  cartId: PropTypes.number.isRequired,
+  recipe: PropTypes.object.isRequired,
+  customize: PropTypes.object.isRequired,
+  reactDispatch: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
+  onHide: PropTypes.func.isRequired,
 }
 
 export default CartItemEditor
