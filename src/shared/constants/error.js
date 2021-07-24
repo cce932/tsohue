@@ -1,11 +1,11 @@
 // status
-export const BAD_REQUEST = "BAD_REQUEST" // 400
-export const UNAUTHORIZED = "UNAUTHORIZED" // 401
-export const CONFLICT = "CONFLICT" // 409
+export const BAD_REQUEST = 'BAD_REQUEST' // 400
+export const UNAUTHORIZED = 'UNAUTHORIZED' // 401
+export const CONFLICT = 'CONFLICT' // 409
 
 // message
 export const UNEXPECTED_ERROR = /Unexpected error/ // 400
-export const LOGIN_FAILURE = "LOGIN FAILURE" // 401
+export const LOGIN_FAILURE = 'LOGIN FAILURE' // 401
 
 // debugMessage
 export const TOKEN_EXPIRED = /^JWT expired/ // UNEXPECTED_ERROR

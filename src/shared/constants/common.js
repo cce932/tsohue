@@ -1,2 +1,2 @@
-export const MEMBER = "MEMBER"
-export const VIP = "VIP"
+export const MEMBER = 'MEMBER'
+export const VIP = 'VIP'

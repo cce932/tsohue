@@ -1,5 +1,5 @@
-import _ from "lodash"
-import crypto from "crypto"
+import _ from 'lodash'
+import crypto from 'crypto'
 
 import {
   STATUS_ALL,
@@ -7,13 +7,13 @@ import {
   STATUS_TO_CONFIRM,
   STATUS_TO_DELIVER,
   STATUS_CANCELED,
-} from "shared/constants/options"
+} from 'shared/constants/options'
 
 // 把array以maxRow為限制 分為多維陣列
 export const splitToRows = (array, maxRow) => {
   const result = []
   for (const [index, value] of array.entries()) {
-    let group = Math.floor(index / maxRow)
+    const group = Math.floor(index / maxRow)
     result[group] ? result[group].push(value) : (result[group] = [value]) // 最後的[item] 注意方括號 不然會出現This method ".push" is not define        return null
   }
 
@@ -36,11 +36,11 @@ export const transMSecToMin = (totalMSec) => {
   const totalSec = _.floor(totalMSec / 1000)
   const minutes = _.floor(totalSec / 60)
   const seconds = totalSec - minutes * 60
-  return addPrefix(minutes, "0", 2) + ":" + addPrefix(seconds, "0", 2)
+  return addPrefix(minutes, '0', 2) + ':' + addPrefix(seconds, '0', 2)
 }
 
 export const splitIngredientsByCategory = (ingredients) => {
-  let result = Object.assign({ meat: [], vegetable: [], spice: [], other: [] })
+  const result = Object.assign({ meat: [], vegetable: [], spice: [], other: [] })
 
   for (const ingredient of ingredients) {
     const category = ingredient.ingredient.category.toLowerCase()
@@ -53,9 +53,9 @@ export const splitIngredientsByCategory = (ingredients) => {
 
 export const splitOrdersByStatus = (orders) => {
   try {
-    if (!orders || typeof orders !== "object") return
+    if (!orders || typeof orders !== 'object') return
 
-    let result = Object.assign({
+    const result = Object.assign({
       [STATUS_ALL]: [],
       [STATUS_TO_CONFIRM]: [],
       [STATUS_TO_DELIVER]: [],
@@ -72,10 +72,10 @@ export const splitOrdersByStatus = (orders) => {
 
     return result
   } catch (error) {
-    console.error("error from splitOrdersByStatus", error)
+    console.error('error from splitOrdersByStatus', error)
   }
 }
 
-export const encrypt = (info, key = "%E9%A3%9F%E8%AD%9C") => {
-  return crypto.createHash("sha256").update(info).digest("hex")
+export const encrypt = (info, key = '%E9%A3%9F%E8%AD%9C') => {
+  return crypto.createHash('sha256').update(info).digest('hex')
 }
