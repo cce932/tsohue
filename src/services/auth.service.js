@@ -1,9 +1,9 @@
-import axios from "axios"
-import { TS_API } from "shared/constants/endPoint"
-import userService from "./user.service"
+import axios from 'axios'
+import { TS_API } from 'shared/constants/endPoint'
+import userService from './user.service'
 
 const register = (account, password, username, phone, email) => {
-  return axios.post(TS_API + "/member/register", {
+  return axios.post(TS_API + '/member/register', {
     account,
     password,
     username,
@@ -14,7 +14,7 @@ const register = (account, password, username, phone, email) => {
 
 const login = (account, password) => {
   return axios
-    .post(TS_API + "/login", {
+    .post(TS_API + '/login', {
       account,
       password,
     })
@@ -30,17 +30,16 @@ const login = (account, password) => {
           ...memberData.data,
         }
       }
-      localStorage.setItem("user", JSON.stringify(allResponse))
+      localStorage.setItem('user', JSON.stringify(allResponse))
 
       return allResponse
     })
 }
 
 const logout = () => {
-  localStorage.removeItem("user")
+  localStorage.removeItem('user')
 }
 
-/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   register,
   login,
