@@ -1,17 +1,18 @@
-import _ from "lodash"
-import React, { useState } from "react"
-import { Row, Col, Spinner } from "react-bootstrap"
-import { Formik } from "formik"
-import * as Yup from "yup"
-import { useDispatch, useSelector } from "react-redux"
-import { IoIosUnlock } from "react-icons/io"
+import _ from 'lodash'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Row, Col, Spinner } from 'react-bootstrap'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
+import { IoIosUnlock } from 'react-icons/io'
 
-import "shared/style/vipCartAdder.scss"
-import { categoryOptions } from "shared/constants/options"
-import { splitIngredientsByCategory } from "shared/utility/common"
-import IngredientAdjuster from "shared/components/IngredientAdjuster"
-import { addCartForCustomization, addCartForDefault } from "actions/add"
-import { VIP } from "shared/constants/common"
+import 'shared/style/vipCartAdder.scss'
+import { categoryOptions } from 'shared/constants/options'
+import { splitIngredientsByCategory } from 'shared/utility/common'
+import IngredientAdjuster from 'shared/components/IngredientAdjuster'
+import { addCartForCustomization, addCartForDefault } from 'actions/add'
+import { VIP } from 'shared/constants/common'
 
 // format of formik value
 // ingredient: {
@@ -29,13 +30,13 @@ import { VIP } from "shared/constants/common"
 const initQuantityGenerator = (
   ingredients,
   outOfStockIngredients,
-  previousValuesForLogin
+  previousValuesForLogin,
 ) => {
-  let result = Object.assign({})
+  const result = Object.assign({})
   for (const ingredient of ingredients) {
     const _ingredientId = ingredient.ingredient.id
     const isOutOfStock = outOfStockIngredients.includes(
-      _ingredientId.toString()
+      _ingredientId.toString(),
     )
     const _previousValue = previousValuesForLogin?.ingredient?._ingredientId
 
@@ -43,9 +44,7 @@ const initQuantityGenerator = (
       defaultQuantity: ingredient.quantityRequired,
       customizeQuantity: isOutOfStock
         ? 0
-        : _previousValue
-        ? _previousValue
-        : ingredient.quantityRequired,
+        : _previousValue || ingredient.quantityRequired,
       price: ingredient.ingredient.price,
     }
   }
@@ -68,7 +67,7 @@ const CartAdderForCustomization = ({
   const initQuantity = initQuantityGenerator(
     ingredients,
     outOfStockIngredients,
-    localStorage.getItem(recipeId)
+    localStorage.getItem(recipeId),
   )
   const isVip = user?.role === VIP
 
@@ -76,8 +75,8 @@ const CartAdderForCustomization = ({
     price,
     isPurchaseNothing,
   }) => {
-    setFieldValue("currentPrice", price)
-    setFieldValue("isPurchaseNothing", isPurchaseNothing)
+    setFieldValue('currentPrice', price)
+    setFieldValue('isPurchaseNothing', isPurchaseNothing)
   }
 
   const validationSchema = Yup.object().shape({
@@ -86,14 +85,14 @@ const CartAdderForCustomization = ({
         _.mapValues(obj, () =>
           Yup.object({
             customizeQuantity: Yup.number()
-              .typeError("請輸入數字喔")
-              .required("請輸入數量喔")
-              .integer("須為整數喔")
-              .min(0, "數量不可為負喔")
-              .max(20, "數量請低於20喔"),
-          })
-        )
-      )
+              .typeError('請輸入數字喔')
+              .required('請輸入數量喔')
+              .integer('須為整數喔')
+              .min(0, '數量不可為負喔')
+              .max(20, '數量請低於20喔'),
+          }),
+        ),
+      ),
     ),
   })
 
@@ -117,12 +116,12 @@ const CartAdderForCustomization = ({
       // currentPrice < 0 from IngredientAdjuster means that the quantities are default
       dispatch(addCartForDefault(recipeId)).then(() => {
         setIsSubmitting(false)
-        window.alert("已加入購物車")
+        window.alert('已加入購物車')
       })
     } else {
       dispatch(addCartForCustomization(cartData)).then(() => {
         setIsSubmitting(false)
-        window.alert("已加入購物車 [客製化]")
+        window.alert('已加入購物車 [客製化]')
       })
     }
   }
@@ -158,14 +157,14 @@ const CartAdderForCustomization = ({
                           passPriceToAdder={passPriceToAdder(setFieldValue)}
                           handmadePrice={handmadePrice}
                         />
-                      )
+                      ),
                   )}
                 </Row>
               </Col>
               <Col sm="2" className="button">
                 <div>
                   <label className="price" name="currentPrice">
-                    {"總額 NT. "}
+                    {'總額 NT. '}
                     {values.currentPrice < 0 ? price : values.currentPrice}
                   </label>
                   <div className="fee-notification">內含客製化服務費</div>
@@ -175,7 +174,7 @@ const CartAdderForCustomization = ({
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className={`${!isVip && "vip-upgrade"}`}
+                    className={`${!isVip && 'vip-upgrade'}`}
                     disabled={
                       !_.isEmpty(errors) ||
                       isWholeOutOfStock ||
@@ -183,25 +182,29 @@ const CartAdderForCustomization = ({
                       !isVip
                     }
                   >
-                    {isVip ? (
-                      isSubmitting ? (
+                    {isVip
+                      ? (
+                          isSubmitting
+                            ? (
                         <Spinner animation="border" variant="light" size="sm" />
-                      ) : (
-                        "加入購物車"
-                      )
-                    ) : (
+                              )
+                            : (
+                                '加入購物車'
+                              )
+                        )
+                      : (
                       <>
                         <IoIosUnlock size="18px" />
                         升級VIP
                       </>
-                    )}
+                        )}
                   </button>
                   <div className="error-msg">
                     {isWholeOutOfStock
-                      ? "目前無存貨"
+                      ? '目前無存貨'
                       : values.isPurchaseNothing
-                      ? "至少購買1樣食材喔"
-                      : ""}
+                        ? '至少購買1樣食材喔'
+                        : ''}
                   </div>
                 </div>
               </Col>
@@ -211,6 +214,14 @@ const CartAdderForCustomization = ({
       </Formik>
     </div>
   )
+}
+
+CartAdderForCustomization.propTypes = {
+  recipeId: PropTypes.number.isRequired,
+  ingredients: PropTypes.object.isRequired,
+  price: PropTypes.number.isRequired,
+  outOfStockIngredients: PropTypes.array.isRequired,
+  handmadePrice: PropTypes.number.isRequired,
 }
 
 export default CartAdderForCustomization

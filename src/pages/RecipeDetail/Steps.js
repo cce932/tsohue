@@ -1,13 +1,12 @@
-import _ from "lodash"
-import React, { useRef } from "react"
-import { Player, BigPlayButton, ControlBar } from "video-react"
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { useRef } from 'react'
+import { Player, BigPlayButton, ControlBar } from 'video-react'
 
-import "shared/style/steps.scss"
-import { transMSecToMin } from "shared/utility/common"
+import 'shared/style/steps.scss'
+import { transMSecToMin } from 'shared/utility/common'
 
-const Steps = (props) => {
-  const steps = props.steps
-  const link = props.link
+const Steps = ({ steps, link }) => {
   const videoRef = useRef()
 
   const changeTime = (startTime) => {
@@ -34,6 +33,11 @@ const Steps = (props) => {
       ))}
     </div>
   )
+}
+
+Steps.propTypes = {
+  steps: PropTypes.object.isRequired,
+  link: PropTypes.string.isRequired,
 }
 
 export default Steps

@@ -1,11 +1,12 @@
-import React from "react"
-import { Row, Col } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 
-import "shared/style/memberCartAdder.scss"
-import { categoryOptions } from "shared/constants/options"
-import { splitIngredientsByCategory } from "shared/utility/common"
-import { addCartForDefault } from "actions/add"
+import 'shared/style/memberCartAdder.scss'
+import { categoryOptions } from 'shared/constants/options'
+import { splitIngredientsByCategory } from 'shared/utility/common'
+import { addCartForDefault } from 'actions/add'
 
 const CartAdderForDefault = ({
   recipeId,
@@ -23,7 +24,7 @@ const CartAdderForDefault = ({
     }
 
     dispatch(addCartForDefault(recipeId)).then(() => {
-      window.alert("已加入購物車")
+      window.alert('已加入購物車')
     })
   }
 
@@ -45,7 +46,7 @@ const CartAdderForDefault = ({
                   ))}
                 </div>
               </Col>
-            )
+            ),
         )}
         <Col className="button">
           <div>
@@ -55,13 +56,20 @@ const CartAdderForDefault = ({
               onClick={AddCartForDefaultOnClick}
               disabled={isOutOfStock}
             >
-              {isOutOfStock ? "目前無存貨" : "加入購物車"}
+              {isOutOfStock ? '目前無存貨' : '加入購物車'}
             </button>
           </div>
         </Col>
       </Row>
     </div>
   )
+}
+
+CartAdderForDefault.propTypes = {
+  recipeId: PropTypes.number.isRequired,
+  ingredients: PropTypes.object.isRequired,
+  price: PropTypes.number.isRequired,
+  isOutOfStock: PropTypes.bool.isRequired,
 }
 
 export default CartAdderForDefault

@@ -1,22 +1,23 @@
-import _ from "lodash"
-import $ from "jquery"
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Row, Col, Spinner, Carousel, Tabs, Tab } from "react-bootstrap"
-import { RiVipFill } from "react-icons/ri"
+import _ from 'lodash'
+import $ from 'jquery'
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Spinner, Carousel, Tabs, Tab } from 'react-bootstrap'
+import { RiVipFill } from 'react-icons/ri'
 
-import "shared/style/recipeDetail.scss"
-import Steps from "./Steps"
-import CartAdderForDefault from "./MemberCartAdder"
-import CartAdderForCustomization from "./VipCartAdder"
-import { versionOptions } from "shared/constants/options"
-import { MEMBER } from "shared/constants/common"
-import { loadRecipeById, loadRecipeImagesById } from "actions/load"
+import 'shared/style/recipeDetail.scss'
+import Steps from './Steps'
+import CartAdderForDefault from './MemberCartAdder'
+import CartAdderForCustomization from './VipCartAdder'
+import { versionOptions } from 'shared/constants/options'
+import { MEMBER } from 'shared/constants/common'
+import { loadRecipeById, loadRecipeImagesById } from 'actions/load'
 import {
   allPaths,
   recipe as recipePath,
   recipeNotFound,
-} from "shared/constants/pathName"
+} from 'shared/constants/pathName'
 
 const RecipeDetail = (props) => {
   const dispatch = useDispatch()
@@ -30,29 +31,29 @@ const RecipeDetail = (props) => {
     dispatch(loadRecipeById(id))
       .then((data) => {
         setRecipe(data)
-        setDescription(data.currentRecipe.description.split("\n"))
+        setDescription(data.currentRecipe.description.split('\n'))
       })
       .catch((error) => {
-        if (error.status === "NOT_FOUND")
-          window.location = allPaths[recipeNotFound]
+        if (error.status === 'NOT_FOUND') { window.location = allPaths[recipeNotFound] }
       })
 
     dispatch(loadRecipeImagesById(id)).then((data) => setImages(data))
   }, [dispatch, id])
 
   $(() => {
-    $("#recipe-name-wave").width($("#recipe-name").width())
+    $('#recipe-name-wave').width($('#recipe-name').width())
   })
 
   return (
     <div sm={5} className="recipe-detail pages">
-      {!_.isEmpty(recipe) ? (
-        <>
+      {!_.isEmpty(recipe)
+        ? (<>
           <Row className="info-image">
             <Col className="info">
               <div className="version">
                 {recipe.existedVersions.map((version, index) =>
-                  version.recipeId.toString() === id ? (
+                  version.recipeId.toString() === id
+                    ? (
                     <a
                       className={`version version-${version.version.toLowerCase()} located`}
                       key={index}
@@ -60,7 +61,8 @@ const RecipeDetail = (props) => {
                     >
                       {versionOptions[version.version]}版本
                     </a>
-                  ) : (
+                      )
+                    : (
                     <a
                       className={`version version-${version.version.toLowerCase()}`}
                       key={index}
@@ -68,7 +70,7 @@ const RecipeDetail = (props) => {
                     >
                       {versionOptions[version.version]}
                     </a>
-                  )
+                      ),
                 )}
               </div>
 
@@ -82,29 +84,30 @@ const RecipeDetail = (props) => {
               </div>
 
               <div className="description">
-                {description && description.map((des) => <p>{des}</p>)}
+                {description && description.map((des, index) => <p key={index}>{des}</p>)}
               </div>
             </Col>
             <Col sm={7}>
               <Carousel>
-                {images.length ? (
-                  images.map((image, index) => (
+                {images.length
+                  ? (images.map((image, index) => (
                     <Carousel.Item key={index}>
                       <img
                         src={image.s3Url}
                         alt={`${index}-slide`}
                         onError={(e) => {
                           e.target.onerror = null
-                          e.target.src = "/common-pic/noImage.jpg"
+                          e.target.src = '/common-pic/noImage.jpg'
                         }}
                       />
                     </Carousel.Item>
-                  ))
-                ) : (
+                    ))
+                    )
+                  : (
                   <Carousel.Item>
-                    <img src="/common-pic/loading.gif" alt={"wait-upload"} />
+                    <img src="/common-pic/loading.gif" alt={'wait-upload'} />
                   </Carousel.Item>
-                )}
+                    )}
               </Carousel>
             </Col>
           </Row>
@@ -112,8 +115,8 @@ const RecipeDetail = (props) => {
           <Tabs
             defaultActiveKey={
               !user || user.role === MEMBER
-                ? "CartAdderForDefault"
-                : "CartAdderForCustomization"
+                ? 'CartAdderForDefault'
+                : 'CartAdderForCustomization'
             }
             id="uncontrolled-tab-example"
           >
@@ -152,12 +155,20 @@ const RecipeDetail = (props) => {
             steps={recipe.currentRecipe.recipeSteps}
             link={recipe.currentRecipe.link}
           />
-        </>
-      ) : (
+        </>)
+        : (
         <Spinner animation="border" variant="warning" role="status" />
-      )}
+          )}
     </div>
   )
+}
+
+RecipeDetail.propTypes = {
+  match: {
+    params: {
+      id: PropTypes.number.isrequired,
+    },
+  },
 }
 
 export default RecipeDetail
