@@ -1,12 +1,12 @@
-import React, { useEffect } from "react"
-import { Redirect, Switch, Route, BrowserRouter } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect } from 'react'
+import { Redirect, Switch, Route, BrowserRouter } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { logout } from "actions/auth"
-import { clearMessage } from "actions/message"
-import { history } from "helpers/history"
-import "shared/style/member.scss"
-import SideList from "shared/components/SideList"
+import { logout } from 'actions/auth'
+import { clearMessage } from 'actions/message'
+import { history } from 'helpers/history'
+import 'shared/style/member.scss'
+import SideList from 'shared/components/SideList'
 import {
   allPaths,
   coupons,
@@ -15,10 +15,10 @@ import {
   member,
   orderOverview,
   profile,
-} from "shared/constants/pathName"
-import OrderOverview from "./OrderOverview"
-import Profile from "./Profile"
-import Empty from "shared/components/Empty"
+} from 'shared/constants/pathName'
+import OrderOverview from './OrderOverview'
+import Profile from './Profile'
+import Empty from 'shared/components/Empty'
 
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -48,7 +48,7 @@ const Member = () => {
       url: allPaths[profile],
     },
     {
-      title: "優惠券",
+      title: '優惠券',
       url: allPaths[coupons],
     },
     {

@@ -1,9 +1,10 @@
-import React from "react"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import color from "shared/style/color"
-import { StyledP } from "shared/components/styled"
-import { roleOptions } from "shared/constants/options"
-import { Col, Row } from "react-bootstrap"
+import color from 'shared/style/color'
+import { StyledP } from 'shared/components/styled'
+import { roleOptions } from 'shared/constants/options'
+import { Col, Row } from 'react-bootstrap'
 
 const Item = ({ type, info }) => (
   <Col className="block">
@@ -16,12 +17,18 @@ const Item = ({ type, info }) => (
   </Col>
 )
 
+Item.propTypes = {
+  type: PropTypes.string.isRequired,
+  info: PropTypes.string.isRequired,
+}
+
 const Profile = ({ currentUser }) => {
+  const { account, email, role, phone, username } = currentUser
   const content = [
-    { type: "帳號", info: currentUser.account },
-    { type: "郵件", info: currentUser.email },
-    { type: "身份", info: roleOptions[currentUser.role] },
-    { type: "電話", info: currentUser.phone },
+    { type: '帳號', info: account },
+    { type: '郵件', info: email },
+    { type: '身份', info: roleOptions[role] },
+    { type: '電話', info: phone },
   ]
 
   return (
@@ -32,16 +39,26 @@ const Profile = ({ currentUser }) => {
         weight="bold"
         color={color.prime}
       >
-        你好，{currentUser.username}
+        你好，{username}
       </StyledP>
 
       <Row>
         {content.map((item) => (
-          <Item {...{ ...item }} />
+          <Item key={item.type} {...{ ...item }} />
         ))}
       </Row>
     </div>
   )
+}
+
+Profile.propTypes = {
+  currentUser: {
+    account: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+  },
 }
 
 export default Profile

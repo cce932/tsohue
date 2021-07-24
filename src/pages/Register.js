@@ -1,23 +1,19 @@
-import React, { useState, useRef, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Redirect, Router, Link } from "react-router-dom"
+import React, { useState, useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect, Router, Link } from 'react-router-dom'
 
-import "shared/style/register.scss"
-import Form from "react-validation/build/form"
-import Input from "react-validation/build/input"
-import CheckButton from "react-validation/build/button"
-import { isEmail, isNumeric } from "validator"
+import 'shared/style/register.scss'
+import Form from 'react-validation/build/form'
+import Input from 'react-validation/build/input'
+import CheckButton from 'react-validation/build/button'
+import { isEmail, isNumeric } from 'validator'
 
-import { register } from "actions/auth"
-import { history } from "helpers/history"
-import { clearMessage } from "actions/message"
-import { Spinner } from "react-bootstrap"
-import { allPaths, login } from "shared/constants/pathName"
-import { encrypt } from "shared/utility/common"
-
-// 設定驗證
-// dispatch action
-// return
+import { register } from 'actions/auth'
+import { history } from 'helpers/history'
+import { clearMessage } from 'actions/message'
+import { Spinner } from 'react-bootstrap'
+import { allPaths, login } from 'shared/constants/pathName'
+import { encrypt } from 'shared/utility/common'
 
 const required = (value) => {
   if (!value) {
@@ -53,11 +49,11 @@ const Register = () => {
   const form = useRef()
   const checkBtn = useRef()
 
-  const [account, setAccount] = useState("")
-  const [password, setPassword] = useState("")
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
+  const [account, setAccount] = useState('')
+  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [successful, setSuccessful] = useState(false)
 
   const { message } = useSelector((state) => {
@@ -101,10 +97,9 @@ const Register = () => {
 
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(
-        register(account, encrypt(password, account), username, phone, email)
+        register(account, encrypt(password, account), username, phone, email),
       )
         .then(() => {
-          // 不直接跳轉至login
           setSuccessful(true)
           window.location = allPaths[login]
         })
@@ -125,7 +120,8 @@ const Register = () => {
       <div className="container pages register">
         <div className="block">
           <Form onSubmit={handleRegister} ref={form}>
-            {!successful ? (
+            {!successful
+              ? (
               <div className="form">
                 <div className="input-row">
                   <label>帳號</label>
@@ -184,27 +180,30 @@ const Register = () => {
 
                 <div className="bottom">
                   <button>
-                    {successful ? (
+                    {successful
+                      ? (
                       <Spinner animation="border" size="sm"></Spinner>
-                    ) : (
-                      "註冊"
-                    )}
+                        )
+                      : (
+                          '註冊'
+                        )}
                   </button>
                   <p>
-                    已經是會員了嗎？<Link to={"/login"}>點我登入</Link>
+                    已經是會員了嗎？<Link to={'/login'}>點我登入</Link>
                   </p>
                 </div>
               </div>
-            ) : (
+                )
+              : (
               <Redirect to="/login" />
-            )}
+                )}
 
             {message && <div className="message">{message}</div>}
 
-            {/* Then CheckButton helps us to verify 
+            {/* Then CheckButton helps us to verify
                 if the form validation is successful or not.
                 So this button will not display on the form. */}
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            <CheckButton style={{ display: 'none' }} ref={checkBtn} />
           </Form>
         </div>
       </div>

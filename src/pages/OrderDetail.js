@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
-import _ from "lodash"
-import moment from "moment"
-import { BsChevronLeft } from "react-icons/bs"
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { Spinner } from 'react-bootstrap'
+import _ from 'lodash'
+import moment from 'moment'
+import { BsChevronLeft } from 'react-icons/bs'
 
-import "shared/style/orderDetail.scss"
-import Empty from "shared/components/Empty"
-import OrderItem from "./OrderOverview/OrderItem"
-import color from "shared/style/color"
-import { loadOrderById } from "actions/load"
-import { payWayOptions, serviceWayOptions } from "shared/constants/options"
+import 'shared/style/orderDetail.scss'
+import Empty from 'shared/components/Empty'
+import OrderItem from './OrderOverview/OrderItem'
+import color from 'shared/style/color'
+import { loadOrderById } from 'actions/load'
+import { payWayOptions, serviceWayOptions } from 'shared/constants/options'
 
 const OrderDetail = (props) => {
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ const OrderDetail = (props) => {
         setOrder(data)
       })
       .catch(() => {
-        setOrder("訂單不存在喔")
+        setOrder('訂單不存在喔')
       })
   }, [dispatch, orderId])
 
@@ -35,8 +36,10 @@ const OrderDetail = (props) => {
         </button>
         <div>訂單詳細</div>
       </div>
-      {!_.isEmpty(order) ? (
-        typeof order === "object" ? (
+      {!_.isEmpty(order)
+        ? (
+            typeof order === 'object'
+              ? (
           <>
             <OrderItem data={order} />
             <div className="flex">
@@ -61,7 +64,7 @@ const OrderDetail = (props) => {
                 <div className="block">
                   <label className="key">預期送達時間</label>
                   <label className="value">
-                    {moment(order.hopeDeliverTime).format("YYYY-MM-DD HH:mm")}
+                    {moment(order.hopeDeliverTime).format('YYYY-MM-DD HH:mm')}
                   </label>
                 </div>
 
@@ -69,8 +72,8 @@ const OrderDetail = (props) => {
                   <label className="key">寄出時間</label>
                   <label className="value">
                     {order.shippingTime
-                      ? moment(order.shippingTime).format("YYYY-MM-DD HH:mm")
-                      : "尚未寄出"}
+                      ? moment(order.shippingTime).format('YYYY-MM-DD HH:mm')
+                      : '尚未寄出'}
                   </label>
                 </div>
 
@@ -78,8 +81,8 @@ const OrderDetail = (props) => {
                   <label className="key">實際送達時間</label>
                   <label className="value">
                     {order.realDeliverTime
-                      ? moment(order.realDeliverTime).format("YYYY-MM-DD HH:mm")
-                      : "尚未抵達"}
+                      ? moment(order.realDeliverTime).format('YYYY-MM-DD HH:mm')
+                      : '尚未抵達'}
                   </label>
                 </div>
               </div>
@@ -115,14 +118,24 @@ const OrderDetail = (props) => {
               </div>
             </div>
           </>
-        ) : (
+                )
+              : (
           <Empty message={order} />
-        )
-      ) : (
+                )
+          )
+        : (
         <Spinner animation="border" variant="warning" role="status" />
-      )}
+          )}
     </div>
   )
+}
+
+OrderDetail.propTypes = {
+  match: {
+    params: {
+      id: PropTypes.string.isRequired,
+    },
+  },
 }
 
 export default OrderDetail

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { Pagination, Spinner } from "react-bootstrap"
 import { useLocation } from "react-router-dom"
 
+
 import "shared/style/recipes.scss"
 import Recipe from "./Recipe"
 import { versionOptions } from "shared/constants/options"
@@ -15,6 +16,7 @@ const PRICE_ASC = "價格低到高"
 const PRICE_DESC = "價格高到低"
 const ASC = "ASC"
 const DESC = "DESC"
+
 
 const SideListWapper = styled.div`
   position: fixed;
@@ -28,6 +30,7 @@ const SideListWapper = styled.div`
   border: none;
   text-align: left;
 `
+
 
 const Recipes = () => {
   const { allRecipes } = useSelector((state) => state.recipes)

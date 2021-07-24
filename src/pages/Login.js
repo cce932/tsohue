@@ -1,14 +1,14 @@
-import React, { useState, useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import "shared/style/login.scss"
-import Form from "react-validation/build/form"
-import Input from "react-validation/build/input"
-import CheckButton from "react-validation/build/button"
+import 'shared/style/login.scss'
+import Form from 'react-validation/build/form'
+import Input from 'react-validation/build/input'
+import CheckButton from 'react-validation/build/button'
 
-import { login } from "actions/auth"
-import { Link } from "react-router-dom"
-import { allPaths, register } from "shared/constants/pathName"
+import { login } from 'actions/auth'
+import { Link } from 'react-router-dom'
+import { allPaths, register } from 'shared/constants/pathName'
 import { Spinner } from 'react-bootstrap'
 import { encrypt } from 'shared/utility/common'
 
@@ -22,8 +22,8 @@ const Login = (props) => {
   const form = useRef()
   const checkBtn = useRef()
 
-  const [account, setAccount] = useState("")
-  const [password, setPassword] = useState("")
+  const [account, setAccount] = useState('')
+  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
   const { isLoggedIn } = useSelector((state) => state.auth)
@@ -31,10 +31,10 @@ const Login = (props) => {
 
   const dispatch = useDispatch()
 
-  const next = new URL(window.location.href).searchParams.get("next")
+  const next = new URL(window.location.href).searchParams.get('next')
 
   if (isLoggedIn) {
-    window.location = next ? next : "/"
+    window.location = next || '/'
   }
 
   const onChangeAccount = (e) => {
@@ -57,11 +57,11 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(account, encrypt(password, account)))
         .then(() => {
-          window.location = next ? next : "/"
+          window.location = next || '/'
         })
         .catch(() => {
           setLoading(false)
-          window.alert("帳號或密碼錯誤囉")
+          window.alert('帳號或密碼錯誤囉')
         })
     } else {
       setLoading(false)
@@ -70,7 +70,7 @@ const Login = (props) => {
 
   return (
     // ref的form來自 form=useRef()
-    <div className={"container pages login"}>
+    <div className={'container pages login'}>
       <div className="block">
         <Form onSubmit={handleLogin} ref={form}>
           <div className="input-row">
@@ -96,11 +96,13 @@ const Login = (props) => {
 
           <div className="bottom">
             <button type="submit" disabled={loading}>
-              {loading ? (
+              {loading
+                ? (
                 <Spinner animation="border" size="sm"></Spinner>
-              ) : (
+                  )
+                : (
                 <span>登入</span>
-              )}
+                  )}
             </button>
 
             {message && <div className="message">{message}</div>}
@@ -110,7 +112,7 @@ const Login = (props) => {
           </div>
 
           {/* 用來控制validation的 */}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          <CheckButton style={{ display: 'none' }} ref={checkBtn} />
         </Form>
       </div>
     </div>

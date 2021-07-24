@@ -1,4 +1,6 @@
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const StyledDiv = styled.div`
   text-align: center;
@@ -37,5 +39,9 @@ const NotFound = ({ message }) => (
     <StyledA href="/recipes">點我看更多烹飪包</StyledA>
   </StyledDiv>
 )
+
+NotFound.propTypes = {
+  message: PropTypes.string.isRequired,
+}
 
 export default NotFound

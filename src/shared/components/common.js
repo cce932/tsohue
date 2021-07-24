@@ -23,7 +23,7 @@ const FeatureSlot = ({ content1, content2, children }) => (
 FeatureSlot.propTypes = {
   content1: PropTypes.string,
   content2: PropTypes.string,
-  children: PropTypes.element
+  children: PropTypes.element,
 }
 
 const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
@@ -35,7 +35,7 @@ const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
       <div className="splited-row" key={index}>
         {gredients}
       </div>
-    )
+    ),
   )
 
   return (
@@ -70,7 +70,7 @@ const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
 MonthlySpecial.propTypes = {
   title: PropTypes.string.isRequired,
   gredients: PropTypes.array.isRequired,
-  gredientsMaxRow: PropTypes.number
+  gredientsMaxRow: PropTypes.number,
 }
 
 const Footer = ({ links, linksMaxRow = 5 }) => {
@@ -117,7 +117,7 @@ const Footer = ({ links, linksMaxRow = 5 }) => {
 
 Footer.propTypes = {
   links: PropTypes.array.isRequired,
-  linksMaxRow: PropTypes.number
+  linksMaxRow: PropTypes.number,
 }
 
 export { FeatureSlot, MonthlySpecial, Footer }
