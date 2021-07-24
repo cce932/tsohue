@@ -41,7 +41,7 @@ const OrderDetail = (props) => {
             typeof order === 'object'
               ? (
           <>
-            <OrderItem data={order} />
+            <OrderItem {...{ ...order }} />
             <div className="flex">
               <div className="left">
                 <div className="block">
@@ -131,11 +131,11 @@ const OrderDetail = (props) => {
 }
 
 OrderDetail.propTypes = {
-  match: {
-    params: {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
       id: PropTypes.string.isRequired,
-    },
-  },
+    }),
+  }),
 }
 
 export default OrderDetail

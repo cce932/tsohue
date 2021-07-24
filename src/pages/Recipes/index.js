@@ -202,7 +202,7 @@ const Recipes = () => {
                 : (
                     splitToRows(recipes, ITEMS_PER_PAGE)[activePage - 1].map(
                       (recipe, index) => {
-                        return <Recipe key={index} recipe={recipe} />
+                        return <Recipe key={index} {...{ ...recipe }} />
                       },
                     )
                   )

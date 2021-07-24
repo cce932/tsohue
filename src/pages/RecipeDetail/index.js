@@ -8,8 +8,8 @@ import { RiVipFill } from 'react-icons/ri'
 
 import 'shared/style/recipeDetail.scss'
 import Steps from './Steps'
-import CartAdderForDefault from './MemberCartAdder'
-import CartAdderForCustomization from './VipCartAdder'
+import CartAdderForDefault from './CartAdderForDefault'
+import CartAdderForCustomization from './CartAdderForCustomization'
 import { versionOptions } from 'shared/constants/options'
 import { MEMBER } from 'shared/constants/common'
 import { loadRecipeById, loadRecipeImagesById } from 'actions/load'
@@ -164,11 +164,11 @@ const RecipeDetail = (props) => {
 }
 
 RecipeDetail.propTypes = {
-  match: {
-    params: {
-      id: PropTypes.number.isrequired,
-    },
-  },
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }),
 }
 
 export default RecipeDetail

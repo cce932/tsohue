@@ -72,7 +72,7 @@ const Member = () => {
           <Route
             exact
             path={allPaths[profile]}
-            render={() => <Profile currentUser={currentUser} />}
+            render={() => <Profile {...{ ...currentUser }} />}
           />
           <Route
             path={allPaths[coupons]}

@@ -217,8 +217,8 @@ const CartAdderForCustomization = ({
 }
 
 CartAdderForCustomization.propTypes = {
-  recipeId: PropTypes.number.isRequired,
-  ingredients: PropTypes.object.isRequired,
+  recipeId: PropTypes.string.isRequired,
+  ingredients: PropTypes.array.isRequired,
   price: PropTypes.number.isRequired,
   outOfStockIngredients: PropTypes.array.isRequired,
   handmadePrice: PropTypes.number.isRequired,

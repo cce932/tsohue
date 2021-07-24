@@ -6,10 +6,10 @@ import 'shared/style/vip.scss'
 import { StrokeSpan, StyledP } from 'shared/components/styled'
 import color from 'shared/style/color'
 
-const content = [
+const content =
   {
     title: '隱私權條款',
-    desciption: [
+    description: [
       '作伙電商股份有限公司（以下稱「本公司」）向您蒐集個人資料，茲依據個人資料保護法（以下稱「個資法」）第八條第一項規定，向您告知下列事項：',
       '一、蒐集資料之機關名稱:作伙電商股份有限公司。',
       '二、蒐集之目的:商品銷售、廣告行銷、履行契約義務、客戶管理、客戶服務、統計調查與分析，以及其他合於本公司營業登記項目之目的。',
@@ -30,8 +30,7 @@ const content = [
       '六、您若未能提供個人資料，本公司將無法提供您網路購物之完整服務。',
       '七、本公司隱私權保護政策放置於「作伙電商」網站，您可隨時參閱。',
     ],
-  },
-]
+  }
 
 const Item = ({ title, description }) => (
   <div>
@@ -45,28 +44,28 @@ const Item = ({ title, description }) => (
     </StyledP>
 
     {description.map((line, index) => ( // TODO: can do a recursive enhance
-      <StyledP key={index} fontSize="1rem" color={color.prime} lineHeight="2">
-        {typeof line === 'object'
-          ? line.map((point, index) => (
-              <StyledP
-              key={index}
-                fontSize="1rem"
-                color={color.prime}
-                margin="0 30px"
-                lineHeight="2"
-              >
-                {point}
-              </StyledP>
-          ))
-          : line}
-      </StyledP>
+      typeof line !== 'object'
+        ? <StyledP key={index} fontSize="1rem" color={color.prime} lineHeight="2">
+            {line}
+          </StyledP>
+        : line.map((point, index) => (
+            <StyledP
+            key={index}
+              fontSize="1rem"
+              color={color.prime}
+              margin="0 30px"
+              lineHeight="2"
+            >
+              {point}
+            </StyledP>
+        ))
     ))}
   </div>
 )
 
 Item.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.array.isRequired,
 }
 
 const WrapperDiv = styled.div`

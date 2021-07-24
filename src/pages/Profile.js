@@ -22,8 +22,7 @@ Item.propTypes = {
   info: PropTypes.string.isRequired,
 }
 
-const Profile = ({ currentUser }) => {
-  const { account, email, role, phone, username } = currentUser
+const Profile = ({ account, email, role, phone, username }) => {
   const content = [
     { type: '帳號', info: account },
     { type: '郵件', info: email },
@@ -52,13 +51,11 @@ const Profile = ({ currentUser }) => {
 }
 
 Profile.propTypes = {
-  currentUser: {
-    account: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
-  },
+  account: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
 }
 
 export default Profile

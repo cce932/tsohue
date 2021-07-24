@@ -97,11 +97,11 @@ const AboutUs = () => {
           color={color.prime}
           margin="0 0 50px"
         >
-          {intention.map((line) => (
-            <>
+          {intention.map((line, index) => (
+            <span key={index}>
               {line}
               <br />
-            </>
+            </span>
           ))}
         </StyledP>
 

@@ -66,8 +66,8 @@ const CartAdderForDefault = ({
 }
 
 CartAdderForDefault.propTypes = {
-  recipeId: PropTypes.number.isRequired,
-  ingredients: PropTypes.object.isRequired,
+  recipeId: PropTypes.string.isRequired,
+  ingredients: PropTypes.array.isRequired,
   price: PropTypes.number.isRequired,
   isOutOfStock: PropTypes.bool.isRequired,
 }

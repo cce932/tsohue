@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Spinner, Tabs, Tab } from 'react-bootstrap'
@@ -33,15 +35,15 @@ const OrderOverview = () => {
               ? (
           <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
             <Tab eventKey={STATUS_ALL} title="全部">
-              {splitAllOrders[STATUS_ALL].map((order) => (
-                <OrderItem key={order.id} data={order} />
+              {splitAllOrders[STATUS_ALL].map((order, index) => (
+                <OrderItem key={index} {...{...order}} />                
               ))}
             </Tab>
             <Tab eventKey={STATUS_TO_CONFIRM} title="待確認">
               {splitAllOrders[STATUS_TO_CONFIRM].length > 0
                 ? (
-                    splitAllOrders[STATUS_TO_CONFIRM].map((order) => (
-                  <OrderItem key={order.id} data={order} />
+                    splitAllOrders[STATUS_TO_CONFIRM].map((order, index) => (
+                  <OrderItem key={index} {...{ ...order }} />
                     ))
                   )
                 : (
@@ -53,8 +55,8 @@ const OrderOverview = () => {
             <Tab eventKey={STATUS_TO_DELIVER} title="待配送">
               {splitAllOrders[STATUS_TO_DELIVER].length > 0
                 ? (
-                    splitAllOrders[STATUS_TO_DELIVER].map((order) => (
-                  <OrderItem key={order.id} data={order} />
+                    splitAllOrders[STATUS_TO_DELIVER].map((order, index) => (
+                  <OrderItem key={index} {...{ ...order }} />
                     ))
                   )
                 : (
@@ -66,8 +68,8 @@ const OrderOverview = () => {
             <Tab eventKey={STATUS_FINISH} title="已完成">
               {splitAllOrders[STATUS_FINISH].length > 0
                 ? (
-                    splitAllOrders[STATUS_FINISH].map((order) => (
-                  <OrderItem key={order.id} data={order} />
+                    splitAllOrders[STATUS_FINISH].map((order, index) => (
+                  <OrderItem key={index} {...{ ...order }} />
                     ))
                   )
                 : (
@@ -79,8 +81,8 @@ const OrderOverview = () => {
             <Tab eventKey={STATUS_CANCELED} title="已取消">
               {splitAllOrders[STATUS_CANCELED].length > 0
                 ? (
-                    splitAllOrders[STATUS_CANCELED].map((order) => (
-                  <OrderItem key={order.id} data={order} />
+                    splitAllOrders[STATUS_CANCELED].map((order, index) => (
+                  <OrderItem key={index} {...{ ...order }} />
                     ))
                   )
                 : (

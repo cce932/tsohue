@@ -178,8 +178,8 @@ const OrderedRecipe = ({
 
 OrderedRecipe.propTypes = {
   cartId: PropTypes.number.isRequired,
-  recipe: PropTypes.number.isRequired,
-  customize: PropTypes.bool.isRequired,
+  recipe: PropTypes.object.isRequired,
+  customize: PropTypes.array.isRequired,
   sum: PropTypes.number.isRequired,
   recipeImage: PropTypes.string.isRequired,
   isCustomize: PropTypes.bool.isRequired,

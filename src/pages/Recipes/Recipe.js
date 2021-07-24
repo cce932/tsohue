@@ -7,8 +7,7 @@ import { SemiRoundedLabel } from 'shared/components/styled'
 import { versionOptions } from 'shared/constants/options'
 import { allPaths, recipe as recipePath } from 'shared/constants/pathName'
 
-const Recipe = ({ recipe }) => {
-  const { id, version, photo, name, price, likesCount } = recipe
+const Recipe = ({ id, version, photo, name, price, likesCount }) => {
   const [like, setLike] = useState(false)
 
   return (
@@ -51,14 +50,12 @@ const Recipe = ({ recipe }) => {
 }
 
 Recipe.propTypes = {
-  recipe: {
-    id: PropTypes.number.isRequired,
-    version: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    likesCount: PropTypes.number.isRequired,
-  },
+  id: PropTypes.number.isRequired,
+  version: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  likesCount: PropTypes.number.isRequired,
 }
 
 export default Recipe

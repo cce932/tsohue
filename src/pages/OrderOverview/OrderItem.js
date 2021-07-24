@@ -46,7 +46,7 @@ const OrderItem = ({ orderNumber, id, status, orderTime, sum, transportFee, orde
             customize: item.customize,
             sum: item.itemPrice,
             recipeImage: item.recipeImage,
-            isCustomize: item.isCustomze,
+            isCustomize: item.isCustomize,
             modifiable: false,
           }}
         />
@@ -69,13 +69,13 @@ const OrderItem = ({ orderNumber, id, status, orderTime, sum, transportFee, orde
 }
 
 OrderItem.propTypes = {
-  orderNumber: PropTypes.number.isRequired,
+  orderNumber: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   orderTime: PropTypes.string.isRequired,
   sum: PropTypes.number.isRequired,
   transportFee: PropTypes.number.isRequired,
-  orderItems: PropTypes.object.isRequired,
+  orderItems: PropTypes.array.isRequired,
 }
 
 export default OrderItem

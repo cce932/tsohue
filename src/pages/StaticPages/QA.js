@@ -43,10 +43,10 @@ const Item = ({ question, answer }) => (
       lineHeight="2"
     >
       {answer.map((t, index) => (
-        <>
+        <span key={index}>
           {t}
           {index < answer.length - 1 && <br />}
-        </>
+        </span>
       ))}
     </StyledP>
   </div>
@@ -54,7 +54,7 @@ const Item = ({ question, answer }) => (
 
 Item.propTypes = {
   question: PropTypes.string.isRequired,
-  answer: PropTypes.string.isRequired,
+  answer: PropTypes.array.isRequired,
 }
 
 const WrapperDiv = styled.div`

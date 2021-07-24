@@ -7,7 +7,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa'
 
 import 'shared/style/components/ingredientAdjuster.scss'
 
-const IngredientsBlock = ({
+const IngredientsAdjuster = ({
   categoryName,
   categoryIngredients,
   outOfStockIngredients,
@@ -167,12 +167,12 @@ const IngredientsBlock = ({
   )
 }
 
-IngredientsBlock.propTypes = {
+IngredientsAdjuster.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  categoryIngredients: PropTypes.object.isRequired,
-  outOfStockIngredients: PropTypes.object.isRequired,
+  categoryIngredients: PropTypes.array.isRequired,
+  outOfStockIngredients: PropTypes.array.isRequired,
   handmadePrice: PropTypes.number,
   passPriceToAdder: PropTypes.func,
 }
 
-export default IngredientsBlock
+export default IngredientsAdjuster

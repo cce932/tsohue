@@ -118,7 +118,7 @@ const Item = ({ title, description, img, isApp, isLandscape, index }) => (
       {`${index + 1}  `}
       {typeof title === 'object'
         ? title.map((t, index) => (
-            <>
+            <span key={index}>
               {t}
               {index < title.length - 1 && (
                 <>
@@ -126,7 +126,7 @@ const Item = ({ title, description, img, isApp, isLandscape, index }) => (
                   &emsp;
                 </>
               )}
-            </>
+            </span>
         ))
         : title}
     </StyledP>
@@ -147,7 +147,7 @@ Item.propTypes = {
   description: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   isApp: PropTypes.bool.isRequired,
-  isLandscape: PropTypes.bool.isRequired,
+  isLandscape: PropTypes.bool,
   index: PropTypes.number.isRequired,
 }
 

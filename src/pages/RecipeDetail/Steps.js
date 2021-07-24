@@ -36,7 +36,7 @@ const Steps = ({ steps, link }) => {
 }
 
 Steps.propTypes = {
-  steps: PropTypes.object.isRequired,
+  steps: PropTypes.array.isRequired,
   link: PropTypes.string.isRequired,
 }
 

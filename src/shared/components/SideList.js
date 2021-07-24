@@ -52,8 +52,8 @@ const SideList = ({ items, style }) => {
 }
 
 SideList.propTypes = {
-  items: PropTypes.object.isRequired,
-  style: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  style: PropTypes.object,
 }
 
 export default SideList
