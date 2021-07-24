@@ -94,7 +94,7 @@ const OrderedRecipe = ({
   modifiable = true,
   editOnClick = () => null,
   removeOnClick = () => null,
-  updatingCart = []
+  updatingCart = [],
 }) => {
   const styled = orderedItems.map((ingredient, index) => (
     <IngredientTd
@@ -186,6 +186,6 @@ OrderedRecipe.propTypes = {
   modifiable: PropTypes.bool,
   editOnClick: PropTypes.func,
   removeOnClick: PropTypes.func,
-  updatingCart: PropTypes.array
+  updatingCart: PropTypes.array,
 }
 export default OrderedRecipe

@@ -1,20 +1,21 @@
-import React from "react"
-import styled from "styled-components"
-import { NavLink } from "react-router-dom"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
-import "shared/style/components/sideList.scss"
+import 'shared/style/components/sideList.scss'
 
 const SideList = ({ items, style }) => {
   const defaultStyle = {
-    top: "150px",
-    left: "10%",
-    width: "auto", // safari
-    backgroundColor: "white",
-    boxShadow: "0px 0px 15px rgba(205, 211, 216, 0.7)",
-    padding: "10px 30px",
-    borderRadius: "20px",
-    border: "none",
-    textAlign: "left",
+    top: '150px',
+    left: '10%',
+    width: 'auto', // safari
+    backgroundColor: 'white',
+    boxShadow: '0px 0px 15px rgba(205, 211, 216, 0.7)',
+    padding: '10px 30px',
+    borderRadius: '20px',
+    border: 'none',
+    textAlign: 'left',
     ...style,
   }
 
@@ -39,7 +40,7 @@ const SideList = ({ items, style }) => {
           {item.topStroke && <div className="top-stroke" />}
           <NavLink
             activeClassName="selected"
-            to={item?.url || "#"}
+            to={item?.url || '#'}
             onClick={item?.onClick}
           >
             {item.title}
@@ -48,6 +49,11 @@ const SideList = ({ items, style }) => {
       ))}
     </SideListWapper>
   )
+}
+
+SideList.propTypes = {
+  items: PropTypes.object.isRequired,
+  style: PropTypes.object.isRequired,
 }
 
 export default SideList

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ExpandDiv = styled.div`
   width: 100%;
@@ -8,66 +8,66 @@ export const ExpandDiv = styled.div`
 export const SolidA = styled.a`
   font-family: sans-serif;
   font-weight: normal;
-  font-size: ${(props) => props.fontSize || "1rem"};
+  font-size: ${(props) => props.fontSize || '1rem'};
   text-decoration: none;
   letter-spacing: 0.03em;
 
-  color: ${(props) => props.color || "white"};
+  color: ${(props) => props.color || 'white'};
   background-color: ${(props) =>
     props.backgroundColor || props.theme.primeColor};
-  border: ${(props) => props.border || "none"};
+  border: ${(props) => props.border || 'none'};
 
   height: fit-content;
-  padding: ${(props) => props.padding || "5px 15px"};
-  margin: ${(props) => props.margin || "5px"};
+  padding: ${(props) => props.padding || '5px 15px'};
+  margin: ${(props) => props.margin || '5px'};
   border-radius: 25px;
   display: inline-block;
   transition: all 0.3s ease 0s;
 
   &:hover {
-    color: ${(props) => props.hoverColor || props.color || "white"};
+    color: ${(props) => props.hoverColor || props.color || 'white'};
     background-color: ${(props) =>
       props.hoverBackgroundColor ||
       props.backgroundColor ||
       props.theme.primeColor};
-    border: ${(props) => props.hoverBorder || props.border || "none"};
+    border: ${(props) => props.hoverBorder || props.border || 'none'};
   }
 `
 
 export const SolidBtn = styled.button`
   font-family: sans-serif;
   font-weight: normal;
-  font-size: ${(props) => props.fontSize || "1rem"};
+  font-size: ${(props) => props.fontSize || '1rem'};
   text-decoration: none;
   letter-spacing: 0.03em;
 
-  color: ${(props) => props.color || "white"};
+  color: ${(props) => props.color || 'white'};
   background-color: ${(props) =>
     props.backgroundColor || props.theme.primeColor};
-  border: ${(props) => props.border || "none"};
+  border: ${(props) => props.border || 'none'};
 
   height: fit-content;
-  padding: ${(props) => props.padding || "5px 15px"};
-  margin: ${(props) => props.margin || "5px"};
+  padding: ${(props) => props.padding || '5px 15px'};
+  margin: ${(props) => props.margin || '5px'};
   border-radius: 25px;
   display: inline-block;
   transition: all 0.3s ease 0s;
 
   &:hover {
-    color: ${(props) => props.hoverColor || props.color || "white"};
+    color: ${(props) => props.hoverColor || props.color || 'white'};
     background-color: ${(props) =>
       props.hoverBackgroundColor ||
       props.backgroundColor ||
       props.theme.primeColor};
     opacity: 0.8;
-    border: ${(props) => props.hoverBorder || props.border || "none"};
+    border: ${(props) => props.hoverBorder || props.border || 'none'};
   }
 `
 
 export const StrokeSpan = styled.span`
   font-family: sans-serif;
   font-weight: normal;
-  font-size: ${(props) => props.size || "0.8rem"};
+  font-size: ${(props) => props.size || '0.8rem'};
   color: ${(props) => props.theme[props.color] || props.theme.primeColor};
   text-decoration: none;
   letter-spacing: 0.03em;
@@ -79,9 +79,9 @@ export const StrokeSpan = styled.span`
       props.theme.primeColor}
     solid 1px;
   border-radius: 25px;
-  padding: ${(props) => props.padding || "2px 8px"};
-  margin: ${(props) => props.margin || "0 0 0 15px"};
-  line-height: ${(props) => props.lineHeight || "auto"};
+  padding: ${(props) => props.padding || '2px 8px'};
+  margin: ${(props) => props.margin || '0 0 0 15px'};
+  line-height: ${(props) => props.lineHeight || 'auto'};
   transition: all 0.3s ease 0s;
 `
 
@@ -103,23 +103,23 @@ export const SemiRoundedLabel = styled.label`
 export const StyledP = styled.p`
   ${(props) => props.theme.font}
   color: ${(props) => props.color || props.theme.secondaryColor};
-  font-weight: ${(props) => props.weight || "normal"};
-  font-size: ${(props) => props.fontSize || "1rem"};
-  padding: ${(props) => props.padding || "0"};
-  margin: ${(props) => props.margin || "0"};
-  width: ${(props) => props.width || "auto"};
-  line-height: ${(props) => props.lineHeight || "auto"};
+  font-weight: ${(props) => props.weight || 'normal'};
+  font-size: ${(props) => props.fontSize || '1rem'};
+  padding: ${(props) => props.padding || '0'};
+  margin: ${(props) => props.margin || '0'};
+  width: ${(props) => props.width || 'auto'};
+  line-height: ${(props) => props.lineHeight || 'auto'};
   text-align: justify;
-  min-height: ${(props) => props.minHeight || "auto"};
+  min-height: ${(props) => props.minHeight || 'auto'};
 `
 
 export const StyledLabel = styled.label`
   ${(props) => props.theme.font}
   color: ${(props) => props.color || props.theme.secondaryColor};
-  font-weight: ${(props) => props.weight || "normal"};
-  font-size: ${(props) => props.fontSize || "1rem"};
-  padding: ${(props) => props.padding || "0"};
-  margin: ${(props) => props.margin || "0"};
-  width: ${(props) => props.width || "auto"};
-  line-height: ${(props) => props.lineHeight || "auto"};
+  font-weight: ${(props) => props.weight || 'normal'};
+  font-size: ${(props) => props.fontSize || '1rem'};
+  padding: ${(props) => props.padding || '0'};
+  margin: ${(props) => props.margin || '0'};
+  width: ${(props) => props.width || 'auto'};
+  line-height: ${(props) => props.lineHeight || 'auto'};
 `

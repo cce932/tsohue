@@ -1,9 +1,11 @@
-import { useFormikContext } from "formik"
-import { useEffect } from "react"
-import { Col } from "react-bootstrap"
-import { FaPlus, FaMinus } from "react-icons/fa"
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { useFormikContext } from 'formik'
 
-import "shared/style/components/ingredientAdjuster.scss"
+import { Col } from 'react-bootstrap'
+import { FaPlus, FaMinus } from 'react-icons/fa'
+
+import 'shared/style/components/ingredientAdjuster.scss'
 
 const IngredientsBlock = ({
   categoryName,
@@ -16,8 +18,6 @@ const IngredientsBlock = ({
 
   useEffect(() => {
     passPriceToAdder && passPriceToAdder(calculatePrice(values))
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values.ingredient, errors])
 
   // 1. return value of customize ingredients price =
@@ -60,12 +60,12 @@ const IngredientsBlock = ({
     e.preventDefault()
     const ingredientId = e.currentTarget.name // In order to binding the each input, set the name of button with ingredient id
     const originQuantity = parseInt(
-      values.ingredient[ingredientId].customizeQuantity
+      values.ingredient[ingredientId].customizeQuantity,
     )
 
     setFieldValue(
       `ingredient.${ingredientId}.customizeQuantity`,
-      originQuantity + 1
+      originQuantity + 1,
     )
   }
 
@@ -77,7 +77,7 @@ const IngredientsBlock = ({
     if (quantity > 0) {
       setFieldValue(
         `ingredient.${ingredientId}.customizeQuantity`,
-        parseInt(values.ingredient[ingredientId].customizeQuantity) - 1
+        parseInt(values.ingredient[ingredientId].customizeQuantity) - 1,
       )
     }
   }
@@ -86,7 +86,7 @@ const IngredientsBlock = ({
     const value = e.target.value
     const formikFieldValue = e.target.name
 
-    setFieldValue(formikFieldValue, value.replace(/[^\d]/g, ""))
+    setFieldValue(formikFieldValue, value.replace(/[^\d]/g, ''))
   }
 
   return (
@@ -96,7 +96,7 @@ const IngredientsBlock = ({
         {categoryIngredients.map((splitedIngredient, index) => {
           const ingredient = splitedIngredient.ingredient
           const isOutOfStock = outOfStockIngredients.includes(
-            ingredient.id.toString()
+            ingredient.id.toString(),
           )
           const ingredientQuantity =
             values.ingredient[ingredient.id].customizeQuantity
@@ -123,8 +123,8 @@ const IngredientsBlock = ({
                     size="15px"
                     fill={
                       isOutOfStock || parseInt(ingredientQuantity) === 0
-                        ? "#e8ebf0"
-                        : "#fbd779"
+                        ? '#e8ebf0'
+                        : '#fbd779'
                     }
                   />
                 </button>
@@ -144,8 +144,8 @@ const IngredientsBlock = ({
                     size="15px"
                     fill={
                       isOutOfStock || parseInt(ingredientQuantity) === 20
-                        ? "#e8ebf0"
-                        : "#fbd779"
+                        ? '#e8ebf0'
+                        : '#fbd779'
                     }
                   />
                 </button>
@@ -165,6 +165,14 @@ const IngredientsBlock = ({
       </div>
     </Col>
   )
+}
+
+IngredientsBlock.propTypes = {
+  categoryName: PropTypes.string.isRequired,
+  categoryIngredients: PropTypes.object.isRequired,
+  outOfStockIngredients: PropTypes.object.isRequired,
+  handmadePrice: PropTypes.number,
+  passPriceToAdder: PropTypes.func,
 }
 
 export default IngredientsBlock

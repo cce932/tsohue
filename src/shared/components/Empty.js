@@ -1,5 +1,6 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const StyledDiv = styled.div`
   text-align: center;
@@ -25,6 +26,10 @@ const Empty = ({ message }) => {
       <div>{message}</div>
     </StyledDiv>
   )
+}
+
+Empty.propTypes = {
+  message: PropTypes.string.isRequired,
 }
 
 export default Empty
