@@ -1,9 +1,10 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import "shared/style/vip.scss"
-import { StrokeSpan, StyledP } from "shared/components/styled"
-import color from "shared/style/color"
+import 'shared/style/vip.scss'
+import { StrokeSpan, StyledP } from 'shared/components/styled'
+import color from 'shared/style/color'
 
 const VideoWrapperDiv = styled.div`
   background: linear-gradient(
@@ -41,67 +42,67 @@ const StyledImg = styled.img`
 
 const webContent = [
   {
-    title: "進入烹飪包大全",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/1-all-recipe.jpg",
+    title: '進入烹飪包大全',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/1-all-recipe.jpg',
   },
   {
-    title: "點選欲購買的食譜",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/2-recipe-detail.jpg",
+    title: '點選欲購買的食譜',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/2-recipe-detail.jpg',
   },
   {
-    title: "加入購物車",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/3-shopping-cart.jpg",
+    title: '加入購物車',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/3-shopping-cart.jpg',
   },
   {
-    title: "點選訂購",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/4-order-confirm.jpg",
+    title: '點選訂購',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/4-order-confirm.jpg',
   },
   {
-    title: "下訂單，訂購成功",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/5-order-check.jpg",
+    title: '下訂單，訂購成功',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/5-order-check.jpg',
   },
   {
-    title: "查看訂單",
-    description: "訂單狀態於「待確認」時，皆可取消訂單",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/6-order-detail.jpg",
+    title: '查看訂單',
+    description: '訂單狀態於「待確認」時，皆可取消訂單',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/6-order-detail.jpg',
   },
 ]
 
 const appContent = [
   {
-    title: "進入主頁",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/index.jpg",
+    title: '進入主頁',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/index.jpg',
   },
   {
-    title: "登入後點選訂單總覽",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/order.jpg",
+    title: '登入後點選訂單總覽',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/order.jpg',
   },
   {
-    title: ["查看訂單詳細", "並點擊欲導覽的食譜"],
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/orderDetail.jpg",
+    title: ['查看訂單詳細', '並點擊欲導覽的食譜'],
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/orderDetail.jpg',
   },
   {
-    title: ["跳轉至食譜詳細頁面", "並點選分頁「食譜影片」"],
-    description: "也可以直接由「食譜總覽」進入本頁面喔",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/recipeDetail.jpg",
+    title: ['跳轉至食譜詳細頁面', '並點選分頁「食譜影片」'],
+    description: '也可以直接由「食譜總覽」進入本頁面喔',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/recipeDetail.jpg',
   },
   {
-    title: "點擊「點我進行影片教學」",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/recipeVideo.jpg",
+    title: '點擊「點我進行影片教學」',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/recipeVideo.jpg',
   },
   {
-    title: "開始聲控料理導覽～",
-    description: "",
-    img: "https://easycook-backend.s3.amazonaws.com/web-static-image/instruction.jpg",
+    title: '開始聲控料理導覽～',
+    description: '',
+    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/instruction.jpg',
     isLandscape: true,
   },
 ]
@@ -112,10 +113,10 @@ const Item = ({ title, description, img, isApp, isLandscape, index }) => (
       fontSize="1.3rem"
       weight="bold"
       color={color.prime}
-      minHeight={isApp ? "62px" : "auto"}
+      minHeight={isApp ? '62px' : 'auto'}
     >
       {`${index + 1}  `}
-      {typeof title === "object"
+      {typeof title === 'object'
         ? title.map((t, index) => (
             <>
               {t}
@@ -126,7 +127,7 @@ const Item = ({ title, description, img, isApp, isLandscape, index }) => (
                 </>
               )}
             </>
-          ))
+        ))
         : title}
     </StyledP>
     {description && (
@@ -136,10 +137,19 @@ const Item = ({ title, description, img, isApp, isLandscape, index }) => (
     )}
     <StyledImg
       src={img}
-      maxWidth={isApp ? (isLandscape ? "26vw" : "20vw") : "35vw"}
+      maxWidth={isApp ? (isLandscape ? '26vw' : '20vw') : '35vw'}
     />
   </StyledDiv>
 )
+
+Item.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  isApp: PropTypes.bool.isRequired,
+  isLandscape: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+}
 
 const Instruction = () => {
   return (
@@ -169,7 +179,7 @@ const Instruction = () => {
         </StrokeSpan>
         <ItemWrapperDiv>
           {webContent.map((item, index) => (
-            <Item {...{ ...item, isApp: false, index }} />
+            <Item key={item.title} {...{ ...item, isApp: false, index }} />
           ))}
         </ItemWrapperDiv>
         <StrokeSpan
@@ -183,7 +193,7 @@ const Instruction = () => {
         </StrokeSpan>
         <ItemWrapperDiv>
           {appContent.map((item, index) => (
-            <Item {...{ ...item, isApp: true, index }} />
+            <Item key={item.title} {...{ ...item, isApp: true, index }} />
           ))}
         </ItemWrapperDiv>
       </WrapperDiv>
