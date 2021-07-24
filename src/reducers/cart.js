@@ -5,10 +5,10 @@ import {
   SET_CART_SUM,
   UPDATE_CART_ITEM_END,
   UPDATE_CART_ITEM_START,
-} from "pages/ShoppingCart/constant"
-import { useReducer } from "react"
+} from 'pages/ShoppingCart/constant'
+import { useReducer } from 'react'
 
-const EMPTY_CART_MESSAGE = "你的購物車還是空的喔"
+const EMPTY_CART_MESSAGE = '你的購物車還是空的喔'
 
 const cartReducer = (state, action) => {
   const { type, payload } = action
@@ -28,14 +28,15 @@ const cartReducer = (state, action) => {
         ...state,
         originalSum: payload,
       }
-    case DELETE_CART_ITEM:
+    case DELETE_CART_ITEM: {
       const deletedData = state.data.filter(
-        (item) => item.id.toString() !== payload
+        (item) => item.id.toString() !== payload,
       )
       return {
         ...state,
         data: deletedData.length ? deletedData : EMPTY_CART_MESSAGE,
       }
+    }
     case UPDATE_CART_ITEM_START:
       return {
         ...state,

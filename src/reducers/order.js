@@ -1,10 +1,10 @@
+import { useReducer } from 'react'
 import {
   LOAD_CART,
   SET_SUM,
   SUBMIT_END,
   SUBMIT_START,
-} from "pages/Order/constant"
-import { useReducer } from "react"
+} from 'pages/Order/constant'
 
 const orderReducer = (state, action) => {
   const { type, payload } = action

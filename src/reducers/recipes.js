@@ -1,4 +1,4 @@
-import { LOAD_RECIPES_SUCCESS } from "actions/types"
+import { LOAD_RECIPES_SUCCESS } from 'actions/types'
 
 const initialState = {}
 

@@ -2,9 +2,9 @@ import {
   CANCEL_ORDER_ITEM_SUCCESS,
   LOAD_ORDERS_SUCCESS,
   LOAD_ORDERS_FAILURE,
-} from "actions/types"
+} from 'actions/types'
 
-import { STATUS_CANCELED } from "shared/constants/options"
+import { STATUS_CANCELED } from 'shared/constants/options'
 
 const initialState = {
   allOrders: [],
