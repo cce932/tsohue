@@ -2,6 +2,7 @@
 
 .login {
   margin-top: 100px !important;
+
   .block {
     box-shadow: $default-shadow;
     position: relative;
@@ -44,11 +45,14 @@
       button {
         @include solid($prime-color, $vice-color, $vice-color, 8px 100px);
         width: 233px;
+
+        span { color: white}
       }
 
       p {
         @include text(normal, 1rem, $prime-color);
         margin-top: 10px;
+
         a {
           color: $accent-deeper-color;
           font-weight: bold;
