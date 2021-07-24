@@ -1,18 +1,18 @@
-import React, { useEffect } from "react"
-import moment from "moment"
-import { useDispatch } from "react-redux"
-import { Form, Field, Formik } from "formik"
-import { Spinner } from "react-bootstrap"
+import React, { useEffect } from 'react'
+import moment from 'moment'
+import { useDispatch } from 'react-redux'
+import { Form, Field, Formik } from 'formik'
+import { Spinner } from 'react-bootstrap'
 
-import "shared/style/order.scss"
-import OrderedRecipe from "shared/components/OrderedRecipe"
-import useCartreducer from "reducers/order"
-import loadService from "services/load.service"
-import { LOAD_CART, SET_SUM, SUBMIT_START, SUBMIT_END } from "./constant"
-import { createDispatch } from "shared/utility/hooks"
-import { allPaths, shoppingCart } from "shared/constants/pathName"
-import { createOrder } from "actions/add"
-import { payWayOptions, serviceWayOptions } from "shared/constants/options"
+import 'shared/style/order.scss'
+import OrderedRecipe from 'shared/components/OrderedRecipe'
+import useCartreducer from 'reducers/order'
+import loadService from 'services/load.service'
+import { LOAD_CART, SET_SUM, SUBMIT_START, SUBMIT_END } from './constant'
+import { createDispatch } from 'shared/utility/hooks'
+import { allPaths, shoppingCart } from 'shared/constants/pathName'
+import { createOrder } from 'actions/add'
+import { payWayOptions, serviceWayOptions } from 'shared/constants/options'
 
 const Order = () => {
   const reduxDispatch = useDispatch()
@@ -20,8 +20,8 @@ const Order = () => {
   const orderDispatch = createDispatch(dispatch)
   const { data, sum, submitting } = state
   const cartIds = new URL(window.location.href).searchParams
-    .get("cartIds")
-    .split("_")
+    .get('cartIds')
+    .split('_')
 
   useEffect(() => {
     cartIds.forEach((id) => {
@@ -30,16 +30,15 @@ const Order = () => {
         orderDispatch(SET_SUM, data.sum)
       })
     })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div className="container order pages">
       <div className="title">結帳</div>
       <div role="group">
-        {data.length === cartIds.length ? (
-          data.map((item) => (
+        {data.length === cartIds.length
+          ? (
+              data.map((item) => (
             <OrderedRecipe
               key={item.id}
               {...{
@@ -52,23 +51,24 @@ const Order = () => {
                 modifiable: false,
               }}
             />
-          ))
-        ) : (
+              ))
+            )
+          : (
           <Spinner
             size="lg"
             animation="border"
             variant="warning"
             role="status"
           />
-        )}
+            )}
       </div>
       <Formik
         initialValues={{
           discount: 0,
-          payWay: "cashOnDelivery",
-          serviceWay: "homeDelivery",
-          address: "",
-          hopeDeliverTime: moment(Date.now()).format("YYYY-MM-DDTHH:mm"),
+          payWay: 'cashOnDelivery',
+          serviceWay: 'homeDelivery',
+          address: '',
+          hopeDeliverTime: moment(Date.now()).format('YYYY-MM-DDTHH:mm'),
           transportFee: 60,
         }}
         onSubmit={(values) => {
@@ -119,7 +119,7 @@ const Order = () => {
                   <label htmlFor="payWay">付款方式</label>
                   <Field as="select" id="payWay" name="payWay">
                     {Object.keys(payWayOptions).map((option) => (
-                      <option value={option}>{payWayOptions[option]}</option>
+                      <option key={option} value={option}>{payWayOptions[option]}</option>
                     ))}
                   </Field>
                 </div>
@@ -128,7 +128,7 @@ const Order = () => {
                   <label htmlFor="serviceWay">配送方式</label>
                   <Field as="select" id="serviceWay" name="serviceWay">
                     {Object.keys(serviceWayOptions).map((option) => (
-                      <option value={option}>
+                      <option key={option} value={option}>
                         {serviceWayOptions[option]}
                       </option>
                     ))}
@@ -179,11 +179,13 @@ const Order = () => {
                     回購物車
                   </button>
                   <button type="submit" disabled={submitting}>
-                    {submitting ? (
+                    {submitting
+                      ? (
                         <Spinner animation="border" size="sm" />
-                    ) : (
-                      "下訂單"
-                    )}
+                        )
+                      : (
+                          '下訂單'
+                        )}
                   </button>
                 </div>
               </div>

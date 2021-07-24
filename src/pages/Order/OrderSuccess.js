@@ -1,7 +1,8 @@
-import React from "react"
-import { SolidA } from "shared/components/styled"
-import color from "shared/style/color"
-import styled from "styled-components"
+import React from 'react'
+
+import { SolidA } from 'shared/components/styled'
+import color from 'shared/style/color'
+import styled from 'styled-components'
 
 const StyledDiv = styled.div`
   text-align: center;
@@ -30,15 +31,15 @@ const StyledDiv = styled.div`
 `
 
 const OrderSuccess = (props) => {
-  const id = new URL(window.location.href).searchParams.get("id")
-  const number = new URL(window.location.href).searchParams.get("number")
+  const id = new URL(window.location.href).searchParams.get('id')
+  const number = new URL(window.location.href).searchParams.get('number')
 
   const strokeStyle = {
-    margin: "10px",
+    margin: '10px',
     border: `${color.prime} solid 1px`,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     color: color.prime,
-    fontSize: "1.2rem",
+    fontSize: '1.2rem',
     hoverColor: color.vice,
     hoverBorder: `${color.vice} solid 1px`,
   }
@@ -53,8 +54,8 @@ const OrderSuccess = (props) => {
         <div>
           <SolidA
             {...{
-              margin: "10px",
-              fontSize: "1.2rem",
+              margin: '10px',
+              fontSize: '1.2rem',
               hoverBackgroundColor: color.vice,
             }}
             className="go-recipe"
