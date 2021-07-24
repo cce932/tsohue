@@ -1,22 +1,20 @@
-import styled from "styled-components"
-import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { Pagination, Spinner } from "react-bootstrap"
-import { useLocation } from "react-router-dom"
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { Pagination, Spinner } from 'react-bootstrap'
+import { useLocation } from 'react-router-dom'
 
+import 'shared/style/recipes.scss'
+import Recipe from './Recipe'
+import { versionOptions } from 'shared/constants/options'
+import { splitToRows } from 'shared/utility/common'
 
-import "shared/style/recipes.scss"
-import Recipe from "./Recipe"
-import { versionOptions } from "shared/constants/options"
-import { splitToRows } from "shared/utility/common"
-
-const NAME_ASC = "名稱順序"
-const NAME_DESC = "名稱倒序"
-const PRICE_ASC = "價格低到高"
-const PRICE_DESC = "價格高到低"
-const ASC = "ASC"
-const DESC = "DESC"
-
+const NAME_ASC = '名稱順序'
+const NAME_DESC = '名稱倒序'
+const PRICE_ASC = '價格低到高'
+const PRICE_DESC = '價格高到低'
+const ASC = 'ASC'
+const DESC = 'DESC'
 
 const SideListWapper = styled.div`
   position: fixed;
@@ -31,20 +29,19 @@ const SideListWapper = styled.div`
   text-align: left;
 `
 
-
 const Recipes = () => {
   const { allRecipes } = useSelector((state) => state.recipes)
   const [recipes, setRecipes] = useState([])
   const [queryFiltered, setQqueryFiltered] = useState([])
-  const [sortType, setSortType] = useState("")
+  const [sortType, setSortType] = useState('')
   const [activePage, setActivePage] = useState(1)
-  const query = new URLSearchParams(useLocation().search).get("search")
+  const query = new URLSearchParams(useLocation().search).get('search')
 
   useEffect(() => {
     if (allRecipes) {
       if (query) {
         const _queryFiltered = allRecipes.filter((recipe) =>
-          recipe.name.match(query)
+          recipe.name.match(query),
         )
         if (_queryFiltered.length) {
           setRecipes(_queryFiltered)
@@ -78,23 +75,23 @@ const Recipes = () => {
   }
 
   const sort = (order, filteredRecipes = recipes) => {
-    if (typeof filteredRecipes === "string") return
+    if (typeof filteredRecipes === 'string') return
 
     switch (order) {
       case NAME_ASC:
-        sortBy("name", ASC, filteredRecipes)
+        sortBy('name', ASC, filteredRecipes)
         setSortType(NAME_ASC)
         break
       case NAME_DESC:
-        sortBy("name", DESC, filteredRecipes)
+        sortBy('name', DESC, filteredRecipes)
         setSortType(NAME_DESC)
         break
       case PRICE_ASC:
-        sortBy("price", ASC, filteredRecipes)
+        sortBy('price', ASC, filteredRecipes)
         setSortType(PRICE_ASC)
         break
       case PRICE_DESC:
-        sortBy("price", DESC, filteredRecipes)
+        sortBy('price', DESC, filteredRecipes)
         setSortType(PRICE_DESC)
         break
       default:
@@ -106,19 +103,19 @@ const Recipes = () => {
     const selectedVersion = e.target.outerText.trim()
     const versionFiltered = query
       ? queryFiltered.filter(
-          (recipe) => versionOptions[recipe.version] === selectedVersion
-        )
+        (recipe) => versionOptions[recipe.version] === selectedVersion,
+      )
       : allRecipes.filter(
-          (recipe) => versionOptions[recipe.version] === selectedVersion
-        )
+        (recipe) => versionOptions[recipe.version] === selectedVersion,
+      )
 
     setActivePage(1)
     setRecipes(
       versionFiltered.length
         ? versionFiltered
         : query
-        ? `「${query}」相關的食譜中 目前沒有${selectedVersion}喔～`
-        : `目前沒有「${selectedVersion}」喔～`
+          ? `「${query}」相關的食譜中 目前沒有${selectedVersion}喔～`
+          : `目前沒有「${selectedVersion}」喔～`,
     )
     versionFiltered.length && sort(sortType, versionFiltered)
   }
@@ -129,7 +126,7 @@ const Recipes = () => {
 
   const ITEMS_PER_PAGE = 12
   const PAGE_COUNT = recipes.length / ITEMS_PER_PAGE
-  let pageitems = []
+  const pageitems = []
 
   const pageOnChange = (e) => {
     const to = e.target.id
@@ -138,11 +135,11 @@ const Recipes = () => {
       setActivePage(
         parseInt(activePage) < PAGE_COUNT
           ? parseInt(activePage) + 1
-          : activePage
+          : activePage,
       )
     } else if (/prev/.test(to)) {
       setActivePage(
-        parseInt(activePage) > 1 ? parseInt(activePage) - 1 : activePage
+        parseInt(activePage) > 1 ? parseInt(activePage) - 1 : activePage,
       )
     } else {
       setActivePage(e.target.text)
@@ -158,7 +155,7 @@ const Recipes = () => {
         onClick={pageOnChange}
       >
         {number}
-      </Pagination.Item>
+      </Pagination.Item>,
     )
   }
 
@@ -196,19 +193,23 @@ const Recipes = () => {
       </SideListWapper>
 
       <div className="content">
-        {recipes.length ? (
-          typeof recipes === "string" ? (
+        {recipes.length
+          ? (
+              typeof recipes === 'string'
+                ? (
             <p className="no-result">{recipes}</p>
-          ) : (
-            splitToRows(recipes, ITEMS_PER_PAGE)[activePage - 1].map(
-              (recipe, index) => {
-                return <Recipe key={index} recipe={recipe} />
-              }
+                  )
+                : (
+                    splitToRows(recipes, ITEMS_PER_PAGE)[activePage - 1].map(
+                      (recipe, index) => {
+                        return <Recipe key={index} recipe={recipe} />
+                      },
+                    )
+                  )
             )
-          )
-        ) : (
+          : (
           <Spinner animation="border" variant="warning" role="status"></Spinner>
-        )}
+            )}
 
         <div className="pagination">
           <Pagination>

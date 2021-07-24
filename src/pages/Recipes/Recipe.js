@@ -1,49 +1,64 @@
-import { SemiRoundedLabel } from "shared/components/styled"
-import { versionOptions } from "shared/constants/options"
-import { FaHeart, FaRegHeart } from "react-icons/fa"
-import "shared/style/recipe.scss"
-import { useState } from "react"
-import { allPaths, recipe as recipePath } from "shared/constants/pathName"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-const Recipe = (props) => {
-  const recipe = props.recipe
+import 'shared/style/recipe.scss'
+import { SemiRoundedLabel } from 'shared/components/styled'
+import { versionOptions } from 'shared/constants/options'
+import { allPaths, recipe as recipePath } from 'shared/constants/pathName'
+
+const Recipe = ({ recipe }) => {
+  const { id, version, photo, name, price, likesCount } = recipe
   const [like, setLike] = useState(false)
 
   return (
     <div className="recipe">
-      <a href={allPaths[recipePath] + recipe.id}>
+      <a href={allPaths[recipePath] + id}>
         <SemiRoundedLabel
-          className={`version version-${recipe.version.toLowerCase()}`}
+          className={`version version-${version.toLowerCase()}`}
         >
-          {versionOptions[recipe.version]}版本
+          {versionOptions[version]}版本
         </SemiRoundedLabel>
         <img
-          src={recipe.photo}
-          alt={recipe.name + "-img"}
+          src={photo}
+          alt={name + '-img'}
           onError={(e) => {
             e.target.onerror = null
-            e.target.src = "/common-pic/noImage.jpg"
+            e.target.src = '/common-pic/noImage.jpg'
           }}
         />
-        <p>{recipe.name}</p>
+        <p>{name}</p>
       </a>
       <div className="info">
         <div className="distributed">
-          <span> $ {recipe.price}</span>
+          <span> $ {price}</span>
           <span>
             <button onClick={() => setLike(!like)}>
-              {like ? (
+              {like
+                ? (
                 <FaHeart fill="#755734" />
-              ) : (
+                  )
+                : (
                 <FaRegHeart fill="#755734" />
-              )}
+                  )}
             </button>
-            {recipe.likesCount}
+            {likesCount}
           </span>
         </div>
       </div>
     </div>
   )
+}
+
+Recipe.propTypes = {
+  recipe: {
+    id: PropTypes.number.isRequired,
+    version: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    likesCount: PropTypes.number.isRequired,
+  },
 }
 
 export default Recipe
