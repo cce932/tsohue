@@ -1,7 +1,7 @@
-import EditService from "services/edit.service"
-import { extractErrorMsg } from "shared/utility/common"
-import { setMessage } from "./message"
-import { CANCEL_ORDER_ITEM_SUCCESS } from "./types"
+import EditService from 'services/edit.service'
+import { extractErrorMsg } from 'shared/utility/common'
+import { setMessage } from './message'
+import { CANCEL_ORDER_ITEM_SUCCESS } from './types'
 
 export const cancelOrderItem = (id) => (dispatch) => {
   return EditService.cancelOrderItem(id)

@@ -5,7 +5,7 @@ import {
   IoPhonePortrait,
   IoReceipt,
   IoLeaf,
-  IoPieChart
+  IoPieChart,
 } from 'react-icons/io5'
 
 import 'shared/style/home.scss'
@@ -22,7 +22,7 @@ const gredients = [
   '蔥',
   '大蒜',
   '冰糖',
-  '昆布粉'
+  '昆布粉',
 ]
 
 const Home = () => {

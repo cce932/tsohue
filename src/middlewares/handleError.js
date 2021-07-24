@@ -1,4 +1,4 @@
-import { SET_MESSAGE } from "actions/types"
+import { SET_MESSAGE } from 'actions/types'
 import {
   BAD_REQUEST,
   UNEXPECTED_ERROR,
@@ -7,8 +7,8 @@ import {
   UNAUTHORIZED,
   LOGIN_FAILURE,
   CONFLICT,
-} from "shared/constants/error"
-import { logout } from "actions/auth"
+} from 'shared/constants/error'
+import { logout } from 'actions/auth'
 
 const handleError = (store) => (next) => (action) => {
   if (action.type === SET_MESSAGE) {
@@ -22,32 +22,31 @@ const handleError = (store) => (next) => (action) => {
             EMPTY_TOKEN.test(debugMessage)
           ) {
             store.dispatch(logout())
-            window.location = "/login"
-            return
+            window.location = '/login'
           }
         }
         break
       case UNAUTHORIZED:
         if (message === LOGIN_FAILURE) {
           window.location = `/login?next=${from || window.location.pathname}`
-          window.alert("請登入")
+          window.alert('請登入')
         }
         break
       case CONFLICT:
-        window.alert("此帳號已被使用，請試試其他名稱喔")
+        window.alert('此帳號已被使用，請試試其他名稱喔')
         break
       default:
         if (status && message && debugMessage) {
           return console.error(
-            "未知錯誤！！\nstatus:" +
+            '未知錯誤！！\nstatus:' +
               status +
-              "\nmessage:" +
+              '\nmessage:' +
               message +
-              "\ndebugMessage: " +
-              debugMessage
+              '\ndebugMessage: ' +
+              debugMessage,
           )
         } else {
-          return console.error("未知錯誤！！\n" + JSON.stringify(action.payload))
+          return console.error('未知錯誤！！\n' + JSON.stringify(action.payload))
         }
     }
   } else {

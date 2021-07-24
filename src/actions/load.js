@@ -1,13 +1,13 @@
-import _ from "lodash"
+import _ from 'lodash'
 
-import LoadService from "services/load.service"
-import { extractErrorMsg } from "shared/utility/common"
-import { setMessage } from "./message"
+import LoadService from 'services/load.service'
+import { extractErrorMsg } from 'shared/utility/common'
+import { setMessage } from './message'
 import {
   LOAD_ORDERS_SUCCESS,
   LOAD_RECIPES_SUCCESS,
   LOAD_ORDERS_FAILURE,
-} from "./types"
+} from './types'
 
 export const loadRecipes = () => (dispatch) => {
   return LoadService.loadRecipes()
@@ -77,7 +77,7 @@ export const loadAllOrders = () => (dispatch) => {
 
       dispatch({
         type: LOAD_ORDERS_FAILURE,
-        payload: "目前沒有訂單喔",
+        payload: '目前沒有訂單喔',
       })
       dispatch(setMessage(message))
 

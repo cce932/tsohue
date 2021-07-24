@@ -7,7 +7,7 @@ import {
   FaUser,
   FaHeart,
   FaSearch,
-  FaAngleUp
+  FaAngleUp,
 } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { Form, Nav, Navbar } from 'react-bootstrap'
@@ -51,7 +51,7 @@ import {
   QA as QAPathname,
   policies,
   privacy,
-  position
+  position,
 } from 'shared/constants/pathName'
 import Instruction from 'pages/StaticPages/Instruction'
 import QA from 'pages/StaticPages/QA'
@@ -71,7 +71,7 @@ const App = () => {
       })
       dispatch(loadRecipes())
     },
-    [dispatch]
+    [dispatch],
   )
 
   // needed, for excuting when DOM is ready
@@ -131,7 +131,7 @@ const App = () => {
     history.push(
       `${allPaths[recipes]}?search=${$('#search')
         .val()
-        .trim()}`
+        .trim()}`,
     )
   }
 

@@ -2,14 +2,13 @@ import {
   REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   LOGOUT,
-} from "./types"
-import AuthService from "services/auth.service"
-import { extractErrorMsg } from "shared/utility/common"
-import { setMessage } from "./message"
+} from './types'
+import AuthService from 'services/auth.service'
+import { extractErrorMsg } from 'shared/utility/common'
+import { setMessage } from './message'
 
-// dispatch(action) 一定要回傳action 內容是type屬性和可省略的payload
 export const register = (account, password, username, phone, email) => (
-  dispatch
+  dispatch,
 ) =>
   AuthService.register(account, password, username, phone, email)
     .then((response) => {
