@@ -1,9 +1,20 @@
 @import "global";
 
 .recipes {
-  margin: 105px 5% 50px 20% !important;
+  margin: 80px 0 0 !important;
 
   div.cus-side-list {
+    width: 171px;
+    background-color: white;
+    box-shadow: $default-shadow;
+    padding: 10px 20px 20px;
+    border-radius: 20px;
+    margin: 40px auto 20px;
+    
+    .cus-side-list_search {
+      display: none;
+    }
+
     p {
       @include text(bolder, 1.1rem, $prime-color);
       margin: 10px;
@@ -16,7 +27,6 @@
         &.all {
           @include stroke-border(
             $secondary-color,
-            $first-color,
             $secondary-color
           );
         }
@@ -39,13 +49,14 @@
       }
     }
 
-    select {
-      margin: 0 5px 15px;
+    select, input#search-recipes {
+      margin: 0 5px 5px;
       border-radius: 20px;
       color: $vice-color;
-      padding: 5px 5px;
-      width: 92%;
+      padding: 5px 10px;
       border: $vice-color solid 1px;
+      font-size: 0.9rem;
+      width: 92%;
 
       &:focus {
         box-shadow: none;
@@ -55,6 +66,7 @@
   }
 
   div.content {
+    width: 1400px;
     display: flex;
     flex: 0 1 auto;
     flex-wrap: wrap; // break a line if items exceeded max width 
@@ -88,6 +100,44 @@
           border: $accent-color 1px solid;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 1800px) {
+    div.content {
+      width: 990px;
+    }
+  }
+
+
+  @media screen and (max-width: 1300px) {
+    div.content {
+      width: 660px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    div.content {
+      width: 660px;
+    }
+
+    div.cus-side-list {
+      width: 75% !important;
+
+      div.cus-side-list_search {
+        display:block;
+
+      }
+      
+      select,input#search-recipes {
+      width: 70%;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    div.content {
+      width: 330px;
     }
   }
 }

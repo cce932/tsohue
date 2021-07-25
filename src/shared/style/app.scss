@@ -47,16 +47,6 @@ p.no-result {
     width: 100px;
   }
 
-  button.search {
-    @include text();
-    padding: 0 20px;
-  }
-
-  input#search {
-    @include default-input(170px);
-    margin-right: -10px;
-  }
-
   // Nav.Link
   a {
     @include text(bolder, 1rem, $prime-color);

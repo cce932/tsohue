@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Pagination, Spinner } from 'react-bootstrap'
+import { Col, Pagination, Row, Spinner } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 
 import 'shared/style/recipes.scss'
 import Recipe from './Recipe'
 import { versionOptions } from 'shared/constants/options'
+import SearchBar from 'shared/components/SearchBar'
 import { splitToRows } from 'shared/utility/common'
 
 const NAME_ASC = '名稱順序'
@@ -15,19 +15,6 @@ const PRICE_ASC = '價格低到高'
 const PRICE_DESC = '價格高到低'
 const ASC = 'ASC'
 const DESC = 'DESC'
-
-const SideListWapper = styled.div`
-  position: fixed;
-  top: 150px;
-  left: 8%;
-  width: 171px;
-  background-color: white;
-  box-shadow: ${(props) => props.theme.defaultShadow};
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  text-align: left;
-`
 
 const Recipes = () => {
   const { allRecipes } = useSelector((state) => state.recipes)
@@ -161,64 +148,74 @@ const Recipes = () => {
 
   return (
     <div className="recipes pages">
-      <SideListWapper className="cus-side-list" id="side-list">
-        <p>分類</p>
-        <div>
-          <button
-            className="all"
-            onClick={() => {
-              setRecipes(allRecipes)
-              sort(sortType, allRecipes)
-            }}
-          >
-            全部
-          </button>
-          {Object.keys(versionOptions).map((option, index) => (
-            <button
-              key={index}
-              className={option.toLowerCase()}
-              onClick={(e) => versionFilterOnClick(e)}
-            >
-              {versionOptions[option]}
-            </button>
-          ))}
-        </div>
-        <p>排序</p>
-        <select onChange={(e) => sortOnChange(e)}>
-          <option>{NAME_ASC}</option>
-          <option>{NAME_DESC}</option>
-          <option>{PRICE_ASC}</option>
-          <option>{PRICE_DESC}</option>
-        </select>
-      </SideListWapper>
+      <Row sm="1" lg="2">
+        <Col lg="3">
+          <div className="cus-side-list mx-auto" id="side-list">
+            <p>分類</p>
+            <div>
+              <button
+                className="all"
+                onClick={() => {
+                  setRecipes(allRecipes)
+                  sort(sortType, allRecipes)
+                }}
+              >
+                全部
+              </button>
+              {Object.keys(versionOptions).map((option, index) => (
+                <button
+                  key={index}
+                  className={option.toLowerCase()}
+                  onClick={(e) => versionFilterOnClick(e)}
+                >
+                  {versionOptions[option]}
+                </button>
+              ))}
+            </div>
+            <p>排序</p>
+            <select onChange={(e) => sortOnChange(e)}>
+              <option>{NAME_ASC}</option>
+              <option>{NAME_DESC}</option>
+              <option>{PRICE_ASC}</option>
+              <option>{PRICE_DESC}</option>
+            </select>
 
-      <div className="content">
-        {recipes.length
-          ? (
-              typeof recipes === 'string'
-                ? (
-            <p className="no-result">{recipes}</p>
-                  )
-                : (
-                    splitToRows(recipes, ITEMS_PER_PAGE)[activePage - 1].map(
-                      (recipe, index) => {
-                        return <Recipe key={index} {...{ ...recipe }} />
-                      },
-                    )
-                  )
-            )
-          : (
-          <Spinner animation="border" variant="warning" role="status"></Spinner>
-            )}
+            <div className="cus-side-list_search">
+              <p>搜尋</p>
+              <SearchBar at="recipes" />
+            </div>
+          </div>
+        </Col>
+        <Col lg="9" >
+          <div className="content mx-auto">
+            {recipes.length
+              ? (
+                  typeof recipes === 'string'
+                    ? (
+                <p className="no-result">{recipes}</p>
+                      )
+                    : (
+                        splitToRows(recipes, ITEMS_PER_PAGE)[activePage - 1].map(
+                          (recipe, index) => {
+                            return <Recipe key={index} {...{ ...recipe }} />
+                          },
+                        )
+                      )
+                )
+              : (
+              <Spinner animation="border" variant="warning" role="status"></Spinner>
+                )}
 
-        <div className="pagination">
-          <Pagination>
-            <Pagination.Prev id="prev" onClick={pageOnChange} />
-            {pageitems}
-            <Pagination.Next id="next" onClick={pageOnChange} />
-          </Pagination>
-        </div>
-      </div>
+            <div className="pagination">
+              <Pagination>
+                <Pagination.Prev id="prev" onClick={pageOnChange} />
+                {pageitems}
+                <Pagination.Next id="next" onClick={pageOnChange} />
+              </Pagination>
+            </div>
+          </div>
+        </Col>
+      </Row>
     </div>
   )
 }
