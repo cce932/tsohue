@@ -1,0 +1,12 @@
+@import "../global";
+
+.search-bar {
+  button.search-btn {
+    @include text();
+    padding: 0 10px;
+  }
+
+  input.search-input {
+    @include default-input(170px);
+  }
+}

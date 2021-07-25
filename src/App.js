@@ -1,21 +1,20 @@
 import $ from 'jquery'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Router, Switch, Route } from 'react-router-dom'
 import {
   FaShoppingCart,
   FaUser,
   FaHeart,
-  FaSearch,
   FaAngleUp,
 } from 'react-icons/fa'
-import { CgClose } from 'react-icons/cg'
-import { Form, Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 // import { OverlayTrigger } from "react-bootstrap"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'shared/style/components/checkbox.scss'
 import 'shared/style/app.scss'
+import SearchBar from 'shared/components/SearchBar'
 import Home from 'pages/Home'
 import Login from 'pages/Login'
 import Register from 'pages/Register'
@@ -61,7 +60,6 @@ import Privacy from 'pages/StaticPages/Privacy'
 const App = () => {
   const { user: currentUser } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  const [isEmpty, setIsEmpty] = useState(true)
 
   // url換了的話(when changing location) 就要清空redux state 內的 message
   useEffect(
@@ -116,38 +114,8 @@ const App = () => {
       $('html,body').animate({ scrollTop: 0 }, 'fast') /* 返回到最頂上 */
       return false
     })
-
-    // $("#search").on("keypress", function (e) {
-    //   // do not use "keyup", it'll cause accidient submit when typing chinese
-    //   if (e.key === "Enter") {
-    //     searchOnClick()
-    //   }
-    // })
   })
 
-  const searchOnClick = e => {
-    e?.preventDefault()
-    console.log('search')
-    history.push(
-      `${allPaths[recipes]}?search=${$('#search')
-        .val()
-        .trim()}`,
-    )
-  }
-
-  const clearOnClick = e => {
-    e?.preventDefault()
-    console.log('reset')
-
-    $('#search').val('')
-    setIsEmpty(true)
-    window.location.pathname.search(allPaths[recipes]) >= 0 &&
-      history.push(`${allPaths[recipes]}`)
-  }
-
-  const queryOnChange = e => {
-    setIsEmpty(e.target.value === '')
-  }
   return (
     <Router history={history}>
       <Navbar fixed="top" expand="lg" className="ts-header">
@@ -156,33 +124,7 @@ const App = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
-          <Form className="d-flex" onSubmit={e => searchOnClick(e)}>
-            <input
-              type="text"
-              id="search"
-              onChange={queryOnChange}
-              placeholder="搜尋烹飪包"
-            />
-            {isEmpty
-              ? (
-              <button
-                type="submit"
-                className="search"
-                onClick={e => searchOnClick(e)}
-              >
-                <FaSearch fill="#755734" />
-              </button>
-                )
-              : (
-              <button
-                type="reset"
-                className="search"
-                onClick={e => clearOnClick(e)}
-              >
-                <CgClose strokeWidth="2px" fill="#755734" />
-              </button>
-                )}
-          </Form>
+          <SearchBar at="nav" />
           <Nav
           // className="ml-10 my-lg-0"
           >
