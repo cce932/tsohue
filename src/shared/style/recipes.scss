@@ -52,7 +52,7 @@
     select, input#search-recipes {
       margin: 0 5px 5px;
       border-radius: 20px;
-      color: $vice-color;
+      color: $prime-color;
       padding: 5px 10px;
       border: $vice-color solid 1px;
       font-size: 0.9rem;
@@ -116,10 +116,8 @@
     }
   }
 
-  @include media-breakpoint-down(md) {
-    div.content {
-      width: 660px;
-    }
+  @include media-breakpoint-down(lg) {
+    // The width of div.content is same as max-1300
 
     div.cus-side-list {
       width: 75% !important;
@@ -135,7 +133,7 @@
     }
   }
 
-  @include media-breakpoint-down(sm) {
+  @media screen and (max-width: 660px) {
     div.content {
       width: 330px;
     }

@@ -46,7 +46,7 @@
     }
   }
 
-  @include media-breakpoint-down(xs) {
+  @include media-breakpoint-down(sm) {
     .banner {
       .title {
         text-align: center;

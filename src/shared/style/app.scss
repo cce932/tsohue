@@ -95,7 +95,7 @@ a#to-top {
   }
 }
 
-@include media-breakpoint-down(xs) {
+@include media-breakpoint-down(sm) {
   * {
     font-size: 14px;
   }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import moment from 'moment'
 import { useDispatch } from 'react-redux'
 import { Form, Field, Formik } from 'formik'
-import { Spinner } from 'react-bootstrap'
+import { Spinner, Form as BsForm } from 'react-bootstrap'
 
 import 'shared/style/order.scss'
 import OrderedRecipe from 'shared/components/OrderedRecipe'
@@ -110,29 +110,29 @@ const Order = () => {
               <div className="left">
                 <div className="block">
                   <label htmlFor="discount">折價券</label>
-                  <Field as="select" id="discount" name="discount">
+                  <BsForm.Select id="discount" name="discount" onChange={handleChange}>
                     <option value="0">目前無任何折價券</option>
-                  </Field>
+                  </BsForm.Select>
                 </div>
 
                 <div className="block">
                   <label htmlFor="payWay">付款方式</label>
-                  <Field as="select" id="payWay" name="payWay">
+                  <BsForm.Select id="payWay" name="payWay" onChange={handleChange}>
                     {Object.keys(payWayOptions).map((option) => (
                       <option key={option} value={option}>{payWayOptions[option]}</option>
                     ))}
-                  </Field>
+                  </BsForm.Select>
                 </div>
 
                 <div className="block">
                   <label htmlFor="serviceWay">配送方式</label>
-                  <Field as="select" id="serviceWay" name="serviceWay">
+                  <BsForm.Select id="serviceWay" name="serviceWay" onChange={handleChange}>
                     {Object.keys(serviceWayOptions).map((option) => (
                       <option key={option} value={option}>
                         {serviceWayOptions[option]}
                       </option>
                     ))}
-                  </Field>
+                  </BsForm.Select>
                 </div>
 
                 <div className="block">

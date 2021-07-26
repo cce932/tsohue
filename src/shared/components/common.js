@@ -41,21 +41,21 @@ const MonthlySpecial = ({ title, gredients, gredientsMaxRow = 5 }) => {
   return (
     <section className="container monthly-special">
       <Row xs="1" lg="2">
-        <Col lg="8">
+        <Col xs="12" lg="8">
           <img
             className="w-100"
             src="/static-page-pic/home-monthlySpecial.jpg"
             alt="Monthly special"
           />
         </Col>
-        <Col lg="4">
-          <Row md="2" xs="1" lg="1" className="intro mx-auto">
-            <Col md="5">
+        <Col xs="12" lg="4">
+          <Row xs="1" md="2" lg="1" className="intro mx-auto">
+            <Col md="5" lg="12">
               <span>本月特餐</span>
               <h1 className="title">{title}</h1>
               <div className="ingredients">{splited}</div>
             </Col>
-            <Col md="7" className="center">
+            <Col md="7" lg="12" className="center">
               <Link className="how-to-btn" to={`${allPaths[recipe]}16`}>
                 怎麼煮 ?
               </Link>

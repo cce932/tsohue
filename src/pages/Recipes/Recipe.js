@@ -26,10 +26,10 @@ const Recipe = ({ id, version, photo, name, price, likesCount }) => {
             e.target.src = '/common-pic/noImage.jpg'
           }}
         />
-        <p>{name}</p>
+        <label className="title">{name}</label>
       </a>
       <div className="info">
-        <div className="distributed">
+        <div className="info_space-between">
           <span> $ {price}</span>
           <span>
             <button onClick={() => setLike(!like)}>

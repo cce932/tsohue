@@ -40,13 +40,9 @@
     }
   }
 
-  // title
-  p {
-    font-weight: bolder;
-    text-align: left;
-    font-size: 1.1rem;
-    margin: 10px 0 5px;
-    color: $prime-color;
+  label.title {
+    @include text(bold, 1.1rem, $prime-color);
+    margin-top: 10px;
   }
 
   .info {
@@ -56,7 +52,7 @@
       margin-right: 5px;
     }
 
-    .distributed {
+    .info_space-between {
       display: flex;
       justify-content: space-between;
     }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Col, Pagination, Row, Spinner } from 'react-bootstrap'
+import { Col, Form, Pagination, Row, Spinner } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 
 import 'shared/style/recipes.scss'
@@ -172,13 +172,14 @@ const Recipes = () => {
                 </button>
               ))}
             </div>
+
             <p>排序</p>
-            <select onChange={(e) => sortOnChange(e)}>
-              <option>{NAME_ASC}</option>
-              <option>{NAME_DESC}</option>
-              <option>{PRICE_ASC}</option>
-              <option>{PRICE_DESC}</option>
-            </select>
+            <Form.Select onChange={(e) => sortOnChange(e)}>
+              <option value={NAME_ASC}>{NAME_ASC}</option>
+              <option value={NAME_DESC}>{NAME_DESC}</option>
+              <option value={PRICE_ASC}>{PRICE_ASC}</option>
+              <option value={PRICE_DESC}>{PRICE_DESC}</option>
+            </Form.Select>
 
             <div className="cus-side-list_search">
               <p>搜尋</p>
