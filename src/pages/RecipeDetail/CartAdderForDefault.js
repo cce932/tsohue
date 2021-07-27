@@ -30,25 +30,27 @@ const CartAdderForDefault = ({
 
   return (
     <div className="default-cart-adder">
-      <Row>
-        {Object.keys(splitedIngredients).map(
-          (key, index) =>
-            splitedIngredients[key].length > 0 && (
-              <Col key={index}>
-                <p className="category">{categoryOptions[key]}</p>
-                <div className="ingredients-block">
-                  {splitedIngredients[key].map((ingredient, index) => (
-                    <div key={index}>
-                      <label>{ingredient.ingredient.name}</label>
-                      <label>{ingredient.quantityRequired}</label>
-                      <label>{ingredient.ingredient.unit}</label>
+      <Row sm="1" md="2">
+        <Col md="9" lg="10">
+          <Row xs="2" sm="2" lg="4">
+            {Object.keys(splitedIngredients).map(
+              (key, index) =>
+                splitedIngredients[key].length > 0 && (
+                  <Col key={index}>
+                    <p className="category">{categoryOptions[key]}</p>
+                    <div className="ingredients-block">
+                      {splitedIngredients[key].map((ingredient, index) => (
+                        <div key={index}>
+                          {`${ingredient.ingredient.name} ${ingredient.quantityRequired} ${ingredient.ingredient.unit}`}
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </Col>
-            ),
-        )}
-        <Col className="button">
+                  </Col>
+                ),
+            )}
+          </Row>
+        </Col>
+        <Col md="3" lg="2" className="add-cart-btn">
           <div>
             <label className="price">{`總額 NT. ${price}`}</label>
             <button

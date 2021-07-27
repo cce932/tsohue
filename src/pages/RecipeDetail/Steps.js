@@ -22,15 +22,19 @@ const Steps = ({ steps, link }) => {
           <ControlBar />
         </Player>
       </div>
-      {steps.map((step, index) => (
-        <div key={index} className="step">
-          <label className="order">{index + 1}</label>
-          <button className="time" onClick={() => changeTime(step.startTime)}>
-            {transMSecToMin(step.startTime)}
-          </button>
-          <label className="note">{step.note}</label>
-        </div>
-      ))}
+      <table>
+        {steps.map((step, index) => (
+          <tr key={index} className="step">
+            <td className="order">{index + 1}</td>
+            <td className="time">
+              <button onClick={() => changeTime(step.startTime)}>
+                {transMSecToMin(step.startTime)}
+              </button>
+            </td>
+            <td className="note">{step.note}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

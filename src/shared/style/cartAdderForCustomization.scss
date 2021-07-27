@@ -6,6 +6,10 @@
     @include text(normal, 1rem, $prime-color);
   }
 
+  > form > div {
+    min-height: 200px;
+  }
+
   form {
     width: 100%;
 
@@ -17,19 +21,21 @@
 
     div.fee-notification {
       @include text(bold, 0.8rem, $secondary-color);
-      margin: 0 11px 30px;
+      margin-bottom: 20px;
     }
 
     button.reset {
-      @include solid(white, white, white);
-      color: $prime-color;
-      width: 90%;
-      height: 35px;
+      background-color: white !important;
+      color: $prime-color !important;
 
       &:hover {
         color: $vice-color;
       }
     }
+
+    // TODO: 只有3欄食材的時候，不要預留第四欄的位置
+    // V ipad的button 能更好看嗎
+    // V lg以上，button的height要小一點？
 
     button.vip-upgrade {
       background-color: $accent-red-color !important;
@@ -41,6 +47,12 @@
 
     div.spinner-border {
       margin: 0;
+    }
+  }
+
+  @include media-breakpoint-only(md) {
+    button.reset, button.vip-upgrade {
+      max-width: 30% !important;
     }
   }
 }

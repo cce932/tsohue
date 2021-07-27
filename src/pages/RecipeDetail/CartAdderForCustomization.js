@@ -144,9 +144,9 @@ const CartAdderForCustomization = ({
       >
         {({ values, errors, handleSubmit, setFieldValue, handleReset }) => (
           <form onSubmit={handleSubmit}>
-            <Row>
-              <Col sm="10">
-                <Row>
+            <Row sm="1" lg="2">
+              <Col lg="10">
+                <Row xs="2" sm="2" md="4">
                   {Object.keys(splitedIngredients).map(
                     (category, index) =>
                       splitedIngredients[category].length > 0 && (
@@ -162,7 +162,7 @@ const CartAdderForCustomization = ({
                   )}
                 </Row>
               </Col>
-              <Col sm="2" className="button">
+              <Col lg="2" className="add-cart-btn">
                 <div>
                   <label className="price" name="currentPrice">
                     {'總額 NT. '}

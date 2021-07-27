@@ -1,11 +1,8 @@
 @import "global";
 
 .default-cart-adder {
-  background-color: $accent-color;
-  padding: 100px 10% 60px 13%;
-  > form > div {
-    min-height: 200px;
-  }
+  background-color: $vice-lighter-color;
+  padding: 60px 10%;
 
   p.category {
     @include text(bold, 1rem, $prime-color);
@@ -15,37 +12,36 @@
   }
 
   div.ingredients-block {
-    > div > label {
+    margin-bottom: 20px;
+
+    > div { // each ingredient
       @include text(normal, 0.9rem, $prime-color);
-      padding-right: 10px;
+      margin-bottom: 10px;
     }
   }
 
-  div.button {
-    position: relative;
+  div.add-cart-btn {
     min-height: 100px;
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-end;
 
     > div {
-      position: absolute;
-      bottom: 0;
-      right: 5%;
-      max-width: 200px;
-      width: 95%;
+      width: 100%;
       text-align: center;
+      padding-right: 10px;
 
       label.price {
+        @include text(bold, 1.1rem, $accent-red-color);
         pointer-events: none; // disable hover
-        border-bottom: white 3px solid;
-        color: $prime-color;
         width: fit-content;
-        margin: 0;
-        padding: 4px;
       }
 
-      button[type="submit"] {
+      button {
         @include solid($prime-color, $vice-color, $vice-color);
-        width: 90%;
-        height: 37px;
+        width: 95%;
+        height: 40px;
+        font-size: 1rem;
 
         &:disabled {
           background-color: $secondary-color; // #c9c5c0

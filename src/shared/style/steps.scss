@@ -15,20 +15,19 @@ div.steps {
     margin-bottom: 50px;
   }
 
-  div.step {
-    display: flex;
+  tr.step {
     height: 50px;
-    align-items: center;
-
     .order {
-      @include text(bold, 1.5rem, $accent-deeper-color);
+      @include text(bold, 1.5rem, $accent-red-color);
       width: 40px;
     }
 
     .time {
-      @include stroke-border($vice-color, $vice-color, $accent-deeper-color);
-      margin-right: 40px;
-      width: 65px;
+      width: 95px;
+      
+      button {
+        @include stroke-border($vice-color, $vice-color, $accent-red-color);
+      }
     }
 
     .note {

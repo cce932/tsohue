@@ -45,11 +45,11 @@ const RecipeDetail = (props) => {
   })
 
   return (
-    <div sm={5} className="recipe-detail pages">
+    <div className="recipe-detail pages">
       {!_.isEmpty(recipe)
         ? (<>
-          <Row className="info-image">
-            <Col className="info">
+          <Row sm="1" md="2" lg="2" className="info-image">
+            <Col lg="5" className="info">
               <div className="version">
                 {recipe.existedVersions.map((version, index) =>
                   version.recipeId.toString() === id
@@ -75,7 +75,7 @@ const RecipeDetail = (props) => {
               </div>
 
               <div className="name">
-                <div id="recipe-name">{recipe.currentRecipe.name}</div>
+                <h2 id="recipe-name">{recipe.currentRecipe.name}</h2>
                 {/* <img
               id="recipe-name-wave"
               src="/common-pic/wave.svg"
@@ -87,7 +87,7 @@ const RecipeDetail = (props) => {
                 {description && description.map((des, index) => <p key={index}>{des}</p>)}
               </div>
             </Col>
-            <Col sm={7}>
+            <Col lg="7">
               <Carousel>
                 {images.length
                   ? (images.map((image, index) => (
@@ -120,7 +120,7 @@ const RecipeDetail = (props) => {
             }
             id="uncontrolled-tab-example"
           >
-            <Tab eventKey="CartAdderForDefault" title={<span>推薦食材內容</span>}>
+            <Tab eventKey="CartAdderForDefault" title={<span>推薦配方</span>}>
               <CartAdderForDefault
                 recipeId={id}
                 ingredients={recipe.currentRecipe.recipeIngredients}
@@ -134,7 +134,7 @@ const RecipeDetail = (props) => {
               eventKey="CartAdderForCustomization"
               title={
                 <span>
-                  客製食材內容
+                  客製配方
                   <RiVipFill size="20px" />
                 </span>
               }

@@ -6,6 +6,7 @@ import { Col } from 'react-bootstrap'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 
 import 'shared/style/components/ingredientAdjuster.scss'
+import color from 'shared/style/color'
 
 const IngredientsAdjuster = ({
   categoryName,
@@ -123,8 +124,8 @@ const IngredientsAdjuster = ({
                     size="15px"
                     fill={
                       isOutOfStock || parseInt(ingredientQuantity) === 0
-                        ? '#e8ebf0'
-                        : '#fbd779'
+                        ? color.fifth
+                        : color.vice
                     }
                   />
                 </button>
@@ -144,8 +145,8 @@ const IngredientsAdjuster = ({
                     size="15px"
                     fill={
                       isOutOfStock || parseInt(ingredientQuantity) === 20
-                        ? '#e8ebf0'
-                        : '#fbd779'
+                        ? color.fifth
+                        : color.vice
                     }
                   />
                 </button>

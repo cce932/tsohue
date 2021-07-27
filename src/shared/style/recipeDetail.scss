@@ -4,97 +4,84 @@ div.recipe-detail {
   margin: 100px 0 0 !important;
 
   div.info-image {
-    margin: 0 10% 40px 13%;
-    min-height: 400px;
+    margin: 5% 10% 60px;
+    align-items: center;
+
+    div.info {
+      height: fit-content;
+  
+      div.name {
+        margin-bottom: 20px;
+  
+        div {
+          @include text(bold, 2rem, $prime-color);
+          margin-bottom: -8px;
+          width: fit-content;
+        }
+      }
+  
+      div.version {
+        padding: 5px 0;
+        margin-left: -5px;
+        margin-bottom: 10px;
+  
+        a.version {
+          font-size: 1rem !important;
+        }
+  
+        a.version-normal {
+          @include stroke-border($vice-color);
+  
+          &.located {
+            @include solid();
+          }
+        }
+  
+        a.version-lowfat {
+          @include stroke-border($lowfat-color);
+  
+          &.located {
+            @include solid($lowfat-color);
+          }
+        }
+  
+        a.version-meat {
+          @include stroke-border($meat-color);
+  
+          &.located {
+            @include solid($meat-color);
+          }
+        }
+  
+        a.version-vage {
+          @include stroke-border($vage-color);
+  
+          &.located {
+            @include solid($vage-color);
+          }
+        }
+      }
+  
+      div.description > p {
+        @include text(normal, 1rem, $prime-color);
+        line-height: 1.5;
+        margin-bottom: 5px;
+      }
+    }
 
     div.carousel {
-      z-index: 888;
       border-radius: 15px;
     }
-  }
 
-  div.info {
-    padding-top: 100px;
-    padding-left: 0;
-    height: 400px;
-
-    div.name {
-      margin-bottom: 20px;
-
-      div {
-        @include text(bold, 2rem, $prime-color);
-        margin-bottom: -8px;
-        width: fit-content;
-      }
-
-      // img {
-      //   height: 15px;
-      // }
-    }
-
-    div.version {
-      padding: 5px 0;
-      margin-left: -5px;
-      margin-bottom: 10px;
-
-      a.version {
-        font-size: 0.9rem !important;
-      }
-
-      a.version-normal {
-        @include stroke-border($vice-color);
-
-        &.located {
-          @include solid();
-        }
-      }
-
-      a.version-lowfat {
-        @include stroke-border($lowfat-color, $lowfat-color);
-
-        &.located {
-          @include solid($lowfat-color);
-        }
-      }
-
-      a.version-meat {
-        @include stroke-border($meat-color, $meat-color);
-
-        &.located {
-          @include solid($meat-color);
-        }
-      }
-
-      a.version-vage {
-        @include stroke-border($vage-color, $vage-color);
-
-        &.located {
-          @include solid($vage-color);
-        }
-      }
-    }
-
-    div.description > p {
-      @include text(normal, 0.9rem, $prime-color);
-      line-height: 1;
-      overflow: hidden;
-      margin-bottom: 10px;
+    div.carousel-inner img {
+        width: 100%;
+        object-fit: cover;
     }
   }
 
-  div.carousel-inner {
-    height: 400px;
-
-    img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-    }
-  }
-
-  & > .nav {
+  & > .nav-tabs {
     border: none;
-    margin: 0 10% 0 12%;
+    margin: 0 10% 0;
 
     svg {
       margin: -2px 3px 0;
@@ -102,26 +89,45 @@ div.recipe-detail {
   
     button {
       @include text(bold, 1rem, $prime-color);
-      border-radius: 25px 25px 0 0 !important;
+      border-radius: 15px 15px 0 0 !important;
     }
   
     button.active {
       color: $prime-color !important;
-      border: $accent-color 1px solid !important;
+      background-color: $accent-color;
+      border: $accent-color solid 1px;
     }
   
     button:not(.active) {
-      color: $vice-color !important;
+      border: $accent-color solid 1px;
     }
   }
 
   @media (min-width: 1780px) {
-    // TODO: 這邊另外設定row依照寬度設定要有幾col
-    div.carousel-inner {
-      height: 500px;
-
-      img {
+    div.carousel-inner img {
         height: 500px;
+    }
+  }
+
+  @include media-breakpoint-only(md) {
+    div.info-image {
+      div.info {
+        vertical-align: middle;
+      }
+
+      div.carousel-inner img {
+        height: 250px !important;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    div.info-image {
+      div.info {
+        padding-bottom: 20px;
+      }
+      div.carousel-inner img {
+        max-height: 300px;
       }
     }
   }
