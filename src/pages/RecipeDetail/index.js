@@ -120,7 +120,7 @@ const RecipeDetail = (props) => {
             }
             id="uncontrolled-tab-example"
           >
-            <Tab eventKey="CartAdderForDefault" title="推薦食材內容">
+            <Tab eventKey="CartAdderForDefault" title={<span>推薦食材內容</span>}>
               <CartAdderForDefault
                 recipeId={id}
                 ingredients={recipe.currentRecipe.recipeIngredients}

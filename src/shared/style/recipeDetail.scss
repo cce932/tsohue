@@ -13,12 +13,6 @@ div.recipe-detail {
     }
   }
 
-  nav.nav-tabs {
-    svg {
-      margin: -2px 3px 0;
-    }
-  }
-
   div.info {
     padding-top: 100px;
     padding-left: 0;
@@ -95,6 +89,29 @@ div.recipe-detail {
       width: 100%;
       height: 400px;
       object-fit: cover;
+    }
+  }
+
+  & > .nav {
+    border: none;
+    margin: 0 10% 0 12%;
+
+    svg {
+      margin: -2px 3px 0;
+    }
+  
+    button {
+      @include text(bold, 1rem, $prime-color);
+      border-radius: 25px 25px 0 0 !important;
+    }
+  
+    button.active {
+      color: $prime-color !important;
+      border: $accent-color 1px solid !important;
+    }
+  
+    button:not(.active) {
+      color: $vice-color !important;
     }
   }
 

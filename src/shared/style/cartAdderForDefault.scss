@@ -1,25 +1,6 @@
 @import "global";
 
-.recipe-detail > nav {
-  border: none;
-  margin: 0 10% 0 12%;
-
-  & > a {
-    @include text(bold, 1rem, $prime-color);
-    border-radius: 25px 25px 0 0 !important;
-  }
-
-  & > a.active {
-    color: $prime-color !important;
-    border: $accent-color 1px solid !important;
-  }
-
-  & > a:not(.active) {
-    color: $vice-color !important;
-  }
-}
-
-.member-cart-adder {
+.default-cart-adder {
   background-color: $accent-color;
   padding: 100px 10% 60px 13%;
   > form > div {

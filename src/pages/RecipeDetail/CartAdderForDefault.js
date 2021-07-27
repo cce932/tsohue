@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
-import 'shared/style/memberCartAdder.scss'
+import 'shared/style/cartAdderForDefault.scss'
 import { categoryOptions } from 'shared/constants/options'
 import { splitIngredientsByCategory } from 'shared/utility/common'
 import { addCartForDefault } from 'actions/add'
@@ -29,7 +29,7 @@ const CartAdderForDefault = ({
   }
 
   return (
-    <div className="member-cart-adder">
+    <div className="default-cart-adder">
       <Row>
         {Object.keys(splitedIngredients).map(
           (key, index) =>

@@ -32,7 +32,7 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
 
 @mixin text($weight: 700, $size: 1rem, $color: $prime-color) {
   font-family: sans-serif;
-  font-weight: $weight !important;
+  font-weight: $weight;
   font-size: $size;
   color: $color;
   text-decoration: none;

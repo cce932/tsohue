@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoIosUnlock } from 'react-icons/io'
 
-import 'shared/style/vipCartAdder.scss'
+import 'shared/style/cartAdderForCustomization.scss'
 import { categoryOptions } from 'shared/constants/options'
 import { splitIngredientsByCategory } from 'shared/utility/common'
 import IngredientAdjuster from 'shared/components/IngredientAdjuster'
@@ -27,6 +27,7 @@ import { VIP } from 'shared/constants/common'
 //     price: 50,
 //   },
 // }
+
 const initQuantityGenerator = (
   ingredients,
   outOfStockIngredients,
@@ -127,7 +128,7 @@ const CartAdderForCustomization = ({
   }
 
   return (
-    <div className="member-cart-adder vip-cart-adder">
+    <div className="default-cart-adder customization-cart-adder">
       <Formik
         initialValues={{
           ingredient: {
