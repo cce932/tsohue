@@ -19,7 +19,7 @@
     width: 20px;
     height: 20px;
     background: white;
-    border: $accent-deeper-color 1px solid;
+    border: $accent-red-color 1px solid;
     border-radius: 5px;
   }
 
@@ -30,12 +30,12 @@
   
   // Box focus
   // &:focus + label:before {
-  //   box-shadow: 0px 0px 3px rgba($accent-deeper-color, 1);
+  //   box-shadow: 0px 0px 3px rgba($accent-red-color, 1);
   // }
 
   // Box checked
   &:checked + label:before {
-    background: $accent-deeper-color;
+    background: $accent-red-color;
   }
   
   // Disabled state label.

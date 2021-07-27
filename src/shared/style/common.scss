@@ -31,7 +31,7 @@
     width: 80%; // declare width + className: mx-auto = center element
 
     span {
-      @include text(700, 1rem, $accent-deeper-color);
+      @include text(700, 1rem, $accent-red-color);
       line-height: 3;
     }
 

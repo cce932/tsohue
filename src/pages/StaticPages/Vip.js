@@ -24,7 +24,7 @@ const content = [
 
 const Item = ({ type, info, index }) => (
   <div className="block">
-    <StyledP fontSize="2rem" color={color.accentDeeper}>
+    <StyledP fontSize="2rem" color={color.accentRed}>
       {index + 1}
     </StyledP>
     <div>

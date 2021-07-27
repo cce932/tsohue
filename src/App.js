@@ -56,6 +56,7 @@ import Instruction from 'pages/StaticPages/Instruction'
 import QA from 'pages/StaticPages/QA'
 import Policy from 'pages/StaticPages/Policies'
 import Privacy from 'pages/StaticPages/Privacy'
+import color from 'shared/style/color'
 
 const App = () => {
   const { user: currentUser } = useSelector(state => state.auth)
@@ -184,7 +185,7 @@ const App = () => {
       </Navbar>
 
       <a href="#" id="to-top">
-        <FaAngleUp fill="#fbd779" size="30px" />
+        <FaAngleUp fill={color.forth} size="30px" />
       </a>
 
       {/* 每個路徑 對應到的Component */}

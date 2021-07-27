@@ -17,12 +17,16 @@
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  @include text(400, auto, $prime-color);
+}
+
 h1 {
-  @include text(400, 2.5rem, $prime-color);
+  font-size: 2.5rem;
 }
 
 h4 {
-  @include text(400, 1rem, $prime-color);
+  font-size: 1.1rem;
   margin-left: 4px;
 }
 
@@ -31,7 +35,7 @@ div.spinner-border {
 }
 
 p.no-result {
-  @include text(bold, 1.5rem, $accent-deeper-color);
+  @include text(bold, 1.5rem, $accent-red-color);
   margin: 10% 25%;
 }
 
@@ -80,23 +84,22 @@ a#to-top {
   bottom: 25px;
   right: 20px;
   z-index: 900;
+  opacity: 0.8;
 }
 
 @include media-breakpoint-down(lg) {
 }
 
-@include media-breakpoint-down(md) {
+@media screen and (max-width: 768px) {
+  * {
+    font-size: 14px;
+  }
+
   .logo {
     width: 80px !important;
   }
 
   a.ts-icon-feature {
     padding-right: 15px !important;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  * {
-    font-size: 14px;
   }
 }
