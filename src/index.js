@@ -31,8 +31,8 @@ const footerLinks = [
 const theme = {
   primeColor: '#755734',
   viceColor: '#9e8568',
-  viceLighterColor: '#FEF5E5',
-  accentColor: '#FEF5E5',
+  viceLighterColor: '#fef1e3',
+  accentColor: '#fef1e3',
   // accentDeeperColor: '#f9bd23',
   accentRedColor: '#e77045',
   firstColor: 'rgb(52, 58, 64)',
