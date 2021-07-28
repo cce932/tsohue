@@ -81,7 +81,7 @@ export const StrokeSpan = styled.span`
   border-radius: 25px;
   padding: ${(props) => props.padding || '2px 8px'};
   margin: ${(props) => props.margin || '0 0 0 15px'};
-  line-height: ${(props) => props.lineHeight || 'auto'};
+  line-height: ${(props) => props.lineHeight || '2'};
   transition: all 0.3s ease 0s;
 `
 

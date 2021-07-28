@@ -12,8 +12,6 @@
   }
 
   div.ingredients-block {
-    margin-bottom: 20px;
-
     > div { // each ingredient
       @include text(normal, 0.9rem, $prime-color);
       margin-bottom: 10px;

@@ -83,7 +83,7 @@ const ShoppingCart = () => {
                 {/* For aligning with the rwd block of items, container is added */}
                 <div className="bottom container" id="cart-bottom">
                   <div className="float">
-                    <label className="select-all">
+                    <div className="select-all">
                       <Field
                         className="styled-checkbox"
                         type="checkbox"
@@ -92,12 +92,14 @@ const ShoppingCart = () => {
                         onChange={selectAllOnChange(values, setFieldValue)}
                       />
                       <label htmlFor="styled-checkbox-select-all">全選</label>
-                    </label>
-                    <div className="right">
+                    </div>
+
+                    <div className="total">
                       <span>
-                        共 {values.checked.length} 項&ensp;&ensp;總額NT.
-                        <span className="price">{values.currentSum}</span>
+                        共 {values.checked.length} 項&ensp;&ensp;總額NT.{values.currentSum}
                       </span>
+                    </div>
+                    <div className="order-btn">
                       <button type="submit" onClick={handleSubmit}>
                         訂購
                       </button>

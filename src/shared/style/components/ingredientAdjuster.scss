@@ -1,6 +1,15 @@
 @import "../_global";
 
 div.ingredient-adjuster {
+  margin-bottom: 20px;
+
+  p.category { // for cart editor
+    @include text(bold, 1rem, $prime-color);
+    padding: 0 2px;
+    border-bottom: solid white 6px;
+    width: fit-content;
+  }
+
   div.ingredients-block {
     div.name-price {
       height: fit-content;
@@ -16,7 +25,7 @@ div.ingredient-adjuster {
     }
 
     label.customize-quantity {
-      background-color: rgba(white, 0.8);
+      background-color: rgba(white, 0.7);
       width: fit-content;
       border-radius: 25px;
       padding: 1px 10px 3px;

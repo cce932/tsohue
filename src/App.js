@@ -99,15 +99,16 @@ const App = () => {
       // if the distance btw [bottom of screen] and [bottom of page] is smaller than 300px
       // turn the position to absolute
       const scrollBottom =
-        $(document).height() - $(window).height() - $(window).scrollTop()
-      if (scrollBottom < 325) {
+        $('.cart').outerHeight(true) - $(window).height() - $(window).scrollTop()
+
+      if (scrollBottom < 50) {
         $('#cart-bottom')
           .css('position', 'absolute')
-          .css('bottom', '45px')
+          .css('bottom', '10px')
       } else {
         $('#cart-bottom')
           .css('position', 'fixed')
-          .css('bottom', '20px')
+          .css('bottom', '10px')
       }
     })
 

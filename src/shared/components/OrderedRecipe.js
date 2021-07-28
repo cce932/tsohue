@@ -19,6 +19,35 @@ const ItemBlock = styled.div`
   background-color: white;
   padding: 20px 25px;
   text-align: left;
+
+  .title {
+    margin-right: 15px;
+    line-height: 2.2;
+  }
+
+  @media screen and (max-width: 566px) {
+    .title { order: 2; }
+    .version {
+      order: 1;
+    }
+
+    div.md-flex {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (min-width: 567px) {
+    div.md-flex {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    div.md-flex-space {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 `
 
 const ItmeImg = styled.img`
@@ -26,16 +55,17 @@ const ItmeImg = styled.img`
   border-radius: 13px;
   height: 140px;
   object-fit: cover;
+  margin-bottom: 10px;
 `
 
-const BottomLine = styled.div`
-  padding-bottom: 10px;
+const BorderBottom = styled.div`
   margin-bottom: 8px;
   border-bottom: solid ${props => props.theme.fifthColor} 1px;
 `
 
-const FloatRight = styled.div`
-  float: right;
+const PriceToolsWrapper = styled.div`
+  margin: 4px 0;
+
   & > button {
     margin-left: 15px;
 
@@ -71,6 +101,7 @@ const IngredientTd = styled.td`
   font-size: 0.8rem;
   padding: 4px;
   padding-left: 0;
+  vertical-align: top;
 
   &.quantitiy-zero {
     color: ${props => props.theme.forthColor};
@@ -107,16 +138,20 @@ const OrderedRecipe = ({
     </IngredientTd>
   ))
 
-  const splited = splitToRows(styled, 3).map((gredients, index) => (
-    <tr className="splited-row" key={index}>
-      {gredients}
-    </tr>
-  ))
+  // if width<small, split to 2 row
+  // if width>=small, split to 3 row
+  // no dynamic update, need to refresh to check this effect
+  const splited = splitToRows(styled, window.screen.width < 576 ? 2 : 3)
+    .map((gredients, index) => (
+      <tr className="splited-row" key={index}>
+        {gredients}
+      </tr>
+    ))
 
   return (
     <ItemBlock className="ordered-recipe">
-      <Row>
-        <Col sm="3">
+      <Row sm="1" md="2">
+        <Col md="3">
           <a href={allPaths[recipePath] + recipe.id}>
             <ItmeImg
               src={recipeImage}
@@ -127,19 +162,26 @@ const OrderedRecipe = ({
             />
           </a>
         </Col>
-        <Col sm="9">
-          <BottomLine>
-            <a href={`/recipe/${recipe.id}`}>
-              <StyledFont weight="bold">{recipe.name}</StyledFont>
-            </a>
-            <StrokeSpan
-              color={recipe.version.toLowerCase() + 'Color'}
-              borderColor={recipe.version.toLowerCase() + 'Color'}
-            >
-              {versionOptions[recipe.version] + '版本'}
-            </StrokeSpan>
-            {isCustomize && <StrokeSpan>客製化</StrokeSpan>}
-            <FloatRight>
+
+        <Col md="9">
+          <BorderBottom className="md-flex-space">
+            <div className="md-flex">
+              <a className="title" href={`/recipe/${recipe.id}`}>
+                <StyledFont weight="bold">{recipe.name}</StyledFont>
+              </a>
+              <div className="version">
+                <StrokeSpan
+                  lineHeight="2.8"
+                  margin="0 15px 0 0"
+                  color={recipe.version.toLowerCase() + 'Color'}
+                  borderColor={recipe.version.toLowerCase() + 'Color'}
+                >
+                  {versionOptions[recipe.version] + '版本'}
+                </StrokeSpan>
+                {isCustomize && <StrokeSpan lineHeight="2.8" margin="0 15px 0 0">客製化</StrokeSpan>}
+              </div>
+            </div>
+            <PriceToolsWrapper>
               <StyledFont>NT. {sum}</StyledFont>
               {modifiable && (
                 <>
@@ -154,8 +196,8 @@ const OrderedRecipe = ({
                   </button>
                 </>
               )}
-            </FloatRight>
-          </BottomLine>
+            </PriceToolsWrapper>
+          </BorderBottom>
 
           <RelativeDiv>
             <StyledFont color="thirdColor" weight="bold" size="0.8rem">
@@ -177,7 +219,7 @@ const OrderedRecipe = ({
 }
 
 OrderedRecipe.propTypes = {
-  cartId: PropTypes.number.isRequired,
+  cartId: PropTypes.string.isRequired,
   recipe: PropTypes.object.isRequired,
   customize: PropTypes.array.isRequired,
   sum: PropTypes.number.isRequired,

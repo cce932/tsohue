@@ -96,6 +96,7 @@ const CartItemEditor = ({
     <Modal
       {...{ show, onHide }}
       size="lg"
+      fullscreen="lg-down"
       aria-labelledby="contained-modal-title-vcenter"
       centered
       className="cart-item-editor"
@@ -115,7 +116,7 @@ const CartItemEditor = ({
           <form>
             <Modal.Body>
               <p className="title">編輯食材</p>
-              <Row>
+              <Row xs="2" md="4">
                 {Object.keys(splitedIngredients).map(
                   (category, index) =>
                     splitedIngredients[category].length > 0 && (

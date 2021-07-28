@@ -1,6 +1,7 @@
 @import "global";
 
 .cart {
+  margin-top: 100px !important;
   padding: 0 0 150px;
   position: relative;
 
@@ -12,43 +13,64 @@
 
   div.bottom {
     @include text(normal, 1rem, $prime-color);
-    padding: 0; // cancle .container padding
+    padding: 10px;
 
     // position: fixed/absolute; // is controlled by jquery in app.js
     z-index: 999;
     // bottom: 40px;
 
     .float {
-      width: 98%; // for shadow space
-      margin: 10px; // for shadow space
+      width: 100%;
       background-color: rgba(white, 0.9);
       box-shadow: $shadow-deeper;
       padding: 20px;
       border-radius: 20px;
       backdrop-filter: blur(4px); // has minimal browser support
-    }
 
-    label.select-all {
-      margin: 10px 0 0;
-
-      > label {
-        margin: 0;
-      }
-    }
-
-    .right {
-      float: right;
-
-      button[type="submit"] {
-        @include solid($prime-color, $prime-color, $vice-color);
-        width: 150px;
-        margin-left: 40px;
-        font-size: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+    
+      div.select-all {
+        flex-grow: 2;
+        margin-top: 7px;
+        
+        label {
+          font-size: 1rem;
+        }
       }
 
-      span.price {
-        font-size: 1.5rem;
-        margin-left: 5px;
+      .total {
+        margin-right: 20px;
+        
+        span {
+          font-size: 1.2rem;
+          margin-left: 5px;
+          line-height: 3rem;
+        }
+      }
+
+      .order-btn {
+        button[type="submit"] {
+          @include solid($prime-color, $prime-color, $vice-color);
+          width: 150px;
+          font-size: 1.2rem;
+          line-height: 2rem;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+
+    div.total {
+      margin-right: 10px !important;
+    }
+
+    div.order-btn {
+      width: 100% !important;
+
+      button {
+        float: right;
       }
     }
   }
