@@ -1,5 +1,14 @@
 @import "global";
 
+div.ingredients-block {
+  padding-bottom: 20px;
+
+  > div { // each ingredient
+    @include text(normal, 0.9rem, $prime-color);
+    margin-bottom: 10px;
+  }
+}
+
 .default-cart-adder {
   background-color: $vice-lighter-color;
   padding: 60px 10%;
@@ -9,13 +18,6 @@
     padding: 0 2px;
     border-bottom: solid white 6px;
     width: fit-content;
-  }
-
-  div.ingredients-block {
-    > div { // each ingredient
-      @include text(normal, 0.9rem, $prime-color);
-      margin-bottom: 10px;
-    }
   }
 
   div.add-cart-btn {

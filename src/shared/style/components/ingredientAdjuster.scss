@@ -1,8 +1,6 @@
 @import "../_global";
 
 div.ingredient-adjuster {
-  margin-bottom: 20px;
-
   p.category { // for cart editor
     @include text(bold, 1rem, $prime-color);
     padding: 0 2px;
