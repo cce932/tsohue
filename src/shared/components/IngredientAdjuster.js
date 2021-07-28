@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useFormikContext } from 'formik'
 
 import { Col } from 'react-bootstrap'
-import { FaPlus, FaMinus } from 'react-icons/fa'
+import { BsDash, BsPlus } from 'react-icons/bs'
 
 import 'shared/style/components/ingredientAdjuster.scss'
 import color from 'shared/style/color'
@@ -120,8 +120,8 @@ const IngredientsAdjuster = ({
                   name={ingredient.id.toString()}
                   disabled={isOutOfStock || parseInt(ingredientQuantity) === 0}
                 >
-                  <FaMinus
-                    size="15px"
+                  <BsDash
+                    size="18px"
                     fill={
                       isOutOfStock || parseInt(ingredientQuantity) === 0
                         ? color.fifth
@@ -141,8 +141,8 @@ const IngredientsAdjuster = ({
                   name={ingredient.id.toString()}
                   disabled={isOutOfStock || parseInt(ingredientQuantity) === 20}
                 >
-                  <FaPlus
-                    size="15px"
+                  <BsPlus
+                    size="18px"
                     fill={
                       isOutOfStock || parseInt(ingredientQuantity) === 20
                         ? color.fifth

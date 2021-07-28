@@ -21,7 +21,7 @@
 
     div.fee-notification {
       @include text(bold, 0.8rem, $secondary-color);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     button.reset {

@@ -7,7 +7,7 @@
   p.category {
     @include text(bold, 1rem, $prime-color);
     padding: 0 2px;
-    border-bottom: solid white 4px;
+    border-bottom: solid white 6px;
     width: fit-content;
   }
 
@@ -44,7 +44,7 @@
         font-size: 1rem;
 
         &:disabled {
-          background-color: $secondary-color; // #c9c5c0
+          background-color: $third-color; // #c9c5c0
         }
       }
     }
