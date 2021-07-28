@@ -6,8 +6,8 @@ import {
   FaShoppingCart,
   FaUser,
   FaHeart,
-  FaAngleUp,
 } from 'react-icons/fa'
+import { BsChevronUp } from 'react-icons/bs'
 import { Nav, Navbar } from 'react-bootstrap'
 // import { OverlayTrigger } from "react-bootstrap"
 
@@ -185,7 +185,7 @@ const App = () => {
       </Navbar>
 
       <a href="#" id="to-top">
-        <FaAngleUp fill={color.forth} size="30px" />
+        <BsChevronUp fill={color.vice} size="25px" />
       </a>
 
       {/* 每個路徑 對應到的Component */}
