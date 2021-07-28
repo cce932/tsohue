@@ -10,12 +10,11 @@ import IngredientAdjuster from 'shared/components/IngredientAdjuster'
 import { splitIngredientsByCategory } from 'shared/utility/common'
 import { categoryOptions } from 'shared/constants/options'
 import {
-  LOAD_CART,
   UPDATE_CART_ITEM_START,
   UPDATE_CART_ITEM_END,
+  UPDATE_CART_ITEM,
 } from './constant'
 import editService from 'services/edit.service'
-import loadService from 'services/load.service'
 
 const initQuantityGenerator = (
   defalutIngredients,
@@ -75,13 +74,9 @@ const CartItemEditor = ({
     }
 
     reactDispatch(UPDATE_CART_ITEM_START, cartId) // show loading spinner
-    editService.editCartItem(cartId, body).then(() => {
-      loadService
-        .loadCart()
-        .then(({ data }) => {
-          reactDispatch(LOAD_CART, data)
-        })
-        .then(() => reactDispatch(UPDATE_CART_ITEM_END, cartId)) // cancel loading spinner
+    editService.editCartItem(cartId, body).then(({ data }) => {
+      reactDispatch(UPDATE_CART_ITEM, data)
+      reactDispatch(UPDATE_CART_ITEM_END, cartId) // cancel loading spinner
     })
   }
 
@@ -159,9 +154,9 @@ const CartItemEditor = ({
 }
 
 CartItemEditor.propTypes = {
-  cartId: PropTypes.number.isRequired,
+  cartId: PropTypes.string.isRequired,
   recipe: PropTypes.object.isRequired,
-  customize: PropTypes.object.isRequired,
+  customize: PropTypes.array.isRequired,
   reactDispatch: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,

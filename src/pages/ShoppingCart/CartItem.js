@@ -57,7 +57,7 @@ const CartItem = ({
   }
 
   const editOnClick = (e) => {
-    e.preventDefault()
+    e?.preventDefault()
     setModalShow(true)
   }
 
@@ -107,7 +107,7 @@ const CartItem = ({
         customize={customize}
         show={modalShow}
         onHide={(e) => {
-          e.preventDefault()
+          e?.preventDefault()
           setModalShow(false)
         }}
         reactDispatch={reactDispatch}
@@ -117,15 +117,15 @@ const CartItem = ({
 }
 
 CartItem.propTypes = {
-  cartId: PropTypes.number.isRequired,
-  recipe: PropTypes.string.isRequired,
-  customize: PropTypes.object.isRequired,
+  cartId: PropTypes.string.isRequired,
+  recipe: PropTypes.object.isRequired,
+  customize: PropTypes.array.isRequired,
   sum: PropTypes.number.isRequired,
   recipeImage: PropTypes.string.isRequired,
   isCustomize: PropTypes.bool.isRequired,
   modifiable: PropTypes.bool,
   reactDispatch: PropTypes.func,
   ids: PropTypes.array,
-  updatingCart: PropTypes.bool,
+  updatingCart: PropTypes.array,
 }
 export default CartItem
