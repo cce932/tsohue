@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import moment from 'moment'
 import { useDispatch } from 'react-redux'
 import { Form, Field, Formik } from 'formik'
-import { Spinner, Form as BsForm } from 'react-bootstrap'
+import { Spinner, Form as BsForm, Col, Row } from 'react-bootstrap'
 
 import 'shared/style/order.scss'
 import OrderedRecipe from 'shared/components/OrderedRecipe'
@@ -106,8 +106,8 @@ const Order = () => {
       >
         {({ values, handleSubmit, handleChange }) => (
           <Form onSubmit={handleSubmit}>
-            <div className="flex">
-              <div className="left">
+            <Row xs="1" md="2" className="info">
+              <Col className="left">
                 <div className="block">
                   <label htmlFor="discount">折價券</label>
                   <BsForm.Select id="discount" name="discount" onChange={handleChange}>
@@ -150,9 +150,9 @@ const Order = () => {
                     onChange={handleChange}
                   />
                 </div>
-              </div>
+              </Col>
 
-              <div className="right">
+              <Col className="right">
                 <div className="block">
                   <label htmlFor="transportFee">運費總額</label>
                   <label id="transportFee" name="transportFee">
@@ -171,6 +171,7 @@ const Order = () => {
                   <label htmlFor="paySum">付款總額</label>
                   <label id="paySum">NT$ {values.transportFee + sum}</label>
                 </div>
+
                 <div className="bottom">
                   <button
                     onClick={() => (window.location = allPaths[shoppingCart])}
@@ -188,8 +189,8 @@ const Order = () => {
                         )}
                   </button>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>

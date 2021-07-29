@@ -16,7 +16,8 @@ div.order {
     margin: 0 30px 30px;
 
     label {
-      min-width: 150px;
+      width: 30%;
+      max-width: 150px;
       margin: 0;
       font-weight: bold;
       margin-bottom: -5px;
@@ -39,18 +40,16 @@ div.order {
       border: 1px solid $forth-color;
       border-radius: 5px;
       padding: 1px 4px;
-      width: 250px;
       display: inline-block;
+      background-color: transparent;
+      width: 80%;
+      max-width: 240px;
     }
   }
 
-  div.flex {
-    margin: 40px 0;
-    display: flex;
-    // justify-content: space-between;
-
-    > div {
-      width: 100%;
+  div.info {
+    & > div {
+      margin-top: 40px;
     }
 
     .left {
@@ -61,23 +60,30 @@ div.order {
     .right {
       position: relative;
       text-align: center;
+      min-height: 230px;
+
+      div.block {
+        & > *:not(#paySum) {
+          color: $vice-color !important;
+        }
+      }
 
       div.bottom {
         position: absolute;
-        bottom: 0;
+        bottom: 20px;
         right: 0;
         left: 0;
 
         button {
           @include stroke-border($prime-color);
-          width: 150px;
+          width: 130px;
           font-size: 1.2rem;
           margin-right: 20px;
         }
 
         button[type="submit"] {
           @include solid($prime-color, $prime-color, $vice-color);
-          width: 150px;
+          width: 130px;
           font-size: 1.2rem;
 
           .spinner-border {
@@ -85,6 +91,18 @@ div.order {
           }
         }
       }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    div.left {
+      border-right: none !important;
+    }
+
+    input,
+    select {
+      max-width: 100% !important;
+      width: 90% !important;
     }
   }
 }
