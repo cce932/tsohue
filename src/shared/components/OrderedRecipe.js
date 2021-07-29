@@ -141,7 +141,8 @@ const OrderedRecipe = ({
   // if width<small, split to 2 row
   // if width>=small, split to 3 row
   // no dynamic update, need to refresh to check this effect
-  const splited = splitToRows(styled, window.screen.width < 576 ? 2 : 3)
+  const maxRow = window.screen.width < 576 ? 2 : window.screen.width < 1200 ? 3 : 4
+  const splited = splitToRows(styled, maxRow)
     .map((gredients, index) => (
       <tr className="splited-row" key={index}>
         {gredients}
