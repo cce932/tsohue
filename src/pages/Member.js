@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import { Redirect, Switch, Route, BrowserRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
 
+import 'shared/style/member.scss'
 import { logout } from 'actions/auth'
 import { clearMessage } from 'actions/message'
 import { history } from 'helpers/history'
-import 'shared/style/member.scss'
 import SideList from 'shared/components/SideList'
+import OrderOverview from './OrderOverview'
+import Profile from './Profile'
+import Empty from 'shared/components/Empty'
 import {
   allPaths,
   coupons,
@@ -16,9 +20,6 @@ import {
   orderOverview,
   profile,
 } from 'shared/constants/pathName'
-import OrderOverview from './OrderOverview'
-import Profile from './Profile'
-import Empty from 'shared/components/Empty'
 
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
@@ -62,27 +63,33 @@ const Member = () => {
   return (
     <BrowserRouter basename={allPaths[member]} history={history}>
       <div className="member container pages">
-        <SideList items={sideListItems} />
-        <Switch>
-          <Route
-            exact
-            path={allPaths[orderOverview]}
-            component={OrderOverview}
-          />
-          <Route
-            exact
-            path={allPaths[profile]}
-            render={() => <Profile {...{ ...currentUser }} />}
-          />
-          <Route
-            path={allPaths[coupons]}
-            render={() => (
-              <div>
-                <Empty message="您目前沒有優惠券喔" />
-              </div>
-            )}
-          />
-        </Switch>
+        <Row sm="1" lg="2">
+          <Col lg="2">
+            <SideList items={sideListItems} />
+          </Col>
+          <Col lg="10">
+            <Switch>
+              <Route
+                exact
+                path={allPaths[orderOverview]}
+                component={OrderOverview}
+              />
+              <Route
+                exact
+                path={allPaths[profile]}
+                render={() => <Profile {...{ ...currentUser }} />}
+              />
+              <Route
+                path={allPaths[coupons]}
+                render={() => (
+                  <div>
+                    <Empty message="您目前沒有優惠券喔" />
+                  </div>
+                )}
+              />
+            </Switch>
+          </Col>
+        </Row>
       </div>
     </BrowserRouter>
   )

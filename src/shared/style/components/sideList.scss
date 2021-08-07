@@ -2,21 +2,36 @@
 
 div.side-list {
   z-index: 888;
-  div {
-    margin: 10px 0; // 包括top-stroke
+  max-width: 130px;
+  background-color: white;
+  box-shadow: $default-shadow;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
+  text-align: left;
+  margin: 20px 5px 30px;
+  
+  a {
+    @include text(normal, 1rem, $vice-color);
+    display: block;
+    padding: 8px 0;
 
-    a {
-      @include text(normal, 1rem, $prime-color);
-    }
-
-    div.top-stroke {
-      height: 2px;
-      background-color: $accent-color;
-    }
-
-    a.selected {
-      color: $accent-red-color;
+    &:hover {
       font-weight: bold;
     }
+
+    &:last-child {
+      border-top: 1px $fifth-color solid;
+    }
+  }
+
+  a.selected {
+    color: $prime-color;
+    font-weight: bold;
+  }
+  
+  @include media-breakpoint-down(lg) {
+    margin-top: 10px;
+    max-width: 100%;
   }
 }
