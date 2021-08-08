@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { Spinner } from 'react-bootstrap'
+import { Spinner, Row, Col } from 'react-bootstrap'
 import _ from 'lodash'
 import moment from 'moment'
 import { BsChevronLeft } from 'react-icons/bs'
@@ -42,8 +42,8 @@ const OrderDetail = (props) => {
               ? (
           <>
             <OrderItem {...{ ...order }} />
-            <div className="flex">
-              <div className="left">
+            <Row xs="1" md="2" className="info">
+              <Col className="left">
                 <div className="block">
                   <label className="key">付款方式</label>
                   <label className="value">{payWayOptions[order.payWay]}</label>
@@ -85,9 +85,9 @@ const OrderDetail = (props) => {
                       : '尚未抵達'}
                   </label>
                 </div>
-              </div>
+              </Col>
 
-              <div className="right">
+              <Col className="right">
                 <div className="block">
                   <label className="key">運費總額</label>
                   <label
@@ -115,8 +115,8 @@ const OrderDetail = (props) => {
                     NT$ {order.transportFee + order.sum}
                   </label>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </>
                 )
               : (
