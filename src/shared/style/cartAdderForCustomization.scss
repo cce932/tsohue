@@ -51,7 +51,7 @@
   }
 
   @include media-breakpoint-only(md) {
-    button.reset, button.vip-upgrade {
+    button.reset, button.vip-upgrade, button[type="submit"] {
       max-width: 30% !important;
     }
   }
