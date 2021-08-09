@@ -1,15 +1,17 @@
 @import "global";
 
 .register {
-  margin-top: 50px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .block {
     box-shadow: $default-shadow;
     position: relative;
-    float: right;
-    width: 400px;
     min-height: fit-content;
-    margin: 100px 0;
+    width: 400px;
+    max-width: 100%;
+    margin: 10px 0; // the space for shadow
     padding: 50px 50px 20px;
     border-radius: 20px;
 
