@@ -34,19 +34,17 @@ const Item = ({ title, description }) => (
     >
       {title}
     </StyledP>
-    <StyledP
-      fontSize="1rem"
-      color={color.prime}
-      margin="0 0 30px"
-      lineHeight="2.2"
-    >
       {description.map((line, index) => (
-        <span key={index}>
+        <StyledP
+          key={index}
+          fontSize="1rem"
+          color={color.prime}
+          lineHeight="2.2"
+        >
           {line}
           {index < description.length - 1 && <br />}
-        </span>
+        </StyledP>
       ))}
-    </StyledP>
   </div>
 )
 

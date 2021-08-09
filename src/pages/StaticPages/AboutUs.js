@@ -13,8 +13,11 @@ const intention = [
 ]
 
 const Wrapper = styled.div`
-  padding: 0 250px;
-  width: 100%;
+  padding: 0 20%;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 10%;
+  }
 `
 
 const FullWidthBtn = styled.button`
@@ -26,6 +29,10 @@ const RoundedImg = styled.img`
   margin-bottom: 50px;
   width: 100%;
   object-fit: cover;
+  
+  &.main-banner {
+    height: 60vh;
+  }
 `
 
 const Feature = ({ title, description }) => (
@@ -76,6 +83,7 @@ const AboutUs = () => {
     <div className="vip-detail">
       <FullWidthBtn onClick={joinVIpOnClick}>
         <RoundedImg
+          className="main-banner"
           src="static-page-pic/about-us-banner.jpg"
           alt="vip-banner"
         />
