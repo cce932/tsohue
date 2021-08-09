@@ -137,7 +137,7 @@ const App = () => {
               特價活動
             </Nav.Link>
             <Nav.Link href={allPaths.instruction} className="nav-text">
-              訂購指南
+              聲控APP
             </Nav.Link>
             <Nav.Link href={allPaths[recipes]} className="nav-text">
               {recipes}

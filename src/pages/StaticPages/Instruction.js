@@ -13,7 +13,36 @@ const VideoWrapperDiv = styled.div`
     ${(props) => props.theme.fifthColor}
   );
   text-align: center;
-  padding: 122px 0 40px;
+  padding: 122px 20% 40px;
+
+  @media screen and (max-width: 768px) {
+    & {
+      padding: 80px 8% 20px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    & {
+      padding: 80px 0 20px;
+    }
+  }
+`
+
+// the responsive formula is from w3schools
+const ResponsiveIframe = styled.div`
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9*/
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;  
+    width: 100%;
+    height: 100%;
+  }
 `
 
 const WrapperDiv = styled.div`
@@ -35,43 +64,43 @@ const StyledDiv = styled.div`
 `
 
 const StyledImg = styled.img`
-  max-width: ${(props) => props.maxWidth};
+  max-width: ${(props) => props.isLandscape ? '239px' : '200px'}; // in order to fit iPad pro
   border-radius: 15px;
   border: 1px solid ${(props) => props.theme.fifthColor};
 `
 
-const webContent = [
-  {
-    title: '進入烹飪包大全',
-    description: '',
-    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/1-all-recipe.jpg',
-  },
-  {
-    title: '點選欲購買的食譜',
-    description: '',
-    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/2-recipe-detail.jpg',
-  },
-  {
-    title: '加入購物車',
-    description: '',
-    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/3-shopping-cart.jpg',
-  },
-  {
-    title: '點選訂購',
-    description: '',
-    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/4-order-confirm.jpg',
-  },
-  {
-    title: '下訂單，訂購成功',
-    description: '',
-    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/5-order-check.jpg',
-  },
-  {
-    title: '查看訂單',
-    description: '訂單狀態於「待確認」時，皆可取消訂單',
-    img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/6-order-detail.jpg',
-  },
-]
+// const webContent = [
+//   {
+//     title: '進入烹飪包大全',
+//     description: '',
+//     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/1-all-recipe.jpg',
+//   },
+//   {
+//     title: '點選欲購買的食譜',
+//     description: '',
+//     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/2-recipe-detail.jpg',
+//   },
+//   {
+//     title: '加入購物車',
+//     description: '',
+//     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/3-shopping-cart.jpg',
+//   },
+//   {
+//     title: '點選訂購',
+//     description: '',
+//     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/4-order-confirm.jpg',
+//   },
+//   {
+//     title: '下訂單，訂購成功',
+//     description: '',
+//     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/5-order-check.jpg',
+//   },
+//   {
+//     title: '查看訂單',
+//     description: '訂單狀態於「待確認」時，皆可取消訂單',
+//     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/6-order-detail.jpg',
+//   },
+// ]
 
 const appContent = [
   {
@@ -80,22 +109,22 @@ const appContent = [
     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/index.jpg',
   },
   {
-    title: '登入後點選訂單總覽',
+    title: '訂單總覽',
     description: '',
     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/order.jpg',
   },
   {
-    title: ['查看訂單詳細', '並點擊欲導覽的食譜'],
+    title: '點擊欲導覽的食譜',
     description: '',
     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/orderDetail.jpg',
   },
   {
-    title: ['跳轉至食譜詳細頁面', '並點選分頁「食譜影片」'],
-    description: '也可以直接由「食譜總覽」進入本頁面喔',
+    title: '食譜影片分頁',
+    // description: '也可以直接由「食譜總覽」進入本頁面喔',
     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/recipeDetail.jpg',
   },
   {
-    title: '點擊「點我進行影片教學」',
+    title: '進行影片教學',
     description: '',
     img: 'https://easycook-backend.s3.amazonaws.com/web-static-image/recipeVideo.jpg',
   },
@@ -113,31 +142,17 @@ const Item = ({ title, description, img, isApp, isLandscape, index }) => (
       fontSize="1.3rem"
       weight="bold"
       color={color.prime}
-      minHeight={isApp ? '62px' : 'auto'}
     >
-      {`${index + 1}  `}
-      {typeof title === 'object'
-        ? title.map((t, index) => (
-            <span key={index}>
-              {t}
-              {index < title.length - 1 && (
-                <>
-                  <br />
-                  &emsp;
-                </>
-              )}
-            </span>
-        ))
-        : title}
+      {`${index + 1} ${title}`}
     </StyledP>
-    {description && (
+    {/* {description && (
       <StyledP fontSize="0.9rem" color={color.prime}>
         {description}
       </StyledP>
-    )}
+    )} */}
     <StyledImg
       src={img}
-      maxWidth={isApp ? (isLandscape ? '26vw' : '20vw') : '35vw'}
+      isLandscape={isLandscape}
     />
   </StyledDiv>
 )
@@ -155,20 +170,22 @@ const Instruction = () => {
   return (
     <div className="instruction">
       <VideoWrapperDiv>
-        <iframe
-          src="https://easycook-backend.s3.amazonaws.com/order-instruction-1.mp4"
-          scrolling="no"
-          frameBorder="0"
-          width="700"
-          height="394"
-          allowFullScreen="true"
-          webkitAllowFullScreen="true"
-          mozAllowFullScreen="true"
-          title="order-instruction"
-        />
+        <ResponsiveIframe>
+          <iframe
+            src="https://easycook-backend.s3.amazonaws.com/order-instruction-1.mp4"
+            scrolling="no"
+            frameBorder="0"
+            // width="700"
+            // height="394"
+            allowFullScreen="true"
+            webkitAllowFullScreen="true"
+            mozAllowFullScreen="true"
+            title="order-instruction"
+          />
+        </ResponsiveIframe>
       </VideoWrapperDiv>
       <WrapperDiv>
-        <StrokeSpan
+        {/* <StrokeSpan
           size="1.5rem"
           padding="5px 15px"
           color={color.prime}
@@ -181,7 +198,7 @@ const Instruction = () => {
           {webContent.map((item, index) => (
             <Item key={item.title} {...{ ...item, isApp: false, index }} />
           ))}
-        </ItemWrapperDiv>
+        </ItemWrapperDiv> */}
         <StrokeSpan
           size="1.5rem"
           padding="5px 15px"
@@ -189,7 +206,7 @@ const Instruction = () => {
           margin="0"
           lineHeight="3"
         >
-          App聲控導覽
+          APP聲控導覽
         </StrokeSpan>
         <ItemWrapperDiv>
           {appContent.map((item, index) => (
