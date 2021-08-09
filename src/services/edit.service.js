@@ -14,8 +14,12 @@ const editCartItem = (cartId, body) =>
 const cancelOrderItem = (id) =>
   rootAxios.patch(`/order/update/member/${id}`, {}, { headers: authHeader() })
 
+const removeFavorite = (id) =>
+  rootAxios.delete(`/myFavorite/remove/${id}`, { headers: authHeader() })
+
 export default {
   deleteCartItem,
   editCartItem,
   cancelOrderItem,
+  removeFavorite,
 }

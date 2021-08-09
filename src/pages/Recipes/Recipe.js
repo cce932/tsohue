@@ -1,14 +1,31 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 import 'shared/style/recipe.scss'
 import { SemiRoundedLabel } from 'shared/components/styled'
 import { versionOptions } from 'shared/constants/options'
 import { allPaths, recipe as recipePath } from 'shared/constants/pathName'
+import { addFavorite } from 'actions/add'
+import { removeFavorite } from 'actions/edit'
 
 const Recipe = ({ id, version, photo, name, price, likesCount }) => {
   const [like, setLike] = useState(false)
+  const dispatch = useDispatch()
+
+  const likeOnClick = (id) => () => { // TODO: back-end has connection problem so the favorite feature hasn't test
+    if (like) {
+      dispatch(removeFavorite(id)).then((data) => {
+        console.log('addFavorite', data)
+      })
+    } else {
+      dispatch(addFavorite(id)).then((data) => {
+        console.log('addFavorite', data)
+      })
+    }
+    setLike(!like)
+  }
 
   return (
     <div className="recipe">
@@ -32,10 +49,10 @@ const Recipe = ({ id, version, photo, name, price, likesCount }) => {
         <div className="info_space-between">
           <span> $ {price}</span>
           <span>
-            <button onClick={() => setLike(!like)}>
+            <button onClick={likeOnClick(id)}>
               {like
                 ? (
-                <FaHeart fill="#755734" />
+                <FaHeart fill="#755134" />
                   )
                 : (
                 <FaRegHeart fill="#755734" />

@@ -12,8 +12,12 @@ const addCartForCustomization = (cartData) =>
 const createOrder = (orderData) =>
   rootAxios.post('/order/create', orderData, { headers: authHeader() })
 
+const addFavorite = (id) =>
+  rootAxios.get(`/myFavorite/add/${id}`, { headers: authHeader() })
+
 export default {
   addCartForDefault,
   addCartForCustomization,
   createOrder,
+  addFavorite,
 }
