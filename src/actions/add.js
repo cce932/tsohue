@@ -1,7 +1,7 @@
 import CreateService from 'services/add.service'
 import { extractErrorMsg } from 'shared/utility/common'
 import { setMessage } from './message'
-import { ADD_MY_FAVORITY_SUCCESS, CREATE_CART_SUCCESS } from './types'
+import { ADD_FAVORITY_SUCCESS, CREATE_CART_SUCCESS } from './types'
 
 export const addCartForDefault = (recipeId) => (dispatch) => {
   return CreateService.addCartForDefault(recipeId)
@@ -51,7 +51,7 @@ export const addFavorite = (id) => (dispatch) => {
   return CreateService.addFavorite(id)
     .then(({ data }) => {
       dispatch({
-        type: ADD_MY_FAVORITY_SUCCESS,
+        type: ADD_FAVORITY_SUCCESS,
         payload: { id },
       })
 

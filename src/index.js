@@ -28,6 +28,11 @@ const footerLinks = [
   { title: '異業合作', href: '/developing' },
 ]
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('./mocks/browser')
+  worker.start()
+}
+
 const theme = {
   primeColor: '#755734',
   viceColor: '#9e8568',

@@ -161,11 +161,16 @@ $shadow-bottom: 0 7px 5px -4px rgba($fifth-color, 1);
   }
 }
 
-@mixin ctm-container($padding-x: 350px, $margin-top: 150px) {
+@mixin ctm-container($padding-x-xl: 10%, $padding-x-md: 5%, $margin-top: 100px) {
   width: 100%;
-  padding-right: $padding-x;
-  padding-left: $padding-x;
+  padding-right: $padding-x-xl;
+  padding-left: $padding-x-xl;
   margin-right: auto;
   margin-left: auto;
   margin-top: $margin-top;
+
+  @media screen and (max-width: 992px) {
+    padding-right: $padding-x-md;
+    padding-left: $padding-x-md;
+  }
 }

@@ -23,6 +23,7 @@ import Recipes from 'pages/Recipes'
 import RecipeDetail from 'pages/RecipeDetail'
 import NotFound from 'pages/NotFound'
 import ShoppingCart from 'pages/ShoppingCart'
+import Favorite from 'pages/Favorite'
 import Order from 'pages/Order'
 import OrderDetail from 'pages/OrderDetail'
 import OrderSuccess from 'pages/Order/OrderSuccess'
@@ -203,6 +204,7 @@ const App = () => {
         />
         <Route exact path={allPaths[recipe] + ':id'} component={RecipeDetail} />
         <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
+        <Route exact path={allPaths.favorite} component={Favorite} />
         <Route exact path={allPaths[order]} component={Order} />
         <Route exact path={allPaths.orderSuccess} component={OrderSuccess} />
         <Route exact path={allPaths[vip]} component={Vip} />
