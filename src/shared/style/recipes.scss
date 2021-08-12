@@ -1,7 +1,7 @@
 @import "global";
 
 .recipes {
-  margin: 80px 0 0 !important;
+  margin: 100px 0 0 !important;
 
   div.cus-side-list {
     width: 171px;
@@ -9,7 +9,7 @@
     box-shadow: $default-shadow;
     padding: 10px 20px 20px;
     border-radius: 20px;
-    margin: 40px auto 20px;
+    margin: 20px auto 20px;
     
     .cus-side-list_search {
       display: none;
@@ -66,20 +66,23 @@
   }
 
   div.content {
-    width: 1400px;
-    display: flex;
-    flex: 0 1 auto;
-    flex-wrap: wrap; // break a line if items exceeded max width 
+    padding: 10px;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 10px;
+  }
+  
+  div.pagination {
+    width: 250px; // for breaking line
 
     ul.pagination {
-      margin-left: 25px;
-      width: 100vw; // for breaking line
       padding: 20px;
       
       li.page-item {
         box-shadow: $default-shadow;
         border-radius: 8px;
-        border: 1px solid $fifth-color;
+        border: 1px solid rgba($fifth-color, 0.7);
         margin-right: 10px;
         width: 38px;
         text-align: center;
@@ -89,12 +92,12 @@
           color: $prime-color;
           border: none;
         }
-
+  
         & > a.page-link#next > span,
         & > a.page-link#prev > span {
           pointer-events: none; // prevent from clicking on the nest elements
         }
-
+  
         &.active > span {
           background-color: $accent-color;
           border: $accent-color 1px solid;
@@ -103,39 +106,21 @@
     }
   }
 
-  @media screen and (max-width: 1800px) {
-    div.content {
-      width: 990px;
-    }
-  }
-
-
-  @media screen and (max-width: 1300px) {
-    div.content {
-      width: 660px;
-    }
-  }
-
   @include media-breakpoint-down(lg) {
-    // The width of div.content is same as max-1300
-
     div.cus-side-list {
-      width: 75% !important;
+      width: 80% !important;
 
       div.cus-side-list_search {
         display:block;
-
       }
       
       select,input#search-recipes {
-      width: 70%;
+        width: 70%;
       }
     }
-  }
 
-  @media screen and (max-width: 660px) {
     div.content {
-      width: 330px;
+      justify-items: center;
     }
   }
 }

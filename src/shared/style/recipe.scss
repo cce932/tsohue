@@ -3,10 +3,8 @@
 .recipe {
   @include text(normal, 1rem, $prime-color);
   transition: $default-trans;
-  display: block;
   position: relative;
   width: 290px;
-  margin: 20px;
   border-radius: 25px;
   padding: 20px;
 

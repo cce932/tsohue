@@ -188,7 +188,7 @@ const Recipes = () => {
           </div>
         </Col>
         <Col lg="9" >
-          <div className="content mx-auto">
+          <div className="content">
             {recipes.length
               ? (
                   typeof recipes === 'string'
@@ -207,13 +207,13 @@ const Recipes = () => {
               <Spinner animation="border" variant="warning" role="status"></Spinner>
                 )}
 
-            <div className="pagination">
-              <Pagination>
-                <Pagination.Prev id="prev" onClick={pageOnChange} />
-                {pageitems}
-                <Pagination.Next id="next" onClick={pageOnChange} />
-              </Pagination>
-            </div>
+          </div>
+          <div className="pagination mx-auto">
+            <Pagination>
+              <Pagination.Prev id="prev" onClick={pageOnChange} />
+              {pageitems}
+              <Pagination.Next id="next" onClick={pageOnChange} />
+            </Pagination>
           </div>
         </Col>
       </Row>
