@@ -1,4 +1,4 @@
-import { LOAD_RECIPES_SUCCESS, ADD_MY_FAVORITY_SUCCESS, REMOVE_MY_FAVORITY_SUCCESS } from 'actions/types'
+import { LOAD_RECIPES_SUCCESS, ADD_FAVORITY_SUCCESS, REMOVE_FAVORITY_SUCCESS } from 'actions/types'
 
 const initialState = {}
 
@@ -8,7 +8,7 @@ const recipes = (state = initialState, action) => {
   switch (type) {
     case LOAD_RECIPES_SUCCESS:
       return { allRecipes: payload }
-    case ADD_MY_FAVORITY_SUCCESS: {
+    case ADD_FAVORITY_SUCCESS: {
       const { id } = payload
       return state.map(recipe => {
         if (recipe.id === id) {
@@ -16,7 +16,7 @@ const recipes = (state = initialState, action) => {
         }
         return recipe
       }) }
-    case REMOVE_MY_FAVORITY_SUCCESS: {
+    case REMOVE_FAVORITY_SUCCESS: {
       const { id } = payload
       return state.map(recipe => {
         if (recipe.id === id) {
