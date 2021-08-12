@@ -3,6 +3,7 @@ export const allPaths = {
   註冊: '/register',
   登入: '/login',
   會員: '/member',
+  myFavorite: '/myFavorite',
   我的訂單: '/order-overview',
   訂單詳細: '/order-detail/',
   個人檔案: '/profile',

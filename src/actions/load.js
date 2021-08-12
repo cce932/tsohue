@@ -7,6 +7,7 @@ import {
   LOAD_ORDERS_SUCCESS,
   LOAD_RECIPES_SUCCESS,
   LOAD_ORDERS_FAILURE,
+  LOAD_FAVORITY_SUCCESS,
 } from './types'
 
 export const loadRecipes = () => (dispatch) => {
@@ -93,4 +94,17 @@ export const loadOrderById = (id) => (dispatch) => {
       dispatch(setMessage(message))
       return Promise.reject(message)
     })
+}
+
+export const loadFavorite = () => (dispatch) => {
+  return LoadService.loadFavorite().then(({ data }) => {
+    dispatch({
+      type: LOAD_FAVORITY_SUCCESS,
+      payload: data,
+    })
+  }).catch((error) => {
+    const message = extractErrorMsg(error)
+    dispatch(setMessage(message))
+    return Promise.reject(message)
+  })
 }

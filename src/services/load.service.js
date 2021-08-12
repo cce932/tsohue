@@ -19,6 +19,9 @@ const loadAllOrders = (token = authHeader()) =>
 const loadOrderById = (id, token = authHeader()) =>
   rootAxios.get(`/order/id/${id}`, { headers: token })
 
+const loadFavorite = (token = authHeader()) =>
+  rootAxios.get('/myFavorite/all', { headers: token })
+
 export default {
   loadRecipes,
   loadRecipeById,
@@ -27,4 +30,5 @@ export default {
   loadCartById,
   loadAllOrders,
   loadOrderById,
+  loadFavorite,
 }
