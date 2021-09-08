@@ -20,10 +20,6 @@ const Wrapper = styled.div`
   }
 `
 
-const FullWidthBtn = styled.button`
-  width: 100%;
-`
-
 const RoundedImg = styled.img`
   border-radius: ${(props) => props.borderRadius || '0'};
   margin-bottom: 50px;
@@ -77,17 +73,13 @@ const appFeatureContent = [
 ]
 
 const AboutUs = () => {
-  const joinVIpOnClick = () => window.alert('此功能尚在策劃中，感謝您的支持')
-
   return (
     <div className="vip-detail">
-      <FullWidthBtn onClick={joinVIpOnClick}>
-        <RoundedImg
-          className="main-banner"
-          src="static-page-pic/about-us-banner.jpg"
-          alt="vip-banner"
-        />
-      </FullWidthBtn>
+      <RoundedImg
+        className="main-banner"
+        src="static-page-pic/about-us-banner.jpg"
+        alt="vip-banner"
+      />
       <Wrapper>
         <StrokeSpan
           size="1.5rem"
