@@ -43,14 +43,13 @@ div.order-detail {
 
   
   @include media-breakpoint-up(md) {
-    table.left {
+    .info table.left {
       border-right: 1px solid $fifth-color;
     }
   }
 
   @include media-breakpoint-down(sm) {
-    
-    table {
+    .info table {
       text-align: center;
       margin-bottom: 0 !important;      
     }
