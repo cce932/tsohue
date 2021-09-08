@@ -64,7 +64,7 @@ const Home = () => {
           </Link>
         </section>
 
-        <section className="">
+        <section>
           <MonthlySpecial title="梅干扣肉" gredients={gredients} />
         </section>
       </div>
