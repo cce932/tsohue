@@ -1,7 +1,7 @@
 # pull official base image
 FROM node:14.15
 
-# set working directory container 裡面的工作目錄
+# Set the working directory to /app
 WORKDIR /app 
 
 # add `/app/node_modules/.bin` to $PATH
@@ -12,7 +12,7 @@ COPY package.json ./
 RUN yarn install --silent
 RUN yarn global add react-scripts
 
-# add app
+# Copy the current directory . in the project to the workdir ./ in the image.
 COPY . ./
 
 # start app
