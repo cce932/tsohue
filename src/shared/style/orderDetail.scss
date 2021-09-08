@@ -14,46 +14,45 @@ div.order-detail {
     }
   }
 
-  div.block {
-    @include text(normal, 1rem, $prime-color);
-    margin-bottom: 15px;
+  .info table {
+    width: 100%;
+    margin: 60px 0;
 
-    label.key {
-      min-width: 120px;
-      font-weight: bold;
-    }
-
-    label.value {
-      margin: 0 10px;
-      min-width: 100px;
-
+    td {
+      @include text(normal, 1rem, $prime-color);
+      padding-bottom: 20px;
+      
+      &:first-child {
+        font-weight: bold;
+      }
+      
       &#paySum {
-        color: $accent-red-color;
+          color: $accent-red-color;
       }
     }
-  }
-  
-  div.info {
-    > div {
-      margin-top: 30px;
+
+    &.left {
+      margin-left: 10%; // more centered visually
+      width: 90%;
+    }
+
+    &.right td {
       text-align: center;
     }
+  }
 
-    div.right {
-      position: relative;
-
-       > div#paySum {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
+  
+  @include media-breakpoint-up(md) {
+    table.left {
+      border-right: 1px solid $fifth-color;
     }
   }
 
-  @include media-breakpoint-up(md) {
-    div.left {
-      border-right: 1px solid $fifth-color;
+  @include media-breakpoint-down(sm) {
+    
+    table {
+      text-align: center;
+      margin-bottom: 0 !important;      
     }
   }
 }

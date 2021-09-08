@@ -43,78 +43,87 @@ const OrderDetail = (props) => {
           <>
             <OrderItem {...{ ...order }} />
             <Row xs="1" md="2" className="info">
-              <Col className="left">
-                <div className="block">
-                  <label className="key">付款方式</label>
-                  <label className="value">{payWayOptions[order.payWay]}</label>
-                </div>
+              <Col>
+                <table className="left">
+                  <thead></thead>
+                  <tbody>
+                    <tr>
+                      <td>付款方式</td>
+                      <td>{payWayOptions[order.payWay]}</td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">配送方式</label>
-                  <label className="value">
-                    {serviceWayOptions[order.serviceWay]}
-                  </label>
-                </div>
+                    <tr>
+                      <td>配送方式</td>
+                      <td>
+                        {serviceWayOptions[order.serviceWay]}
+                      </td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">地址</label>
-                  <label className="value">{order.address}</label>
-                </div>
+                    <tr>
+                      <td>地址</td>
+                      <td>{order.address}</td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">預期送達時間</label>
-                  <label className="value">
-                    {moment(order.hopeDeliverTime).format('YYYY-MM-DD HH:mm')}
-                  </label>
-                </div>
+                    <tr>
+                      <td>預期送達時間</td>
+                      <td>
+                        {moment(order.hopeDeliverTime).format('YYYY-MM-DD HH:mm')}
+                      </td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">寄出時間</label>
-                  <label className="value">
-                    {order.shippingTime
-                      ? moment(order.shippingTime).format('YYYY-MM-DD HH:mm')
-                      : '尚未寄出'}
-                  </label>
-                </div>
+                    <tr>
+                      <td>寄出時間</td>
+                      <td>
+                        {order.shippingTime
+                          ? moment(order.shippingTime).format('YYYY-MM-DD HH:mm')
+                          : '尚未寄出'}
+                      </td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">實際送達時間</label>
-                  <label className="value">
-                    {order.realDeliverTime
-                      ? moment(order.realDeliverTime).format('YYYY-MM-DD HH:mm')
-                      : '尚未抵達'}
-                  </label>
-                </div>
+                    <tr>
+                      <td>實際送達時間</td>
+                      <td>
+                        {order.realDeliverTime
+                          ? moment(order.realDeliverTime).format('YYYY-MM-DD HH:mm')
+                          : '尚未抵達'}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </Col>
 
-              <Col className="right">
-                <div className="block">
-                  <label className="key">運費總額</label>
-                  <label
-                    id="transportFee"
-                    name="transportFee"
-                    className="value"
-                  >
-                    {order.transportFee}
-                  </label>
-                </div>
+              <Col>
+                <table className="right">
+                  <thead></thead>
+                  <tbody>
+                    <tr>
+                      <td>運費總額</td>
+                      <td>
+                        {order.transportFee}
+                      </td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">商品總額</label>
-                  <label className="value">{order.sum}</label>
-                </div>
+                    <tr>
+                      <td>商品總額</td>
+                      <td>{order.sum}</td>
+                    </tr>
 
-                <div className="block">
-                  <label className="key">折抵金額</label>
-                  <label className="value">-{order.discount}</label>
-                </div>
+                    <tr>
+                      <td>折抵金額</td>
+                      <td>-{order.discount}</td>
+                    </tr>
 
-                <div className="block" id="paySum">
-                  <label className="key">付款總額</label>
-                  <label id="paySum" className="value">
-                    NT$ {order.transportFee + order.sum}
-                  </label>
-                </div>
+                    <tr><td>&ensp;</td></tr>
+                    <tr><td>&ensp;</td></tr>
+
+                    <tr>
+                      <td>付款總額</td>
+                      <td id="paySum">
+                        NT$ {order.transportFee + order.sum}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </Col>
             </Row>
           </>
