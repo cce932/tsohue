@@ -6,9 +6,9 @@
 Tsohue is a meal delivery platform that allows customers to order ingredient packages based on recipes. We solve many problems, including the inconvenience of preparing meals and reducing ingredients waste.
 
 Tsohue platform is not only has e-commerce front-end repo. The following list is all Tsohue related repo:
-* **E-commerce platform |  Website | front-end: You are here~**
+* **E-commerce platform |  Website | Front-end: You are here~**
 * E-commerce platform | App: https://github.com/amy5563891/EasyCookMobileApp
-* Backstage Content Management | Website | front-end: https://github.com/cce932/tsohue-manager
+* Backstage Content Management | Website | Front-end: https://github.com/cce932/tsohue-manager
 * Back-end: https://github.com/ShannonHung/EasyCook
 
 ## Table of Contents
