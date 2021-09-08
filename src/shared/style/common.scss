@@ -24,20 +24,18 @@
 }
 
 .monthly-special {
-  margin: 60px auto;
-
   .intro {
     margin-top: 40px;
     width: 80%; // declare width + className: mx-auto = center element
 
     span {
-      @include text(700, 1rem, $accent-red-color);
+      @include text(700, 1rem, $vice-color);
       line-height: 3;
     }
 
     .title {
       width: fit-content;
-      border-bottom: 5px solid $accent-color;
+      border-bottom: 5px solid rgba($vice-color, 0.5);
       margin-bottom: 30px;
     }
 
