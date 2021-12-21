@@ -15,7 +15,7 @@
     "jquery": "3.6.0",
     "lodash": "4.17.21",
     "moment": "2.29.1",
-    "react": "16.14",
+    "react": "17.0.2",
     "react-bootstrap": "2.0.0-beta.4",
     "react-dom": "17.0.1",
     "react-icons": "4.2.0",
@@ -41,10 +41,42 @@
     "eslint-init": "eslint --init"
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
     "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+      "plugin:react/recommended",
+      "standard"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "multiline-ternary": [
+        "error",
+        "always-multiline"
+      ]
+    }
   },
   "browserslist": {
     "production": [
