@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { Spinner, Row, Col } from 'react-bootstrap'
 import _ from 'lodash'
@@ -12,11 +11,12 @@ import OrderItem from './OrderOverview/OrderItem'
 import color from 'shared/style/color'
 import { loadOrderById } from 'actions/load'
 import { payWayOptions, serviceWayOptions } from 'shared/constants/options'
+import { useParams } from 'react-router-dom'
 
-const OrderDetail = (props) => {
+const OrderDetail = () => {
   const dispatch = useDispatch()
   const [order, setOrder] = useState({})
-  const orderId = props.match.params.id
+  const { id: orderId } = useParams()
 
   useEffect(() => {
     dispatch(loadOrderById(orderId))
@@ -137,14 +137,6 @@ const OrderDetail = (props) => {
           )}
     </div>
   )
-}
-
-OrderDetail.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-  }),
 }
 
 export default OrderDetail

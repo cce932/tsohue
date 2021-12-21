@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import $ from 'jquery'
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Spinner, Carousel, Tabs, Tab } from 'react-bootstrap'
 import { RiVipFill } from 'react-icons/ri'
@@ -18,13 +17,14 @@ import {
   recipe as recipePath,
   recipeNotFound,
 } from 'shared/constants/pathName'
+import { useParams } from 'react-router-dom'
 
-const RecipeDetail = (props) => {
+const RecipeDetail = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const [recipe, setRecipe] = useState({})
   const [images, setImages] = useState([])
-  const id = props.match.params.id
+  const { id } = useParams()
   const [description, setDescription] = useState([])
 
   useEffect(() => {
@@ -161,14 +161,6 @@ const RecipeDetail = (props) => {
           )}
     </div>
   )
-}
-
-RecipeDetail.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-  }),
 }
 
 export default RecipeDetail
