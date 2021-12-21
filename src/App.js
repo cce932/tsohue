@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import {
   FaShoppingCart,
   FaUser,
@@ -119,7 +119,7 @@ const App = () => {
   })
 
   return (
-    <Router history={history}>
+    <BrowserRouter>
       <Navbar fixed="top" expand="lg" className="ts-header">
         <Navbar.Brand href="/">
           <img className="logo" src="/nav-pic/logo.svg" alt="logo" />
@@ -238,7 +238,7 @@ const App = () => {
           render={() => <NotFound message="敬請期待 新功能即將上線" />}
         />
       </Switch>
-    </Router>
+    </BrowserRouter>
   )
 }
 
