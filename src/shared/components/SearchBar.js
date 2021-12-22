@@ -4,15 +4,16 @@ import $ from 'jquery'
 import { FaSearch } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { Form } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 import 'shared/style/components/searchBar.scss'
-import { history } from 'helpers/history'
 import { allPaths, recipes } from 'shared/constants/pathName'
 
 // SearchBar is used in Nav and RecipeOverview now.
 // In order to distinct the different Search input,
 // `props.at` is used.
 const SearchBar = ({ at }) => {
+  const history = useHistory()
   const [isEmpty, setIsEmpty] = useState(true)
 
   const clearOnClick = e => {

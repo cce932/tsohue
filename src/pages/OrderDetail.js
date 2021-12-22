@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useParams, useHistory } from 'react-router-dom'
 import { Spinner, Row, Col } from 'react-bootstrap'
 import _ from 'lodash'
 import moment from 'moment'
@@ -11,10 +12,10 @@ import OrderItem from './OrderOverview/OrderItem'
 import color from 'shared/style/color'
 import { loadOrderById } from 'actions/load'
 import { payWayOptions, serviceWayOptions } from 'shared/constants/options'
-import { useParams } from 'react-router-dom'
 
 const OrderDetail = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const [order, setOrder] = useState({})
   const { id: orderId } = useParams()
 
@@ -31,7 +32,7 @@ const OrderDetail = () => {
   return (
     <div className="container order-detail pages">
       <div className="title">
-        <button onClick={() => window.history.back()}>
+        <button onClick={() => history.goBack()}>
           <BsChevronLeft size="30px" fill={color.vice} />
         </button>
         <div>訂單詳細</div>

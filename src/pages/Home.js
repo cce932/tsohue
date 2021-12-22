@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Row } from 'react-bootstrap'
 import {
   IoPhonePortrait,
@@ -9,7 +9,6 @@ import {
 } from 'react-icons/io5'
 
 import 'shared/style/home.scss'
-import { history } from 'helpers/history'
 import { FeatureSlot, MonthlySpecial } from 'shared/components/common'
 import { allPaths } from 'shared/constants/pathName'
 import color from 'shared/style/color'
@@ -27,7 +26,7 @@ const gredients = [
 
 const Home = () => {
   return (
-    <Router history={history}>
+    <div>
       <div className="home pages">
         <section className="banner">
           <div className="title">
@@ -68,7 +67,7 @@ const Home = () => {
           <MonthlySpecial title="梅干扣肉" gredients={gredients} />
         </section>
       </div>
-    </Router>
+    </div>
   )
 }
 

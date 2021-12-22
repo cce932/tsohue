@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Redirect, Switch, Route, BrowserRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 
 import 'shared/style/member.scss'
 import { logout } from 'actions/auth'
-import { clearMessage } from 'actions/message'
-import { history } from 'helpers/history'
 import SideList from 'shared/components/SideList'
 import OrderOverview from './OrderOverview'
 import Profile from './Profile'
@@ -24,13 +22,6 @@ import {
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    history.listen((location) => {
-      dispatch(clearMessage())
-    })
-  }, [dispatch])
-
   if (!currentUser) {
     return <Redirect to="/login" />
   }
@@ -61,7 +52,7 @@ const Member = () => {
   ]
 
   return (
-    <BrowserRouter basename={allPaths[member]} history={history}>
+    <BrowserRouter basename={allPaths[member]}>
       <div className="member container pages">
         <Row sm="1" lg="2">
           <Col lg="2">

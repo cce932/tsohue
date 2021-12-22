@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import 'shared/style/index.css'
 import App from './App'
 import store from './store'
@@ -55,10 +56,12 @@ const theme = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <App />
-      <Footer links={footerLinks} />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+        <Footer links={footerLinks} />
+      </ThemeProvider>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 )

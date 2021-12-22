@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import {
   FaShoppingCart,
   FaUser,
@@ -30,7 +30,6 @@ import AboutUs from 'pages/StaticPages/AboutUs'
 import Vip from 'pages/StaticPages/Vip'
 // import CartPopup from "pages/ShoppingCart/popup"
 import { clearMessage } from 'actions/message'
-import { history } from 'helpers/history'
 import { loadRecipes } from 'actions/load'
 import {
   allPaths,
@@ -61,17 +60,15 @@ import color from 'shared/style/color'
 const App = () => {
   const { user: currentUser } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  // url換了的話(when changing location) 就要清空redux state 內的 message
-  useEffect(
-    () => {
-      history.listen(location => {
-        dispatch(clearMessage())
-      })
-      dispatch(loadRecipes())
-    },
-    [dispatch],
-  )
+  useEffect(() => {
+    dispatch(loadRecipes())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(clearMessage())
+  }, [history.location.pathname])
 
   // needed, for excuting when DOM is ready
   $(() => {
@@ -119,7 +116,7 @@ const App = () => {
   })
 
   return (
-    <BrowserRouter>
+    <>
       <Navbar fixed="top" expand="lg" className="ts-header">
         <Navbar.Brand href="/">
           <img className="logo" src="/nav-pic/logo.svg" alt="logo" />
@@ -189,7 +186,6 @@ const App = () => {
         <BsChevronUp fill={color.vice} size="25px" />
       </a>
 
-      {/* 每個路徑 對應到的Component */}
       <Switch>
         <Route exact path={['/', allPaths[home]]} component={Home} />
         <Route exact path={allPaths[login]} component={Login} />
@@ -238,7 +234,7 @@ const App = () => {
           render={() => <NotFound message="敬請期待 新功能即將上線" />}
         />
       </Switch>
-    </BrowserRouter>
+    </>
   )
 }
 

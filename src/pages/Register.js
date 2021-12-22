@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Router, Link } from 'react-router-dom'
 
@@ -9,8 +9,6 @@ import CheckButton from 'react-validation/build/button'
 import { isEmail, isNumeric } from 'validator'
 
 import { register } from 'actions/auth'
-import { history } from 'helpers/history'
-import { clearMessage } from 'actions/message'
 import { Spinner } from 'react-bootstrap'
 import { allPaths, login } from 'shared/constants/pathName'
 import { encrypt } from 'shared/utility/common'
@@ -108,12 +106,6 @@ const Register = () => {
         })
     }
   }
-
-  useEffect(() => {
-    history.listen((location) => {
-      dispatch(clearMessage())
-    })
-  }, [dispatch])
 
   return (
     <Router history={history}>
