@@ -190,9 +190,8 @@ const App = () => {
       <a href="#" id="to-top">
         <BsChevronUp fill={color.vice} size="25px" />
       </a>
-      ING::: https://reactrouter.com/docs/en/v6/upgrading/v5#note-on-link-to-values
       <Routes>
-        <Route exact path={['/', allPaths[home]]} element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route exact path={allPaths[login]} element={<Login />} />
         <Route exact path={allPaths[register]} element={<Register />} />
         <Route path={allPaths[member]} element={<Member />}>
