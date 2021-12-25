@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Switch, Route, useHistory } from 'react-router-dom'
+import { Routes, Route, useHistory } from 'react-router-dom'
 import {
   FaShoppingCart,
   FaUser,
@@ -19,6 +19,9 @@ import Home from 'pages/Home'
 import Login from 'pages/Login'
 import Register from 'pages/Register'
 import Member from 'pages/Member'
+import OrderOverview from 'pages/OrderOverview'
+import Profile from 'pages/Profile'
+import Empty from 'shared/components/Empty'
 import Recipes from 'pages/Recipes'
 import RecipeDetail from 'pages/RecipeDetail'
 import NotFound from 'pages/NotFound'
@@ -37,6 +40,8 @@ import {
   login,
   register,
   member,
+  profile,
+  coupons,
   recipes,
   recipe,
   recipeNotFound,
@@ -185,37 +190,53 @@ const App = () => {
       <a href="#" id="to-top">
         <BsChevronUp fill={color.vice} size="25px" />
       </a>
-
-      <Switch>
-        <Route exact path={['/', allPaths[home]]} component={Home} />
-        <Route exact path={allPaths[login]} component={Login} />
-        <Route exact path={allPaths[register]} component={Register} />
-        <Route path={allPaths[member]} component={Member} />
-        <Route exact path={allPaths[recipes]} component={Recipes} />
+      ING::: https://reactrouter.com/docs/en/v6/upgrading/v5#note-on-link-to-values
+      <Routes>
+        <Route exact path={['/', allPaths[home]]} element={<Home />} />
+        <Route exact path={allPaths[login]} element={<Login />} />
+        <Route exact path={allPaths[register]} element={<Register />} />
+        <Route path={allPaths[member]} element={<Member />}>
+        <Route
+            path={allPaths[orderOverview]}
+            element={<OrderOverview />} />
+          <Route
+            path={allPaths[profile]}
+            element={<Profile {...{ ...currentUser }} />}
+          />
+          <Route
+            path={allPaths[coupons]}
+            element={
+              <div>
+                <Empty message="您目前沒有優惠券喔" />
+              </div>
+            }
+          />
+        </Route>
+        <Route exact path={allPaths[recipes]} element={<Recipes />} />
         <Route
           exact
           path={allPaths[recipeNotFound]}
-          render={() => <NotFound message="抱歉 此烹飪包已經下架囉～" />}
+          element={<NotFound message="抱歉 此烹飪包已經下架囉～" />}
         />
-        <Route exact path={allPaths[recipe] + ':id'} component={RecipeDetail} />
-        <Route exact path={allPaths[shoppingCart]} component={ShoppingCart} />
-        <Route exact path={allPaths[order]} component={Order} />
-        <Route exact path={allPaths.orderSuccess} component={OrderSuccess} />
-        <Route exact path={allPaths[vip]} component={Vip} />
-        <Route exact path={allPaths.instruction} component={Instruction} />
+        <Route exact path={allPaths[recipe] + ':id'} element={<RecipeDetail />} />
+        <Route exact path={allPaths[shoppingCart]} element={<ShoppingCart />} />
+        <Route exact path={allPaths[order]} element={<Order />} />
+        <Route exact path={allPaths.orderSuccess} element={<OrderSuccess />} />
+        <Route exact path={allPaths[vip]} element={<Vip />} />
+        <Route exact path={allPaths.instruction} element={<Instruction />} />
         <Route
           exact
           path={allPaths[orderDetail] + ':id'}
-          component={OrderDetail}
+          element={<OrderDetail />}
         />
-        <Route exact path={allPaths[aboutUs]} component={AboutUs} />
-        <Route exact path={allPaths[QAPathname]} component={QA} />
-        <Route exact path={allPaths[policies]} component={Policy} />
-        <Route exact path={allPaths[privacy]} component={Privacy} />
+        <Route exact path={allPaths[aboutUs]} element={<AboutUs />} />
+        <Route exact path={allPaths[QAPathname]} element={<QA />} />
+        <Route exact path={allPaths[policies]} element={<Policy />} />
+        <Route exact path={allPaths[privacy]} element={<Privacy />} />
         <Route
           exact
           path={allPaths[position]}
-          render={() => (
+          element={
             <div className="pages container">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14461.716049522005!2d121.5484174!3d25.0195109!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aa2176c4c0ad%3A0x90db5e44ee29f455!2z5ZyL56uL6Ie654Gj56eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1621672373986!5m2!1szh-TW!2stw"
@@ -227,13 +248,10 @@ const App = () => {
                 title="ts-position"
               />
             </div>
-          )}
+          }
         />
-        <Route
-          path={''}
-          render={() => <NotFound message="敬請期待 新功能即將上線" />}
-        />
-      </Switch>
+        <Route path={''} element={<NotFound message="敬請期待 新功能即將上線" />} />
+      </Routes>
     </>
   )
 }
