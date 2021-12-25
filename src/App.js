@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Routes, Route, useHistory } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import {
   FaShoppingCart,
   FaUser,
@@ -65,7 +65,7 @@ import color from 'shared/style/color'
 const App = () => {
   const { user: currentUser } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  const history = useHistory()
+  const location = useLocation()
 
   useEffect(() => {
     dispatch(loadRecipes())
@@ -73,7 +73,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(clearMessage())
-  }, [history.location.pathname])
+  }, [location.pathname])
 
   // needed, for excuting when DOM is ready
   $(() => {

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Router, Link } from 'react-router-dom'
+import { Navigate, Router, Link } from 'react-router-dom'
 
 import 'shared/style/register.scss'
 import Form from 'react-validation/build/form'
@@ -107,13 +107,13 @@ const Register = () => {
     }
   }
 
+  if (successful) <Navigate to="login" />
+
   return (
     <Router history={history}>
       <div className="container pages register">
         <div className="block">
           <Form onSubmit={handleRegister} ref={form}>
-            {!successful
-              ? (
               <div className="form">
                 <div className="input-row">
                   <label>帳號</label>
@@ -185,11 +185,6 @@ const Register = () => {
                   </p>
                 </div>
               </div>
-                )
-              : (
-              <Redirect to="/login" />
-                )}
-
             {message && <div className="message">{message}</div>}
 
             {/* Then CheckButton helps us to verify

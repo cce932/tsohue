@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 
@@ -18,8 +18,9 @@ import {
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+
   if (!currentUser) {
-    return <Redirect to="/login" />
+    return <Navigate to="login" />
   }
 
   const logOutOnClick = () => {

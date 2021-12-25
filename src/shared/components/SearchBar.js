@@ -4,7 +4,7 @@ import $ from 'jquery'
 import { FaSearch } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import { Form } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import 'shared/style/components/searchBar.scss'
 import { allPaths, recipes } from 'shared/constants/pathName'
@@ -13,7 +13,7 @@ import { allPaths, recipes } from 'shared/constants/pathName'
 // In order to distinct the different Search input,
 // `props.at` is used.
 const SearchBar = ({ at }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [isEmpty, setIsEmpty] = useState(true)
 
   const clearOnClick = e => {
@@ -23,17 +23,13 @@ const SearchBar = ({ at }) => {
     $(`#search-${at}`).val('')
     setIsEmpty(true)
     window.location.pathname.search(allPaths[recipes]) >= 0 &&
-      history.push(`${allPaths[recipes]}`)
+      navigate(`${allPaths[recipes]}`)
   }
 
   const searchOnClick = e => {
     e?.preventDefault()
 
-    history.push(
-      `${allPaths[recipes]}?search=${$(`#search-${at}`)
-        .val()
-        .trim()}`,
-    )
+    navigate(`${allPaths[recipes]}?search=${$(`#search-${at}`).val().trim()}`)
   }
 
   const queryOnChange = e => {
