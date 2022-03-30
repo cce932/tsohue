@@ -29,7 +29,7 @@ Independently implement this front-end project, mainly including the following R
 8. other static pages
 
 <p align="center">
-  <img alt="feature" src="https://user-images.githubusercontent.com/49086173/132546659-12115760-89fd-4330-bca1-25466aee867e.jpg">
+  <img alt="feature" src="https://user-images.githubusercontent.com/49086173/160805916-f4217e9e-a711-41f2-bc1e-388b719677f3.jpg">
 </p>
 
 ## Running locally
