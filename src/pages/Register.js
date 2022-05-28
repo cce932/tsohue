@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, Router, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import 'shared/style/register.scss'
 import Form from 'react-validation/build/form'
@@ -46,6 +46,7 @@ const validPhone = (value) => {
 const Register = () => {
   const form = useRef()
   const checkBtn = useRef()
+  const navigate = useNavigate()
 
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
@@ -107,94 +108,92 @@ const Register = () => {
     }
   }
 
-  if (successful) <Navigate to="login" />
+  if (successful) navigate('/login')
 
   return (
-    <Router history={history}>
-      <div className="container pages register">
-        <div className="block">
-          <Form onSubmit={handleRegister} ref={form}>
-              <div className="form">
-                <div className="input-row">
-                  <label>帳號</label>
-                  <Input
-                    type="text"
-                    name="account"
-                    onChange={onChangeAccount}
-                    value={account}
-                    validations={[required]}
-                  />
-                </div>
-
-                <div className="input-row">
-                  <label>密碼</label>
-                  <Input
-                    type="password"
-                    name="password"
-                    onChange={onChangePassword}
-                    value={password}
-                    validations={[required, validPassword]}
-                  />
-                </div>
-
-                <div className="input-row">
-                  <label>姓名</label>
-                  <Input
-                    type="text"
-                    name="username"
-                    onChange={onChangeUsername}
-                    value={username}
-                    validations={[required]}
-                  />
-                </div>
-
-                <div className="input-row">
-                  <label>信箱</label>
-                  <Input
-                    type="text"
-                    name="email"
-                    onChange={onChangeEmail}
-                    value={email}
-                    validations={[required, validEmail]}
-                  />
-                </div>
-
-                <div className="input-row">
-                  <label>手機</label>
-                  <Input
-                    type="text"
-                    name="phone"
-                    onChange={onChangePhone}
-                    value={phone}
-                    validations={[required, validPhone]}
-                  />
-                </div>
-
-                <div className="bottom">
-                  <button>
-                    {successful
-                      ? (
-                      <Spinner animation="border" size="sm"></Spinner>
-                        )
-                      : (
-                          '註冊'
-                        )}
-                  </button>
-                  <p>
-                    已經是會員了嗎？<Link to={'/login'}>點我登入</Link>
-                  </p>
-                </div>
+    <div className="container pages register">
+      <div className="block">
+        <Form onSubmit={handleRegister} ref={form}>
+            <div className="form">
+              <div className="input-row">
+                <label>帳號</label>
+                <Input
+                  type="text"
+                  name="account"
+                  onChange={onChangeAccount}
+                  value={account}
+                  validations={[required]}
+                />
               </div>
-            {message && <div className="message">{message}</div>}
 
-            {/* Then CheckButton helps us to verify
-                if the form validation is successful or not.
-                So this button will not display on the form. */}
-            <CheckButton style={{ display: 'none' }} ref={checkBtn} />
-          </Form>
-        </div>
+              <div className="input-row">
+                <label>密碼</label>
+                <Input
+                  type="password"
+                  name="password"
+                  onChange={onChangePassword}
+                  value={password}
+                  validations={[required, validPassword]}
+                />
+              </div>
+
+              <div className="input-row">
+                <label>姓名</label>
+                <Input
+                  type="text"
+                  name="username"
+                  onChange={onChangeUsername}
+                  value={username}
+                  validations={[required]}
+                />
+              </div>
+
+              <div className="input-row">
+                <label>信箱</label>
+                <Input
+                  type="text"
+                  name="email"
+                  onChange={onChangeEmail}
+                  value={email}
+                  validations={[required, validEmail]}
+                />
+              </div>
+
+              <div className="input-row">
+                <label>手機</label>
+                <Input
+                  type="text"
+                  name="phone"
+                  onChange={onChangePhone}
+                  value={phone}
+                  validations={[required, validPhone]}
+                />
+              </div>
+
+              <div className="bottom">
+                <button>
+                  {successful
+                    ? (
+                    <Spinner animation="border" size="sm"></Spinner>
+                      )
+                    : (
+                        '註冊'
+                      )}
+                </button>
+                <p>
+                  已經是會員了嗎？<Link to={'/login'}>點我登入</Link>
+                </p>
+              </div>
+            </div>
+          {message && <div className="message">{message}</div>}
+
+          {/* Then CheckButton helps us to verify
+              if the form validation is successful or not.
+              So this button will not display on the form. */}
+          <CheckButton style={{ display: 'none' }} ref={checkBtn} />
+        </Form>
       </div>
-    </Router>
+    </div>
   )
 }
 

@@ -11,6 +11,7 @@ const SideList = ({ items }) => {
           <NavLink
             key={index}
             activeClassName="selected"
+            className={({ isActive }) => isActive ? 'selected' : undefined}
             to={item?.url || '#'}
             onClick={item?.onClick}
           >

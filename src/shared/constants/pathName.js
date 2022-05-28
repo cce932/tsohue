@@ -1,8 +1,7 @@
 export const allPaths = {
-  首頁: '/home',
   註冊: '/register',
   登入: '/login',
-  會員: '/member',
+  會員: '/member/',
   我的訂單: 'order-overview',
   訂單詳細: '/order-detail/',
   個人檔案: 'profile',
@@ -24,7 +23,6 @@ export const allPaths = {
   門市位置: '/position',
 }
 
-export const home = '首頁'
 export const register = '註冊'
 export const login = '登入'
 export const logout = '登出'

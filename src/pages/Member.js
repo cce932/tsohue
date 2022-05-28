@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 
@@ -9,7 +9,6 @@ import SideList from 'shared/components/SideList'
 import {
   allPaths,
   coupons,
-  home,
   logout as logoutName,
   orderOverview,
   profile,
@@ -18,13 +17,15 @@ import {
 const Member = () => {
   const { user: currentUser } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   if (!currentUser) {
-    return <Navigate to="login" />
+    return <Navigate to="/login" />
   }
 
   const logOutOnClick = () => {
     dispatch(logout())
+    navigate('/')
   }
 
   const sideListItems = [
@@ -42,7 +43,6 @@ const Member = () => {
     },
     {
       title: logoutName,
-      url: allPaths[home],
       onClick: logOutOnClick,
       topStroke: true,
     },

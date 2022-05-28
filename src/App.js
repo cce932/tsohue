@@ -36,7 +36,6 @@ import { clearMessage } from 'actions/message'
 import { loadRecipes } from 'actions/load'
 import {
   allPaths,
-  home,
   login,
   register,
   member,

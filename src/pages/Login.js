@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
 
 import 'shared/style/login.scss'
 import Form from 'react-validation/build/form'
@@ -7,7 +8,6 @@ import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 
 import { login } from 'actions/auth'
-import { Link } from 'react-router-dom'
 import { allPaths, register } from 'shared/constants/pathName'
 import { Spinner } from 'react-bootstrap'
 import { encrypt } from 'shared/utility/common'
@@ -21,6 +21,7 @@ const required = (value) => {
 const Login = (props) => {
   const form = useRef()
   const checkBtn = useRef()
+  const navigate = useNavigate()
 
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
@@ -31,10 +32,11 @@ const Login = (props) => {
 
   const dispatch = useDispatch()
 
+  // it's not convient to use `useLocation` to get query params
   const next = new URL(window.location.href).searchParams.get('next')
 
   if (isLoggedIn) {
-    window.location = next || '/'
+    navigate(-1, { replace: true })
   }
 
   const onChangeAccount = (e) => {
@@ -53,11 +55,11 @@ const Login = (props) => {
     setLoading(true)
 
     form.current.validateAll()
-    // 如果登入資訊沒錯
+
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(account, encrypt(password, account)))
         .then(() => {
-          window.location = next || '/'
+          navigate(next || '/member')
         })
         .catch(() => {
           setLoading(false)
