@@ -28,9 +28,7 @@ Independently implement this front-end project, mainly including the following R
 7. member profile page
 8. other static pages
 
-<p align="center">
-  <img alt="feature" src="https://user-images.githubusercontent.com/49086173/132546659-12115760-89fd-4330-bca1-25466aee867e.jpg">
-</p>
+![fore stage_slide_compress](https://user-images.githubusercontent.com/49086173/160806875-46d3a523-9967-4ae0-a416-2526c9c23e0e.jpg)
 
 ## Running locally
 
